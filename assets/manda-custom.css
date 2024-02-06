@@ -3657,10 +3657,10 @@ text-decoration-line: strikethrough;
   width: 22px;
 height: 22px;
 }
- .m-search-contain .product-list .product-card  .product-card__info  .v-stack{
-      gap: 16px;
-}
 /*  mk-mds */
+ .m-search-contain .product-list .product-card  .product-card__info .v-stack{
+    gap: 10px;
+}
  .m-search-contain .product-list .product-card .product-card__info {
    gap: 5px;
    padding: 20px 0px 0px 0px;
