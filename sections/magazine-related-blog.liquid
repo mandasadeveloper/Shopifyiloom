@@ -63,7 +63,7 @@
                     {%- endif -%}
                   </div>
               {%- endfor -%}
-          {%- for tag in article.tags -%}
+          {%- for tag in article.tags limit:3 -%}
    
 {% if tag contains spli_tag_url %}
 
