@@ -30,11 +30,12 @@ Supported variables
         {%- endif -%}
 
         <div class="v-stack m-pro-cus justify-items-start gap-0.5">
-          <span class="mm-vendor hh">
+          <span class="mm-vendor hh mk">
           {% for tag in product.tags %}
           {% if tag contains "series:" %}
-          {% assign tag_split = tag  | join: ', ' | split: 'series:' %}
-            --{{ tag_split }}
+          {% assign tag_split = tag | split: 'series:' | join: ', ' %}
+          {% assign formatted_tags = tag_split | join: ', ' %}
+            {{ formatted_tags }}
           {% endif %}
           {% endfor %}
           <!-- {{ product.vendor }} -->
