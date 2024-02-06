@@ -14,8 +14,8 @@
       
            {% assign countt = 0 %}
           {%- for article in blog.articles  -%}
-            {% assign countt = count | plus: 1 %}
-                {{ countt }}
+            {% assign countt = countt | plus: 1 %}
+               {{ countt }}
              {% assign rel_art = article.title %}
             {% unless art_title == rel_art %}
            
