@@ -1,7 +1,7 @@
 <search-drawer {% if request.design_mode %}handle-section-events{% endif %} class="m-search-drawer  search-drawer {% if section.settings.full_width %}search-drawer--full{% endif %} drawer drawer--lg" id="search-drawer">
   <form action="{{ routes.search_url }}" method="get" class="v-stack gap-5 sm:gap-8 m-form-search" role="search">
     <div class="search-input">
-     <input type="hidden" name="options[archive]" value="hide" />
+     <input type="hidden" name="options[cusino]" value="hide" />
     <input type="hidden" name="type" value="product">
       
       <input type="search" name="q"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="{{ 'search.general.title' | t | escape }}">
@@ -29,7 +29,7 @@
         --predictive-search-column-count: 3;
       }
     </style>
-    <input type="hidden" name="options[archive]" value="hide" />
+    <input type="hidden" name="options[cusino]" value="hide" />
     <input type="hidden" name="type" value="product">
 
     <predictive-search class="predictive-search predictive-search1" section-id="{{ section.id }}">
