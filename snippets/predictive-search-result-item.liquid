@@ -128,7 +128,7 @@ Supported variables
     assign blog_handle = split_2[0] | strip
     assign article_blog = blogs[blog_handle]
     %}
-    {% if article_blog.handle == 'news' and article_blog.handle == 'Event' and article_blog.handle == 'Magazine' %}
+    {% if article_blog.handle == 'news' and article_blog.handle == 'event' and article_blog.handle == 'magazine' %}
     <a href="{{ article.url }}" data-instant class="1-{{ article_blog.handle }} predictive-search-result group m-blog-cus">
       {%- if article.image -%}
         {{- article.image | image_url: width: article.image.width | image_tag: sizes: '96px', widths: '96,192' -}}
