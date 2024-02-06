@@ -153,7 +153,6 @@
         {%- if predictive_search.performed -%}
           {%- assign results_count = 0 -%}
           {%- assign categories_count = 0 -%}
-{{ predictive_search.performed.size }}
           {%- for resource in predictive_search.resources -%}
             {%- assign results_count = results_count | plus: resource.last.size -%}
 
@@ -199,8 +198,6 @@
                 <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
                   {%- render 'predictive-search-result-item' for predictive_search.resources.products as item, type: 'product' -%}
                 </div>
-                {% else %}
-                megha
               {%- endif -%}
 
               {%- if predictive_search.resources.queries.size > 0 -%}
@@ -294,9 +291,10 @@
                 </div>
               {%- endif -%}
             </x-tabs>
-
-        {% else %}
-            mk1
+          {% else %}
+            <div class="empty-state">
+              <p class="h6">{{ 'search.general.no_results' | t }}</p>
+            </div>
           {%- endif -%}
         {%- endif -%}
       </div>
