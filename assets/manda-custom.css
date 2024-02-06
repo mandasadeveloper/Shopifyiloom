@@ -3853,10 +3853,10 @@ line-height: 256.3%;
   .m-blog-posts-event blog-post-card.blog-post-card{
     max-width:434px;
 }
-    .m-blog-posts-news blog-post-card.blog-post-card:nth-child(even) {
+    .m-blog-posts blog-post-card.blog-post-card-related:nth-child(even) {
     margin-right: auto;
 }
-    .m-blog-posts-news blog-post-card.blog-post-card:nth-child(odd) {
+    .m-blog-posts blog-post-card.blog-post-card-related:nth-child(odd) {
     margin-left: auto;
 }
 }
