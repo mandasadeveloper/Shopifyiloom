@@ -122,6 +122,7 @@ Supported variables
 
   {%- when 'article' -%}
     {%- assign article = item -%}
+  {{ article_blog.handle  }}
     {% if article_blog.handle != 'archive' or article_blog.handle != 'Q&A'  %}
     <a href="{{ article.url }}" data-instant class="predictive-search-result group m-blog-cus">
       {%- if article.image -%}
