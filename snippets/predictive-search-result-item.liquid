@@ -25,26 +25,20 @@ Supported variables
       {%- endif -%}
 
       <div class="v-stack gap-1 sm:gap-1.5">
-  {% comment %}
         {%- if settings.show_vendor -%}
           <!-- <span class="text-xs text-subdued">{{ product.vendor }}</span> -->
         {%- endif -%}
-  {% endcomment %}
+
         <div class="v-stack m-pro-cus justify-items-start gap-0.5">
-          <span class="mm-vendor hh">
-          {% for tag in product.tags %}
-          {% if tag contains "series:" %}
+   <span class="mm-vendor hh 1">
+        {% for tag in product.tags %}
+        {% if tag contains "series:" %}
           {% assign tag_split = tag | split: 'series:' %}
-            {{ tag_split }} --------
-            {% assign series_tags = tag_split | split: ',' %}
-            {% assign formatted_tags = series_tags | join: '/ ' %}
-            
-           {{ formatted_tags}}
-            
-          {% endif %}
-          {% endfor %}
-          <!-- {{ product.vendor }} -->
-          </span>
+          {{ tag_split[1] }}
+        {% endif %}
+      {% endfor %}
+       <!-- {{ product.vendor }} -->
+               </span>
           <span class="bold">
             <span class="reversed-link">{{ product.title }}</span>
           </span>
