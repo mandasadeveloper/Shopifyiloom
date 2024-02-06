@@ -2995,12 +2995,15 @@ margin-top: 13px
   line-height: 17.38px;
   }
   .m-size{
-  color: #9A9A9A;
-  font-family:'Noto_Sans_TC';
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 17.38px;
+    color: #9A9A9A;
+    font-family:'Noto_Sans_TC';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17.38px;
   }
+.line-item__info .m-size .text-sm{
+   font-size: 12px;
+}
   .manda-cart .text-subdued .price{
   color: #3C3C3C;
   font-family: 'Montserrat';
