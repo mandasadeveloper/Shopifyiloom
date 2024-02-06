@@ -1,0 +1,248 @@
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+LIQUID
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+<div class="sm:container">
+  <div class="customer-form m-form-login">
+    {%- if section.settings.image != blank -%}
+      {{- section.settings.image | image_url: width: section.settings.image.width | image_tag: loading: 'lazy', sizes: '50vw', widths: '300,400,500,600,700,800,1000,1200,1400', class: 'customer-form__image rounded' -}}
+    {%- endif -%}
+
+    <div {% render 'surface', class: 'customer-form__box', background_gradient: section.settings.background_gradient, background: section.settings.background, text_color: section.settings.text_color, background_fallback: 'bg-secondary' %}>
+      <account-login class="customer-form__box-inner text-center">
+        <div id="login" class="v-stack gap-12">
+          <h1 class="h2">
+            {%- assign content = 'customer.login.title' | t -%}
+            {%- render 'styled-text', content: content, gradient: section.settings.heading_gradient -%}
+            <svg xmlns="http://www.w3.org/2000/svg" width="320" height="2" viewBox="0 0 320 2" fill="none">
+          <path d="M0 1H320" stroke="black"/>
+          </svg>
+          </h1>
+          
+          <div class="v-stack gap-6">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when '@app' -%}
+                {%- render block -%}
+
+                {%- when 'liquid' -%}
+                  {%- if block.settings.liquid != blank -%}
+                    <div {{ block.shopify_attributes }}>
+                      {{- block.settings.liquid -}}
+                    </div>
+                  {%- endif -%}
+
+                {%- when 'fields' -%}
+                  <div {{ block.shopify_attributes }}>
+                    {%- form 'customer_login', class: 'form' -%}
+                      <input type="hidden" name="checkout_url" value="{{ block.settings.return_to | default: routes.account_url }}">
+
+                      <div class="fieldset">
+                        {%- if form.errors -%}
+                          {%- render 'banner', status: 'error', content: form.errors.messages['form'] -%}
+                        {%- endif -%}
+
+                        {%- assign email_label = 'customer.login.email' | t -%}
+                        {%- render 'input', type: 'email', name: 'customer[email]', label: email_label, autocomplete: 'email', required: true -%}
+
+                        {%- assign password_label = 'customer.login.password' | t -%}
+                        {%- render 'input', type: 'password', name: 'customer[password]', label1: password_label, autocomplete: 'current-password', required: true -%}
+                            <div class="m-div1">
+                            <div class="m-remember-id">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 9L8.5 13L15.5 6" stroke="#BEBEBE" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+                            <rect x="0.5" y="0.5" width="19" height="19" stroke="#BEBEBE"/>
+                            </svg>
+                            <span>記住帳號</span>
+                            </div>
+                               <div class="m-div">
+                            <div class="m-tooltip tooltip">{{ section.settings.tooltip_txt }}<span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="8.5" stroke="#9A9A9A"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9977 10.002C12.4947 10.002 12.8977 10.3154 12.8977 10.702V16.302C12.8977 16.6886 12.4947 17.002 11.9977 17.002C11.5006 17.002 11.0977 16.6886 11.0977 16.302V10.702C11.0977 10.3154 11.5006 10.002 11.9977 10.002Z" fill="#9A9A9A"/>
+                            <ellipse cx="11.9961" cy="8.00195" rx="1" ry="1" fill="#9A9A9A"/>
+                            </svg>
+                            </span>
+                             <span class="tooltiptext">{{ section.settings.tooltip_txt_hover }}</span>
+                            </div>
+                            <div class="fieldset-link justify-self-start">
+                            <a href="#recover" class="link text-sm text-subdued">{{ section.settings.forget_password }}</a><span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path d="M6.75 3.75L12 9L6.75 14.25" stroke="#3C3C3C" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg></span>
+                             </div>
+                        </div>
+                      </div>
+
+                        
+                      </div>
+
+                      {%- assign submit_label = 'customer.login.submit' | t -%}
+                      {%- render 'button', content: submit_label, type: 'submit', size: 'xl', stretch: true, secondary: true, background: section.settings.button_background, text_color: section.settings.button_text_color -%}
+                     <div class="social-txt">{{ section.settings.social-share }}</div>
+                      <div class="sign-up-txt">{{ section.settings.sign_up_button_top_txt }}</div>
+                      <div>
+                        <a href="{{ routes.account_register_url }}" class="link link1 text-subdued">{{ 'customer.login.sign_up' | t }}</a>
+                      </div>
+                      <div class="sign-up-txt-1"><a href="{{ section.settings.sign_url }}">{{ section.settings.sign_up_button_bottom_txt }}<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <path d="M6.75 3.75L12 9L6.75 14.25" stroke="#3C3C3C" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      </a>
+                      </div>  
+                    {%- endform -%}
+                  </div>
+                {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <div id="recover" class="v-stack gap-12" hidden>
+          <h1 class="h2">
+            {%- assign content = 'customer.recover_password.title' | t -%}
+            {%- render 'styled-text', content: content, gradient: section.settings.heading_gradient -%}
+          </h1>
+
+          {%- form 'recover_customer_password', class: 'form' -%}
+            <div class="fieldset">
+              {%- if form.errors -%}
+                {%- render 'banner', status: 'error', content: form.errors.messages['form'] -%}
+              {%- endif -%}
+
+              {%- if form.posted_successfully? -%}
+                {%- assign success_message = 'customer.recover_password.success_message' | t -%}
+                {%- render 'banner', status: 'success', content: success_message -%}
+              {%- else -%}
+                {%- assign email_label = 'customer.recover_password.email' | t -%}
+                {%- render 'input', type: 'email', name: 'email', label: email_label, autocomplete: 'email', required: true -%}
+              {%- endif -%}
+            </div>
+
+            {%- unless form.posted_successfully? -%}
+              {%- assign submit_label = 'customer.recover_password.submit' | t -%}
+              {%- render 'button', content: submit_label, type: 'submit', size: 'xl', stretch: true, secondary: true, background: section.settings.button_background, text_color: section.settings.button_text_color -%}
+            {%- endunless -%}
+
+            <div>
+              <a href="#login" class="link text-subdued">{{ 'customer.recover_password.back_to_login' | t }}</a>
+            </div>
+          {%- endform -%}
+        </div>
+      </account-login>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Customer login",
+  "class": "shopify-section--main-customers-login",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "1400 x 1400px .jpg recommended. Does not show on mobile."
+    },
+     {
+      "type": "text",
+      "id": "tooltip_txt",
+      "label": "Tooltip Text"
+    },
+    
+    {
+      "type": "text",
+      "id": "social-share",
+      "label": "social share Text"
+    },
+     {
+      "type": "text",
+      "id": "tooltip_txt_hover",
+      "label": "Tooltip Text hover"
+    },
+      {
+            "type": "textarea",
+      "id": "sign_up_button_top_txt",
+      "label": "sign up button top Text"
+    },
+          {
+            "type": "textarea",
+      "id": "sign_up_button_bottom_txt",
+      "label": "Track Order Page"
+    },
+     {
+            "type": "url",
+      "id": "sign_url",
+      "label": "Track Order url"
+    },
+    {
+      "type": "text",
+      "id": "forget_password",
+      "label": "Forget password"
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "Heading gradient"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "fields",
+      "name": "Fields",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "url",
+          "id": "return_to",
+          "label": "Redirect upon login",
+          "info": "Default to customer account page."
+        }
+      ]
+    },
+    {
+      "type": "liquid",
+      "name": "Liquid",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "liquid",
+          "label": "Liquid"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

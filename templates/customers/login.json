@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-customers-login",
+      "blocks": {
+        "fields": {
+          "type": "fields",
+          "settings": {
+            "return_to": ""
+          }
+        }
+      },
+      "block_order": [
+        "fields"
+      ],
+      "settings": {
+        "tooltip_txt": "我忘了我的密碼",
+        "social-share": "使使用您的 SNS 帳號登錄",
+        "tooltip_txt_hover": "비밀번호 찾기",
+        "sign_up_button_top_txt": "當您註冊成為新會員時，您將收到<span class=\"color-red-m\">「首次購買感謝優惠券」。<\/span>",
+        "sign_up_button_bottom_txt": "查看非會員訂單",
+        "sign_url": "",
+        "forget_password": "忘記密碼",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

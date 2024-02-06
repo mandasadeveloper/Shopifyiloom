@@ -1,0 +1,91 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-article-m",
+      "blocks": {
+        "navigation": {
+          "type": "navigation",
+          "disabled": true,
+          "settings": {
+          }
+        },
+        "comments": {
+          "type": "comments",
+          "disabled": true,
+          "settings": {
+            "show_gravatar": true,
+            "comments_per_page": 5
+          }
+        }
+      },
+      "block_order": [
+        "navigation",
+        "comments"
+      ],
+      "settings": {
+        "allow_transparent_header": false,
+        "layout": "image_text_overlay",
+        "show_author": true,
+        "show_date": true,
+        "show_comments_count": true,
+        "show_share_buttons": true,
+        "banner_background": "#ffffff",
+        "banner_text_color": "#ffffff",
+        "overlay_color": "rgba(0,0,0,0)",
+        "overlay_opacity": 0,
+        "content_width": "750px"
+      }
+    },
+    "e5e7f912-dbe1-4176-b282-d49616a505f8": {
+      "type": "featured-collection-magazine",
+      "settings": {
+        "collection": "",
+        "products": [
+
+        ],
+        "full_width": true,
+        "stack_products": true,
+        "show_progress_bar": true,
+        "products_count": 2,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "subheading": "",
+        "title": "雜誌上推薦的產品",
+        "content": "",
+        "link_url": "",
+        "link_text": "",
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
+      }
+    },
+    "3cc47129-4510-4a71-b307-86e531a7e97d": {
+      "type": "magazine-related-blog",
+      "settings": {
+        "blog_cus": "查看其他主题文章",
+        "show_tags": true,
+        "banner_background": "",
+        "banner_text_color": "",
+        "button_background": "",
+        "button_text_color": "",
+        "feature_first_article": false,
+        "feature_article_background": "#f9f8f7",
+        "feature_article_text_color": "",
+        "show_excerpt": true,
+        "show_date": false,
+        "show_author": false,
+        "show_comments_count": false,
+        "show_category": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "e5e7f912-dbe1-4176-b282-d49616a505f8",
+    "3cc47129-4510-4a71-b307-86e531a7e97d"
+  ]
+}

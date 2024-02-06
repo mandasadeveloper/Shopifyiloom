@@ -1,0 +1,45 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-article-news",
+      "blocks": {
+        "navigation": {
+          "type": "navigation",
+          "disabled": true,
+          "settings": {
+          }
+        },
+        "comments": {
+          "type": "comments",
+          "disabled": true,
+          "settings": {
+            "show_gravatar": true,
+            "comments_per_page": 5
+          }
+        }
+      },
+      "block_order": [
+        "navigation",
+        "comments"
+      ],
+      "settings": {
+        "allow_transparent_header": false,
+        "url_text": "回目錄",
+        "url_cus": "https:\/\/iloomtaiwan.myshopify.com\/blogs\/news",
+        "layout": "image_text_overlay",
+        "show_author": false,
+        "show_date": false,
+        "show_comments_count": false,
+        "show_share_buttons": false,
+        "banner_background": "#f0f0f0",
+        "banner_text_color": "rgba(0,0,0,0)",
+        "overlay_color": "rgba(0,0,0,0)",
+        "overlay_opacity": 0,
+        "content_width": "750px"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
