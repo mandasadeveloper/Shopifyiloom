@@ -228,9 +228,9 @@
                 </div>
                 <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
                 --{{  predictive_search.resources.blog }}--
-                  {{ article.blog.title }}
-                  {%- unless article.blog.title == 'archive' -%}
-                    {{ article.blog.title }}
+                  {{ blog.title }}
+                  {%- unless blog.title == 'archive' -%}
+                    {{ blog.title }}
                   {%- render 'predictive-search-result-item' for predictive_search.resources.articles as item, type: 'article' -%}
                   {%- endunless -%}
                 
