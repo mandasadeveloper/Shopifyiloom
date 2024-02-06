@@ -25,10 +25,11 @@ Supported variables
       {%- endif -%}
 
       <div class="v-stack gap-1 sm:gap-1.5">
+  {% comment %}
         {%- if settings.show_vendor -%}
           <!-- <span class="text-xs text-subdued">{{ product.vendor }}</span> -->
         {%- endif -%}
-
+  {% endcomment %}
         <div class="v-stack m-pro-cus justify-items-start gap-0.5">
           <span class="mm-vendor hh mk">
           {% for tag in product.tags %}
