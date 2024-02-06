@@ -13,7 +13,7 @@
         <div class="blog-posts m-blog-posts m-blog-posts-related" id="Huratips-Loop" >
 
           {%- for article in blog.articles  -%}
-            
+               {{ forloop.index }}
              {% assign rel_art = article.title %}
             {% unless art_title == rel_art %}
            
@@ -64,7 +64,7 @@
                   </div>
               {%- endfor -%}
           {%- for tag in article.tags -%}
-   {{ forloop.index }}
+
 {% if tag contains spli_tag_url %}
 
      
