@@ -3889,6 +3889,9 @@ line-height: 256.3%;
   .m-blog-posts-event .blog-post-card_info_me .v-stack-m{
     gap: 20px!important;
   }
+  .m_blog-news .m-blog-posts-news {
+    gap: 54px;
+}
 }
 
 
