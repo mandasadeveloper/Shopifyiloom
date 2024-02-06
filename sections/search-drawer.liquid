@@ -150,11 +150,10 @@
       
 
       <div slot="results"> 
-        {{ predictive_search.performed }}
         {%- if predictive_search.performed -%}
           {%- assign results_count = 0 -%}
           {%- assign categories_count = 0 -%}
-{{ predictive_search.resources.size }}
+{{ predictive_search.performed.size }}
           {%- for resource in predictive_search.resources -%}
             {%- assign results_count = results_count | plus: resource.last.size -%}
 
