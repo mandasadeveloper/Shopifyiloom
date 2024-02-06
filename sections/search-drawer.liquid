@@ -199,6 +199,8 @@
                 <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
                   {%- render 'predictive-search-result-item' for predictive_search.resources.products as item, type: 'product' -%}
                 </div>
+                {% else %}
+                megha
               {%- endif -%}
 
               {%- if predictive_search.resources.queries.size > 0 -%}
