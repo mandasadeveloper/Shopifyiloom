@@ -87,8 +87,10 @@
 .m-search-drawer{
   overflow:hidden;
 }
+/* mk-mds */
 .predictive-search1 .predictive-search-result{
       align-items: flex-start;
+      margin-bottom: 15px
 }
   .m-blog-posts .blog-post-card__figure{
   overflow: unset;
