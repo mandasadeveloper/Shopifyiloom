@@ -58,10 +58,14 @@ Supported variables
     </div>
 
     {%- unless line_item.product.has_only_default_variant or line_item.gift_card -%}
-     
-   <div class="m-color">色相:<p class="text-sm text-subdued vg"> {{ line_item.variant.option1 }}</p></div>
-   <div class="m-size">尺寸:<p class="text-sm text-subdued vg"> {{ line_item.variant.option2 }}</p></div>
-    
+      <!-- mk-mds  -->
+      {% if  line_item.variant.option1 != blank %}
+        <div class="m-color">色相:<p class="text-sm text-subdued vg"> {{ line_item.variant.option1 }}</p></div>
+      {% endif %}
+      {% if  line_item.variant.option2 != blank %}
+        <div class="m-size">尺寸:<p class="text-sm text-subdued vg"> {{ line_item.variant.option2 }}</p></div>
+      {% endif %}
+      <!-- end-mk-mds  -->
     {%- endunless -%}
 
     {%- if line_item.selling_plan_allocation -%}
