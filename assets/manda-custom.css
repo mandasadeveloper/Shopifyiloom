@@ -3660,11 +3660,13 @@ height: 22px;
  .m-search-contain .product-list .product-card  .product-card__info  .v-stack{
       gap: 16px;
 }
+/*  mk-mds */
  .m-search-contain .product-list .product-card .product-card__info {
    gap: 16px;
-   padding: 32px 0px 0px 0px;
-   
+   padding: 20px 0px 0px 0px;
 }
+/*  end-mk-mds */
+
 .badges-cus{
   border-radius: 50px;
 background: #C80A1E;
