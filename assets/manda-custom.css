@@ -446,7 +446,7 @@
   gap: 11px;
   }
   .m_blog-news .blog-post-card_info_mm .v-stack-m{
-  gap: 20px;
+  gap: 19px;
   }
   /* article page CSS */
   .article-manda .m-article-banner{
@@ -3892,6 +3892,9 @@ line-height: 256.3%;
   .m_blog-news .m-blog-posts-news {
     gap: 54px;
 }
+  .m_blog-news .blog-post-card_info_mm .v-stack-m{
+  gap: 20px;
+  }
 }
 
 
