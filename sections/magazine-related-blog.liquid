@@ -12,7 +12,7 @@
      <h1>{{ section.settings.blog_cus }}</h1>
         <div class="blog-posts m-blog-posts m-blog-posts-related" id="Huratips-Loop" >
 
-          {%- for article in blog.articles limit:3 -%}
+          {%- for article in blog.articles  -%}
             
              {% assign rel_art = article.title %}
             {% unless art_title == rel_art %}
