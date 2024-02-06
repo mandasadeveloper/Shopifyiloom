@@ -39,7 +39,7 @@ Supported variables
             {% assign formatted_tags = series_tags | join: ', ' %}
             {% assign formatted_tags_without_empty_strings = formatted_tags | replace: ' ', '' | split: ',' | join: '/' %}
             
-           mk {{ formatted_tags_without_empty_strings }}
+           {{ formatted_tags_without_empty_strings }}
             
           {% endif %}
           {% endfor %}
