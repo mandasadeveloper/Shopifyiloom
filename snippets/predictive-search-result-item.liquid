@@ -121,8 +121,8 @@ Supported variables
     </a>
 
   {%- when 'article' -%}
-
     {%- assign article = item -%}
+    {% if article_blog.handle != 'archive' or article_blog.handle != 'Q&A'  %}
     <a href="{{ article.url }}" data-instant class="predictive-search-result group m-blog-cus">
       {%- if article.image -%}
         {{- article.image | image_url: width: article.image.width | image_tag: sizes: '96px', widths: '96,192' -}}
@@ -133,7 +133,7 @@ Supported variables
           assign blog_handle = split_2[0] | strip
           assign article_blog = blogs[blog_handle]
           %}
-    {% if article_blog.handle != 'archive' %}
+  
       <div class="v-stack justify-items-start gap-2 sm:gap-3">
         {%- if section.settings.show_article_category and article.tags.size > 0 -%}
           <!-- <span class="badge badge--primary">{{ article.tags | first }}</span> -->
@@ -145,8 +145,8 @@ Supported variables
             <span class="reversed-link">{{ blog.title }}</span>
         </span>
       </div>
-      {% endif %}
     </a>
+    {% endif %}
 
   {%- when 'collection' -%}
     {%- assign collection = item -%}
