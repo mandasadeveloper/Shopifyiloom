@@ -21,6 +21,7 @@
       "blocks": {
         "newsletter_EELrFq": {
           "type": "newsletter",
+          "disabled": true,
           "settings": {
             "title": "Newsletter",
             "content": "<p>Write something about what your customers will receive by subscribing to your newsletter.<\/p>",
