@@ -3105,15 +3105,17 @@ margin-top: 13px
   display: flex;
   gap: 327px;
   }
+/* mk-mds */
   .m-quantity-cus{
   display: flex;
-  width: 95.618px;
+  /* width: 95.618px; */
   padding: 2px 1.618px 2px 2px;
   justify-content: center;
   align-items: center;
   gap: 0px;
   background: #F0F0F0;
   }
+/* end-mk-mds */
   .m-quantity-cus .quantity-input{
   border:none;
   color: #3C3C3C;
