@@ -4,6 +4,10 @@
             {% assign spli_tag_url = tag %}     
   {% endif %}
 {% endfor %}
+
+        {%- for tag in article.tags -%}
+          {{ tag }}
+          {% endfor %}
 {% if spli_tag_url %}
 <div class="blog-post-rel-mm">
 <div class="blog-post-rel-m">
