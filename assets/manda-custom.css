@@ -3576,6 +3576,13 @@ letter-spacing: -0.14px;
     content: '';
     border: 1px solid #D9D9D9;
 }
+.m-cart-bottom .radio-custom:checked + .radio-custom-label:before {
+    content: "\f00c";
+    font-family: 'FontAwesome';
+    color: #fff !important;
+    background: #3C3C3C;
+    border: 1px solid #3c3c3c !important;
+}
 /* end-mk-mds */
 .checkbox-custom:checked + .checkbox-custom-label:before {
     content: "\f00c";
