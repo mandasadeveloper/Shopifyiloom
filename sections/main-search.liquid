@@ -143,7 +143,7 @@
                 </div>
 
                 <reveal-items selector=".product-list > *">
-                  <product-list class="1 product-list product-list-desktop hh" role="region" aria-live="polite">
+                  <product-list class="product-list product-list-desktop hh" role="region" aria-live="polite">
                     {%- assign product_results = search.results | where: 'object_type', 'product' -%}
 
                     {%- for product in product_results -%}
