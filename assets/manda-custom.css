@@ -3918,7 +3918,7 @@ line-height: 256.3%;
     text-decoration: none;
     background: none;
 }
-.m-cart-bottom .radio-custom + .radio-custom-label:before{
+.m-cart-bottom .radio-custom + .radio-custom:before{
     border: 1px solid #D9D9D9;
     content: '';
     position: absolute;
@@ -3932,7 +3932,7 @@ line-height: 256.3%;
     transform: rotate(45deg) translate(-50%, -50%);
     z-index: 2;
 }
-.m-cart-bottom .radio-custom:checked + .radio-custom-label:before {
+.m-cart-bottom .radio-custom:checked + .radio-custom:before {
     content: "\f00c";
     font-family: 'FontAwesome';
     color: #fff !important;
