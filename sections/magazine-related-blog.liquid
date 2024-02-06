@@ -14,8 +14,7 @@
       
            {% assign countt = 0 %}
           {%- for article in blog.articles  -%}
-            {% assign countt = countt | plus: 1 %}
-               {{ countt }}
+           
              {% assign rel_art = article.title %}
             {% unless art_title == rel_art %}
            
@@ -69,7 +68,8 @@
           {%- for tag in article.tags -%}
 
 {% if tag contains spli_tag_url %}
-
+ {% assign countt = countt | plus: 1 %}
+               {{ countt }}
      
             {%- if section.settings.feature_first_article and forloop.first -%}
               {%- assign background_color = article.metafields.banner.background_color.value | default: section.settings.feature_article_background -%}
