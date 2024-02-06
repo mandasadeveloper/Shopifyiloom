@@ -2932,6 +2932,7 @@ margin-top: 13px
   .manda-cart .cart-order{
   display:block;
   }
+/* mk-mds  */
   .manda-cart .order-summary__header th{
     color: #3C3C3C;
     text-align: center;
@@ -2942,6 +2943,7 @@ margin-top: 13px
     letter-spacing: -0.16px;
     padding: 16px 0;
   }
+/* end-mk-mds  */
   .manda-cart .cart{
   max-width: 1197.007px;    
   gap: 0px;
