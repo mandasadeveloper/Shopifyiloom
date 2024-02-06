@@ -3571,7 +3571,12 @@ letter-spacing: -0.14px;
     margin-right: 10px;
     text-align: center;
 }
-
+/* mk-mds */
+.m-cart-bottom .radio-custom + .radio-custom-label:before{
+    content: '';
+    border: 1px solid #D9D9D9;
+}
+/* end-mk-mds */
 .checkbox-custom:checked + .checkbox-custom-label:before {
     content: "\f00c";
     font-family: 'FontAwesome';
