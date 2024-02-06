@@ -92,9 +92,10 @@
   align-items: center;
 }
 .idle-cus .predictive-search-result{
-    margin-bottom: 15px
+  margin-bottom: 15px
 }
 /* end mk-mds */
+
   .m-blog-posts .blog-post-card__figure{
   overflow: unset;
   }
