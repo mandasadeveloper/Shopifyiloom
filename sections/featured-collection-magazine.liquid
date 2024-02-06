@@ -31,7 +31,7 @@
     }
   }
 </style>
-
+{% if article.metafields.custom.product_article_page %}
 <div class='bg-cuss'>
   <div class="section-stack section-stack-magzine">
     {%- assign link_url = section.settings.link_url | default: section.settings.collection.url -%}
@@ -75,7 +75,7 @@
     </div>
   </div>
 </div>
-
+{% endif %}
 {% schema %}
 {
   "name": "Featured Coll Magazine",
