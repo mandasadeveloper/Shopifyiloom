@@ -1715,7 +1715,7 @@ height: 24px;
   .m-quantity-cuss{
   display: flex;
   flex-direction: column;
-  gap: 21px;
+  gap: 50px;
   align-items: end;
   }
   .mobile-border{
