@@ -69,8 +69,7 @@
 
 {% if tag contains spli_tag_url %}
  {% assign countt = countt | plus: 1 %}
-      
-            {% if countt < 4 %}
+               {{ countt }}
      
             {%- if section.settings.feature_first_article and forloop.first -%}
               {%- assign background_color = article.metafields.banner.background_color.value | default: section.settings.feature_article_background -%}
@@ -81,7 +80,6 @@
               {%- capture sizes -%}(max-width: 699px) 100vw, (max-width: 1149px) calc(100vw / 2 - 40px), (max-width: 1399px) calc(min(100vw, {{ settings.page_width }}px) / 3 - 40px) , calc(min(100vw, {{ settings.page_width }}px) / 3 - 80px) {%- endcapture -%}
               {%- render 'm-blog-post-card-related', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, sizes: sizes -%}
             {%- endif -%}
-            {% endif %}
    {% endif %}
 {%- endfor -%}
                  {% endunless %}

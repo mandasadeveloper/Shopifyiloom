@@ -3779,6 +3779,9 @@ line-height: 256.3%;
 .m-blog-posts blog-post-card.blog-post-card{
     max-width:434px;
 }
+  .m-blog-posts blog-post-card.blog-post-card-related{
+    max-width:434px;
+}
 }
 @media screen and (max-width: 1023px){
   .m-blog-posts.blog-posts{
