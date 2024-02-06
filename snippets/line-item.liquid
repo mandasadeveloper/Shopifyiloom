@@ -108,11 +108,17 @@ Supported variables
   {%- if show_desktop_quantity -%}
     <div class="line-item__actions text-subdued hidden sm:block">
       <line-item-quantity class="v-stack gap-2 hhh">
+         <span class="text-xs text-center">
+          <a href="{{ line_item.url_to_remove }}" class="link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 2L2 14" stroke="#3C3C3C" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 2L14 14" stroke="#3C3C3C" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </span>
         <input class="quantity-input" type="text" is="quantity-input" inputmode="numeric" {% if line_max_quantity %}max="{{ line_max_quantity }}"{% endif %} data-line-key="{{ line_item.key }}" aria-label="{{ 'cart.order.change_quantity' | t | escape }}" value="{{ line_item.quantity }}">
 
-        <span class="text-xs text-center">
-          <a href="{{ line_item.url_to_remove }}" class="link">{{ 'cart.order.remove' | t }}</a>
-        </span>
+       
       </line-item-quantity>
     </div>
   {%- endif -%}
