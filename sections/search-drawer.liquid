@@ -31,7 +31,6 @@
 
     <predictive-search class="predictive-search predictive-search1" section-id="{{ section.id }}">
 
-
         <div slot="idle"  class="m-idle-cus">
              {%- if section.settings.search_menu_show_title -%}
               <p class="bold text-subdued m-h1-cus">{{ section.settings.search_menu.title }}</p>
@@ -51,8 +50,6 @@
           </div>
 <div class="idle-cus">
      {%- for product in section.settings.products_popular -%}
-               <!-- {{ product.title }} -->
-
 
     {%- assign product = item -%}
 
@@ -296,6 +293,8 @@
               {%- endif -%}
             </x-tabs>
           {%- endif -%}
+          {% else %}
+          result not found
         {%- endif -%}
       </div>
 
