@@ -22,12 +22,14 @@
         </button>
       </div>
 
+  {% comment %}
       {%- unless search.results_count > 0 -%}
         <div class="justify-self-center">
           {%- assign button_content = 'search.general.title' | t -%}
           {%- render 'button', type: 'submit', content: button_content, size: 'xl' -%}
         </div>
       {%- endunless -%}
+  {% endcomment %}
     </div>
 
   </form>
