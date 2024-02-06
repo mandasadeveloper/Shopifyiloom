@@ -5,9 +5,6 @@
   {% endif %}
 {% endfor %}
 
-        {%- for tag in article.tags -%}
-          {{ tag }}
-          {% endfor %}
 {% if spli_tag_url %}
 <div class="blog-post-rel-mm">
 <div class="blog-post-rel-m">
@@ -15,6 +12,10 @@
         <div class="blog-posts m-blog-posts m-blog-posts-related" id="Huratips-Loop" >
 
           {%- for article in blog.articles  -%}
+            
+             {%- for tag in article.tags -%}
+               {{ tag }}
+               {% endfor %}
             {% if forloop.index <= 4 %}
             
               {%- for block in section.blocks -%}
