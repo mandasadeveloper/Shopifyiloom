@@ -149,7 +149,8 @@
 
       
 
-      <div slot="results" data> 
+      <div slot="results"> 
+        {{ predictive_search.performed }}
         {%- if predictive_search.performed -%}
           {%- assign results_count = 0 -%}
           {%- assign categories_count = 0 -%}
