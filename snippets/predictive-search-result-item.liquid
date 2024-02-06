@@ -122,6 +122,12 @@ Supported variables
 
   {%- when 'article' -%}
     {%- assign article = item -%}
+    {%liquid
+    assign split_1 = article.url | split: '/blogs/'
+    assign split_2 = split_1[1] | split: '/'
+    assign blog_handle = split_2[0] | strip
+    assign article_blog = blogs[blog_handle]
+    %}
     {% if article_blog.handle != 'archive' or article_blog.handle != 'Q&A'  %}
     <a href="{{ article.url }}" data-instant class="1-{{ article_blog.handle }} predictive-search-result group m-blog-cus">
       {%- if article.image -%}
