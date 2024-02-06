@@ -3210,12 +3210,13 @@ margin-top: 13px
   .mandasa_summary input[type=checkbox]:hover {
   opacity: 1;
   }
-  
+  /* mk-mds */
   .mandasa_summary input[type=checkbox]:checked {
-  background-color: #000;
-  opacity: 1;
-  border-color: #000;
+    background-color: #3C3C3C;
+    opacity: 1;
+    border-color: #3C3C3C;
   }
+  /* end-mk-mds */
   .mandasa_summary input[type=checkbox]:checked:before{
   border-color: #fff;
   }
