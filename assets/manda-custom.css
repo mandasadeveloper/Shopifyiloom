@@ -3218,22 +3218,23 @@ margin-top: 13px
   }
   /* end-mk-mds */
   .mandasa_summary input[type=checkbox]:checked:before{
-  border-color: #fff;
+    border-color: #fff;
   }
+  /* mk-mds */
   .mandasa_summary input[type=checkbox]:before {
-  content: '';
-  position: absolute;
-  right: 50%;
-  top: 46%;
-  width: 7px;
-  height: 11.5px;
-  border: solid #d9d9d9;
-  border-width: 0 2px 2px 0;
-  margin: -1px -1px 0 -1px;
-  transform: rotate(45deg) translate(-50%, -50%);
-  z-index: 2;
+    content: '';
+    position: absolute;
+    right: 50%;
+    top: 46%;
+    width: 7px;
+    height: 11.5px;
+    border: solid #d9d9d9;
+    border-width: 0 2px 2px 0;
+    margin: -1px -2px 0 0px;
+    transform: rotate(45deg) translate(-50%, -50%);
+    z-index: 2;
   }
-  
+  /* end-mk-mds */
   .total_cus .price{
   font-family: Montserrat;
   font-size: 30px;
