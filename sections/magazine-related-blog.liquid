@@ -17,7 +17,7 @@
              {% assign rel_art = article.title %}
             {% unless art_title == rel_art %}
            
-            
+            {{ forloop.index }}
      
             
               {%- for block in section.blocks -%}
