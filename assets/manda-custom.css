@@ -90,7 +90,9 @@
 /* mk-mds */
 .predictive-search1 .predictive-search-result{
   align-items: center;
-  margin-bottom: 10px
+}
+.idle-cus .predictive-search-result{
+    margin-bottom: 15px
 }
 /* end mk-mds */
   .m-blog-posts .blog-post-card__figure{
