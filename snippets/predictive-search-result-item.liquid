@@ -35,11 +35,11 @@ Supported variables
           {% for tag in product.tags %}
           {% if tag contains "series:" %}
           {% assign tag_split = tag | split: 'series:' %}
+            {{ tag_split }} --------
             {% assign series_tags = tag_split | split: ',' %}
-            {% assign formatted_tags = series_tags | join: ', ' %}
-            {% assign formatted_tags_without_empty_strings = formatted_tags | replace: ' ', '' | split: ',' | join: '/' %}
+            {% assign formatted_tags = series_tags | join: '/ ' %}
             
-           {{ formatted_tags_without_empty_strings }}
+           {{ formatted_tags}}
             
           {% endif %}
           {% endfor %}
