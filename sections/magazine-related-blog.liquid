@@ -16,8 +16,8 @@
             
              {% assign rel_art = article.title %}
             {% unless art_title == rel_art %}
-             
-     
+              {{ article.title }}
+            
      
             
               {%- for block in section.blocks -%}
@@ -79,7 +79,7 @@
             {%- endif -%}
    {% endif %}
 {%- endfor -%}
-                  {% endunless %}
+                 {% endunless %}
           {%- endfor -%}
          
     
