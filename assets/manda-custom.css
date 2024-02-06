@@ -3912,4 +3912,8 @@ line-height: 256.3%;
     right: 20px;
     z-index: 2;
 }
+.cart-drawer__line-items .line-item-quantity .link{
+    text-decoration: none;
+    background: none;
+}
 /* end-mk-mds */
