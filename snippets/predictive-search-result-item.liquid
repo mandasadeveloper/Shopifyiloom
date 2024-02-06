@@ -33,10 +33,8 @@ Supported variables
           <span class="mm-vendor hh mk">
           {% for tag in product.tags %}
           {% if tag contains "series:" %}
-          {% assign tag_split = tag | split: 'series:' %}
-          {% assign series_tags = tag_split | split: ',' %}
-          {% assign formatted_tags = tag_split | join: ', ' %}
-            {{ formatted_tags }}
+          {% assign tag_split = tag | split: 'series:' | join: ', ' %}
+            {{ tag_split }}
           {% endif %}
           {% endfor %}
           <!-- {{ product.vendor }} -->
