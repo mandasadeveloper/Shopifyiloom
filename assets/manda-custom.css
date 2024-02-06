@@ -3001,9 +3001,11 @@ margin-top: 13px
     font-weight: 400;
     line-height: 17.38px;
   }
-.line-item__info .m-size .text-sm{
+/* mk-mds */
+.cart__row .line-item__info .m-size .text-sm{
    font-size: 12px;
 }
+/* end-mk-mds */
   .manda-cart .text-subdued .price{
   color: #3C3C3C;
   font-family: 'Montserrat';
