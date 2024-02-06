@@ -89,8 +89,8 @@
 }
 /* mk-mds */
 .predictive-search1 .predictive-search-result{
-      align-items: flex-start;
-      margin-bottom: 15px
+  align-items: center;
+  margin-bottom: 15px
 }
 /* end mk-mds */
   .m-blog-posts .blog-post-card__figure{
