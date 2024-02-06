@@ -53,7 +53,6 @@ Supported variables
       {%- else -%}
         <p class="bold">{{ line_item.product.title | default: line_item.title }}</p>
       {%- endif -%}
-      <div class="line-price-mob">{{ line_item.final_line_price | money }}</div>
 
       <!-- {%- render 'price-list', line_item: line_item -%} -->
     </div>
@@ -68,6 +67,7 @@ Supported variables
         {% endif %}
       <!-- end-mk-mds  -->
     {%- endunless -%}
+    <div class="line-price-mob">{{ line_item.final_line_price | money }}</div>
 
     {%- if line_item.selling_plan_allocation -%}
       <p class="text-sm text-subdued">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
