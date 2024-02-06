@@ -15,9 +15,9 @@
           {%- for article in blog.articles  -%}
             
              {% assign rel_art = article.title %}
-            {% if art_title == rel_art %}
-              {{ article.title }}
-            {% endif %}
+            {% unless art_title == rel_art %}
+             
+     
      
             
               {%- for block in section.blocks -%}
@@ -79,7 +79,7 @@
             {%- endif -%}
    {% endif %}
 {%- endfor -%}
-           
+                  {% endunless %}
           {%- endfor -%}
          
     
