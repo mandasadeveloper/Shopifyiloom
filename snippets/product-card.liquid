@@ -64,6 +64,7 @@ Supported variables
   {%- endcomment -%}
 
   {%- if product.media.size > 0 -%}
+    <!-- mk-mds -->
     {% if product.metafields.custom.product_wish_button %}
       <button
         class="product_card__outOfStock text-p text-p--12"
@@ -76,7 +77,7 @@ Supported variables
     {% else %}
       <a href="javascript:void(0)" class="il-productCard__wishList">{% render 'icon' with 'wishlist-new' %}</a>
     {% endif %}
-    
+     <!-- end-mk-mds -->
     <div class="product-card__figure">
       <a href="{{ product.url }}" data-instant>
         {%- capture sizes -%}
