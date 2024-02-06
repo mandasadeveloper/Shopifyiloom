@@ -36,7 +36,7 @@ Supported variables
           {% assign tag_split = tag | split: 'series:' %}
           {% assign tag_splitdata = tag_split | join: ", " %}
           {{ tag_splitdata }}
-           {{ tag_splitdata[1]   }}
+           {{ tag_splitdata[1] }}
         {% endif %}
       {% endfor %}
        <!-- {{ product.vendor }} -->
