@@ -1712,12 +1712,14 @@ height: 24px;
   padding:10px 0px;
   gap: 7px;
   }
+/* mk-mds  */
   .m-quantity-cuss{
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  align-items: end;
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+    align-items: end;
   }
+/* end-mk-mds  */    
   .mobile-border{
   display:block;
   }
