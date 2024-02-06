@@ -3892,7 +3892,12 @@ line-height: 256.3%;
     gap: 20px!important;
   }
 }
-
-
-
 /* div */
+/* mk-mds */
+.il-productCard__wishList, .product_card__outOfStock {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+}
+/* end-mk-mds */
