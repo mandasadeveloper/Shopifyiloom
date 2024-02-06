@@ -150,7 +150,6 @@
       
 
       <div slot="results">
-       mk
         {%- if predictive_search.performed -%}
           {%- assign results_count = 0 -%}
           {%- assign categories_count = 0 -%}
@@ -164,6 +163,8 @@
           {%- endfor -%}
 
           {%- if results_count == 0 -%}
+             mkkk
+            
             <div class="empty-state">
               <p class="h6">{{ 'search.general.no_results' | t }}</p>
             </div>
