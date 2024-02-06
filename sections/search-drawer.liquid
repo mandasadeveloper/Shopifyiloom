@@ -64,15 +64,24 @@
         {%- endif -%} -->
 
         <div class="v-stack m-pro-cus gg justify-items-start gap-0.5">
-           <span class="mm-vendor hh">
-        {% for tag in product.tags %}
-        {% if tag contains "series:" %}
-          {% assign tag_split = tag | split: 'series:' %}
-           {{ tag_split[1] }}
-        {% endif %}
-      {% endfor %}
-       <!-- {{ product.vendor }} -->
-       </span>
+        <!-- mk-mds  -->
+         <span class="mm-vendor hh">
+          {% capture series_tags %}
+            {% for tag in product.tags %}
+              {% if tag contains "series:" %}
+                {% assign tag_split = tag | split: 'series:' %}
+                {% if forloop.first %}
+                  {{ tag_split[1] }}
+                {% else %}
+                  /{{ tag_split[1] }}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% endcapture %}
+          {{ series_tags | strip }}
+           <!-- {{ product.vendor }} -->
+         </span>
+         <!-- end-mk-mds  -->
           <span class="bold">
             <span class="reversed-link n-reversed-link">{{ product.title }}</span>
           </span>
