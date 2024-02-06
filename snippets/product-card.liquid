@@ -64,6 +64,19 @@ Supported variables
   {%- endcomment -%}
 
   {%- if product.media.size > 0 -%}
+    {% if product.metafields.custom.product_wish_button %}
+      <button
+        class="product_card__outOfStock text-p text-p--12"
+        data-product-id="{{ product.id }}"
+        data-product-name="{{ product.title }}"
+        data-gtag-manager
+      >
+        我想買
+      </button>
+    {% else %}
+      <a href="javascript:void(0)" class="il-productCard__wishList">{% render 'icon' with 'wishlist-new' %}</a>
+    {% endif %}
+    
     <div class="product-card__figure">
       <a href="{{ product.url }}" data-instant>
         {%- capture sizes -%}
