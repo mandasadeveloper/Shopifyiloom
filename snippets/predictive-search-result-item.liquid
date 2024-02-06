@@ -133,6 +133,7 @@ Supported variables
           assign blog_handle = split_2[0] | strip
           assign article_blog = blogs[blog_handle]
           %}
+  {{ blogs[blog_handle] }}
       <div class="v-stack justify-items-start gap-2 sm:gap-3">
         {%- if section.settings.show_article_category and article.tags.size > 0 -%}
           <!-- <span class="badge badge--primary">{{ article.tags | first }}</span> -->
