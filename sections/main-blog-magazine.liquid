@@ -136,8 +136,13 @@
       {%- paginate blog.articles by section.settings.articles_per_page -%}
         <!-- Sort By Dropdown -->
       <form class="sort-form" id="sort-form">
-
-        {{ request.params.sort_by }}
+{{ request.querystring }}
+        {% if request.querystring contains 'sort_by=manual' %}
+          --
+  <!-- Do something if the 'sort_by' parameter with value 'manual' exists -->
+{% else %}
+  <!-- Do something else if the 'sort_by' parameter is not present or has a different value -->
+{% endif %}
       <ul class="sort-options">
         <li class="sort-option">
         <input type="radio" id="new-old" name="sort_by" value="new-old" {% if request.params.sort_by == 'new-old' %}checked{% endif %}>
