@@ -136,7 +136,6 @@
       {%- paginate blog.articles by section.settings.articles_per_page -%}
       {% assign articles = blog.articles %}
       {% assign sortBy = param %}
-        mk-{{ sortBy }}
       <form class="sort-form" id="sort-form">
         <ul class="sort-options">
           <li class="sort-option">
@@ -145,7 +144,7 @@
         </li>
         <li class="sort-option">
           <input type="radio" id="manual" name="sort_by" value="manual">
-          <label for="manual" class="{% if sortBy == "manual" %} latest {% endif %}">熱門排序</label>
+          <label for="manual" class="{% if sortBy == blank %} latest {% endif %}">熱門排序</label>
         </li>
         </ul>
         <input type="submit" value="Sort" class="m-sort">
