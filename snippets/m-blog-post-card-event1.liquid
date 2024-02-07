@@ -162,11 +162,11 @@ Supported parameters
 {%- endcapture -%}
 
 {%- if featured -%}
-  <blog-post-card {% render 'surface', class: 'blog-post-card  blog-post-card-event m blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
+  <blog-post-card {% render 'surface', class: 'blog-post-card1 content-cus  blog-post-card-event m blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
     {{- card_content -}}
   </blog-post-card>
 {%- else -%}
-  <blog-post-card class="blog-post-card   blog-post-card-event m snap-center group">
+  <blog-post-card class="blog-post-card1  content-cus   blog-post-card-event m snap-center group">
     {{- card_content -}}
   </blog-post-card>
 {%- endif -%}
@@ -285,11 +285,11 @@ Supported parameters
 {%- endcapture -%}
 
 {%- if featured -%}
-  <blog-post-card {% render 'surface', class: 'blog-post-card  blog-post-card-event tt blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
+  <blog-post-card {% render 'surface', class: 'blog-post-card1 content-cus  blog-post-card-event tt blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
     {{- card_content -}}
   </blog-post-card>
 {%- else -%}
-  <blog-post-card class="blog-post-card  blog-post-card-event tt snap-center group">
+  <blog-post-card class="blog-post-card1  content-cus blog-post-card-event tt snap-center group">
     {{- card_content -}}
   </blog-post-card>
 {%- endif -%}
