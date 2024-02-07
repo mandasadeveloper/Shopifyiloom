@@ -9964,7 +9964,7 @@ split-lines {
   .product-card__quick-buy {
     position: absolute;
     bottom: 0.5rem;
-    right: 0.5rem;
+    right: 0.5rem !important;
   }
 }
-/* mk-mds */
+/* end-mk-mds */
