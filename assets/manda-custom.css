@@ -3208,6 +3208,7 @@ margin-top: 13px
   height: 20px;
   width: 19.92px;
   -webkit-appearance: none;
+    border-radius: 0;
   }
   
   .mandasa_summary input[type=checkbox]:hover {
