@@ -69,19 +69,15 @@
         <div class="v-stack m-pro-cus gg justify-items-start gap-0.5">
         <!-- mk-mds  -->
          <span class="mm-vendor hh">
-          {% capture series_tags %}
-            {% for tag in product.tags %}
-              {% if tag contains "series:" %}
-                {% assign tag_split = tag | split: 'series:' %}
-                {% if forloop.first %}
-                  {{ tag_split[1] }}
-                {% else %}
-                  /{{ tag_split[1] }}
-                {% endif %}
-              {% endif %}
-            {% endfor %}
+        {% capture series_tags %}
+          {%- for tag in product.tags -%}
+          {%- if tag contains "series:" -%}
+          {%- assign tag_split = tag | split: 'series:' -%}
+          /{{- tag_split[1] | strip -}}
+          {%- endif -%}
+          {%- endfor -%}
           {% endcapture %}
-          {{ series_tags | strip }}
+          {{- series_tags | strip | remove_first: '/' -}}
            <!-- {{ product.vendor }} -->
          </span>
          <!-- end-mk-mds  -->
