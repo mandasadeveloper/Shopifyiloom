@@ -136,40 +136,40 @@
       {%- paginate blog.articles by section.settings.articles_per_page -%}
         <!-- Sort By Dropdown -->
       <form class="sort-form" id="sort-form">
-      <ul class="sort-options">
-        <li class="sort-option">
-        <input type="radio" id="new-old" name="sort_by" value="new-old">
-        <label for="new-old" class='latest'>最新的</label>
-      </li>
-      <li class="sort-option">
-        <input type="radio" id="manual" name="sort_by" value="manual">
-        <label for="manual">熱門排序</label>
-      </li>
-      </ul>
-      <input type="submit" value="Sort" class="m-sort">
-      </form>
+  <ul class="sort-options">
+    <li class="sort-option">
+      <input type="radio" id="new-old" name="sort_by" value="new-old" {% if request.params.sort_by == 'new-old' %}checked{% endif %}>
+      <label for="new-old" class='latest'>最新的</label>
+    </li>
+    <li class="sort-option">
+      <input type="radio" id="manual" name="sort_by" value="manual" {% if request.params.sort_by == 'manual' %}checked{% endif %}>
+      <label for="manual">熱門排序</label>
+    </li>
+  </ul>
+  <input type="submit" value="Sort" class="m-sort">
+</form>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var sortOptions = document.querySelectorAll('input[name="sort_by"]');
-  sortOptions.forEach(function(option) {
-    option.addEventListener('change', function() {
-      var selectedValue = this.value;
-      localStorage.setItem('selectedSortOption', selectedValue);
-      document.querySelectorAll('.sort-option label').forEach(function(label) {
-        label.classList.remove('selected');
-      });
-      this.nextElementSibling.classList.add('selected');
-    });
-  });
-  var storedSortOption = localStorage.getItem('selectedSortOption');
-  if (storedSortOption) {
-    var selectedRadioButton = document.querySelector('input[name="sort_by"][value="' + storedSortOption + '"]');
-    if (selectedRadioButton) {
-      selectedRadioButton.checked = true;
-      selectedRadioButton.nextElementSibling.classList.add('selected');
-    }
-  }
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//   var sortOptions = document.querySelectorAll('input[name="sort_by"]');
+//   sortOptions.forEach(function(option) {
+//     option.addEventListener('change', function() {
+//       var selectedValue = this.value;
+//       localStorage.setItem('selectedSortOption', selectedValue);
+//       document.querySelectorAll('.sort-option label').forEach(function(label) {
+//         label.classList.remove('selected');
+//       });
+//       this.nextElementSibling.classList.add('selected');
+//     });
+//   });
+//   var storedSortOption = localStorage.getItem('selectedSortOption');
+//   if (storedSortOption) {
+//     var selectedRadioButton = document.querySelector('input[name="sort_by"][value="' + storedSortOption + '"]');
+//     if (selectedRadioButton) {
+//       selectedRadioButton.checked = true;
+//       selectedRadioButton.nextElementSibling.classList.add('selected');
+//     }
+//   }
+// });
 </script>
     <!-- Article Sorting -->
      {% assign articles = blog.articles %}
