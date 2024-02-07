@@ -456,7 +456,7 @@
   }
   .m-article-banner .article-banner__content{
   position: absolute;
-  bottom: 15px;
+  bottom: 20px;
   /* left: 164px; */
   /* transform: translate(-261px, 0px); */
   justify-items: flex-start;
