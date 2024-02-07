@@ -134,18 +134,18 @@
     <div class="blog-posts__container m--blog-posts__container" show-mobile-m="{{ section.settings.articles_per_page1 }}">
 
       {%- paginate blog.articles by section.settings.articles_per_page -%}
-             {% assign articles = blog.articles %}
-{% assign sortBy = param %}
-    {{ sortBy }}
+      {% assign articles = blog.articles %}
+      {% assign sortBy = param %}
+      
       <form class="sort-form" id="sort-form">
         <ul class="sort-options">
           <li class="sort-option">
           <input type="radio" id="new-old" name="sort_by" value="new-old" >
-          <label for="new-old" class='latest'>最新的</label>
+          <label for="new-old" class='{% if sortBy == "new-old" %} latest {% endif %}'>最新的</label>
         </li>
         <li class="sort-option">
           <input type="radio" id="manual" name="sort_by" value="manual">
-          <label for="manual">熱門排序</label>
+          <label for="manual" class="{% if sortBy == "manual" %} latest {% endif %}">熱門排序</label>
         </li>
         </ul>
         <input type="submit" value="Sort" class="m-sort">
