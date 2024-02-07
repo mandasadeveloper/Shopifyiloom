@@ -59,6 +59,7 @@
     },
     "social_sharing1_tD4hYB": {
       "type": "social-sharing1",
+      "disabled": true,
       "settings": {
       }
     }
