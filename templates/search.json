@@ -6,7 +6,7 @@
         "products_per_page": 16,
         "articles_per_page1": "2",
         "products_per_row_mobile": "2",
-        "products_per_row_desktop": 3,
+        "products_per_row_desktop": 4,
         "filter_layout": "horizontal",
         "show_sort_by": false,
         "show_filters": false,
