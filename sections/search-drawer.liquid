@@ -273,7 +273,7 @@
               {%- assign page_results = search.results | where: 'object_type', 'page' | slice: 0, 10 -%}
 
               {%- if product_results.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
+                <div class="predictive-search__tab-item 8" slot="title">
                   <button type="button" class="h5">{{- 'search.general.products' | t -}}</button>
                 </div>
 
@@ -293,7 +293,7 @@
               {%- endif -%}
 
               {%- if page_results.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
+                <div class="predictive-search__tab-item 7" slot="title">
                   <button type="button" class="h5">{{- 'search.general.pages' | t -}}</button>
                 </div>
 
