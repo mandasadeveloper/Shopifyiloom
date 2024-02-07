@@ -22,6 +22,8 @@ Supported parameters
 {%- endcomment -%}
 
 
+
+
 {% assign event_m_utc = article.metafields.custom.event_end_date | date: '%Y-%m-%d' | date: '%s' | date: '%Y-%m-%d' %}
 {% assign current_date_utc = 'now' | date: '%Y-%m-%d' %}
 
@@ -34,14 +36,13 @@ Supported parameters
 {% assign product_end_date =  article.metafields.custom.event_end_date | date: '%s' %}
 {% assign currentDate = "now" | date: "%s" %}
 
-{% if article.metafields.custom.enable_launch_blog.value == true %}
-   
-{% assign product_id = article.metafields.custom.enable_product_blog %}
-{% assign product = all_products[product_id] %}
 
 {% if product_id %}
+  {% if  product_start_date  %}
 
-{%- capture card_content -%}
+  <!-- <h2>{{ product.url }}</h2> -->
+ {%- capture card_content -%}
+
 {% assign spli_tag = nil %}
 {% assign spli_offer_tag = nil %}
 {% assign spli_order_tag = nil %}
@@ -58,15 +59,15 @@ Supported parameters
         {% assign spli_order_tag = spli_order_tag | default: split_result[1] %}
     {% endif %}
 {%- endfor -%}
+   
   {%- if article -%}
     {%- if article.image != blank -%}
-      <a href="{{ product.url }}" class="blog-post-card__figure">
-
-        
- 
-
-
-        
+       {% if currentDate > product_start_date and currentDate < product_end_date %}
+      <a href="{{ product.url }}" class="blog-post-card__figure blog-post-card-rel">
+        {% else %}
+        <div class="blog-post-card__figure blog-post-card-rel"> 
+         {% endif %}
+       {% if currentDate > product_start_date and currentDate > product_end_date %}<div class=" blog-event-ovrlay"></div>{% endif %}
         {%- if featured != true and show_category and article.tags.size > 0 -%}
           <span class="badge m-badge badge--primary">
     {% if spli_tag %}
@@ -81,15 +82,28 @@ Supported parameters
         {%- endif -%}
 
         {{- article.image | image_url: width: article.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '300,400,500,600,800,1000,1200,1400,1600,1800,2000', class: 'w-full h-full object-cover zoom-image zoom-image1' -}}
-      </a>
+     {% if currentDate > product_start_date and currentDate > product_end_date %}
+      <div class="content-details">
+        <h3 class="content-title">
+        {{ article.metafields.custom.event_third_tag_text.value }}
+        </h3>
+        
+        
+      </div>
+      {% endif %}
+      {% if currentDate > product_start_date and currentDate < product_end_date %}
+         </a>
+        {% else %}
+        </div>
+        {% endif %}
     {%- endif -%}
   {%- else -%}
-    <div class="blog-post-card__figure">
+    <div class="blog-post-card__figure tt">
       {{- 'image' | placeholder_svg_tag: 'placeholder zoom-image' -}}
     </div>
   {%- endif -%}
 
-  <div class="blog-post-card__info blog-post-card_info_me">
+  <div class="blog-post-card__info blog-post-card_info_me dd">
     <div class="v-stack v-stack-m  {% if featured %}gap-5 sm:gap-6{% else %}gap-4 sm:gap-5{% endif %}">
       <div class="v-stack gap-3 {% if featured %}sm:gap-5{% else %}sm:gap-4{% endif %}">
         {%- if featured and show_category and article.tags.size > 0 -%}
@@ -113,8 +127,8 @@ Supported parameters
         {%- endif -%}
       </div>
     {% if article.metafields.custom.event_date.value != blank  or article.metafields.custom.event_end_date.value != blank %}  
-<div class="m-tags-date">
-  <div class="article-meta-end">{{ article.metafields.custom.event_date.value }} ~ {{ article.metafields.custom.event_end_date.value }}</div>
+      <div class="m-tags-date">
+         <div class="article-meta-end">{{ article.metafields.custom.event_date.value }} ~ {{ article.metafields.custom.event_end_date.value }}</div>
 
 
 </div>
@@ -148,17 +162,20 @@ Supported parameters
 {%- endcapture -%}
 
 {%- if featured -%}
-  <blog-post-card {% render 'surface', class: 'blog-post-card1 content-cus blog-post-card-event blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
+  <blog-post-card {% render 'surface', class: 'blog-post-card  blog-post-card-event m blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
     {{- card_content -}}
   </blog-post-card>
 {%- else -%}
-  <blog-post-card class="blog-post-card1  content-cus blog-post-card-event snap-center group">
+  <blog-post-card class="blog-post-card   blog-post-card-event m snap-center group">
     {{- card_content -}}
   </blog-post-card>
 {%- endif -%}
-  {% else %}
 
-{%- capture card_content -%}
+  
+    {% else %}
+
+ {%- capture card_content -%}
+
 {% assign spli_tag = nil %}
 {% assign spli_offer_tag = nil %}
 {% assign spli_order_tag = nil %}
@@ -175,15 +192,12 @@ Supported parameters
         {% assign spli_order_tag = spli_order_tag | default: split_result[1] %}
     {% endif %}
 {%- endfor -%}
+  
   {%- if article -%}
     {%- if article.image != blank -%}
-      <a  class="blog-post-card__figure">
-
-        
- 
-
-
-        
+          
+      <a class="blog-post-card__figure  blog-post-card-rel ">
+   {% if event_m_utc == current_date_utc %}<div class=" blog-event-ovrlay"></div>{% endif %}
         {%- if featured != true and show_category and article.tags.size > 0 -%}
           <span class="badge m-badge badge--primary">
     {% if spli_tag %}
@@ -197,25 +211,31 @@ Supported parameters
          <!-- <span class="badge m-badge badge--primary">{{ blog.title }}</span> -->
         {%- endif -%}
 
-        {{- article.image | image_url: width: article.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '300,400,500,600,800,1000,1200,1400,1600,1800,2000', class: 'w-full h-full object-cover zoom-image zoom-image1' -}}
+       
+    {{- article.image | image_url: width: article.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '300,400,500,600,800,1000,1200,1400,1600,1800,2000', class: 'w-full h-full object-cover zoom-image zoom-image1' -}}
+    {% if product_start_date == product_end_date %}
+      <div class="content-details">
+        <h3 class="content-title">{{ article.metafields.custom.event_third_tag_text.value }}</h3>
+      </div>
+      {% endif %}
       </a>
     {%- endif -%}
   {%- else -%}
-    <div class="blog-post-card__figure">
+    <div class="blog-post-card__figure nn">
       {{- 'image' | placeholder_svg_tag: 'placeholder zoom-image' -}}
     </div>
   {%- endif -%}
 
-  <div class="blog-post-card__info blog-post-card_info_me gg">
+  <div class="blog-post-card__info blog-post-card_info_me">
     <div class="v-stack v-stack-m  {% if featured %}gap-5 sm:gap-6{% else %}gap-4 sm:gap-5{% endif %}">
       <div class="v-stack gap-3 {% if featured %}sm:gap-5{% else %}sm:gap-4{% endif %}">
         {%- if featured and show_category and article.tags.size > 0 -%}
           <span class="badge badge--current badge--lg">{{ article.tags | first }}</span>
         {%- endif -%}
 
-        <p class="{% if heading_size != blank %}{{ heading_size }}{% elsif featured %}h2{% else %}h3{% endif %}">
+        <p class="{% if heading_size != blank %}{{ heading_size }}{% elsif featured %}h2{% else %}h3{% endif %} nnnjj">
           {%- if article -%}
-            <a >{{ article.title | strip_html }}</a>
+           {{ article.title | strip_html }}
           {%- else -%}
             {{- 'general.on_boarding.blog_post_title' | t -}}
           {%- endif -%}
@@ -230,8 +250,8 @@ Supported parameters
         {%- endif -%}
       </div>
     {% if article.metafields.custom.event_date.value != blank  or article.metafields.custom.event_end_date.value != blank %}  
-<div class="m-tags-date">
-  <div class="article-meta-end">{{ article.metafields.custom.event_date.value }} ~ {{ article.metafields.custom.event_end_date.value }}</div>
+      <div class="m-tags-date">
+         <div class="article-meta-end">{{ article.metafields.custom.event_date.value }} ~ {{ article.metafields.custom.event_end_date.value }}</div>
 
 
 </div>
@@ -265,21 +285,19 @@ Supported parameters
 {%- endcapture -%}
 
 {%- if featured -%}
-  <blog-post-card {% render 'surface', class: 'blog-post-card1 content-cus blog-post-card-event blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
+  <blog-post-card {% render 'surface', class: 'blog-post-card  blog-post-card-event tt blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
     {{- card_content -}}
   </blog-post-card>
 {%- else -%}
-  <blog-post-card class="blog-post-card1  content-cus blog-post-card-event snap-center group">
+  <blog-post-card class="blog-post-card  blog-post-card-event tt snap-center group">
     {{- card_content -}}
   </blog-post-card>
 {%- endif -%}
-
-{% endif %}
-
-
-{% else %}
+   {%- endif -%}
   
+   {% else %}
 {%- capture card_content -%}
+
 {% assign spli_tag = nil %}
 {% assign spli_offer_tag = nil %}
 {% assign spli_order_tag = nil %}
@@ -296,13 +314,14 @@ Supported parameters
         {% assign spli_order_tag = spli_order_tag | default: split_result[1] %}
     {% endif %}
 {%- endfor -%}
+   
   {%- if article -%}
     {%- if article.image != blank -%}
-      <a href="{{ article.url }}" class="blog-post-card__figure">
+      <a href="{{ article.url }}" class="blog-post-card__figure blog-post-card-rel">
 
         
  
-
+  {% if event_m_utc == current_date_utc %}<div class=" blog-event-ovrlay"></div>{% endif %}
 
         
         {%- if featured != true and show_category and article.tags.size > 0 -%}
@@ -319,15 +338,20 @@ Supported parameters
         {%- endif -%}
 
         {{- article.image | image_url: width: article.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '300,400,500,600,800,1000,1200,1400,1600,1800,2000', class: 'w-full h-full object-cover zoom-image zoom-image1' -}}
+     {% if event_m_utc == current_date_utc %}
+      <div class="content-details">
+        <h3 class="content-title">{{ article.metafields.custom.event_third_tag_text.value }}</h3>
+      </div>
+      {% endif %}
       </a>
     {%- endif -%}
   {%- else -%}
-    <div class="blog-post-card__figure">
+    <div class="blog-post-card__figure gg">
       {{- 'image' | placeholder_svg_tag: 'placeholder zoom-image' -}}
     </div>
   {%- endif -%}
 
-  <div class="blog-post-card__info blog-post-card_info_me ggyy">
+  <div class="blog-post-card__info blog-post-card_info_me">
     <div class="v-stack v-stack-m  {% if featured %}gap-5 sm:gap-6{% else %}gap-4 sm:gap-5{% endif %}">
       <div class="v-stack gap-3 {% if featured %}sm:gap-5{% else %}sm:gap-4{% endif %}">
         {%- if featured and show_category and article.tags.size > 0 -%}
@@ -351,8 +375,8 @@ Supported parameters
         {%- endif -%}
       </div>
     {% if article.metafields.custom.event_date.value != blank  or article.metafields.custom.event_end_date.value != blank %}  
-<div class="m-tags-date">
-  <div class="article-meta-end">{{ article.metafields.custom.event_date.value }} ~ {{ article.metafields.custom.event_end_date.value }}</div>
+      <div class="m-tags-date">
+         <div class="article-meta-end">{{ article.metafields.custom.event_date.value }} ~ {{ article.metafields.custom.event_end_date.value }}</div>
 
 
 </div>
@@ -386,17 +410,14 @@ Supported parameters
 {%- endcapture -%}
 
 {%- if featured -%}
-  <blog-post-card {% render 'surface', class: 'blog-post-card1 content-cus blog-post-card-event blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
+  <blog-post-card {% render 'surface', class: 'blog-post-card1 content-cus  blog-post-card-event blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
     {{- card_content -}}
   </blog-post-card>
 {%- else -%}
-  <blog-post-card class="blog-post-card1  content-cus blog-post-card-event snap-center group">
+  <blog-post-card class="blog-post-card1  content-cus   blog-post-card-event snap-center group">
     {{- card_content -}}
   </blog-post-card>
 {%- endif -%}
+
+ 
   {%- endif -%}
-{% style %}
-  .content-cus{
-    display:none;
-  }
-{% endstyle %}
