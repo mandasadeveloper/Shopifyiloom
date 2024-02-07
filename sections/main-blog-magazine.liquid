@@ -137,6 +137,7 @@
         <!-- Sort By Dropdown -->
       <form class="sort-form" id="sort-form">
     {% assign query_parameters = request.querystring | split: "&" %}
+        -{{ query_parameters }}-
     {% for parameter in query_parameters %}
       {% assign parameter_parts = parameter | split: "=" %}
       {% assign parameter_name = parameter_parts[0] | url_decode %}
