@@ -136,25 +136,6 @@
       {%- paginate blog.articles by section.settings.articles_per_page -%}
         <!-- Sort By Dropdown -->
       <form class="sort-form" id="sort-form">
- <script>
-function getUrlParameter(name) {
-  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-  var results = regex.exec(location.search);
-  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-}
-</script>
-
-<!-- Use Liquid to call the JavaScript function and store the parameter value -->
-{% assign sort_by_param = '<script>getUrlParameter("sort_by")</script>' %}
-
-<!-- Use the parameter value in your Liquid code -->
-{% if sort_by_param == 'manual' %}
-mk
-  {% else %}
-mk1
-  {% endif %}
-
       <ul class="sort-options">
         <li class="sort-option">
         <input type="radio" id="new-old" name="sort_by" value="new-old" >
