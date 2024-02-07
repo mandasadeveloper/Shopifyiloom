@@ -1165,18 +1165,24 @@
   text-transform: capitalize;
   }
   .article-event .article-content .prose a{
-  color: #FFF;
-  font-family: 'Noto_Sans_TC';
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 26.06px;
-  letter-spacing: 1.8px;
-  text-transform: capitalize;
-  background: #3C3C3C !important;
-  width: 600px;
-  height: 60px;
-  padding: 16px 90px;
+      color: #FFF;
+    font-family: 'Noto_Sans_TC';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26.06px;
+    letter-spacing: 1.8px;
+    text-transform: capitalize;
+    background: #3C3C3C !important;
+    /* width: 600px; */
+    height: auto;
+    padding: 16px 30px;
+    min-width: 600px;
+    max-width: 600px;
+    display: block;
+    margin: auto;
+    word-wrap: break-word;
+
   }
   .article-event .article-content{
   text-align: center;
