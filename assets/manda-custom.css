@@ -3941,6 +3941,9 @@ line-height: 256.3%;
     gap: 0.5rem;
     display: grid;
   }
+  .cart-tooltip{
+    padding: 5px 0;
+  }
   .m-cart-left .m-elevator1 {
     display: flex;
     gap: 16px;
