@@ -3959,6 +3959,9 @@ line-height: 256.3%;
     font-size: 14px;
     color: #3c3c3c;
   }
+  .cart__row .line-item__info .m-size .text-sm{
+    color: #9A9A9A;
+  }
   /* .manda-cart .m-quantity-cuss .text-xs{
     position: absolute;
     top: 0;
