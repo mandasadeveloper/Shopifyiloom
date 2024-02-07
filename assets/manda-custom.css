@@ -3941,6 +3941,11 @@ line-height: 256.3%;
     gap: 0.5rem;
     display: grid;
   }
+  .m-cart-left .m-elevator1 {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+  }
   .line-price-mob .price{
     font-weight: 500;
     font-family: 'Montserrat';
