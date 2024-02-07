@@ -9955,3 +9955,8 @@ split-lines {
   src: url('https://cdn.shopify.com/s/files/1/0575/1576/9926/files/NotoSansCJKkr-Regular.otf?v=1700888589') format('truetype');
 }
 /*End Font Family */
+
+/* mk-mds */
+.ssw-socialconnect>div>a{
+      border-radius: 50% !important;
+}
