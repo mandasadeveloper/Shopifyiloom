@@ -145,7 +145,7 @@
       <ul class="sort-options">
       <li class="sort-option">
       <input type="radio" id="new-old" name="sort_by" value="new-old">
-      <label for="new-old" class='latest'>最新的</label>
+      <label for="new-old" class='{% if sortBy == blank %} latest {% endif %} {% if sortBy == "new-old" %} latest {% endif %}'>最新的</label>
     </li>
     <li class="sort-option {{ request.locale }}">
       <input type="radio" id="manual" name="sort_by" value="manual">
