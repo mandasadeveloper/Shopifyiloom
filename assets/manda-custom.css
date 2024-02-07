@@ -3941,6 +3941,12 @@ line-height: 256.3%;
     gap: 0.5rem;
     display: grid;
   }
+  .line-price-mob{
+    font-weight: 500;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    color: #3c3c3c;
+  }
   /* .manda-cart .m-quantity-cuss .text-xs{
     position: absolute;
     top: 0;
