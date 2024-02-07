@@ -89,6 +89,10 @@
 }
 /* mk-mds */
 .predictive-search1 .predictive-search-result{
+  align-items: center;
+}
+/* new-mk */
+.predictive-search1 .predictive-search-result.m-blog-cus{
   align-items: start;
 }
 .idle-cus .predictive-search-result{
