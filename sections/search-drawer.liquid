@@ -283,7 +283,7 @@
               {%- endif -%}
 
               {%- if article_results.size > 0 -%}
-                {{ article_results.url }}
+                {{ article_results }}
                   {%liquid
                     assign split_1 = article_results.url | split: '/blogs/'
                     assign split_2 = split_1[1] | split: '/'
@@ -291,9 +291,9 @@
                     assign article_blog = blogs[blog_handle]
                     %}
                     {% if article_blog.handle contains 'news' or article_blog.handle contains 'event' or article_blog.handle contains 'magazine' %}
-                                <div class="predictive-search__tab-item" slot="title">
-                                  <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
-                                </div>
+                            <div class="predictive-search__tab-item" slot="title">
+                              <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
+                            </div>
                       {% endif %}
 
                 <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
