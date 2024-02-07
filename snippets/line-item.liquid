@@ -40,19 +40,15 @@ Supported variables
   <div>
     <div class="m-vendor">
       <!-- mk-mds  -->
-      {% capture series_tags %}
-        {% for tag in line_item.product.tags %}
-          {% if tag contains "series:" %}
-            {% assign tag_split = tag | split: 'series:' %}
-            {% if forloop.first %}
-              {{- tag_split[1] -}}
-            {% else %}
-              /{{- tag_split[1] -}}
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      {% endcapture %}
-      <p>{{- series_tags | strip -}}</p>
+       {% capture series_tags %}
+    {% for tag in line_item.product.tags %}
+      {% if tag contains "series:" %}
+        {% assign tag_split = tag | split: 'series:' %}
+        {{- forloop.first | prepend: '/' -}}{{- tag_split[1] -}}
+      {% endif %}
+    {% endfor %}
+    {% endcapture %}
+    <p>{{- series_tags | strip -}}</p>
       <!-- end-mk-mds  -->
       <!-- <p>{{ line_item.product.vendor }}</p> -->
     </div>
