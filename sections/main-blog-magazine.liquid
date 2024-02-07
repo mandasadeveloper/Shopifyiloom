@@ -148,7 +148,22 @@
       </ul>
   <input type="submit" value="Sort" class="m-sort">
 </form>
+<script>
+  $(document).ready(function() {
+  $('input[name="sort_by"]').change(function() {
+    var selectedValue = $(this).val();
+    localStorage.setItem('selectedSortOption', selectedValue);
+    $('.sort-option label').removeClass('selected');
+    $(this).siblings('label').addClass('selected');
+  });
 
+  var storedSortOption = localStorage.getItem('selectedSortOption');
+  if (storedSortOption) {
+    $('input[name="sort_by"][value="' + storedSortOption + '"]').prop('checked', true);
+    $('.sort-option label[for="' + storedSortOption + '"]').addClass('selected');
+  }
+});
+</script>
     <!-- Article Sorting -->
      {% assign articles = blog.articles %}
 {% assign sortBy = param %}
