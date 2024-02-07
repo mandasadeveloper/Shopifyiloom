@@ -1405,11 +1405,11 @@
   .dot-mob-m{
   display:none;
   }
+    /* mk-mds */
   .manda-cart .price-m-cart{
-  display: flex;
-  justify-content: space-around;
-  height: 163px;
-  
+    /* display: flex;
+    justify-content: space-around;
+    height: 163px; */
   }
   
   .blog-post-card-related .m-tags{
