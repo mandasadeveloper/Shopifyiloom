@@ -46,7 +46,7 @@
         "button_background": "",
         "button_text_color": "",
         "articles_per_page": 9,
-        "articles_per_page1": "40",
+        "articles_per_page1": "9",
         "feature_first_article": false,
         "feature_article_background": "",
         "feature_article_text_color": "",
@@ -61,6 +61,7 @@
       "type": "social-sharing1",
       "disabled": true,
       "settings": {
+        "show_share_buttons": true
       }
     }
   },
