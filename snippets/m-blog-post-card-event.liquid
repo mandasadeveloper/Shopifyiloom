@@ -67,7 +67,7 @@ Supported parameters
         {% else %}
         <div class="blog-post-card__figure blog-post-card-rel"> 
          {% endif %}
-       <div class=" blog-event-ovrlay"></div>
+       {% if currentDate < product_start_date and currentDate > product_end_date %}<div class=" blog-event-ovrlay"></div>{% endif %}
         {%- if featured != true and show_category and article.tags.size > 0 -%}
           <span class="badge m-badge badge--primary">
     {% if spli_tag %}
@@ -82,7 +82,7 @@ Supported parameters
         {%- endif -%}
 
         {{- article.image | image_url: width: article.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '300,400,500,600,800,1000,1200,1400,1600,1800,2000', class: 'w-full h-full object-cover zoom-image zoom-image1' -}}
-    
+     {% if product_start_date == product_end_date %}
       <div class="content-details">
         <h3 class="content-title">
         {{ article.metafields.custom.event_third_tag_text.value }}
@@ -90,7 +90,7 @@ Supported parameters
         
         
       </div>
-  
+      {% endif %}
       {% if currentDate > product_start_date and currentDate < product_end_date %}
          </a>
         {% else %}
