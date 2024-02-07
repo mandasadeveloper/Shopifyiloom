@@ -3944,6 +3944,11 @@ line-height: 256.3%;
     justify-content: flex-end;
     display: flex;
 }
+@media(min-width:767px){
+  .mandasa_summary .line-price-mob{
+    display:none;
+  }
+}
 @media(max-width:767px){
  .line-item__info {
     justify-items: start;
