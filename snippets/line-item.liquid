@@ -69,6 +69,7 @@ Supported variables
 
     {%- unless line_item.product.has_only_default_variant or line_item.gift_card -%}
       <!-- mk-mds  -->
+      <div class="linespace">
         {% if  line_item.variant.option1 != blank %}
           <div class="m-color">色相:<p class="text-sm text-subdued vg"> {{ line_item.variant.option1 }}</p></div>
         {% endif %}
@@ -78,6 +79,7 @@ Supported variables
         {% if  line_item.variant.option3 != blank %}
           <div class="m-size">選項:<p class="text-sm text-subdued vg"> {{ line_item.variant.option3 }}</p></div>
         {% endif %}
+      </div>
       <!-- end-mk-mds  -->
     {%- endunless -%}
     <div class="line-price-mob">{{ line_item.final_line_price | money }}</div>
