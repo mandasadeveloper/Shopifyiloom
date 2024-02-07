@@ -330,7 +330,9 @@
               {%- endif -%}
             </x-tabs>
             {% unless mkShown %}
-                  <div>mk</div>
+              <div class="empty-state">
+                <p class="h6">{{ 'search.general.no_results' | t }}</p>
+              </div>
               {% endunless %}
           {% else %}
             <div class="empty-state">
