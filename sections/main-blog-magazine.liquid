@@ -136,6 +136,7 @@
       {%- paginate blog.articles by section.settings.articles_per_page -%}
       {% assign articles = blog.articles %}
       {% assign sortBy = param %}
+        mk-{{ sortBy }}
       <form class="sort-form" id="sort-form">
         <ul class="sort-options">
           <li class="sort-option">
