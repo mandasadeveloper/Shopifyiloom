@@ -3935,7 +3935,7 @@ line-height: 256.3%;
     background: #3C3C3C;
     border: 1px solid #3c3c3c !important;
 }
-.m-search-contain .product-list-desktop .product-card__info .cus_m{
+.m-search-contain product-list-desktop .product-card__info .cus_m{
       font-family: 'Montserrat';
     font-weight: 400;
 }
