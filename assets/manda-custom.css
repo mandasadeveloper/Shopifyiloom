@@ -3844,11 +3844,7 @@ line-height: 256.3%;
     --article-per-row: var(--blog-posts-per-row, 3)!important;
  }
   .m-blog-posts-event blog-post-card.blog-post-card {
-    max-width: 434px;
-}
- 
-  .m-blog-posts-event blog-post-card.blog-post-card:nth-child(even) {
-    margin-right: auto;
+    max-width: 554px;
 }
 }
 @media screen and (min-width: 1237px) and (max-width: 1719px){
