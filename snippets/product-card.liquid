@@ -203,7 +203,7 @@ Supported variables
                 <p class="product-card__color-count text-sm text-subdued">{{- 'product.general.available_colors_count' | t: count: product_option.values.size -}}</p>
 
               {%- when 'swatch' -%}
-                <fieldset class="product-card__swatch-list h-stack {% if settings.color_swatch_style == 'rectangle' %}gap-2.5{% else %}gap-0.5{% endif %}" data-option-position="{{ product_option.position }}">
+                <fieldset class="1 product-card__swatch-list h-stack {% if settings.color_swatch_style == 'rectangle' %}gap-2.5{% else %}gap-0.5{% endif %}" data-option-position="{{ product_option.position }}">
                   {%- for option_value in product_option.values limit: 4 -%}
                     {%- if forloop.first or product.selected_or_first_available_variant.matched and option_value == product_option.selected_value -%}
                       {%- assign selected = true -%}
