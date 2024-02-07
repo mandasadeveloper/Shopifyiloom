@@ -284,21 +284,18 @@
 
               {%- if article_results.size > 0 -%}
                   {% for article in article_results %}
-                  {%- assign article = item -%}
-                  {%liquid
-                  assign split_1 = article.url | split: '/blogs/'
-                  assign split_2 = split_1[1] | split: '/'
-                  assign blog_handle = split_2[0] | strip
-                  assign article_blog = blogs[blog_handle]
-                  %}
-                  {% if article_blog.handle contains 'news' or article_blog.handle contains 'event' or article_blog.handle contains 'magazine' %}
-                  <div class="predictive-search__tab-item" slot="title">
-                    <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
-                  </div>
-
-
-                  {% endif %}
-
+                    {%- assign article = item -%}
+                    {%liquid
+                    assign split_1 = article.url | split: '/blogs/'
+                    assign split_2 = split_1[1] | split: '/'
+                    assign blog_handle = split_2[0] | strip
+                    assign article_blog = blogs[blog_handle]
+                    %}
+                    {% if article_blog.handle contains 'news' or article_blog.handle contains 'event' or article_blog.handle contains 'magazine' %}
+                    <div class="predictive-search__tab-item" slot="title">
+                      <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
+                    </div>
+                    {% endif %}
                   {% endfor %}
               
                  
