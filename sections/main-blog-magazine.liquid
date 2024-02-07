@@ -133,6 +133,7 @@
 
     <div class="blog-posts__container m--blog-posts__container" show-mobile-m="{{ section.settings.articles_per_page1 }}">
       {%- paginate blog.articles by section.settings.articles_per_page -%}
+      <!-- mk-mds -->
       {% assign articles = blog.articles %}
       {% assign sortBy = param %}
       <form class="sort-form" id="sort-form">
@@ -148,6 +149,7 @@
         </ul>
         <input type="submit" value="Sort" class="m-sort">
       </form>
+      <!-- end-mk-mds  -->
     <!-- Article Sorting -->
      {% assign articles = blog.articles %}
 {% assign sortBy = param %}
