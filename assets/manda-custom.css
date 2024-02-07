@@ -3936,8 +3936,10 @@ line-height: 256.3%;
     border: 1px solid #3c3c3c !important;
 }
 @media(max-width:767px){
-  .linespace{
-    margin: 5px 0;
+ .line-item__info {
+    justify-items: start;
+    gap: 0.5rem;
+    display: grid;
   }
   /* .manda-cart .m-quantity-cuss .text-xs{
     position: absolute;
