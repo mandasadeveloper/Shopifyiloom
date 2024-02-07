@@ -155,14 +155,23 @@ Supported variables
       {%- else -%}
         <!-- {%- render 'vendor' with product.vendor, class: 'text-xs nn' -%} -->
         <div class="cus_m">
+        {% capture series_tags %}
+        {%- for tag in product.tags -%}
+          {%- if tag contains "series:" -%}
+            {%- assign tag_split = tag | split: 'series:' -%}
+            /{{- tag_split[1] | strip -}}
+          {%- endif -%}
+        {%- endfor -%}
+        {% endcapture %}
+        <p>{{- series_tags | strip | remove_first: '/' -}}</p>
+        {% comment %}
         {% for tag in product.tags %}
-        
-        {% if tag contains "series:" %}
-          {% assign tag_split = tag | split: 'series:' %}
-           <span>{{ tag_split[1] }}</span>
-        {% endif %}
-        
-      {% endfor %}
+            {% if tag contains "series:" %}
+              {% assign tag_split = tag | split: 'series:' %}
+               <span>{{ tag_split[1] }}</span>
+            {% endif %}
+        {% endfor %}
+        {% endcomment %}
          </div>
       {%- endif -%}
     {%- endif -%}
