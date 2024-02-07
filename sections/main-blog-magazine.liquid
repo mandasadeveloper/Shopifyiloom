@@ -136,23 +136,19 @@
       {%- paginate blog.articles by section.settings.articles_per_page -%}
         <!-- Sort By Dropdown -->
       <form class="sort-form" id="sort-form">
-      <ul class="sort-options">
+        <ul class="sort-options">
+          <li class="sort-option">
+          <input type="radio" id="new-old" name="sort_by" value="new-old" >
+          <label for="new-old" class='latest'>最新的</label>
+        </li>
         <li class="sort-option">
-        <input type="radio" id="new-old" name="sort_by" value="new-old" >
-        <label for="new-old" class='latest'>最新的</label>
-      </li>
-      <li class="sort-option">
-        <input type="radio" id="manual" name="sort_by" value="manual">
-        <label for="manual">熱門排序</label>
-      </li>
-      </ul>
-      <input type="submit" value="Sort" class="m-sort">
+          <input type="radio" id="manual" name="sort_by" value="manual">
+          <label for="manual">熱門排序</label>
+        </li>
+        </ul>
+        <input type="submit" value="Sort" class="m-sort">
       </form>
 
-{% assign sort_by_param = request.query_string | split: "&" | map: "split:=" | where: "first", "sort_by" | first %}
-      {{ sort_by_param }} -
-{% assign sort_by_value = sort_by_param[1] %}
-      {{ sort_by_value }}
 <script>
 // document.addEventListener('DOMContentLoaded', function() {
 //   var sortOptions = document.querySelectorAll('input[name="sort_by"]');
