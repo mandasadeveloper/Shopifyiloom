@@ -149,18 +149,26 @@
   <input type="submit" value="Sort" class="m-sort">
 </form>
 <script>
-  $(document).ready(function() {
-  $('input[name="sort_by"]').change(function() {
-    var selectedValue = $(this).val();
-    localStorage.setItem('selectedSortOption', selectedValue);
-    $('.sort-option label').removeClass('selected');
-    $(this).siblings('label').addClass('selected');
+document.addEventListener('DOMContentLoaded', function() {
+  var sortOptions = document.querySelectorAll('input[name="sort_by"]');
+  sortOptions.forEach(function(option) {
+    option.addEventListener('change', function() {
+      var selectedValue = this.value;
+      localStorage.setItem('selectedSortOption', selectedValue);
+      document.querySelectorAll('.sort-option label').forEach(function(label) {
+        label.classList.remove('selected');
+      });
+      this.nextElementSibling.classList.add('selected');
+    });
   });
-
   var storedSortOption = localStorage.getItem('selectedSortOption');
+  
   if (storedSortOption) {
-    $('input[name="sort_by"][value="' + storedSortOption + '"]').prop('checked', true);
-    $('.sort-option label[for="' + storedSortOption + '"]').addClass('selected');
+    var selectedRadioButton = document.querySelector('input[name="sort_by"][value="' + storedSortOption + '"]');
+    if (selectedRadioButton) {
+      selectedRadioButton.checked = true;
+      selectedRadioButton.nextElementSibling.classList.add('selected');
+    }
   }
 });
 </script>
