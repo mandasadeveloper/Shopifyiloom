@@ -148,6 +148,11 @@
       </ul>
       <input type="submit" value="Sort" class="m-sort">
       </form>
+
+{% assign sort_by_param = request.query_string | split: "&" | map: "split:=" | where: "first", "sort_by" | first %}
+      {{ sort_by_param }} -
+{% assign sort_by_value = sort_by_param[1] %}
+      {{ sort_by_value }}
 <script>
 // document.addEventListener('DOMContentLoaded', function() {
 //   var sortOptions = document.querySelectorAll('input[name="sort_by"]');
