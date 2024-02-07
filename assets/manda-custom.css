@@ -3936,7 +3936,7 @@ line-height: 256.3%;
     border: 1px solid #3c3c3c !important;
 }
 @media(max-width:767px){
-  .m-quantity-cuss{
+  .m-quantity-cuss .text-xs{
     position: absolute;
     top: 0;
   }
