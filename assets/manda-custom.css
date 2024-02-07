@@ -3936,16 +3936,16 @@ line-height: 256.3%;
     border: 1px solid #3c3c3c !important;
 }
 @media(max-width:767px){
-  .m-quantity-cuss .text-xs{
+  .manda-cart .m-quantity-cuss .text-xs{
     position: absolute;
     top: 0;
   }
-  .m-quantity-cus{
+  .manda-cart .m-quantity-cus{
     position: absolute;
     bottom: 0;
   }
   .manda-cart .line-item{
-        position: relative;
+    position: relative;
   }
 }
 /* end-mk-mds */
