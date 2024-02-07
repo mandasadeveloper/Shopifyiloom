@@ -33,17 +33,27 @@ Supported variables
     </div>
   {%- endif -%}
 
+         
+  
+  
   <div class="line-item__info">
     <div class="m-vendor">
-      {% for tag in line_item.product.tags %}
-        {% if tag contains "series:" %}
-          {% assign tag_split = tag | split: 'series:' %}
-           <p>{{ tag_split[1] }}</p>
-        {% endif %}
-      {% endfor %}
-      
+      <!-- mk-mds  -->
+      {% capture series_tags %}
+        {% for tag in line_item.product.tags %}
+          {% if tag contains "series:" %}
+            {% assign tag_split = tag | split: 'series:' %}
+            {% if forloop.first %}
+              {{ tag_split[1] }}
+            {% else %}
+              /{{ tag_split[1] }}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endcapture %}
+      {{ series_tags | strip }}
+      <!-- end-mk-mds  -->
       <!-- <p>{{ line_item.product.vendor }}</p> -->
-      
     </div>
     <div class="v-stack gap-0.5">
       {%- if line_item.url != blank -%}
