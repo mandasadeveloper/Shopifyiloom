@@ -9958,5 +9958,13 @@ split-lines {
 
 /* mk-mds */
 .ssw-socialconnect>div>a{
-      border-radius: 50% !important;
+  border-radius: 50% !important;
 }
+@media(max-width:767px){
+  .product-card__quick-buy {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+  }
+}
+/* mk-mds */
