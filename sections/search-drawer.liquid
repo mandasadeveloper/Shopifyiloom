@@ -283,6 +283,10 @@
               {%- endif -%}
 
               {%- if article_results.size > 0 -%}
+                  {% for article in article_results %}
+                 mk
+                  {% endfor %}
+              
                   <div class="predictive-search__tab-item" slot="title">
                     <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
                   </div>
