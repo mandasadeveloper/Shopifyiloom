@@ -3941,7 +3941,7 @@ line-height: 256.3%;
     gap: 0.5rem;
     display: grid;
   }
-  .line-price-mob{
+  .line-price-mob .price{
     font-weight: 500;
     font-family: 'Montserrat';
     font-size: 14px;
