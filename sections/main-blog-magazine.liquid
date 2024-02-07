@@ -144,7 +144,7 @@
       <input type="radio" id="new-old" name="sort_by" value="new-old">
       <label for="new-old" class='latest'>最新的</label>
     </li>
-    <li class="sort-option {{ canonical_url }}">
+    <li class="sort-option {{ request.path }}">
       <input type="radio" id="manual" name="sort_by" value="manual">
       <label for="manual">熱門排序</label>
     </li>
