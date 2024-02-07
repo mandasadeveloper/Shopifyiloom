@@ -136,6 +136,8 @@
       {%- paginate blog.articles by section.settings.articles_per_page -%}
         <!-- Sort By Dropdown -->
       <form class="sort-form" id="sort-form">
+
+        {{ request.params.sort_by }}
       <ul class="sort-options">
         <li class="sort-option">
         <input type="radio" id="new-old" name="sort_by" value="new-old" {% if request.params.sort_by == 'new-old' %}checked{% endif %}>
