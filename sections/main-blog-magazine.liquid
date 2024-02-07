@@ -132,7 +132,6 @@
     </header>
 
     <div class="blog-posts__container m--blog-posts__container" show-mobile-m="{{ section.settings.articles_per_page1 }}">
-
       {%- paginate blog.articles by section.settings.articles_per_page -%}
       {% assign articles = blog.articles %}
       {% assign sortBy = param %}
@@ -149,30 +148,6 @@
         </ul>
         <input type="submit" value="Sort" class="m-sort">
       </form>
-
-<script>
-// document.addEventListener('DOMContentLoaded', function() {
-//   var sortOptions = document.querySelectorAll('input[name="sort_by"]');
-//   sortOptions.forEach(function(option) {
-//     option.addEventListener('change', function() {
-//       var selectedValue = this.value;
-//       localStorage.setItem('selectedSortOption', selectedValue);
-//       document.querySelectorAll('.sort-option label').forEach(function(label) {
-//         label.classList.remove('selected');
-//       });
-//       this.nextElementSibling.classList.add('selected');
-//     });
-//   });
-//   var storedSortOption = localStorage.getItem('selectedSortOption');
-//   if (storedSortOption) {
-//     var selectedRadioButton = document.querySelector('input[name="sort_by"][value="' + storedSortOption + '"]');
-//     if (selectedRadioButton) {
-//       selectedRadioButton.checked = true;
-//       selectedRadioButton.nextElementSibling.classList.add('selected');
-//     }
-//   }
-// });
-</script>
     <!-- Article Sorting -->
      {% assign articles = blog.articles %}
 {% assign sortBy = param %}
