@@ -270,6 +270,7 @@
 
               {%- assign product_results = search.results | where: 'object_type', 'product' | slice: 0, 10 -%}
               {%- assign article_results = search.results | where: 'object_type', 'article' | slice: 0, 10 -%}
+               {%- assign blog_results = search.results | where: 'object_type', 'blog' | slice: 0, 10 -%}
               {%- assign page_results = search.results | where: 'object_type', 'page' | slice: 0, 10 -%}
 
               {%- if product_results.size > 0 -%}
@@ -283,7 +284,7 @@
               {%- endif -%}
 
               {%- if article_results.size > 0 -%}
-                {{ article_results.size }}
+                {{ blog_results.size }} --
                   <div class="predictive-search__tab-item" slot="title">
                     <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
                   </div>
