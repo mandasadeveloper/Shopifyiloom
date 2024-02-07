@@ -56,10 +56,16 @@
         "show_comments_count": false,
         "show_category": true
       }
+    },
+    "social_sharing1_tD4hYB": {
+      "type": "social-sharing1",
+      "settings": {
+      }
     }
   },
   "order": [
     "86ebae58-365d-41db-a403-3bacd4fa8194",
-    "main"
+    "main",
+    "social_sharing1_tD4hYB"
   ]
 }
