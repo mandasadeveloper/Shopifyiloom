@@ -3946,7 +3946,7 @@ line-height: 256.3%;
 @media(max-width:767px){
  .line-item__info {
     justify-items: start;
-    gap: 0.5rem;
+    gap: 0.5rem !important;
     display: grid;
   }
   .cart-tooltip{
