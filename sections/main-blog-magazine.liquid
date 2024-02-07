@@ -162,7 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   var storedSortOption = localStorage.getItem('selectedSortOption');
-  
   if (storedSortOption) {
     var selectedRadioButton = document.querySelector('input[name="sort_by"][value="' + storedSortOption + '"]');
     if (selectedRadioButton) {
