@@ -1908,9 +1908,15 @@ height: 24px;
   }
   .article-event .article-content .prose a{
   font-size: 14px;
-  padding: 12px 25px;
+  padding: 12px 20px;
   letter-spacing: 1.4px;
   line-height: 20.27px;
+      min-width: auto;
+    /* max-width: 600px; */
+    display: block;
+    max-width: 300px;
+    margin: auto;
+    word-wrap: break-word;
   }
   .article-event .article-content .botton-txt-event a{
   padding: 12px 63px;
