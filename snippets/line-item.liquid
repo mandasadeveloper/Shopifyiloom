@@ -65,6 +65,9 @@ Supported variables
         {% if  line_item.variant.option2 != blank %}
           <div class="m-size">尺寸:<p class="text-sm text-subdued vg"> {{ line_item.variant.option2 }}</p></div>
         {% endif %}
+        {% if  line_item.variant.option3 != blank %}
+          <div class="m-size">風格<p class="text-sm text-subdued vg"> {{ line_item.variant.option3 }}</p></div>
+        {% endif %}
       <!-- end-mk-mds  -->
     {%- endunless -%}
     <div class="line-price-mob">{{ line_item.final_line_price | money }}</div>
