@@ -283,6 +283,7 @@
               {%- endif -%}
 
               {%- if article_results.size > 0 -%}
+                {{ article.url }}
                   {%liquid
                     assign split_1 = article.url | split: '/blogs/'
                     assign split_2 = split_1[1] | split: '/'
