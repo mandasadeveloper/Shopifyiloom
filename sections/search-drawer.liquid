@@ -283,9 +283,9 @@
               {%- endif -%}
 
               {%- if article_results.size > 0 -%}
-                {{ article.url }}
+                {{ article_results.url }}
                   {%liquid
-                    assign split_1 = article.url | split: '/blogs/'
+                    assign split_1 = article_results.url | split: '/blogs/'
                     assign split_2 = split_1[1] | split: '/'
                     assign blog_handle = split_2[0] | strip
                     assign article_blog = blogs[blog_handle]
