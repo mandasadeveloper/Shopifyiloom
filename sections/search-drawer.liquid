@@ -296,11 +296,10 @@
                     </div>
                     {% endif %}
                   {% endfor %}
+                    <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
+                      {%- render 'predictive-search-result-item' for article_results as item, type: 'article' -%}
+                    </div>
               
-                 
-                <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
-                  {%- render 'predictive-search-result-item' for article_results as item, type: 'article' -%}
-                </div>
               {%- endif -%}
 
               {%- if page_results.size > 0 -%}
