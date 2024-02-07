@@ -37,6 +37,7 @@ Supported variables
   
   
   <div class="line-item__info">
+  <div>
     <div class="m-vendor">
       <!-- mk-mds  -->
       {% capture series_tags %}
@@ -66,6 +67,7 @@ Supported variables
 
       <!-- {%- render 'price-list', line_item: line_item -%} -->
     </div>
+  </div>
 
     {%- unless line_item.product.has_only_default_variant or line_item.gift_card -%}
       <!-- mk-mds  -->
