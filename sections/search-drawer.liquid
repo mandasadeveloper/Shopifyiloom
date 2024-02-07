@@ -213,7 +213,7 @@
               {%- endif -%}
 
               {%- if predictive_search.resources.queries.size > 0 -%}
-                <div class="predictive-search__tab-item 2" slot="title">
+                <div class="predictive-search__tab-item " slot="title">
                   <button type="button" class="h5">{{- 'search.general.suggestions' | t -}}</button>
                 </div>
 
@@ -223,7 +223,7 @@
               {%- endif -%}
 
               {%- if predictive_search.resources.articles.size > 0 -%}
-                <div class="predictive-search__tab-item 1" slot="title">
+                <div class="predictive-search__tab-item " slot="title">
                   <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
                 </div>
                 <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
@@ -232,7 +232,7 @@
               {%- endif -%}
 
               {%- if predictive_search.resources.collections.size > 0 -%}
-                <div class="predictive-search__tab-item 3" slot="title">
+                <div class="predictive-search__tab-item " slot="title">
                   <button type="button" class="h5">{{- 'search.general.collections' | t -}}</button>
                 </div>
 
@@ -242,7 +242,7 @@
               {%- endif -%}
 
               {%- if predictive_search.resources.pages.size > 0 -%}
-                <div class="predictive-search__tab-item 4" slot="title">
+                <div class="predictive-search__tab-item" slot="title">
                   <button type="button" class="h5">{{- 'search.general.pages' | t -}}</button>
                 </div>
 
@@ -283,7 +283,7 @@
               {%- endif -%}
 
               {%- if article_results.size > 0 -%}
-                <div class="predictive-search__tab-item 6" slot="title">
+                <div class="predictive-search__tab-item" slot="title">
                   <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
                 </div>
 
@@ -293,7 +293,7 @@
               {%- endif -%}
 
               {%- if page_results.size > 0 -%}
-                <div class="predictive-search__tab-item 7" slot="title">
+                <div class="predictive-search__tab-item" slot="title">
                   <button type="button" class="h5">{{- 'search.general.pages' | t -}}</button>
                 </div>
 
