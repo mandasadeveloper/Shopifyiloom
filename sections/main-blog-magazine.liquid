@@ -134,7 +134,9 @@
     <div class="blog-posts__container m--blog-posts__container" show-mobile-m="{{ section.settings.articles_per_page1 }}">
 
       {%- paginate blog.articles by section.settings.articles_per_page -%}
-        <!-- Sort By Dropdown -->
+             {% assign articles = blog.articles %}
+{% assign sortBy = param %}
+    {{ sortBy }}
       <form class="sort-form" id="sort-form">
         <ul class="sort-options">
           <li class="sort-option">
@@ -175,7 +177,7 @@
     <!-- Article Sorting -->
      {% assign articles = blog.articles %}
 {% assign sortBy = param %}
-{{ param }}
+
     {% case sortBy %}
       
       {% when 'featured' %}
