@@ -3939,6 +3939,10 @@ line-height: 256.3%;
       font-family: 'Montserrat';
     font-weight: 400;
 }
+.price-m-cart .mk-cart{
+    justify-content: flex-end;
+    display: flex;
+}
 @media(max-width:767px){
  .line-item__info {
     justify-items: start;
