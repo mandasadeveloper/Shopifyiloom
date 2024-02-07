@@ -313,12 +313,10 @@
                       </a>
                     </div>
                   {% endif %}
-                {% else %}
-                  {% unless mkShown %}
-                    <p>mk</p>
-                  {% endunless %}
                 {% endfor %}
-                    
+                {% unless mkShown %}
+                  <p>mk</p>
+                {% endunless %}
               
               {%- endif -%}
 
