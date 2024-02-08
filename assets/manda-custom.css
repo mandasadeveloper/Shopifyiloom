@@ -2968,6 +2968,7 @@ margin-top: 13px
   .m-color{
   display:flex;
   align-items: baseline;
+  column-gap: 4px;
   }
   .m-size{
   display:flex;
