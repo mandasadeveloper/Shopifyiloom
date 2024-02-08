@@ -3967,7 +3967,7 @@ line-height: 256.3%;
   font-weight: 500;
 }
 .price-list {
-    align-items: center;
+    align-items: center !important;
 }
 @media(min-width:767px){
   .mandasa_summary .line-price-mob{
