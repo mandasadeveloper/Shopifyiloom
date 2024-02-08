@@ -2279,10 +2279,10 @@ height: 24px;
   .article-manda .article-content img, .article-manda .article-content span img{
   min-width: 100%;
   }
-  .article-bottom-m{
+  /* .article-bottom-m{
   padding-left: 21px;
   padding-right: 21px;
-  }
+  } */
   .article-share-mob .share-buttons{
   padding-left: 21px;
   padding-right: 21px;
