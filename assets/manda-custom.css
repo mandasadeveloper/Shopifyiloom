@@ -3966,6 +3966,9 @@ line-height: 256.3%;
     width: 20px;
     height: 20px;
   }
+  .product-card__info .cus_m{
+    font-size: 18px;
+  }
 }
 @media(max-width:767px){
   .m-cart-bottom .radio-custom + .radio-custom-label:before{
