@@ -64,7 +64,7 @@ Supported variables
               {%- if form_id == blank and product.price_varies -%}
                 {{- 'product.general.on_sale_badge' | t -}}
               {%- else -%}
-{{ savings }}
+                {{- 'product.general.discount_badge_html' | t: savings: savings -}}
               {%- endif -%}
             </on-sale-badge>
           {%- endif -%}
