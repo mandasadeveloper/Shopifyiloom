@@ -202,7 +202,7 @@ Supported variables
   {% endif %}
   {% endcomment %}
    <!-- mk-mds  -->
-  {% if template.index == 'search' %}
+  {% if template.index contains 'search' %}
   {% if settings.show_discount1 %}
     {%- assign variant = product.selected_or_first_available_variant -%}
       {%- if settings.discount_mode == 'percentage' -%}
