@@ -3946,7 +3946,7 @@ line-height: 256.3%;
     display: flex;
 }
 
-.radio-custom + .radio-custom-label:before{
+.m-cart-bottom .radio-custom + .radio-custom-label:before{
     width: 16px !important;
     height: 16px !important;
     padding: 0px 0px !important;
@@ -3956,7 +3956,7 @@ line-height: 256.3%;
     align-items: center;
     justify-content: center;
 }
-.m-ele-cus label{
+.m-cart-bottom .m-ele-cus label{
    display: flex;
   align-items: center;
 }
