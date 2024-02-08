@@ -4004,6 +4004,9 @@ line-height: 256.3%;
     justify-content: space-between;
     align-items: normal;
   }
+  .mobile_quantity line-item-quantity{
+      height: 100%;
+  }
   .m-quantity-cuss{
     justify-content: space-between;
         height: 100%;
