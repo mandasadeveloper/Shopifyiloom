@@ -86,7 +86,7 @@
                       <div class="mk-cart v-stack justify-center gap-2">     
                         <span class="price-m-cart11">
                         {{ line_item.final_line_price | money }}<br>
-                          {{- line_item.price | money -}} -
+                          {{- line_item.final_price | money -}} -
                         {{- line_item.original_price | money -}}
                         </span>
                         <span class="text-xs">
