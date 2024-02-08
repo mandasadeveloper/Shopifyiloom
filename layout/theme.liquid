@@ -98,7 +98,29 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
      <link href='https://fonts.googleapis.com/css?family=Poppins:400,700,400italic' rel='stylesheet' type='text/css'>
 
     <!-- End M JS file -->
-    
+    <script type="lazyload_int">
+  document.getElementByClass('mandasa_contact button').onclick = function(e) {
+      alert('ok');
+    e.preventDefault(); 
+    if(document.getElementById("dummy-chat-button-iframe")){ 
+      document.getElementById("dummy-chat-button-iframe").contentWindow.document.getElementById("dummy-chat-button").addEventListener("click", dummyChatButtonIframe(), true);
+    }else{
+      document.getElementById("ShopifyChat").contentWindow.document.getElementsByClassName("chat-toggle")[0].addEventListener("click", ShopifyChat(), true);
+    }
+  }
+
+  function dummyChatButtonIframe() {
+       var iframe = document.getElementById("dummy-chat-button-iframe");
+       var elmnt  = iframe.contentWindow.document.getElementById("dummy-chat-button");
+       elmnt.click(); 
+  }
+
+  function ShopifyChat() { 
+    var iframe = document.getElementById("ShopifyChat");
+    var elmnt = iframe.contentWindow.document.getElementsByClassName("chat-toggle")[0];
+    elmnt.click();
+}
+</script>
   </body>
 
 </html>
