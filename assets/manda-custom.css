@@ -4007,6 +4007,9 @@ line-height: 256.3%;
   .m-quantity-cuss{
     justify-content: space-between;
   }
+  .manda-cart .line-item{
+    align-items: stretch;
+  }
   /* .manda-cart .m-quantity-cuss .text-xs{
     position: absolute;
     top: 0;
