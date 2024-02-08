@@ -288,7 +288,6 @@
                     {% assign split_2 = split_1[1] | split: '/' %}
                     {% assign blog_handle = split_2[0] | strip %}
                     {% assign article_blog = blogs[blog_handle] %}
-                    
                     {% if article_blog.handle contains 'news' or article_blog.handle contains 'event' or article_blog.handle contains 'magazine' %}
                       {% unless mkShown %}        
                         <div class="predictive-search__tab-item" slot="title">
@@ -316,7 +315,11 @@
               {%- endif -%}
             </x-tabs>
           <!-- mk-mds -->
-     
+            {% unless mkShown %}
+              <div class="empty-state">
+                <p class="h6">{{ 'search.general.no_results' | t }}</p>
+              </div>
+              {% endunless %}
           <!-- end-mk-mds -->
           {% else %}
             <div class="empty-state">
