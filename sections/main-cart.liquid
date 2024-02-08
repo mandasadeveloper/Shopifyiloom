@@ -86,14 +86,13 @@
                       <div class="mk-cart v-stack justify-center gap-2">     
                         <span class="price-m-cart11">
                         {{ line_item.final_line_price | money }}<br>
-                      <compare-at-price {% unless line_item.compare_at_price > line_item.price %}hidden{% endunless %} class="{{ compare_at_price_classes }}">
-                      
-                      {%- if settings.currency_code_enabled -%}
-                      {{- line_item.compare_at_price | money_with_currency -}}
-                      {%- else -%}
-                      {{- line_item.compare_at_price | money -}}
-                      {%- endif -%}
-                      </compare-at-price>
+                      {% if line_item.original_price > line_item.final_price %}
+                      <p>The original price is greater than the final price for {{ line_item.title }}</p>
+                      {% elsif line_item.original_price < line_item.final_price %}
+                      <p>The final price is greater than the original price for {{ line_item.title }}</p>
+                      {% else %}
+                      <p>The original price is equal to the final price for {{ line_item.title }}</p>
+                      {% endif %}
                         </span>
                         <span class="text-xs">
                         <a href="{{ line_item.url_to_remove }}" class="link">
