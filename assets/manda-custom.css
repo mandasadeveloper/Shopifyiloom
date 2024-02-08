@@ -3964,6 +3964,10 @@ line-height: 256.3%;
   .mandasa_summary .line-price-mob{
     display:none;
   }
+  .m-cart-left .cart-tooltip svg{
+    width: 20px;
+    height: 20px;
+  }
 }
 @media(max-width:767px){
  .line-item__info {
