@@ -124,15 +124,24 @@ Supported variables
           {%- else -%}
             {%- capture quick_buy_id -%}quick-buy-{{ section.id }}-{{ product.id }}{%- endcapture -%}
 
-            <div class="pointer-fine:hidden">
-              <button type="button" aria-controls="{{ quick_buy_id }}" aria-expanded="false" aria-label="{{ quick_add_label | escape }}" is="custom-button" class="product-card__mobile-quick-buy-button">
-                {%- render 'icon' with 'quick-buy-cart' -%}
-              </button>
-            </div>
+          
+              <div class="pointer-fine:hidden">
+                <button
+                  type="button"
+                  aria-controls="{{ quick_buy_id }}"
+                  aria-expanded="false"
+                  aria-label="{{ quick_add_label | escape }}"
+                  is="custom-button"
+                  class="product-card__mobile-quick-buy-button"
+                >
+                  {% comment %} {%- render 'icon' with 'quick-buy-cart' -%} {% endcomment %}
+                  {{ quick_add_label }}
+                </button>
+              </div>
 
-            <div class="pointer-coarse:hidden">
-              {%- render 'button', content: quick_add_label, aria_controls: quick_buy_id -%}
-            </div>
+              <div class="pointer-coarse:hidden">
+                {%- render 'button', content: quick_add_label, aria_controls: quick_buy_id, icon: 'cart-new' -%}
+              </div>
 
             <quick-buy-drawer id="{{ quick_buy_id }}" header-bordered open-from="bottom" handle="{{ product.handle }}" role="region" aria-live="polite" class="quick-buy-drawer drawer">
               {%- comment -%}Quick buy content is filled on demand for performance reasons {%- endcomment -%}
