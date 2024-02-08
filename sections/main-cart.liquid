@@ -86,15 +86,7 @@
                       <div class="mk-cart v-stack justify-center gap-2">     
                         <span class="price-m-cart11">
                         {{ line_item.final_line_price | money }}<br>
-                        <sale-price class="{% if line_item.original_line_price > line_item.final_line_price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
-      <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
-
-      {%- if settings.currency_code_enabled -%}
-        {{- line_item.final_line_price | money_with_currency -}}
-      {%- else -%}
-        {{- line_item.final_line_price | money -}}
-      {%- endif -%}
-    </sale-price>
+    
 
     {%- if line_item.original_line_price > line_item.final_line_price -%}
       <compare-at-price class="{{ compare_at_price_classes }}">
