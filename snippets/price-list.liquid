@@ -199,5 +199,5 @@ Supported variables
       {%- else -%}
         {%- capture savings -%}{{ variant.compare_at_price | minus: variant.price | money }}{%- endcapture -%}
       {%- endif -%}
-      {{ savings }}
+      <span class="preoff">{{ savings }} OFF</span>
 </price-list>
