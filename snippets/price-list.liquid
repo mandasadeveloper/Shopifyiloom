@@ -177,18 +177,7 @@ Supported variables
       </sale-price>
     {%- endif -%}
   {%- endif -%}
-{% assign salePrice = product.price %}
-{% assign compareAtPrice = product.compare_at_price %}
 
-{% if salePrice and compareAtPrice %}
-  {% assign discount = (compareAtPrice - salePrice) / compareAtPrice * 100 | round %}
-  {% if discount > 0 %}
-    <div class="discount">
-      {{ discount }}% off
-    </div>
-  {% endif %}
-{% endif %}
-  {%- unless hide_unit_price -%}
     {%- assign unit_price_item = variant | default: line_item | default: product.selected_or_first_available_variant -%}
 
     {%- if unit_price_item.unit_price or form_id != blank -%}
@@ -202,5 +191,4 @@ Supported variables
         ({{ unit_price_item.unit_price | money }}/{{ reference_value }}{{ unit_price_measurement.reference_unit }})
       </unit-price>
     {%- endif -%}
-  {%- endunless -%}
 </price-list>
