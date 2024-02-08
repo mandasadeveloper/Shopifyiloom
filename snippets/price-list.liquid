@@ -193,13 +193,15 @@ Supported variables
       </unit-price>
     {%- endif -%}
   {%- endunless -%}
-   {%- assign variant = product.selected_or_first_available_variant -%}
-      {%- if settings.discount_mode == 'percentage' -%}
-        {%- assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round | append: '%' -%}
-      {%- else -%}
-        {%- capture savings -%}{%- endcapture -%}
-      {%- endif -%}
-       {% if savings != blank %}
-      <span class="preoff">{{ savings }} OFF</span>
-      {% endif %}
+    {% if settings.show_discount1 %}
+       {%- assign variant = product.selected_or_first_available_variant -%}
+        {%- if settings.discount_mode == 'percentage' -%}
+          {%- assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round | append: '%' -%}
+        {%- else -%}
+          {%- capture savings -%}{%- endcapture -%}
+        {%- endif -%}
+         {% if savings != blank %}
+        <span class="preoff">{{ savings }} OFF</span>
+        {% endif %}
+  {% endif %}
 </price-list>
