@@ -86,7 +86,7 @@
                       <div class="mk-cart v-stack justify-center gap-2">     
                         <span class="price-m-cart11">
                         {{ line_item.final_line_price | money }}<br>
-                          <div>Original Price: {{ line_item.original_price | money }}</div>
+                          <div>Original Price: {{ line_item.compare_at_price| money }}</div>
                         <div>Final Price: {{ line_item.final_price | money }}</div>
                         </span>
                         <span class="text-xs">
