@@ -60,8 +60,9 @@ Supported variables
       {%- else -%}
         <p class="bold">{{ line_item.product.title | default: line_item.title }}</p>
       {%- endif -%}
-
+      {% comment %}
       <!-- {%- render 'price-list', line_item: line_item -%} -->
+      {% endcomment %}
     </div>
   </div>
 
