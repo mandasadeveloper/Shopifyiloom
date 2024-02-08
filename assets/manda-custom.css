@@ -48,7 +48,7 @@
     font-family: 'Avenir LT Std';
     font-size: 10px !important;
     font-weight: 900;
-    letter-spacing: .8px;
+    letter-spacing: 2px;
     color: black;
     background: white;
     border-radius: 2px;
@@ -61,6 +61,9 @@
     padding-right: 12px;
     padding-block-start: 6px !important;
     padding-block-end: 6px !important;
+    min-width: 75px;
+    display: flex;
+    justify-content: center;
   }
   .product-list-m .product-card__figure img{
   width:100%;
