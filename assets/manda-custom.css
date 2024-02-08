@@ -3969,6 +3969,17 @@ line-height: 256.3%;
 .product-list-desktop .product-card__info  .price-list {
     align-items: center !important;
 }
+.product-card__quick-buy .button{
+    border-radius: 0px;
+    background: #fff;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+    padding: 12px 19px;
+    color: #000;
+    box-shadow: none;
+}
 @media(min-width:767px){
   .mandasa_summary .line-price-mob{
     display:none;
