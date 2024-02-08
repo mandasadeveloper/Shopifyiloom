@@ -209,10 +209,11 @@
               {%- endif -%}
 
               {%- if predictive_search.resources.queries.size > 0 -%}
+                {% comment %}
                 <div class="predictive-search__tab-item " slot="title">
                   <button type="button" class="h5">{{- 'search.general.suggestions' | t -}}</button>
                 </div>
-
+                {% endcomment %}
                 <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
                   {%- render 'predictive-search-result-item' for predictive_search.resources.queries as item, type: 'query' -%}
                 </div>
@@ -228,20 +229,22 @@
               {%- endif -%}
 
               {%- if predictive_search.resources.collections.size > 0 -%}
+                {% comment %}
                 <div class="predictive-search__tab-item " slot="title">
                   <button type="button" class="h5">{{- 'search.general.collections' | t -}}</button>
                 </div>
-
+                {% endcomment %}
                 <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
                   {%- render 'predictive-search-result-item' for predictive_search.resources.collections as item, type: 'collection' -%}
                 </div>
               {%- endif -%}
 
               {%- if predictive_search.resources.pages.size > 0 -%}
+                 {% comment %}
                 <div class="predictive-search__tab-item" slot="title">
                   <button type="button" class="h5">{{- 'search.general.pages' | t -}}</button>
                 </div>
-
+               {% endcomment %}
                 <div slot="content" class="predictive-search__tab-content v-stack gap-2 justify-start">
                   {%- render 'predictive-search-result-item' for predictive_search.resources.pages as item, type: 'page' -%}
                 </div>
@@ -301,9 +304,11 @@
                 {%- endif -%}
 
               {%- if page_results.size > 0 -%}
+                 {% comment %}
                 <div class="predictive-search__tab-item" slot="title">
                   <button type="button" class="h5">{{- 'search.general.pages' | t -}}</button>
                 </div>
+                {% endcomment %}
 
                 <div slot="content" class="predictive-search__tab-content v-stack gap-2 justify-start">
                   {%- render 'predictive-search-result-item' for page_results as item, type: 'page' -%}
