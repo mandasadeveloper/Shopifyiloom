@@ -191,6 +191,13 @@ Supported variables
       {%- endif -%}
 
       {%- render 'price-list', product: product, text_alignment: text_alignment -%}
+      --
+      {%- if settings.discount_mode == 'percentage' -%}
+  {%- assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round | append: '%' -%}
+{%- else -%}
+  {%- capture savings -%}{{ variant.compare_at_price | minus: variant.price | money }}{%- endcapture -%}
+{%- endif -%}
+{{ savings }}
     </div>
 
     {%- if show_rating and mobile_reduced or text_alignment == 'center' -%}
