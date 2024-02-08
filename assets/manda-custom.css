@@ -4017,7 +4017,7 @@ line-height: 256.3%;
     line-height: 12px;
   }
     .manda-cart .order-summary__body .line-item__media-wrapper {
-      width: auto;
+      width: 50px;
       height: auto;
   }
   .m-cart-bottom .radio-custom + .radio-custom-label:before{
