@@ -4008,8 +4008,9 @@ line-height: 256.3%;
       height: 100%;
   }
   .m-quantity-cuss{
-    justify-content: space-between;
-        height: 100%;
+      justify-content: space-between;
+      height: 100%;
+      align-items: end;
   }
   .manda-cart .line-item{
     align-items: stretch;
