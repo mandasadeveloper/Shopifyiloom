@@ -54,7 +54,7 @@ Supported variables
             {%- else -%}
               {%- capture savings -%}{{ variant.compare_at_price | minus: variant.price | money }}{%- endcapture -%}
             {%- endif -%}
-
+              {{ savings }}
             {%- comment -%}
             When showing for product card (form_id == blank) and that the product price varies, we show a sale badge without explicit saving
             as it can cause confusion
