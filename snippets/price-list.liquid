@@ -197,7 +197,7 @@ Supported variables
       {%- if settings.discount_mode == 'percentage' -%}
         {%- assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round | append: '%' -%}
       {%- else -%}
-        {%- capture savings -%}{{ variant.compare_at_price | minus: variant.price | money }}{%- endcapture -%}
+        {%- capture savings -%}{%- endcapture -%}
       {%- endif -%}
       <span class="preoff">{{ savings }} OFF</span>
 </price-list>
