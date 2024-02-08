@@ -3958,6 +3958,14 @@ line-height: 256.3%;
    display: flex;
   align-items: center;
 }
+.preoff{
+  background: #C80A1E;
+  font-family: 'Montserrat';
+  color: #fff;
+  border-radius: 50px;
+  padding: 4px 10px 4px 10px;
+  font-weight: 500;
+}
 @media(min-width:767px){
   .mandasa_summary .line-price-mob{
     display:none;
@@ -3969,8 +3977,17 @@ line-height: 256.3%;
   .product-card__info .cus_m{
     font-size: 18px;
   }
+  .preoff{
+    font-size: 12px;
+    line-height: 14px;
+  }
 }
+
 @media(max-width:767px){
+   .preoff{
+    font-size: 10px;
+    line-height: 12px;
+  }
   .m-cart-bottom .radio-custom + .radio-custom-label:before{
     width: 18px !important;
     height: 18px !important;
