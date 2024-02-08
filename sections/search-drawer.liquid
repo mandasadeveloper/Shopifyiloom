@@ -299,26 +299,7 @@
                     <div slot="content" class="predictive-search__tab-content v-stack gap-2 justify-start">
                       {%- render 'predictive-search-result-item' for article_results as item, type: 'article' -%}
                     </div>
-                    {% if article_blog.handle contains 'news' or article_blog.handle contains 'event' or article_blog.handle contains 'magazine' %}
-                      <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
-                        <a href="{{ article.url }}" data-instant class="1-{{ article_blog.handle }} predictive-search-result group m-blog-cus">
-                          {%- if article.image -%}
-                            {{ article.image | image_url: width: article.image.width | image_tag: sizes: '96px', widths: '96,192' }}
-                          {%- endif -%}
-                  
-                          <div class="v-stack justify-items-start gap-2 sm:gap-3">
-                            {%- if section.settings.show_article_category and article.tags.size > 0 -%}
-                              <span class="badge badge--primary">{{ article_blog.title }}</span> 
-                              <span class="reversed-link rm-reversed-link">{{ article.blog.title }}</span>
-                            {%- endif -%}
-                            <span class="bold">
-                              <span class="reversed-link m-blog-art">{{ article.title }}</span>
-                              <span class="reversed-link">{{ blog.title }}</span>
-                            </span>
-                          </div>
-                        </a>
-                      </div>
-                    {% endif %}
+                   
                 
               {%- endif -%}
 
