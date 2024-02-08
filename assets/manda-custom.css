@@ -3991,6 +3991,10 @@ line-height: 256.3%;
     font-size: 10px;
     line-height: 12px;
   }
+    .manda-cart .order-summary__body .line-item__media-wrapper {
+      width: auto;
+      height: auto;
+  }
   .m-cart-bottom .radio-custom + .radio-custom-label:before{
     width: 18px !important;
     height: 18px !important;
