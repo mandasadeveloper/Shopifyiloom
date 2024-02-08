@@ -192,6 +192,8 @@ Supported variables
 
       {%- render 'price-list', product: product, text_alignment: text_alignment -%}
       --
+      {%- assign badge_types = types | default: 'custom, sold_out, discount' | split: ',' -%}
+{%- assign variant = product.selected_or_first_available_variant -%}
       {%- if settings.discount_mode == 'percentage' -%}
   {%- assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round | append: '%' -%}
 {%- else -%}
