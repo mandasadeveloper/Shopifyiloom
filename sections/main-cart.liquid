@@ -87,13 +87,11 @@
                         <span class="price-m-cart11">
                         {{ line_item.final_line_price | money }}<br>
 
-   {%- for line_item in cart.items -%}
-  {%- if settings.currency_code_enabled -%}
-    {{- line_item.original_line_price | money_with_currency -}}
-  {%- else -%}
-    {{- line_item.original_line_price | money -}}
-  {%- endif -%}
-{%- endfor -%}
+                          {%- if settings.currency_code_enabled -%}
+                            {{- line_item.original_line_price | money_with_currency -}}
+                          {%- else -%}
+                            {{- line_item.original_line_price | money -}}
+                          {%- endif -%}
                         </span>
                         <span class="text-xs">
                         <a href="{{ line_item.url_to_remove }}" class="link">
