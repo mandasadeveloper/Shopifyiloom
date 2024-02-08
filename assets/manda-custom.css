@@ -4002,6 +4002,8 @@ line-height: 256.3%;
   }
   .product-card__info .cus_m{
     font-size: 18px;
+    font-family: 'Montserrat';
+    font-weight: 500;
   }
   .preoff{
     font-size: 12px;
