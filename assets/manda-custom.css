@@ -3980,7 +3980,7 @@ line-height: 256.3%;
     color: #000;
     box-shadow: none;
 }
-.product-card__mobile-quick-buy-button{
+.product-card__quick-buy .product-card__mobile-quick-buy-button{
     background: #fff;
     font-size: 12px;
     width: 100%;
