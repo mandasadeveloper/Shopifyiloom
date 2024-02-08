@@ -3980,6 +3980,7 @@ line-height: 256.3%;
     justify-items: start;
     gap: 0.8rem !important;
     display: grid;
+    width: 45%;
   }
   .cart-tooltip{
     padding: 6px 0;
