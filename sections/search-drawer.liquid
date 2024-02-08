@@ -287,12 +287,9 @@
                   {% assign article_blog = blogs[blog_handle] %}
                 
                   {% if article_blog.handle contains 'news' or article_blog.handle contains 'event' or article_blog.handle contains 'magazine' %}
-                    {% unless mkShown %}        
                       <div class="predictive-search__tab-item" slot="title">
                         <button type="button" class="h5">{{ 'search.general.posts' | t }}</button>
                       </div>
-                    {% assign mkShown = true %}
-                    {% endunless %}
                     <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
                       <a href="{{ article.url }}" data-instant class="1-{{ article_blog.handle }} predictive-search-result group m-blog-cus">
                         {%- if article.image -%}
