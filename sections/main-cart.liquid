@@ -87,11 +87,26 @@
                         <span class="price-m-cart11">
                         {{ line_item.final_line_price | money }}<br>
 
-                          {%- if settings.currency_code_enabled -%}
-                            {{- line_item.original_line_price | money_with_currency -}}
-                          {%- else -%}
-                            {{- line_item.original_line_price | money -}}
-                          {%- endif -%}
+                          <p>
+    Regular Price: 
+    {%- if settings.currency_code_enabled -%}
+      {{- line_item.line_price | money_with_currency -}}
+    {%- else -%}
+      {{- line_item.line_price | money -}}
+    {%- endif -%}
+  </p>
+  <p>
+    Compare Price: 
+    {%- if line_item.original_line_price > line_item.line_price -%}
+      {%- if settings.currency_code_enabled -%}
+        {{- line_item.original_line_price | money_with_currency -}}
+      {%- else -%}
+        {{- line_item.original_line_price | money -}}
+      {%- endif -%}
+    {%- else -%}
+      N/A
+    {%- endif -%}
+  </p>
                         </span>
                         <span class="text-xs">
                         <a href="{{ line_item.url_to_remove }}" class="link">
