@@ -3966,7 +3966,7 @@ line-height: 256.3%;
   padding: 4px 10px 4px 10px;
   font-weight: 500;
 }
-.price-list {
+.product-list-desktop .product-card__info  .price-list {
     align-items: center !important;
 }
 @media(min-width:767px){
