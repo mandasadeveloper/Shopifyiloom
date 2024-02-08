@@ -199,5 +199,7 @@ Supported variables
       {%- else -%}
         {%- capture savings -%}{%- endcapture -%}
       {%- endif -%}
+       {% if savings > 0 %}
       <span class="preoff">{{ savings }} OFF</span>
+      {% endif %}
 </price-list>
