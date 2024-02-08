@@ -315,11 +315,14 @@
               {%- endif -%}
             </x-tabs>
           <!-- mk-mds -->
+        {%- if product_results.size > 0 -%}
+        {% else %}
             {% unless mkShown %}
               <div class="empty-state">
                 <p class="h6">{{ 'search.general.no_results' | t }}</p>
               </div>
               {% endunless %}
+          {% endif %}
           <!-- end-mk-mds -->
           {% else %}
             <div class="empty-state">
