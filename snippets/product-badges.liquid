@@ -41,6 +41,7 @@ Supported variables
         {%- endif -%}
 
       {%- when 'discount' -%}
+      
         {%- if settings.show_discount -%}
           {%- assign is_variant_on_sale = false -%}
 
@@ -54,7 +55,7 @@ Supported variables
             {%- else -%}
               {%- capture savings -%}{{ variant.compare_at_price | minus: variant.price | money }}{%- endcapture -%}
             {%- endif -%}
-              {{ savings }}
+              
             {%- comment -%}
             When showing for product card (form_id == blank) and that the product price varies, we show a sale badge without explicit saving
             as it can cause confusion
@@ -63,7 +64,7 @@ Supported variables
               {%- if form_id == blank and product.price_varies -%}
                 {{- 'product.general.on_sale_badge' | t -}}
               {%- else -%}
-                {{- 'product.general.discount_badge_html' | t: savings: savings -}}
+{{ savings }}
               {%- endif -%}
             </on-sale-badge>
           {%- endif -%}
