@@ -125,7 +125,7 @@ Supported variables
         </sale-price>
       {%- endif -%}
     {%- elsif product.price < product.compare_at_price -%}
-      <sale-price class="1 {{ on_sale_price_classes }}">
+      <sale-price class="{{ on_sale_price_classes }}">
         <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
 
         {%- if settings.currency_code_enabled -%}
@@ -177,7 +177,17 @@ Supported variables
       </sale-price>
     {%- endif -%}
   {%- endif -%}
+{% assign salePrice = product.price %}
+{% assign compareAtPrice = product.compare_at_price %}
 
+{% if salePrice and compareAtPrice %}
+  {% assign discount = (compareAtPrice - salePrice) / compareAtPrice * 100 | round %}
+  {% if discount > 0 %}
+    <div class="discount">
+      {{ discount }}% off
+    </div>
+  {% endif %}
+{% endif %}
   {%- unless hide_unit_price -%}
     {%- assign unit_price_item = variant | default: line_item | default: product.selected_or_first_available_variant -%}
 
