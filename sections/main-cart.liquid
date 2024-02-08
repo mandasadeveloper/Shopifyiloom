@@ -86,8 +86,8 @@
                       <div class="mk-cart v-stack justify-center gap-2">     
                         <span class="price-m-cart11">
                         {{ line_item.final_line_price | money }}<br>
-                          {{- line_item.final_price | money -}} -mk-
-                        {{- line_item.original_price | money -}}
+                          <div>Original Price: {{ line_item.original_price | money }}</div>
+                        <div>Final Price: {{ line_item.final_price | money }}</div>
                         </span>
                         <span class="text-xs">
                         <a href="{{ line_item.url_to_remove }}" class="link">
