@@ -86,11 +86,8 @@
                       <div class="mk-cart v-stack justify-center gap-2">     
                         <span class="price-m-cart11">
                         {{ line_item.final_line_price | money }}<br>
-                          {%- if settings.currency_code_enabled -%}
-                          {{- line_item.compare_at_price | money_with_currency -}}
-                          {%- else -%}
                           {{- line_item.compare_at_price | money -}}
-                          {%- endif -%}
+                        {{- line_item.original_price | money -}}
                         </span>
                         <span class="text-xs">
                         <a href="{{ line_item.url_to_remove }}" class="link">
