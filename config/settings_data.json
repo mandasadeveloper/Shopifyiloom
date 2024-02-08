@@ -24,7 +24,7 @@
     "heading_font_size": "large",
     "heading_letter_spacing": -2,
     "text_font": "din_next_n4",
-    "currency_code_enabled": false,
+    "currency_code_enabled": true,
     "show_page_transition": true,
     "heading_apparition": "split_fade",
     "show_vendor": true,
