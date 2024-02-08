@@ -177,7 +177,12 @@ Supported variables
       </sale-price>
     {%- endif -%}
   {%- endif -%}
-
+{%- if settings.discount_mode == 'percentage' -%}
+  {%- assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round | append: '%' -%}
+{%- else -%}
+  {%- capture savings -%}{{ variant.compare_at_price | minus: variant.price | money }}{%- endcapture -%}
+{%- endif -%}
+{{ savings }}
   {%- unless hide_unit_price -%}
     {%- assign unit_price_item = variant | default: line_item | default: product.selected_or_first_available_variant -%}
 
