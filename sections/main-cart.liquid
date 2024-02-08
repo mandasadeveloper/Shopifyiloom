@@ -86,13 +86,6 @@
                       <div class="mk-cart v-stack justify-center gap-2">     
                         <span class="price-m-cart11">
                         {{ line_item.final_line_price | money }}<br>
-
-                        {% for item in cart.items %}
-                        <div>
-                          <p>Price: {{ item.price | money }}</p>
-                          <p>Compare-at price: {{ item.compare_at_price | money }}</p>
-                        </div>
-                        {% endfor %}
                         </span>
                         <span class="text-xs">
                         <a href="{{ line_item.url_to_remove }}" class="link">
