@@ -210,29 +210,29 @@ $(document).ready(function() {
 // Function to update total price
 function updateCartCounter1() {
   fetch('/cart.js')
-      .then(response => response.json()) // Parse response as JSON
-      .then(data => {
-          // Update item count
-          const counterEl = document.querySelectorAll('.count-bubble');
-          counterEl.forEach(element => {
-              element.innerHTML = data.item_count;
-          });
-  
-          // Update total price in the cart
-          if (window.location.href.includes("cart")) {
-              $.ajax({
-                  url: '/cart',
-                  type: 'GET',
-                  success: function(response) {
-                      const doc = new DOMParser().parseFromString(response, 'text/html');
-                      $(".total_cus").html(doc.querySelector(".m-total-price").innerHTML);
-                  }
-              });
-          }
-      })
-      .catch(error => {
-          console.error('Error updating cart:', error);
-      });
+    .then(response => response.json()) // Parse response as JSON
+    .then(data => {
+        // Update item count
+        const counterEl = document.querySelectorAll('.count-bubble');
+        counterEl.forEach(element => {
+            element.innerHTML = data.item_count;
+        });
+
+        // Update total price in the cart
+        if (window.location.href.includes("cart")) {
+            $.ajax({
+                url: '/cart',
+                type: 'GET',
+                success: function(response) {
+                    const doc = new DOMParser().parseFromString(response, 'text/html');
+                    $(".total_cus").html(doc.querySelector(".m-total-price").innerHTML);
+                }
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error updating cart:', error);
+    });
 }
 
 //remove checked items
