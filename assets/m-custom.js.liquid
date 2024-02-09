@@ -201,23 +201,31 @@ $(selectAllItems).click(function() {
 });
 
 
-$(document).ready(function() {
+$(".cart__row input").on("click", function() {
+  let updates = {};
   $(".cart__row input:checked").each(function() {
-    alert("1");
-    $(selectAllItems).click(function() {
-        if (this.checked) {
-            $(checkboxItem).prop('checked', true);
-        } else {
-            $(checkboxItem).prop('checked', false);
-        }
-    });
-
-    $(checkboxItem).click(function() {
-        if (!this.checked) {
-            $(selectAllItems).prop('checked', false);
-        }
-    });
-  }
+      var item_id = $(this).parents('.cart__row').attr('data-prd-id');
+        updates[item_id] = 0;
+         alert("1");
+      });
+    // fetch(window.Shopify.routes.root + 'cart/update.js', {
+    //     method: 'POST',
+    //     headers: {
+    //     'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({ updates })
+        
+    //     })
+    //     .then(response => {
+    //     return response.json();
+    //     })
+    //     .then((state) => {
+    //       updateCartCounter();
+    //       location.reload();
+    //     })
+    //     .catch((error) => {
+    //     console.error('Error:', error);
+    //     });
 });
 
 
