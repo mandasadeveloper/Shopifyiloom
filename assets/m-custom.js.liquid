@@ -203,6 +203,7 @@ $(selectAllItems).click(function() {
 //  mk-mds check box update
 $(".cart__row input").on("click", function() {
     let updates = {};
+    alert(updates);
     $(".cart__row input:checked").each(function() {
         var item_id = $(this).parents('.cart__row').attr('data-prd-id');
         updates[item_id] = 0;
