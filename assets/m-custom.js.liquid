@@ -218,55 +218,55 @@ $(".checkbox-item").on("click", function(){
 });
 function addItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-       body: JSON.stringify({ item:[
-        {
-          id,quantity:qty
-        }
-      ]})
-      
-      })
-      .then(response => {
-        return response.json();
-      })
-      .then((state) => {
-        console.log("stateadd" ,state);
-        updateCartCounter();
-      })
-      .catch((error) => {
-      console.error('Error:', error);
-      });
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+     body: JSON.stringify({ item:[
+      {
+        id,quantity:qty
+      }
+    ]})
+    
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then((state) => {
+      console.log("stateadd" ,state);
+      updateCartCounterdata();
+    })
+    .catch((error) => {
+    console.error('Error:', error);
+    });
 }
 
 function removeItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/update.js', {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json'
-        },
-          body: JSON.stringify({ update:{
-              id,quantity:0
-            }
-          })
-        })
-        .then(response => {
-          return response.json();
-        })
-        .then((state) => {
-         console.log("stateupdate",state);
-          updateCartCounter();
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json'
+    },
+      body: JSON.stringify({ update:{
+          id,quantity:0
+        }
+      })
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then((state) => {
+     console.log("stateupdate",state);
+      updateCartCounterdata();
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 }
 
-// function updateCartCounterdata(){
+function updateCartCounterdata(){
   
-// }
+}
 
 //remove checked items
 $(".delete-product").on("click", function() {
