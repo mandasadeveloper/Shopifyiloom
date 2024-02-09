@@ -163,6 +163,7 @@ Supported variables
     <a href="{{ collection.url }}" data-instant class="predictive-search-result group">
       {%- if collection.featured_image -%}
         {{- collection.featured_image | image_url: width: collection.featured_image.width | image_tag: sizes: '96px', widths: '96,192' -}}
+        <!-- <img src="{{ collection.featured_image | img_url: 'master' }}" width="auto" height="auto"> -->
       {%- endif -%}
 
       <div class="v-stack justify-items-start gap-0.5">
