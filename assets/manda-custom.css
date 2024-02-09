@@ -3472,9 +3472,9 @@ margin-top: 13px
   }
   .m-search-drawer .m-blog-cus .badge{
   border-radius: 2px;
-  background: #C80A1E;
-  color: white;
-  border: none;
+  /* background: #C80A1E; */
+  color: #C80A1E;
+  /* border: none; */
   
   }
   .m-cart-left{
