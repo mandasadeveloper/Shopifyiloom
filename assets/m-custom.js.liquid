@@ -206,7 +206,7 @@ $(".cart__row input").on("click", function() {
   $(".cart__row input:checked").each(function() {
       var item_id = $(this).parents('.cart__row').attr('data-prd-id');
         updates[item_id] = 0;
-         alert("1");
+    alert("item_id"+item_id);
       });
     // fetch(window.Shopify.routes.root + 'cart/update.js', {
     //     method: 'POST',
