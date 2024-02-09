@@ -216,8 +216,8 @@ $(".checkbox-item").on("click", function(){
    //  if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
    //  else removeitem(item_id1,qty);
   
-    let item_id = $(this).parents('.cart__row').parents('.line-item').attr('data-prd-id');
-    let qty = $(this).parents('.line-item').parents('.cart__row').find('.cart__qty-input').val();
+    let item_id = $(this).parents('.line-item').parents('.cart__row').attr('data-prd-id');
+    let qty = $(this).parents('.cart__row').parents('.cart__row').find('.cart__qty-input').val();
     alert("item_id",item_id);
     if ($(this).prop('checked')) {
         addItem(item_id, qty);
