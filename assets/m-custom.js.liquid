@@ -202,13 +202,14 @@ $(selectAllItems).click(function() {
 
 //  mk-mds check box update
 $(".cart__row input").on("click", function() {
+  alert("1");
     let updates = {};
     alert(updates);
     $(".cart__row input:checked").each(function() {
         var item_id = $(this).parents('.cart__row').attr('data-prd-id');
         updates[item_id] = 0;
         alert("item_id" + item_id);
-      updateCartCounter1();
+      
     });
 
       // fetch(window.Shopify.routes.root + 'cart/update.js', {
