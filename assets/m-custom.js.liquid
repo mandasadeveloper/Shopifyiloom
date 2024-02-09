@@ -203,6 +203,7 @@ $(selectAllItems).click(function() {
 
 $(document).ready(function() {
   $(".cart__row input:checked").each(function() {
+    alert("1");
     $(selectAllItems).click(function() {
         if (this.checked) {
             $(checkboxItem).prop('checked', true);
