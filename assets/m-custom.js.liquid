@@ -200,18 +200,25 @@ $(selectAllItems).click(function() {
   
 });
 
-var selectitem = ".checkbox-item";
-var checkboxItem1 = ":checkbox";
-$(selectitem).click(function() {
-  if (this.checked) {
-    $(checkboxItem1).each(function() {
-      this.checked = true;
+// var selectitem = ".checkbox-item";
+// var checkboxItem1 = ":checkbox";
+// $(selectitem).click(function() {
+//   if (this.checked) {
+//     $(checkboxItem1).each(function() {
+//       this.checked = true;
+//     });
+//   } else {
+//     $(checkboxItem1).each(function() {
+//       this.checked = false;
+//     });
+//   }
+// });
+
+$(document).ready(function() {
+    $('input[type="checkbox"]').click(function() {
+        $('input[type="checkbox"]').not(this).prop('checked', false);
+      alert("1");
     });
-  } else {
-    $(checkboxItem1).each(function() {
-      this.checked = false;
-    });
-  }
 });
 
 //remove checked items
