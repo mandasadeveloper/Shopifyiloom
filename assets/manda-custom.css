@@ -61,7 +61,7 @@
     padding-right: 8px;
     padding-block-start: 6px !important;
     padding-block-end: 6px !important;
-    min-width: 75px;
+    /* min-width: 75px; */
     display: flex;
     justify-content: center;
   }
