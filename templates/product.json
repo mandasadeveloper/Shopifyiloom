@@ -1,51 +1,61 @@
 {
   "sections": {
+    "f110e699-ac99-49e2-bf0e-7e3536366bce": {
+      "type": "product-event-counter",
+      "settings": {
+        "before_launch_heading": "Launching soon!",
+        "after_launch_heading": "Launching soon!",
+        "count_down_text": "The countdown is on....",
+        "background_banner_image": "shopify:\/\/shop_images\/event-bg.png",
+        "product_name": "{{ product.metafields.custom.product_launch_event.value.product_name.value }}",
+        "start_time": "{{ product.metafields.custom.product_launch_event.value.start_date.value }}",
+        "end_time": "{{ product.metafields.custom.product_launch_event.value.end_date.value }}"
+      }
+    },
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": {
-          "type": "vendor",
+        "badges": {
+          "type": "badges",
           "settings": {
           }
         },
         "title": {
           "type": "title",
           "settings": {
-          }
-        },
-        "badges": {
-          "type": "badges",
-          "settings": {
-          }
-        },
-        "price": {
-          "type": "price",
-          "settings": {
+            "heading_tag": "h2"
           }
         },
         "rating": {
           "type": "rating",
           "settings": {
+            "show_empty": false
           }
         },
-        "payment_terms": {
-          "type": "payment_terms",
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "ff9a1236-52c5-446b-b32c-d8389b7495e4": {
+          "type": "sku",
           "settings": {
           }
         },
-        "separator": {
-          "type": "separator",
-          "settings": {
-          }
-        },
-        "description": {
-          "type": "description",
+        "ef22fb2f-4788-4121-9c4a-2738e3f276c0": {
+          "type": "product_event",
           "settings": {
           }
         },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
+            "hide_sold_out_variants": false,
+            "stack_blocks": false,
+            "selector_mode": "block",
+            "color_mode": "color",
+            "size_chart_page": ""
           }
         },
         "quantity_selector": {
@@ -56,38 +66,599 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
           }
         },
-        "pickup_availability": {
-          "type": "pickup_availability",
+        "1e3ea942-ab42-4a23-a252-a8d055d3c2b3": {
+          "type": "addon_products",
           "settings": {
+            "show_erp": true,
+            "erp_heading": "在商店的经验",
+            "heading": "适合一起购买的产品"
+          }
+        },
+        "product_event_outlet_kdM9Dq": {
+          "type": "product_event_outlet",
+          "settings": {
+            "heading_event": "商品信息",
+            "content_event": "商品信息感謝您提前預訂我們的新產品。 該商品將根據發售時間進行統一進口和發貨。 詳細日程將在訂單確認後由專業顧問與您個別聯繫。",
+            "heading_outlet": "商品信息 Outlet",
+            "content_outlet": "商品信息感謝您提前預訂我們的新產品。 該商品將根據發售時間進行統一進口和發貨。 詳細日程將在訂單確認後由專業顧問與您個別聯繫。"
           }
         }
       },
       "block_order": [
-        "vendor",
-        "title",
         "badges",
-        "price",
+        "title",
         "rating",
-        "payment_terms",
-        "separator",
-        "description",
+        "price",
+        "ff9a1236-52c5-446b-b32c-d8389b7495e4",
+        "ef22fb2f-4788-4121-9c4a-2738e3f276c0",
         "variant_picker",
         "quantity_selector",
-        "buy_buttons"
+        "buy_buttons",
+        "1e3ea942-ab42-4a23-a252-a8d055d3c2b3",
+        "product_event_outlet_kdM9Dq"
       ],
+      "settings": {
+        "full_width": true,
+        "show_fixed_add_to_cart": true,
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": "",
+        "basic_composition_heading": "基本构成",
+        "composition_image": "{{ product.metafields.custom.basic_composition_popup_image.value }}",
+        "show_discount_button": true,
+        "discount_button_icon": "shopify:\/\/shop_images\/Frame_6496_1.jpg",
+        "discount_button_text": "注册会员后领取20%优惠券",
+        "button_text": "Enter",
+        "frame-title": "{{ product.metafields.custom.caution.value.title.value }}",
+        "frame-detail": "{{ product.metafields.custom.caution.value.description.value }}",
+        "hide_frame_info": false
+      }
+    },
+    "f219f9c5-05d5-45a3-affb-8edb21d1b59c": {
+      "type": "product-accordion-content",
+      "blocks": {
+        "0a151f9e-d4c7-4bdd-9b36-01292a8b73fc": {
+          "type": "specification",
+          "source": "{{ product.metafields.custom.specification.value }}",
+          "settings": {
+            "title": "{{ product.metafields.custom.specification.value.title.value }}",
+            "image_one": "{{ product.metafields.custom.specification.value.image.value }}",
+            "image_two": "{{ product.metafields.custom.specification.value.image_two.value }}",
+            "video": "{{ product.metafields.custom.specification.value.video.value }}",
+            "youtube-video": "{{ product.metafields.custom.specification.value.youtube_video.value }}"
+          }
+        },
+        "a252b260-23e3-4dcb-b5b8-e7cd76069dd9": {
+          "type": "awards",
+          "source": "{{ product.metafields.custom.awards_and_qualification_certification.value }}",
+          "settings": {
+            "title": "{{ product.metafields.custom.awards_and_qualification_certification.value.title.value }}",
+            "heading": "{{ product.metafields.custom.awards_and_qualification_certification.value.heading.value }}",
+            "image_heading": "{{ product.metafields.custom.awards_and_qualification_certification.value.sub_heading.value }}",
+            "certificate_image": "{{ product.metafields.custom.awards_and_qualification_certification.value.image.value }}",
+            "iso_sub_title": "{{ product.metafields.custom.awards_and_qualification_certification.value.image_sub_title.value }}",
+            "iso_heading": "{{ product.metafields.custom.awards_and_qualification_certification.value.image_heading.value }}",
+            "iso_content": ""
+          }
+        },
+        "9db2486f-3c8f-4a23-95ea-3e242af61d91": {
+          "type": "exchangepolicy",
+          "settings": {
+            "policy_title": "退\/退換貨政策",
+            "country_and_city": "縣市",
+            "provide_shipping": "提供運送加價服務",
+            "shipping_Service": "提供運送加價服務"
+          }
+        },
+        "e54d367b-a006-4405-9328-74eb07278c70": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "基隆",
+            "provide_shipping": "",
+            "shipping_Service": "瑞里(十分寮)"
+          }
+        },
+        "3c22bf8f-05c8-49f9-9761-bfca101fd488": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "桃園",
+            "provide_shipping": "",
+            "shipping_Service": "萬里、金山、石碇、平溪、雙溪、貢寮、坪林、烏來、石門、陽明山、九份、金瓜石、深坑、 偏遠山區、三芝"
+          }
+        },
+        "33524389-2318-4c4f-8ea1-d442145971e5": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "新竹",
+            "provide_shipping": "科學園區",
+            "shipping_Service": "復興、大壩"
+          }
+        },
+        "f4742a8a-eba9-4edd-99da-b7fa5527c7ae": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "苗栗",
+            "provide_shipping": "科學園區",
+            "shipping_Service": "五峰、尖石"
+          }
+        },
+        "c7183216-bb16-417e-98ab-fb37c4130697": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "台中",
+            "provide_shipping": "科學園區",
+            "shipping_Service": "獅頭山寺廟、獅潭、泰安、卓蘭"
+          }
+        },
+        "4b83bca5-5b37-484f-b7b4-1da1d522fcf2": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "彰化",
+            "provide_shipping": "科學園區",
+            "shipping_Service": "和平"
+          }
+        },
+        "f8018e4b-c39e-4055-919c-de8e91836b2b": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "台中",
+            "provide_shipping": "大成",
+            "shipping_Service": "芬園(大竹村)"
+          }
+        },
+        "d2eb64e9-cfb9-4dfa-88dd-3237d0ef2cb6": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "南投",
+            "provide_shipping": "國姓、鹿谷、水里",
+            "shipping_Service": "仁愛、信義、鹿谷(溪頭)、中寮(永平村)、 仁愛鄉(榮興村、翠華村、翠巒、華岡)"
+          }
+        },
+        "1e6add54-250a-4a35-adf9-b738e74414ff": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "雲林",
+            "provide_shipping": "東石、麥寮、台西、口湖",
+            "shipping_Service": "古坑鄉(桂林)、樟湖、草嶺、華山"
+          }
+        },
+        "2ff8a906-7ad2-41af-a8fa-ef7e770f8d8c": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "嘉義",
+            "provide_shipping": "竹崎、番路",
+            "shipping_Service": "梅山、阿里山、大埔"
+          }
+        },
+        "004781bc-7638-4f8c-8f45-9f771184418c": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "台南",
+            "provide_shipping": "烏山頭、科學園區、臺南藝術大學",
+            "shipping_Service": "左鎮、玉井、楠西、南化、龍崎、白河區(關 嶺里)大內"
+          }
+        },
+        "abe84002-efa2-4a62-87d4-1cd66d925509": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "高雄",
+            "provide_shipping": "科學園區",
+            "shipping_Service": "田寮、旗山、美濃、內門、杉林、甲仙、桃源、 三民、茂林、那瑪夏鄉、六龜"
+          }
+        },
+        "44f1da6a-1cff-4b22-876d-25627da7cfaf": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "宜蘭",
+            "provide_shipping": "宜蘭市、頭城、礁溪、壯圍、員山、五結、羅 東、三星、冬山",
+            "shipping_Service": "南澳、大同、太平山、明池山莊、三星鄉( 尚 武村)、蘇花公路、蘇澳"
+          }
+        },
+        "896e0e54-b4b5-4570-bad1-0a84ce6da249": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "花蓮",
+            "provide_shipping": "花蓮市、新城、吉安、壽豐、鳳林、萬榮、光 復",
+            "shipping_Service": "秀林、豐濱、瑞穗、玉里、卓溪、富里、秀林 鄉(奇萊、龍澗、盤石、檜林、關原、西寶、 文山)"
+          }
+        },
+        "1ace95ed-07fd-4da6-90ae-318975097cc1": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "台南",
+            "provide_shipping": "台東市、知本、富岡、卑南、初鹿、太麻里、 金鋒、鹿野",
+            "shipping_Service": "大武、關山、池上、成功、東河、長濱、海端、 達仁、延平"
+          }
+        },
+        "bae99ad5-ba59-4241-b9fe-77b217fa94b4": {
+          "type": "exchangepolicycontent",
+          "settings": {
+            "country_and_city": "屏東",
+            "provide_shipping": "新埤、佳冬、高樹、里港、新園、林邊、萬巒",
+            "shipping_Service": "枋寮、枋山、獅子、車城、牡丹、恆春、滿州、 霧臺、泰武、來義、春日、三地門(大社村德 文村、達來村大鵬灣風景區)三地門、瑪家"
+          }
+        }
+      },
+      "block_order": [
+        "0a151f9e-d4c7-4bdd-9b36-01292a8b73fc",
+        "a252b260-23e3-4dcb-b5b8-e7cd76069dd9",
+        "9db2486f-3c8f-4a23-95ea-3e242af61d91",
+        "e54d367b-a006-4405-9328-74eb07278c70",
+        "3c22bf8f-05c8-49f9-9761-bfca101fd488",
+        "33524389-2318-4c4f-8ea1-d442145971e5",
+        "f4742a8a-eba9-4edd-99da-b7fa5527c7ae",
+        "c7183216-bb16-417e-98ab-fb37c4130697",
+        "4b83bca5-5b37-484f-b7b4-1da1d522fcf2",
+        "f8018e4b-c39e-4055-919c-de8e91836b2b",
+        "d2eb64e9-cfb9-4dfa-88dd-3237d0ef2cb6",
+        "1e6add54-250a-4a35-adf9-b738e74414ff",
+        "2ff8a906-7ad2-41af-a8fa-ef7e770f8d8c",
+        "004781bc-7638-4f8c-8f45-9f771184418c",
+        "abe84002-efa2-4a62-87d4-1cd66d925509",
+        "44f1da6a-1cff-4b22-876d-25627da7cfaf",
+        "896e0e54-b4b5-4570-bad1-0a84ce6da249",
+        "1ace95ed-07fd-4da6-90ae-318975097cc1",
+        "bae99ad5-ba59-4241-b9fe-77b217fa94b4"
+      ],
+      "settings": {
+        "table_heading": "退",
+        "remote_text": "<p>iloom透過專門的裝配團隊向客戶所在的所有地區提供產品和服務。對於偏遠地區，可能會根據距離收取額外費用。在訂購時，您可以向銷售代理查詢。<\/p>",
+        "list_main_heading": "退換貨政策",
+        "list_sub_heading": "宅配商品",
+        "list_content": "<ul><li>凡收到商品如有發現瑕疵、毀損等事宜，可在收到商品的7日內(含假日)，於會員「訂單查詢」申請退(換)貨，我們將於申請日5天內協助退貨事宜辦理。<\/li><li>若完成訂單後，因其他因素考量，可在訂單尚處於「待出貨狀態」下申請訂單取消，系統將立即處理。<\/li><li>本網退換貨進度查詢-歡迎來信客服信箱 service@iloom.com.tw ，專員將盡速替您服務。<\/li><li>已過營業稅期的發票電子檔，待退貨完成後，客服人員會與您聯絡相關退貨事宜。<\/li><li>當您申請退換貨後，請主動向貨運人員索取單據，並保留至退換貨完成，以利日後查詢。<br\/>商品到貨7日後(含假日)，不接受任何換貨之理由。<\/li><li>若您有多次非因商品之瑕疵而做退換貨之紀錄，怡倫家居將保留您的訂購與否之權利。<br\/>於網站購買之商品，無法至專櫃以及直營店做退貨處理或更換，敬請見諒。<\/li><li>原廠吊牌剪標、組裝、使用、或拆解以致缺乏完整性及失去再販售價值時，恕無法退(換)貨！<\/li><\/ul>",
+        "list_inner_sub_heading": "組裝商品",
+        "list_sub_content": "<ul><li>商品皆由韓國原裝客訂來台，與客服確認訂購配送日期後，恕無法退貨！<\/li><\/ul>"
+      }
+    },
+    "fada216b-913e-4594-9b1f-4f730a360a93": {
+      "type": "image-banner-with-text",
+      "settings": {
+        "sub_title": "{{ product.metafields.custom.banner_with_text.value.sub_title.value }}",
+        "main_heading": "{{ product.metafields.custom.banner_with_text.value.main_heading.value }}",
+        "sub_heading": "{{ product.metafields.custom.banner_with_text.value.sub_heading.value }}",
+        "image": "{{ product.metafields.custom.banner_with_text.value.image.value }}",
+        "full_width_image": true,
+        "image_max_width": 800,
+        "video": "{{ product.metafields.custom.banner_with_text.value.video.value }}",
+        "poster_image": "{{ product.metafields.custom.banner_with_text.value.video_poster_image.value }}",
+        "image_sub_title": "{{ product.metafields.custom.banner_with_text.value.image_sub_title.value }}",
+        "image_main_heading": "{{ product.metafields.custom.banner_with_text.value.heading.value }}",
+        "image_sub_heading": "{{ product.metafields.custom.banner_with_text.value.content | metafield_tag }}",
+        "text_alignment": "center",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "2a45c713-99d9-40b6-bcb5-d1cee47928fa": {
+      "type": "image-banner-with-text",
+      "settings": {
+        "sub_title": "{{ product.metafields.custom.banner_with_text_type_2.value.sub_title.value }}",
+        "main_heading": "{{ product.metafields.custom.banner_with_text_type_2.value.main_heading.value }}",
+        "sub_heading": "{{ product.metafields.custom.banner_with_text_type_2.value.sub_heading.value }}",
+        "image": "{{ product.metafields.custom.banner_with_text_type_2.value.image.value }}",
+        "full_width_image": true,
+        "image_max_width": 800,
+        "video": "{{ product.metafields.custom.banner_with_text_type_2.value.video.value }}",
+        "poster_image": "{{ product.metafields.custom.banner_with_text_type_2.value.video_poster_image.value }}",
+        "image_sub_title": "",
+        "image_main_heading": "",
+        "image_sub_heading": "",
+        "text_alignment": "center",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": "il-imageBanner--typeTwo"
+      }
+    },
+    "fa921fcf-c36b-443b-9e0c-91ffe6958b93": {
+      "type": "images-with-text-scrolling",
+      "blocks": {
+        "template--15040116981830__fa921fcf-c36b-443b-9e0c-91ffe6958b93-item-1": {
+          "type": "item",
+          "repeater": "{{ product.metafields.custom.image_with_content_slider.value }}",
+          "settings": {
+            "image": "{{ block.repeater.image.value }}",
+            "video": "{{ block.repeater.video.value }}",
+            "poster_image": "{{ block.repeater.video_poster_image.value }}",
+            "icon": "none",
+            "custom_icon": "{{ block.repeater.icon_image.value }}",
+            "icon_width": 48,
+            "sub_title": "{{ block.repeater.sub_title.value }}",
+            "title": "{{ block.repeater.heading.value }}",
+            "content": "<p>{{ block.repeater.content | metafield_tag }}<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--15040116981830__fa921fcf-c36b-443b-9e0c-91ffe6958b93-item-1"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "show_counter": true,
+        "desktop_image_effect": "reveal",
+        "image_position": "end",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "custom_class": "images-scrolling-product"
+      }
+    },
+    "481a1a3b-64d3-45ba-b031-32879c52ace8": {
+      "type": "image-blocks-with-text",
+      "blocks": {
+        "49b3ecf8-dd7f-4df9-be26-71d922b8b336": {
+          "type": "imageBlocksWithText",
+          "repeater": "{{ product.metafields.custom.image_blocks_with_text.value.image_blocks_with_text.value }}",
+          "settings": {
+            "image": "{{ block.repeater.image.value }}",
+            "video": "{{ block.repeater.video.value }}",
+            "sub_title": "{{ block.repeater.sub_title.value }}",
+            "heading": "{{ block.repeater.main_heading.value }}",
+            "content": "{{ block.repeater.content | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "49b3ecf8-dd7f-4df9-be26-71d922b8b336"
+      ],
+      "settings": {
+        "sub_title": "{{ product.metafields.custom.image_blocks_with_text.value.sub_title.value }}",
+        "main_heading": "{{ product.metafields.custom.image_blocks_with_text.value.title.value }}",
+        "sub_heading": "{{ product.metafields.custom.image_blocks_with_text.value.sub_heading.value }}",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "57c9b431-9e0a-4250-be56-0dfab3dbb674": {
+      "type": "image-banner-with-text",
+      "settings": {
+        "sub_title": "",
+        "main_heading": "",
+        "sub_heading": "",
+        "image": "{{ product.metafields.custom.banner_with_text_type_5.value.image.value }}",
+        "full_width_image": false,
+        "image_max_width": 800,
+        "video": "{{ product.metafields.custom.banner_with_text_type_5.value.video.value }}",
+        "poster_image": "{{ product.metafields.custom.banner_with_text_type_5.value.video_poster_image.value }}",
+        "image_sub_title": "",
+        "image_main_heading": "",
+        "image_sub_heading": "",
+        "text_alignment": "center",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "2bcd2be6-b8b2-487d-a864-6faafd800e71": {
+      "type": "product-richtext",
+      "settings": {
+        "heading": "{{ product.metafields.custom.product_richtext.value.heading.value }}",
+        "content": "{{ product.metafields.custom.product_richtext.value.content | metafield_tag }}",
+        "text_alignment": "center",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40
+      }
+    },
+    "9ae98087-135c-4148-85fe-028fa4cfacd2": {
+      "type": "image-banner-with-text",
+      "settings": {
+        "sub_title": "",
+        "main_heading": "",
+        "sub_heading": "",
+        "image": "{{ product.metafields.custom.type5_1.value.image.value }}",
+        "full_width_image": false,
+        "image_max_width": 800,
+        "video": "{{ product.metafields.custom.type5_1.value.video.value }}",
+        "poster_image": "{{ product.metafields.custom.type5_1.value.video_poster_image.value }}",
+        "image_sub_title": "",
+        "image_main_heading": "",
+        "image_sub_heading": "",
+        "text_alignment": "center",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": ""
+      }
+    },
+    "a416dda7-4393-4803-80cf-ae5efed4d327": {
+      "type": "image-with-text",
+      "blocks": {
+        "bccbf34c-6f9c-4772-997b-cbc3e43a64fe": {
+          "type": "imagewithtext",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Frame_6415_2.jpg",
+            "sub_title": "",
+            "heading": "全面使用E0板材",
+            "content": "<p>為了不受到環境賀爾蒙與有害物質的影響怡倫所有的產<br\/>品皆使用對比E1甲醛排放量低5倍的E0版材所製作而成<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "bccbf34c-6f9c-4772-997b-cbc3e43a64fe"
+      ],
+      "settings": {
+        "sub_title": "",
+        "main_heading": "即使看不見也值得信賴安全的原料",
+        "sub_heading": "MATERIALS",
+        "image_alignment": "left",
+        "text_alignment": "left",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": "il-imageWithText__blocks--imgContent"
+      }
+    },
+    "a64739b4-591e-4d7f-a64a-7bf1895acff4": {
+      "type": "image-with-text",
+      "blocks": {
+        "ed60770a-b388-4d18-8152-4f9001ec93b8": {
+          "type": "imagewithtext",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Group_6191.jpg",
+            "sub_title": "",
+            "heading": "瑞士 SIMALFA 水性接著劑",
+            "content": "<p>無丙酮、無酒精、 無甲苯、無苯<br\/>使用以環保的成分與製造過程為公司目標的瑞士 SIMALFA 公司所製造的高級水性接著劑<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "ed60770a-b388-4d18-8152-4f9001ec93b8"
+      ],
+      "settings": {
+        "sub_title": "",
+        "main_heading": "",
+        "sub_heading": "",
+        "image_alignment": "right",
+        "text_alignment": "left",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": "il-imageWithText__blocks--imgContent"
+      }
+    },
+    "0dca9c5c-3d8e-494f-9d2f-993076628c41": {
+      "type": "image-with-text",
+      "blocks": {
+        "487bb85a-c3e2-44bd-9075-4e30cb316918": {
+          "type": "imagewithtext",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Frame_6415_3.jpg",
+            "sub_title": "",
+            "heading": "獲得永續管理 ISO 14001 認證",
+            "content": "<p>透過怡倫的永續經營流程,從環境方面有系統的識別、評價、管理與改善對於環境的所產生之危險性進行更有效率的管理<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "487bb85a-c3e2-44bd-9075-4e30cb316918"
+      ],
+      "settings": {
+        "sub_title": "",
+        "main_heading": "",
+        "sub_heading": "",
+        "image_alignment": "left",
+        "text_alignment": "left",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "custom_class": "il-imageWithText__blocks--imgContent"
+      }
+    },
+    "46d329eb-ea71-4b34-b503-b415d3ab31a2": {
+      "type": "product-event-end",
+      "settings": {
+        "background_banner_image": "shopify:\/\/shop_images\/ldz_53512_a__2_1_2.png",
+        "background_image_mobile": "shopify:\/\/shop_images\/ldz_53512_a__2_1_2.png",
+        "heading": "Ended Event",
+        "content": "活動已經結束。"
+      }
+    },
+    "3de47231-7456-4fcd-9aba-fc12ba9e4ae0": {
+      "type": "event-start-banner",
+      "settings": {
+        "background_image_desktop": "shopify:\/\/shop_images\/image_239_54baaa94-0682-4afc-aaee-1e8565c70504.png",
+        "background_image_mobile": "shopify:\/\/shop_images\/image_239_54baaa94-0682-4afc-aaee-1e8565c70504.png",
+        "heading": "일룸 라인 친구 추가를 하고 \n신제품 소식을 받아보세요!",
+        "link_text": "添加好友",
+        "link": "#"
+      }
+    },
+    "design-feed": {
+      "type": "design-feed",
       "settings": {
       }
     },
-    "related-products": {
+    "3d376c48-ad7a-470a-88c1-160211a08717": {
+      "type": "product-blog-post",
+      "settings": {
+        "heading": "本产品的详细内容",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "margin_top": 60,
+        "margin_top_mobile": 40,
+        "background_color": "#f7f7f7"
+      }
+    },
+    "de34ac53-63ab-4944-800f-379e57c8cbc4": {
       "type": "related-products",
       "settings": {
+        "recommendations_count": 10,
+        "enable_manual_product": true,
+        "products": "{{ product.metafields.custom.related_products.value }}",
+        "full_width": true,
+        "stack_products": false,
+        "show_progress_bar": true,
+        "products_per_row_mobile": "1",
+        "products_per_row_desktop": 4,
+        "subheading": "",
+        "title": "Related Products",
+        "content": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
       }
     }
   },
   "order": [
+    "f110e699-ac99-49e2-bf0e-7e3536366bce",
     "main",
-    "related-products"
+    "f219f9c5-05d5-45a3-affb-8edb21d1b59c",
+    "fada216b-913e-4594-9b1f-4f730a360a93",
+    "2a45c713-99d9-40b6-bcb5-d1cee47928fa",
+    "fa921fcf-c36b-443b-9e0c-91ffe6958b93",
+    "481a1a3b-64d3-45ba-b031-32879c52ace8",
+    "57c9b431-9e0a-4250-be56-0dfab3dbb674",
+    "2bcd2be6-b8b2-487d-a864-6faafd800e71",
+    "9ae98087-135c-4148-85fe-028fa4cfacd2",
+    "a416dda7-4393-4803-80cf-ae5efed4d327",
+    "a64739b4-591e-4d7f-a64a-7bf1895acff4",
+    "0dca9c5c-3d8e-494f-9d2f-993076628c41",
+    "46d329eb-ea71-4b34-b503-b415d3ab31a2",
+    "3de47231-7456-4fcd-9aba-fc12ba9e4ae0",
+    "design-feed",
+    "3d376c48-ad7a-470a-88c1-160211a08717",
+    "de34ac53-63ab-4944-800f-379e57c8cbc4"
   ]
 }

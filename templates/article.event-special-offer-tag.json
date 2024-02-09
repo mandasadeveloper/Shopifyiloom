@@ -1,20 +1,16 @@
 {
   "sections": {
     "main": {
-      "type": "main-article-event-offer",
+      "type": "main-article",
       "blocks": {
         "navigation": {
           "type": "navigation",
-          "disabled": true,
           "settings": {
           }
         },
         "comments": {
           "type": "comments",
-          "disabled": true,
           "settings": {
-            "show_gravatar": true,
-            "comments_per_page": 5
           }
         }
       },
@@ -23,49 +19,10 @@
         "comments"
       ],
       "settings": {
-        "allow_transparent_header": false,
-        "layout": "image_text_overlay",
-        "show_author": false,
-        "show_date": false,
-        "show_comments_count": true,
-        "show_share_buttons": true,
-        "banner_background": "#f0f0f0",
-        "banner_text_color": "rgba(0,0,0,0)",
-        "overlay_color": "rgba(0,0,0,0)",
-        "overlay_opacity": 0,
-        "content_width": "750px"
-      }
-    },
-    "f4b1081a-c672-4172-81d2-f8b33aee6a3c": {
-      "type": "featured-collection-event",
-      "settings": {
-        "collection": "",
-        "products": [
-
-        ],
-        "full_width": true,
-        "stack_products": true,
-        "show_progress_bar": false,
-        "products_count": 16,
-        "products_per_row_mobile": "2",
-        "products_per_row_desktop": 4,
-        "subheading": "",
-        "title": "PROMOTION ITEMS",
-        "content": "",
-        "link_url": "",
-        "link_text": "",
-        "background": "",
-        "background_gradient": "",
-        "text_color": "",
-        "heading_color": "",
-        "heading_gradient": "",
-        "product_card_background": "",
-        "product_card_text_color": ""
       }
     }
   },
   "order": [
-    "main",
-    "f4b1081a-c672-4172-81d2-f8b33aee6a3c"
+    "main"
   ]
 }
