@@ -200,12 +200,19 @@ $(selectAllItems).click(function() {
   
 });
 
+
 $(document).ready(function() {
-    var selectitem = ".checkbox-item";
-    var checkboxItem1 = ":checkbox";
-    $(selectitem).click(function() {
+    $(selectAllItems).click(function() {
         if (this.checked) {
-          $(checkboxItem1).not(this).prop('checked');
+            $(checkboxItem).prop('checked', true);
+        } else {
+            $(checkboxItem).prop('checked', false);
+        }
+    });
+
+    $(checkboxItem).click(function() {
+        if (!this.checked) {
+            $(selectAllItems).prop('checked', false);
         }
     });
 });
