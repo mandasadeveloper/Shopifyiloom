@@ -234,6 +234,7 @@ function addItem(id,qty){
       })
       .then((state) => {
         console.log("stateadd" ,state);
+        updateCartCounter();
       })
       .catch((error) => {
       console.error('Error:', error);
@@ -256,11 +257,17 @@ function removeItem(id,qty){
         })
         .then((state) => {
          console.log("stateupdate",state);
+          updateCartCounter();
         })
         .catch((error) => {
-        console.error('Error:', error);
+          console.error('Error:', error);
         });
 }
+
+// function updateCartCounterdata(){
+  
+// }
+
 //remove checked items
 $(".delete-product").on("click", function() {
   let updates = {};
