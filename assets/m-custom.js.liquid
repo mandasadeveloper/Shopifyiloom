@@ -251,9 +251,9 @@ function removeItem(id){
         headers: {
         'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ updates:{
-          id,quantity:0
-          }
+        body: JSON.stringify({
+            id: id,
+            quantity: 0
         })
         
         })
