@@ -19,7 +19,7 @@ Supported variables
   
     {%- assign product = item -%}
 
-    <a href="{{ product.url }}" data-instant class="predictive-search-result group pro-r-m">
+    <a href="{{ product.url }}" data-instant class="predictive-search-result group pro-r-m rr">
       {%- if product.featured_media -%}
         {{- product.featured_media | image_url: width: product.featured_media.width | image_tag: sizes: '96px', widths: '96,192' -}}
          <!-- <img src="{{ product.featured_media | img_url: 'master' }}" width="auto" height="auto"> -->
