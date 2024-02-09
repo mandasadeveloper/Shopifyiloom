@@ -1337,7 +1337,7 @@
   }
   .product-list-mm .product-card__info {
   padding: 19px 0px;
-  gap: 13px;
+  /* gap: 13px; */
   }
   .article-event1 .article-banner__content {
   padding-bottom: 37px;
