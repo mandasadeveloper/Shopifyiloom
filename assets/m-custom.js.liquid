@@ -222,10 +222,6 @@ function addItem(id,qty){
       headers: {
         'Content-Type': 'application/json'
       },
-       // body: JSON.stringify({
-       //      id: id,
-       //      quantity: qty
-       //  })
        body: JSON.stringify({ item:[
         {
           id,quantity:qty
@@ -250,10 +246,6 @@ function removeItem(id,qty){
         headers: {
         'Content-Type': 'application/json'
         },
-        // body: JSON.stringify({
-        //     id: id,
-        //     quantity: 0
-        // })
         body: JSON.stringify({ update:{
             id,quantity:0
           }
