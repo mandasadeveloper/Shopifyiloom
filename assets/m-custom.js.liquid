@@ -208,13 +208,23 @@ $(".order-summary__body .cart__row").each(function() {
 });
 console.log("data---" , priceupdate);
 
-$(".checkbox-item").on("click", function(){
-    var item_id1 = $(this).parents('.cart__row').attr('data-prd-id');
-    var qty = $(this).parents('.cart__row').find('.cart__qty-input').value;
-    alert("qty-",qty);
-    alert("item_id",item_id1);
-     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
-     else removeItem(item_id1,qty);
+// $(".checkbox-item").on("click", function(){
+//     var item_id1 = $(this).parents('.cart__row').attr('data-prd-id');
+//     var qty = $(this).parents('.cart__row').find('.cart__qty-input').value;
+//     alert("qty-",qty);
+//     alert("item_id",item_id1);
+//      if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
+//      else removeItem(item_id1,qty);
+// });
+$(".checkbox-item").on("click", function() {
+    let item_id = $(this).closest('.cart__row').attr('data-prd-id');
+    let qty = $(this).closest('.cart__row').find('.cart__qty-input').text().trim(); // or .html() if needed
+
+    if ($(this).prop('checked')) {
+        addItem(item_id, qty);
+    } else {
+        removeItem(item_id);
+    }
 });
 function addItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
