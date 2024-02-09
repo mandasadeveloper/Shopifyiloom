@@ -210,9 +210,9 @@ console.log("data---" , priceupdate);
 
 $(".checkbox-item").on("click", function(){
    let item_id = $(this).parents('.cart__row').attr('data-prd-id');
-   alert("item_id",item_id);
+   alert("item_id-",item_id);
     let qty = $(this).parents('.cart__row').find('.cart__qty-input').value;
-    alert("qty",qty);
+    alert("qty-",qty);
     if(!priceupdate.includes(item_id)) addItem(item_id,qty);
     else removeitem(item_id,qty);
    
