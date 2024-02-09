@@ -203,7 +203,6 @@ $(selectAllItems).click(function() {
 var selectitem = ".checkbox-item";
 var checkboxItem1 = ":checkbox";
 $(selectitem).click(function() {
-  alert("selectitem");
   if (this.checked) {
     $(checkboxItem1).each(function() {
       this.checked = true;
@@ -213,7 +212,6 @@ $(selectitem).click(function() {
       this.checked = false;
     });
   }
-  
 });
 
 //remove checked items
