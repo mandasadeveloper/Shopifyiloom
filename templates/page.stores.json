@@ -2,11 +2,48 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "a11c63f2-ee50-4411-a68c-345b4a424314": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "template--15154206933062__a11c63f2-ee50-4411-a68c-345b4a424314-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "門市據點",
+            "heading_tag": "h4"
+          }
+        }
+      },
+      "block_order": [
+        "template--15154206933062__a11c63f2-ee50-4411-a68c-345b4a424314-heading-1"
+      ],
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "enable_parallax": false,
+        "image_size": "auto",
+        "image": "shopify:\/\/shop_images\/store-pc.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/image_767_1.png",
+        "mobile_text_position": "place-self-center text-center",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "0cabb396-786c-4a2f-bd44-d7a124f04fe2": {
+      "type": "react-store",
       "settings": {
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "a11c63f2-ee50-4411-a68c-345b4a424314",
+    "0cabb396-786c-4a2f-bd44-d7a124f04fe2"
   ]
 }

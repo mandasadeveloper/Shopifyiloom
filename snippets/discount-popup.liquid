@@ -1,0 +1,219 @@
+<div class="il-discountPopup" data-discount-popup>
+  <div class="il-discountPopup__container">
+    <img
+      src="{{ 'closed_large_24px.png' | file_img_url: 'master' }}"
+      class="il-discountPopup__closeButton"
+      height="auto"
+      width="auto"
+      loading="lazy"
+      data-discount-close
+    >
+    <h2 class="il-discountPopup__heading text-p">{{ section.settings.discount_text }}</h2>
+    <div class="il-discountPopup__newsletter">
+      {%- assign newsletter_form_id = 'newsletter-form-' | append: section.id -%}
+
+      {%- form 'customer', id: newsletter_form_id, class: 'form' -%}
+        {%- if form.posted_successfully? -%}
+          {%- assign success_message = 'general.newsletter.subscribed_successfully' | t -%}
+          {%- render 'banner', content: success_message, status: 'success' -%}
+        {%- else -%}
+          {%- if form.errors -%}
+            {%- capture error_message -%}{{ form.errors.translated_fields['email'] }} {{ form.errors.messages['email'] }}{%- endcapture -%}
+            {%- render 'banner', content: error_message, status: 'error' -%}
+          {%- endif -%}
+
+          <input type="hidden" name="contact[tags]" value="newsletter">
+
+          <div class="fieldset-with-submit">
+            {%- capture label -%}{{ 'general.newsletter.email' | t }}{%- endcapture -%}
+            {%- render 'input',
+              name: 'contact[email]',
+              placeholder: 'Just your email',
+              type: 'email',
+              required: true,
+              autocomplete: 'email',
+              enterkeyhint: 'send'
+            -%}
+            {%- render 'button', type: 'submit', content: section.settings.button_text -%}
+          </div>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+    <p class="il-discountPopup__closeText text-p text-p--18" data-discount-close>
+      {{ section.settings.discount_close_text }}
+    </p>
+  </div>
+</div>
+
+<style>
+  .il-discountPopup {
+    background: url({{section.settings.discount_background_image|img_url:'master'}}) no-repeat;
+    background-size: cover;
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+  }
+
+  .il-discountPopup__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .il-discountPopup__closeButton {
+    position: absolute;
+    top: 38px;
+    right: 38px;
+    width: 100%;
+    max-width: 38px;
+    cursor: pointer;
+  }
+
+  .il-discountPopup__newsletter {
+    margin: 32px 0 42px;
+  }
+
+  .il-discountPopup__heading {
+    font-family: var(--font-secondary);
+    font-size: 60px;
+    font-weight: var(--font-weight-700);
+    line-height: normal;
+    color: var(--color-grey-07);
+  }
+
+  .il-discountPopup__closeText {
+    font-family: var(--font-secondary);
+    line-height: normal;
+    color: var(--color-primary);
+    cursor: pointer;
+  }
+
+  .il-discountPopup__newsletter .button {
+    padding: 0;
+    border-radius: 0px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    width: 100%;
+    max-width: 181px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .il-discountPopup__newsletter .fieldset-with-submit {
+    display: flex;
+    gap: 0;
+    width: 581px;
+  }
+
+  .il-discountPopup__newsletter .form-control {
+    width: 100%;
+    max-width: 433px;
+    height: 76px;
+    display: block;
+  }
+
+  .il-discountPopup__newsletter .input.is-floating {
+    height: 100%;
+    background: var(--color-white);
+  }
+
+  .il-discountPopup__newsletter .button div {
+    color: var(--color-white);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-22);
+    font-style: normal;
+    font-weight: var(--font-weight-500);
+    line-height: normal;
+  }
+
+  .il-discountPopup__newsletter .floating-label {
+    top: 6px;
+    opacity: 1;
+  }
+
+  .il-discountPopup__newsletter .floating-label,
+  .il-discountPopup__newsletter .input.is-floating {
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-22);
+    font-weight: var(--font-weight-500);
+    line-height: normal;
+    color: var(--color-grey-05);
+    border-radius: 0px;
+    outline: none;
+  }
+
+  .il-discountPopup__newsletter .input.is-floating {
+    padding: 10px 10px 10px 39px;
+    outline: none;
+  }
+
+  @media (max-width: 768px) {
+    .il-discountPopup__heading {
+      font-size: var(--font-size-30);
+    }
+
+    .il-discountPopup__newsletter .fieldset-with-submit {
+      width: 300px;
+      flex-wrap: wrap;
+    }
+
+    .il-discountPopup__newsletter .button {
+      height: auto;
+      padding: 10px;
+      margin-top: 10px;
+      max-width: 100%;
+    }
+
+    .il-discountPopup__newsletter .button div,
+    .il-discountPopup__newsletter .floating-label,
+    .il-discountPopup__newsletter .input.is-floating,
+    .il-discountPopup__closeText {
+      font-size: var(--font-size-16);
+    }
+
+    .il-discountPopup__newsletter .form-control {
+      height: 43px;
+    }
+
+    .il-discountPopup__newsletter .input.is-floating {
+      padding: 10px;
+    }
+
+    .il-discountPopup__newsletter .floating-label {
+      top: -4px;
+    }
+
+    .il-discountPopup__newsletter {
+      margin: 16px 0;
+    }
+
+    .il-discountPopup__closeButton {
+      top: 15px;
+      right: 15px;
+      max-width: 20px;
+    }
+  }
+</style>
+
+<script>
+  $(document).on('click', '[data-discount-button]', function () {
+    $('[data-discount-popup]').fadeIn();
+  });
+
+  $(document).on('click', '[data-discount-close]', function () {
+    $('[data-discount-popup]').fadeOut();
+  });
+
+  let live_url = window.location.href;
+  let result = live_url.includes('form_type=customer');
+  if (result) {
+    alert('You have already subscribed!');
+  }
+</script>

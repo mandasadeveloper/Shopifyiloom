@@ -45,7 +45,7 @@ but you can override them by manually passing a different value (although this s
     {%- capture class -%}{{ class }} bg-gradient{%- endcapture -%}
     {%- capture style_attributes -%}{{ style_attributes }} --gradient: {{ background_gradient }}; --background: {{ gradient_first_stop[0] }} {{ gradient_first_stop[1] }} {{ gradient_first_stop[2] }};{%- endcapture -%}
   {%- else -%}
-    {%- capture class -%}{{ class }} bg-custom {%- endcapture -%}
+    {%- capture class -%}{{ class }} bg-custom{%- endcapture -%}
     {%- capture style_attributes -%}{{ style_attributes }} --background: {{ background.rgb }};{%- endcapture -%}
   {%- endif -%}
 {%- endif -%}
