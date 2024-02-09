@@ -221,7 +221,7 @@ $(".checkbox-item").on("click", function(){
   alert("qty-",qty);
     alert("item_id",item_id1);
      if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
-     else removeitem(item_id1,qty);
+     else removeItem(item_id1,qty);
 });
 function addItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
