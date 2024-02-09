@@ -245,15 +245,19 @@ function addItem(id,qty){
       });
 }
 
-function removeItem(id){
+function removeItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/update.js', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            id: id,
-            quantity: 0
+        // body: JSON.stringify({
+        //     id: id,
+        //     quantity: 0
+        // })
+       body: JSON.stringify({ updates:{
+          id,quantity:0
+          }
         })
         
         })
