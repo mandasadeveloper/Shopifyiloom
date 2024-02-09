@@ -16,7 +16,7 @@
       "read_more": "閱讀更多"
     },
     "label": {
-      "color": "Color,Colour",
+      "color": "顏色",
       "white": "白色",
       "size": "尺寸"
     },
@@ -69,8 +69,8 @@
     "general": {
       "description": "說明",
       "view_product": "查看產品",
-      "quick_add": "Cart",
-      "add_to_cart_short": "+ 新增",
+      "quick_add": " 快速新增",
+      "add_to_cart_short": " 新增",
       "add_to_cart_button": "加入購物車",
       "pre_order_button": "預購",
       "sold_out_button": "已售完",
@@ -79,7 +79,7 @@
       "sold_out_badge": "已售完",
       "on_sale_badge": "特價",
       "discount_badge_html": "省下 {{ savings }}",
-      "sku": "品號",
+      "sku": "商品貨號 (SKU)：",
       "variant": "變體",
       "view_in_space": "在您的空間查看",
       "taxes_included": "含稅。",
@@ -100,9 +100,6 @@
       "regular_price": "原價",
       "sale_price": "促銷價",
       "from_price_html": "{{ price_min }} 起"
-    },
-    "total_price": {
-      "label": "订货金额"
     },
     "quantity": {
       "label": "數量",
@@ -142,12 +139,11 @@
     "products_count": {
       "zero": "0 件產品",
       "one": "一件產品",
-      "other": "{{ count }}"
+      "other": "{{ count }} 件產品"
     },
     "faceting": {
       "filters": "篩選條件",
       "filter_and_sort": "篩选並排序",
-      "filter_and_series": "系列搜尋",
       "filter_button": "篩選",
       "clear_filters": "全部清除",
       "apply_filters": "套用",
@@ -361,7 +357,7 @@
       "clear": "清除",
       "view_all": "查看全部",
       "view_all_results": "查看所有結果",
-      "no_results": "未找到結果。"
+      "no_results": "No results could be found."
     },
     "results_count": {
       "zero": "搜尋到「{{ terms }}」的 0 個結果",
@@ -417,15 +413,6 @@
         "zero": "此產品尚無評價。",
         "one": "已收到 {{ count }} 則評價。",
         "other": "已收到 {{ count }} 則評價。"
-      }
-    }
-  },
-  "customer_accounts": {
-    "orders": {
-      "order_list": {
-        "filter": {
-          "clear_all": "全部清除"
-        }
       }
     }
   }
