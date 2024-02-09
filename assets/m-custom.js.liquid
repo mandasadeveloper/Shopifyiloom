@@ -209,13 +209,13 @@ $(".cart__row input").on("click", function() {
         alert("item_id" + item_id);
     });
 
-    fetch(window.Shopify.routes.root + 'cart/update.js', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ updates })
-        })
+    // fetch(window.Shopify.routes.root + 'cart/update.js', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ updates })
+    //     })
         .then(response => response.json())
         .then((state) => {
             updateCartCounter1(); // Update total price after updating cart
