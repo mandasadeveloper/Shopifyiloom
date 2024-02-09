@@ -211,11 +211,11 @@ console.log("data---" , priceupdate);
 $(".checkbox-item").on("click", function(){
    let item_id = $(this).parents('.cart__row').attr('data-prd-id');
     let qty = $(this).parents('.cart__row').find('.cart__qty-input').value;
-    if(priceupdate.includes(item_id)) addItem(item_id);
-    else removeitem(item_id);
+    if(!priceupdate.includes(item_id)) addItem(item_id,qty);
+    else removeitem(item_id,qty);
    
 })
-function addItem(id){
+function addItem(id,qty){
   fetch('/cart/add.js', {
       method: 'POST',
       headers: {
@@ -223,23 +223,43 @@ function addItem(id){
       },
       body: JSON.stringify({ item:[
         {
-          id,quantity:  
+          id,quantity:qty
         }
-      ] })
+      ]})
       
       })
       .then(response => {
         return response.json();
       })
       .then((state) => {
-        updateCartCounter();
+        console.log("stateadd" ,state);
       })
       .catch((error) => {
       console.error('Error:', error);
       });
 }
-function removeitem(id){
-  
+
+function removeitem(id,qty){
+  fetch('/cart/update.js', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ updates:{
+          id,quantity:0;
+          }
+        })
+        
+        })
+        .then(response => {
+        return response.json();
+        })
+        .then((state) => {
+         console.log("stateupdate",state);
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
 }
 //remove checked items
 $(".delete-product").on("click", function() {
