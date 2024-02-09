@@ -201,57 +201,64 @@ $(selectAllItems).click(function() {
 });
 
 //  mk-mds check box update
-$(".cart__row input").on("click", function() {
-    let updates = {};
-    $(".cart__row input:checked").each(function() {
-        var item_id = $(this).parents('.cart__row').attr('data-prd-id');
-        updates[item_id] = 0;
-        alert("item_id" + item_id);
-    });
-
-    fetch(window.Shopify.routes.root + 'cart/update.js', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ updates })
-        })
-        .then(response => response.json())
-        .then((state) => {
-            updateCartCounter1(); // Update total price after updating cart
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+let priceupdate = [];
+$(".cart__row input").each(function() {
+    var item_id = $(this).parents('.cart__row').attr('data-prd-id');
+    priceupdate.push(item_id);
 });
+console.log("data"+ priceupdate);
 
-function updateCartCounter1() {
-    fetch('/cart.js')
-        .then(response => response.text())
-        .then((responseText) => {
-            const data = JSON.parse(responseText);
-            const counterEl = document.querySelectorAll('.count-bubble');
-            console.log(data.items_subtotal_price);
-            counterEl.forEach((element) => {
-                element.innerHTML = data.item_count;
-            });
+// $(".cart__row input").on("click", function() {
+//     let updates = {};
+//     $(".cart__row input:checked").each(function() {
+//         var item_id = $(this).parents('.cart__row').attr('data-prd-id');
+//         updates[item_id] = 0;
+//         alert("item_id" + item_id);
+//     });
 
-            if (window.location.href.indexOf("cart") > -1) {
-                $.ajax({
-                    url: '/cart',
-                    type: 'GET',
-                    success: function(data) {
-                        let parser1 = new DOMParser();
-                        const doc1 = parser1.parseFromString(data, 'text/html');
-                        console.log(doc1.querySelector(".m-total-price"));
-                        $(".total_cus").html('');
-                        $(".total_cus").append(doc1.querySelector(".m-total-price"));
-                        // updateCartCounter();
-                    }
-                });
-            }
-        })
-}
+//     fetch(window.Shopify.routes.root + 'cart/update.js', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify({ updates })
+//         })
+//         .then(response => response.json())
+//         .then((state) => {
+//             updateCartCounter1(); // Update total price after updating cart
+//         })
+//         .catch((error) => {
+//             console.error('Error:', error);
+//         });
+// });
+
+// function updateCartCounter1() {
+//     fetch('/cart.js')
+//         .then(response => response.text())
+//         .then((responseText) => {
+//             const data = JSON.parse(responseText);
+//             const counterEl = document.querySelectorAll('.count-bubble');
+//             console.log(data.items_subtotal_price);
+//             counterEl.forEach((element) => {
+//                 element.innerHTML = data.item_count;
+//             });
+
+//             if (window.location.href.indexOf("cart") > -1) {
+//                 $.ajax({
+//                     url: '/cart',
+//                     type: 'GET',
+//                     success: function(data) {
+//                         let parser1 = new DOMParser();
+//                         const doc1 = parser1.parseFromString(data, 'text/html');
+//                         console.log(doc1.querySelector(".m-total-price"));
+//                         $(".total_cus").html('');
+//                         $(".total_cus").append(doc1.querySelector(".m-total-price"));
+//                         // updateCartCounter();
+//                     }
+//                 });
+//             }
+//         })
+// }
 
 //remove checked items
 $(".delete-product").on("click", function() {
