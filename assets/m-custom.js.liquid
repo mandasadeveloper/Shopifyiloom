@@ -216,9 +216,9 @@ $(".checkbox-item").on("click", function(){
    //  if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
    //  else removeitem(item_id1,qty);
   
-    var item_id = $(this).parents('.cart__row').attr('data-prd-id');
+    var item_id1 = $(this).parents('.cart__row').attr('data-prd-id');
     var qty = $(this).parents('.cart__row').find('.cart__qty-input').val();
-    alert("item_id",item_id);
+    alert("item_id",item_id1);
    if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
     else removeitem(item_id1,qty);
 });
