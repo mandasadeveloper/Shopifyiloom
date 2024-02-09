@@ -106,7 +106,7 @@ Supported variables
       {%- if cheapest_variant.price < cheapest_variant.compare_at_price -%}
         <sale-price wdqe class="{{ on_sale_price_classes }}">
           <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
-           {{- 'product.price.from_price_html' | t: price_min: price_min -}}
+           <span class="sr-only"> {{- 'product.price.from_price_html' | t: price_min: price_min -}}</span>
         </sale-price>
 
         <compare-at-price class="{{ compare_at_price_classes }}">
