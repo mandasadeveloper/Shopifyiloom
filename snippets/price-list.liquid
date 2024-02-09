@@ -104,7 +104,7 @@ Supported variables
       {%- endcapture -%}
 
       {%- if cheapest_variant.price < cheapest_variant.compare_at_price -%}
-        <sale-price class="{{ on_sale_price_classes }}">
+        <sale-price wdqe class="{{ on_sale_price_classes }}">
           <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
           {{- 'product.price.from_price_html' | t: price_min: price_min -}}
         </sale-price>
