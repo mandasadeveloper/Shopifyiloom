@@ -222,10 +222,15 @@ function addItem(id,qty){
       headers: {
         'Content-Type': 'application/json'
       },
-       body: JSON.stringify({
-            id: id,
-            quantity: qty
-        })
+       // body: JSON.stringify({
+       //      id: id,
+       //      quantity: qty
+       //  })
+       body: JSON.stringify({ item:[
+        {
+          id,quantity:qty
+        }
+      ]})
       
       })
       .then(response => {
