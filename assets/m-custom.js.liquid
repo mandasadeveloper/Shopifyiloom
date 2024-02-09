@@ -217,10 +217,11 @@ $(".checkbox-item").on("click", function(){
    //  else removeitem(item_id1,qty);
   
     var item_id1 = $(this).parents('.cart__row').attr('data-prd-id');
-    var qty = $(this).parents('.cart__row').find('.cart__qty-input').val();
+    var qty = $(this).parents('.cart__row').find('.cart__qty-input').value;
+  alert("qty-",qty);
     alert("item_id",item_id1);
-   if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
-    else removeItem(item_id1,qty);
+     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
+     else removeitem(item_id1,qty);
 });
 function addItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
