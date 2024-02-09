@@ -195,7 +195,7 @@ Supported variables
     {%- endif -%}
   {%- endunless -%}
   <!-- mk-mds  -->
-  {% if template.name contains 'search' %}
+
     {% if settings.show_discount1 %}
         {%- assign variant = product.selected_or_first_available_variant -%}
         {%- if settings.discount_mode == 'percentage' -%}
@@ -207,6 +207,6 @@ Supported variables
           <span class="preoff">{{ savings }} OFF</span>
         {% endif %}
     {% endif %}
-   {% endif %}
+ 
   <!-- end-mk-mds  -->
 </price-list>
