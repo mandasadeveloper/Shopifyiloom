@@ -209,14 +209,22 @@ $(".order-summary__body .cart__row").each(function() {
 console.log("data---" , priceupdate);
 
 $(".checkbox-item").on("click", function(){
-   let item_id1 = $(this).parents('.cart__row').attr('data-prd-id');
-   alert("item_id-",item_id1);
-    let qty = $(this).parents('.cart__row').find('.cart__qty-input').value;
-    alert("qty-",qty);
-    if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
-    else removeitem(item_id1,qty);
-   
-})
+   // let item_id1 = $(this).parents('.cart__row').attr('data-prd-id');
+   // alert("item_id-",item_id1);
+   //  let qty = $(this).parents('.cart__row').find('.cart__qty-input').value;
+   //  alert("qty-",qty);
+   //  if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
+   //  else removeitem(item_id1,qty);
+  
+    let item_id = $(this).closest('.cart__row').attr('data-prd-id');
+    let qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
+
+    if ($(this).prop('checked')) {
+        addItem(item_id, qty);
+    } else {
+        removeItem(item_id);
+    }
+});
 function addItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
