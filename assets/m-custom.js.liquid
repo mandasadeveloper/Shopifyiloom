@@ -209,12 +209,13 @@ $(".order-summary__body .cart__row").each(function() {
 console.log("data---" , priceupdate);
 
 $(".checkbox-item").on("click", function(){
-   let item_id1 = $(this).closest('.cart__row').attr('data-prd-id');
+   let item_id1 = $(this).parents('.cart__row').attr('data-prd-id');
    alert("item_id-",item_id1);
-    let qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
+    let qty = $(this).parents('.cart__row').find('.cart__qty-input').value;
     alert("qty-",qty);
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
     else removeitem(item_id1,qty);
+   
 })
 function addItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
