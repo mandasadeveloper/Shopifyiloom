@@ -3337,6 +3337,9 @@ margin-top: 13px
   font-weight: 400;
   line-height: 19.5px;
   }
+compare-at-price .price{
+  color: gray;
+} 
 /* mk-mds */
   .m-search-drawer .m-pro-cus{
     gap: 5px;
