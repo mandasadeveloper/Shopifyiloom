@@ -216,7 +216,7 @@ $(".checkbox-item").on("click", function(){
    
 })
 function addItem(id,qty){
-  fetch('/cart/add.js', {
+  fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -240,7 +240,7 @@ function addItem(id,qty){
 }
 
 function removeitem(id,qty){
-  fetch('/cart/update.js', {
+  fetch(window.Shopify.routes.root + 'cart/update.js', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
