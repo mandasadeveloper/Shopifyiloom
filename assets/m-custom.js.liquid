@@ -208,7 +208,7 @@ $(".order-summary__body .cart__row").each(function() {
 });
 console.log("data---" , priceupdate);
 
-$(".cart__row input:checked").each(function(){
+$(".checkbox-item").on("click", function(){
    let item_id1 = $(this).parents('.cart__row').attr('data-prd-id');
    alert("item_id-",item_id1);
     let qty = $(this).parents('.cart__row').find('.cart__qty-input').value;
