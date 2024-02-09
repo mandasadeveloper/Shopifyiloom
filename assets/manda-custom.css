@@ -2583,14 +2583,14 @@ margin-top: 13px
   }
   }
   @media screen and (min-width: 1024px){
-  .product-list-mm .bg-custom img{
+  /* .product-list-mm .bg-custom img{
   max-height: 332px;
   min-height: 332px;
   }
   .bg-cuss1 .product-list-mm .bg-custom img{
   max-height: 284.58px;
   min-height: 284.58px;
-  }
+  } */
   }
   
   @media screen and (max-width: 1024px){
