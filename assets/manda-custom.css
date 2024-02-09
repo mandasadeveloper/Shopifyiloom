@@ -4069,9 +4069,7 @@ line-height: 256.3%;
   .manda-cart .line-item{
     align-items: stretch;
   }
-  .predictive-search__tab-content.gap-2{
-    gap: 20px!important;
-  }
+ 
   /* .manda-cart .m-quantity-cuss .text-xs{
     position: absolute;
     top: 0;
@@ -4085,3 +4083,8 @@ line-height: 256.3%;
   } */
 }
 /* end-mk-mds */
+
+
+ .predictive-search__tab-content.gap-2{
+    gap: 20px!important;
+  }
