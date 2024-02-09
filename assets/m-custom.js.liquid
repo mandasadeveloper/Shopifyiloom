@@ -202,9 +202,6 @@ $(selectAllItems).click(function() {
 
 //  mk-mds check box update
 $(".cart__row input").on("click", function() {
-  alert("1");
-    let updates = {};
-    alert(updates);
     $(".cart__row input:checked").each(function() {
         var item_id = $(this).parents('.cart__row').attr('data-prd-id');
         updates[item_id] = 0;
@@ -212,20 +209,6 @@ $(".cart__row input").on("click", function() {
       
     });
 
-      // fetch(window.Shopify.routes.root + 'cart/update.js', {
-      //       method: 'POST',
-      //       headers: {
-      //           'Content-Type': 'application/json'
-      //       },
-      //       body: JSON.stringify({ updates })
-      //   })
-        .then(response => response.json())
-        .then((state) => {
-            updateCartCounter1(); // Update total price after updating cart
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
 });
 
 function updateCartCounter1() {
