@@ -201,68 +201,125 @@ $(selectAllItems).click(function() {
 });
 
 //  mk-mds check box update
+// let priceupdate = [];
+// $(".order-summary__body .cart__row").each(function() {
+//     var item_id = $(this).attr('data-prd-id');
+//     priceupdate.push(item_id);
+// });
+// console.log("data---" , priceupdate);
+
+// $(".checkbox-item").on("click", function(){
+//    let item_id = $(this).parents('.cart__row').attr('data-prd-id');
+//    alert("item_id-",item_id);
+//     let qty = $(this).parents('.cart__row').find('.cart__qty-input').value;
+//     alert("qty-",qty);
+//     if(!priceupdate.includes(item_id)) addItem(item_id,qty);
+//     else removeitem(item_id,qty);
+   
+// })
+// function addItem(id,qty){
+//   fetch(window.Shopify.routes.root + 'cart/add.js', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({ item:[
+//         {
+//           id,quantity:qty
+//         }
+//       ]})
+      
+//       })
+//       .then(response => {
+//         return response.json();
+//       })
+//       .then((state) => {
+//         console.log("stateadd" ,state);
+//       })
+//       .catch((error) => {
+//       console.error('Error:', error);
+//       });
+// }
+
+// function removeitem(id,qty){
+//   fetch(window.Shopify.routes.root + 'cart/update.js', {
+//         method: 'POST',
+//         headers: {
+//         'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({ updates:{
+//           id,quantity:0
+//           }
+//         })
+        
+//         })
+//         .then(response => {
+//         return response.json();
+//         })
+//         .then((state) => {
+//          console.log("stateupdate",state);
+//         })
+//         .catch((error) => {
+//         console.error('Error:', error);
+//         });
+// }
+
 let priceupdate = [];
 $(".order-summary__body .cart__row").each(function() {
     var item_id = $(this).attr('data-prd-id');
     priceupdate.push(item_id);
 });
-console.log("data---" , priceupdate);
 
 $(".checkbox-item").on("click", function(){
-   let item_id = $(this).parents('.cart__row').attr('data-prd-id');
-   alert("item_id-",item_id);
-    let qty = $(this).parents('.cart__row').find('.cart__qty-input').value;
-    alert("qty-",qty);
-    if(!priceupdate.includes(item_id)) addItem(item_id,qty);
-    else removeitem(item_id,qty);
-   
-})
-function addItem(id,qty){
-  fetch(window.Shopify.routes.root + 'cart/add.js', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ item:[
-        {
-          id,quantity:qty
-        }
-      ]})
-      
-      })
-      .then(response => {
-        return response.json();
-      })
-      .then((state) => {
-        console.log("stateadd" ,state);
-      })
-      .catch((error) => {
-      console.error('Error:', error);
-      });
-}
+    let item_id = $(this).parents('.cart__row').attr('data-prd-id');
+    let qty = $(this).parents('.cart__row').find('.cart__qty-input').val(); // Use .val() to get the input field value
+    if(!priceupdate.includes(item_id)) {
+        addItem(item_id, qty);
+    } else {
+        removeItem(item_id, qty);
+    }
+});
 
-function removeitem(id,qty){
-  fetch(window.Shopify.routes.root + 'cart/update.js', {
+function addItem(id, qty) {
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
         method: 'POST',
         headers: {
-        'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ updates:{
-          id,quantity:0
-          }
-        })
-        
-        })
-        .then(response => {
+        body: JSON.stringify({ items: [{ id: id, quantity: qty }] }) // Use items instead of item
+    })
+    .then(response => {
         return response.json();
-        })
-        .then((state) => {
-         console.log("stateupdate",state);
-        })
-        .catch((error) => {
-        console.error('Error:', error);
-        });
+    })
+    .then((state) => {
+        console.log("Item added to cart:", state);
+    })
+    .catch((error) => {
+        console.error('Error adding item to cart:', error);
+    });
 }
+
+function removeItem(id, qty) {
+    fetch(window.Shopify.routes.root + 'cart/update.js', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ updates: { id: id, quantity: 0 } }) // Use updates instead of update
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then((state) => {
+        console.log("Item removed from cart:", state);
+    })
+    .catch((error) => {
+        console.error('Error removing item from cart:', error);
+    });
+}
+
+
+
 //remove checked items
 $(".delete-product").on("click", function() {
   let updates = {};
