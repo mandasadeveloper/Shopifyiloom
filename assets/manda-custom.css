@@ -3921,3 +3921,13 @@ line-height: 256.3%;
 
 
 /* div */
+
+
+/* product grid */
+.cus_m span{
+    color: black;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 14px;
+}
