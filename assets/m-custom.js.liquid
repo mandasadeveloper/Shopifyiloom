@@ -249,7 +249,7 @@ function addItem(id,qty){
       });
 }
 
-function removeitem(id,qty){
+function removeItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/update.js', {
         method: 'POST',
         headers: {
