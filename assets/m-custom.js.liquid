@@ -201,33 +201,38 @@ $(selectAllItems).click(function() {
 });
 
 //  mk-mds check box update
-$(".cart__row input").on("click", function() {
-    updateCartCounter1(); // Update total price whenever a checkbox is clicked
+$(document).ready(function() {
+    $('.cart__row input[type="checkbox"]').on('click', function() {
+        updateCartCounter1(); // Update total price whenever a checkbox is clicked
+    });
 });
 
+// Function to update total price
 function updateCartCounter1() {
-    fetch('/cart.js')
-      .then(response => response.text())
-      .then((responseText) => {
-          const data = JSON.parse(responseText);
+  fetch('/cart.js')
+      .then(response => response.json()) // Parse response as JSON
+      .then(data => {
+          // Update item count
           const counterEl = document.querySelectorAll('.count-bubble');
-          counterEl.forEach((element) => {
+          counterEl.forEach(element => {
               element.innerHTML = data.item_count;
           });
-
-          if (window.location.href.indexOf("cart") > -1) {
+  
+          // Update total price in the cart
+          if (window.location.href.includes("cart")) {
               $.ajax({
                   url: '/cart',
                   type: 'GET',
-                  success: function(data) {
-                      let parser1 = new DOMParser();
-                      const doc1 = parser1.parseFromString(data, 'text/html');
-                      $(".total_cus").html('');
-                      $(".total_cus").append(doc1.querySelector(".m-total-price"));
+                  success: function(response) {
+                      const doc = new DOMParser().parseFromString(response, 'text/html');
+                      $(".total_cus").html(doc.querySelector(".m-total-price").innerHTML);
                   }
               });
           }
       })
+      .catch(error => {
+          console.error('Error updating cart:', error);
+      });
 }
 
 //remove checked items
