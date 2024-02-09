@@ -216,7 +216,9 @@ $(selectAllItems).click(function() {
 
 $(document).ready(function() {
     $('input[type="checkbox"]').click(function() {
-        $('input[type="checkbox"]').not(this).prop('checked', false);
+        if ($(this).prop('checked')) {
+            $('input[type="checkbox"]').not(this).prop('checked', false);
+        }
     });
 });
 
