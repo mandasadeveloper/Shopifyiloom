@@ -209,34 +209,34 @@ $(".cart__row input").on("click", function() {
 });
 
 function updateCartCounter1() {
-    fetch(window.Shopify.routes.root + 'cart/update.js', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ updates: {} }) // Send an empty updates object
-    })
-    .then(response => response.json())
-    .then(data => {
-        const counterEl = document.querySelectorAll('.count-bubble');
-        counterEl.forEach(element => {
-            element.innerHTML = data.item_count;
-        });
+  fetch(window.Shopify.routes.root + 'cart/update.js', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ updates: {} }) // Send an empty updates object
+  })
+  .then(response => response.json())
+  .then(data => {
+      const counterEl = document.querySelectorAll('.count-bubble');
+      counterEl.forEach(element => {
+          element.innerHTML = data.item_count;
+      });
 
-        if (window.location.href.indexOf("cart") > -1) {
-            $.ajax({
-                url: '/cart',
-                type: 'GET',
-                success: function(response) {
-                    const doc = new DOMParser().parseFromString(response, 'text/html');
-                    $(".total_cus").html(doc.querySelector(".m-total-price").innerHTML);
-                }
-            });
-        }
-    })
-    .catch(error => {
-        console.error('Error updating cart:', error);
-    });
+      if (window.location.href.indexOf("cart") > -1) {
+          $.ajax({
+              url: '/cart',
+              type: 'GET',
+              success: function(response) {
+                  const doc = new DOMParser().parseFromString(response, 'text/html');
+                  $(".total_cus").html(doc.querySelector(".m-total-price").innerHTML);
+              }
+          });
+      }
+  })
+  .catch(error => {
+      console.error('Error updating cart:', error);
+  });
 }
 
 //remove checked items
