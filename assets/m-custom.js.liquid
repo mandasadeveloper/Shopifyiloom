@@ -202,8 +202,8 @@ $(selectAllItems).click(function() {
 
 //  mk-mds check box update
 let priceupdate = [];
-$(".cart__row input").each(function() {
-    var item_id = $(this).parents('.cart__row').attr('data-prd-id');
+$(".order-summary__body .cart__row").each(function() {
+    var item_id = $(this).attr('data-prd-id');
     priceupdate.push(item_id);
 });
 console.log("data"+ priceupdate);
