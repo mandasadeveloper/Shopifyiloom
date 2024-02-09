@@ -228,11 +228,10 @@ function addItem(id,qty){
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ item:[
-        {
-          id,quantity:qty
-        }
-      ]})
+       body: JSON.stringify({
+            id: id,
+            quantity: qty
+        })
       
       })
       .then(response => {
@@ -246,7 +245,7 @@ function addItem(id,qty){
       });
 }
 
-function removeItem(id,qty){
+function removeItem(id){
   fetch(window.Shopify.routes.root + 'cart/update.js', {
         method: 'POST',
         headers: {
