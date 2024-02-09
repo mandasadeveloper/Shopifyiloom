@@ -202,6 +202,7 @@ $(selectAllItems).click(function() {
 
 
 $(document).ready(function() {
+  $(".cart__row input:checked").each(function() {
     $(selectAllItems).click(function() {
         if (this.checked) {
             $(checkboxItem).prop('checked', true);
@@ -215,6 +216,7 @@ $(document).ready(function() {
             $(selectAllItems).prop('checked', false);
         }
     });
+  }
 });
 
 
@@ -226,7 +228,7 @@ $(".delete-product").on("click", function() {
         updates[item_id] = 0;
         console.log(updates);
         });
-  fetch(window.Shopify.routes.root + 'cart/update.js', {
+    fetch(window.Shopify.routes.root + 'cart/update.js', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
