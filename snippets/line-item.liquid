@@ -19,22 +19,15 @@ Supported variables
 
 <line-item class="line-item">
   <div class="checkbox-container">
-    
   <input type="checkbox" id="m-select-pro" class="checkbox-item" >
-
   </div>
   
-
   {%- if line_item.image != blank -%}
     <div class="line-item__media-wrapper">
       {{- line_item.image | image_url: width: line_item.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 740px) 80px, 96px', widths: '80,96,160,192', class: 'line-item__media rounded-xs1' -}}
-
       <pill-loader class="pill-loader"></pill-loader>
     </div>
   {%- endif -%}
-
-         
-  
   
   <div class="line-item__info">
   <div>
@@ -133,35 +126,33 @@ Supported variables
    <div class="text-sm text-subdued sm:hidden mobile_quantity">
       {%- if line_item.url_to_remove -%}
         <line-item-quantity class="h-stack justify-center gap-3 bbb">
-                      <div class="m-quantity-cuss">  
-                      <span class="text-xs">
-                      <a href="{{ line_item.url_to_remove }}" class="link">
-                      <!-- {{ 'cart.order.remove' | t }} -->
-                      <!-- mk-mds  -->
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M14 2L2 14" stroke="#3C3C3C" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
-                      <path d="M2 2L14 14" stroke="#3C3C3C" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                         <!-- end-mk-mds  -->
-                      </a>
-                      </span>
-                      <div class="m-quantity-cus">  
-                      <button class="quantity-button update_crt qty-btn-minus" data-action="decrease" data-line-key="{{ line_item.key }}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M3.625 8H12.375" stroke="#3C3C3C" stroke-linejoin="round"/>
-                      </svg>    
-                      </button>
-                      <input class="quantity-input cart__qty-input" type="text" is="quantity-input" inputmode="numeric" {% if line_max_quantity %}max="{{ line_max_quantity }}"{% endif %} data-line-key="{{ line_item.key }}" aria-label="{{ 'cart.order.change_quantity' | t | escape }}" value="{{ line_item.quantity }}">
-                      <button class="quantity-button update_crt qty-btn-plus" data-action="increase" data-line-key="{{ line_item.key }}">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                      <path d="M9 4.625V13.375" stroke="#3C3C3C" stroke-linejoin="round"/>
-                      <path d="M4.625 9H13.375" stroke="#3C3C3C" stroke-linejoin="round"/>
-                      </svg>
-                      </button>
-                  </div>
-       
-          
-                      </div>
+            <div class="m-quantity-cuss">  
+              <span class="text-xs">
+                <a href="{{ line_item.url_to_remove }}" class="link">
+                <!-- {{ 'cart.order.remove' | t }} -->
+                <!-- mk-mds  -->
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 2L2 14" stroke="#3C3C3C" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 2L14 14" stroke="#3C3C3C" stroke-width="0.666667" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                <!-- end-mk-mds  -->
+                </a>
+              </span>
+              <div class="m-quantity-cus">  
+                <button class="quantity-button update_crt qty-btn-minus" data-action="decrease" data-line-key="{{ line_item.key }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3.625 8H12.375" stroke="#3C3C3C" stroke-linejoin="round"/>
+                  </svg>    
+                </button>
+                <input class="quantity-input cart__qty-input" type="text" is="quantity-input" inputmode="numeric" {% if line_max_quantity %}max="{{ line_max_quantity }}"{% endif %} data-line-key="{{ line_item.key }}" aria-label="{{ 'cart.order.change_quantity' | t | escape }}" value="{{ line_item.quantity }}">
+                <button class="quantity-button update_crt qty-btn-plus" data-action="increase" data-line-key="{{ line_item.key }}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M9 4.625V13.375" stroke="#3C3C3C" stroke-linejoin="round"/>
+                  <path d="M4.625 9H13.375" stroke="#3C3C3C" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
         </line-item-quantity>
       
       {%- else -%}
