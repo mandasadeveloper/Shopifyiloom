@@ -212,12 +212,12 @@ $(".checkbox-item").on("click", function(){
     var updates = {};
     var item_id1 = $(this).closest('.cart__row').attr('data-prd-id');
     var qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
-    var selectedItemPrice =  $(this).closest('.cart__row').find(".quantity-input");
+    var selectedItemPrice =  $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
     // Parse the price text as a float
     // var selectedItemPrice = parseFloat(price);
     console.log("Price1:", selectedItemPrice);
     // console.log("selectedItemPrice1:", selectedItemPrice);
-      var $n = $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
+      var $n = $(this).closest('.cart__row').find(".quantity-input");
       alert("$n",$n);
   
     if ($(this).hasClass("qty-btn-plus")) {
