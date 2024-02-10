@@ -246,9 +246,9 @@ function removeItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/update.js', {
     method: 'POST',
     headers: {
-    'Content-Type': 'application/json'
+     'Content-Type': 'application/json'
     },
-      body: JSON.stringify({ update:{
+    body: JSON.stringify({ update:{
           id,quantity:0
         }
       })
@@ -275,16 +275,16 @@ function updateCartCounterdata(){
             element.innerHTML = data.item_count;
         });
         if (window.location.href.indexOf("cart") > -1) {
-            $.ajax({
-                url: '/cart',
-                type: 'GET',
-                success: function(data){
-                    let parser1 = new DOMParser();
-                    const doc1 = parser1.parseFromString(data, 'text/html');
-                    const totalPrice = doc1.querySelector(".m-total-price").innerText; // Extract total price
-                    $(".total_cus").html(totalPrice); // Set total price
-                }
-            });
+          $.ajax({
+              url: '/cart',
+              type: 'GET',
+              success: function(data){
+                  let parser1 = new DOMParser();
+                  const doc1 = parser1.parseFromString(data, 'text/html');
+                  const totalPrice = doc1.querySelector(".m-total-price").innerText; // Extract total price
+                  $(".total_cus").html(totalPrice); // Set total price
+              }
+          });
         }
     })
     .catch((error) => {
