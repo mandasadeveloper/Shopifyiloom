@@ -222,6 +222,7 @@ $(".checkbox-item").on("click", function(){
       if (amount > 0) {
         $n.val(amount - 1);
       }
+    updates[item_id1] = 0;
     console.log("updates", updates);
   
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
