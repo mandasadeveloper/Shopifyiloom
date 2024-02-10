@@ -216,13 +216,6 @@ $(".checkbox-item").on("click", function(){
     alert(qty);
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
     else removeItem(item_id1,qty);
-
-  $(".order-summary__body .cart__row").each(function() {
-    var item_id = $(this).attr('data-prd-id');
-    priceupdate.push(item_id);
-  });
-  console.log("data---" , priceupdate);
-  
 });
 function addItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
