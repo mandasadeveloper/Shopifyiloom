@@ -261,9 +261,10 @@ function removeItem(id,qty,selectedItemPrice){
     headers: {
      'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ update:{
-          id,quantity:0
-        }
+    // body: JSON.stringify({ update:{
+    //       id,quantity:0
+    //     }
+        body: JSON.stringify({updates})
       })
     })
     .then(response => {
