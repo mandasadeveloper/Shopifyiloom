@@ -212,9 +212,7 @@ $(".checkbox-item").on("click", function(){
     var updates = {};
     var item_id1 = $(this).closest('.cart__row').attr('data-prd-id');
     var qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
-    var price = $(".price-m-cart11 .price").text().trim();
-    console.log("Item ID:", item_id1);
-    console.log("Quantity:", qty);
+    var price =  $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
     console.log("Price:", price);
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
     else removeItem(item_id1,qty);
