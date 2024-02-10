@@ -258,7 +258,10 @@ function removeItem(id,qty){
       return response.json();
     })
     .then((state) => {
-     console.log("stateupdate",state);
+     const index = priceupdate.indexOf(id);
+        if (index !== -1) {
+            priceupdate.splice(index, 1); // Remove item from priceupdate array
+        }
       updateCartCounterdata();
     })
     .catch((error) => {
