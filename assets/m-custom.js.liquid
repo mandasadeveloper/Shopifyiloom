@@ -287,8 +287,8 @@ function updateCartCounterdata(selectedItemPrice) {
              let parser = new DOMParser();
              const doc = parser.parseFromString(data, 'text/html');
              console.log(doc.querySelector(".order-summary__body"));
-             $(".update_cart_items").html('');
-             $(".update_cart_items").append(doc.querySelector(".order-summary__body"));
+             // $(".update_cart_items").html('');
+             // $(".update_cart_items").append(doc.querySelector(".order-summary__body"));
             }
            });
           }
