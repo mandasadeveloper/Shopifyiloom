@@ -268,8 +268,9 @@ function removeItem(id,qty,selectedItemPrice){
       console.log("stateupdate",index);
       let subtotal = selectedItemPrice * state.items[0].quantity; // Assuming only one item is selected
       // Calculate new total price
-      console.log("subtotal",subtotal);
       let totalPrice = parseFloat(state.total_price) - subtotal;
+      console.log("total",totalPrice);
+      
     })
     .catch((error) => {
       console.error('Error:', error);
