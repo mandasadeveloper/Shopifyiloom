@@ -213,13 +213,13 @@ $(".checkbox-item").on("click", function(){
     var item_id1 = $(this).closest('.cart__row').attr('data-prd-id');
     var qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
     var price =  $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
-    var selectedItemPrice = $(this).closest('.cart__row').parseFloat($(".price-m-cart11 .price").text().trim().replace('NT$', '').replace(',', ''));
-   
-    console.log("Price:", price);
-    if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
-    else removeItem(item_id1,qty);
+    var selectedItemPrice = parseFloat($(".price-m-cart11 .price").text().trim().replace('NT$', '').replace(',', ''));
+    
+    console.log("Price:", selectedItemPrice);
+    if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
+    else removeItem(item_id1,qty,selectedItemPrice);
 });
-function addItem(id,qty){
+function addItem(id,qty,selectedItemPrice){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
     method: 'POST',
     headers: {
@@ -244,7 +244,7 @@ function addItem(id,qty){
     });
 }
 
-function removeItem(id,qty){
+function removeItem(id,qty,selectedItemPrice){
   fetch(window.Shopify.routes.root + 'cart/update.js', {
     method: 'POST',
     headers: {
