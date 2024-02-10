@@ -277,8 +277,7 @@ function removeItem(id,qty,selectedItemPrice){
       // Calculate new total price
       let totalPrice = parseFloat(state.total_price) - subtotal;
       console.log("total",totalPrice);
-      $(".total_cus").html('');
-      $(".total_cus").append(state.querySelector(".m-total-price"));
+       updateCartCounter();
     })
     .catch((error) => {
       console.error('Error:', error);
