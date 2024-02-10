@@ -277,13 +277,15 @@ function removeItem(id,qty,selectedItemPrice){
 function updateCartCounterdata(selectedItemPrice) {
 fetch('/cart.js')
         .then(response => response.json())
-        .then(data => {
-            // Calculate total price
-            let totalPrice = 0;
-            data.items.forEach(item => {
-                totalPrice += item.quantity * item.price;
-            });
-            document.querySelector('.m-total-price').innerText;
+          .then(data => {
+            // Calculate subtotal of selected item
+            let subtotal = selectedItemPrice * data.items[0].quantity; // Assuming only one item is selected
+            alert(subtotal);
+            // Calculate new total price
+            let totalPrice = parseFloat(data.total_price) - subtotal;
+            
+            // Update UI
+            document.querySelector('.total-price').innerText = totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
         })
         .catch(error => {
             console.error('Error fetching cart data:', error);
