@@ -279,23 +279,16 @@ function updateCartCounterdata(selectedItemPrice) {
         .then(response => response.text())
         .then((responseText) => {
             try {
-                const data = JSON.parse(responseText);
-                const counterEl = document.querySelectorAll('.count-bubble');
-                if (Array.isArray(data.items)) {
-                    // Calculate subtotal of selected items
-                    let subtotal = 0;
-                    data.items.forEach(item => {
-                        if (priceupdate.includes(item.id)) {
-                            subtotal += item.quantity * item.price;
-                        }
-                    });
-                    const totalPrice = parseFloat(data.total_price) - subtotal;
-                    $(".total_cus").html('NT$' + totalPrice.toLocaleString());
-                } else {
-                    console.error('Error: Unexpected response data format');
-                }
+                let subtotal = 0;
+                data.items.forEach(item => {
+                    if (priceupdate.includes(item.id)) {
+                        subtotal += item.quantity * item.price;
+                    }
+                });
+                const totalPrice = parseFloat(data.total_price) - subtotal;
+                $(".total_cus").html('NT$' + totalPrice.toLocaleString());
             } catch (error) {
-                console.error('Error parsing response data:', error);
+                console.error('Error processing cart data:', error);
             }
         })
         .catch((error) => {
