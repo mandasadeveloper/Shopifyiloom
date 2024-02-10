@@ -236,7 +236,6 @@ function addItem(id,qty){
     })
     .then((state) => {
       console.log("stateadd" ,state);
-      priceupdate.push(id);
       updateCartCounterdata();
     })
     .catch((error) => {
