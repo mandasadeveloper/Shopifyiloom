@@ -297,7 +297,7 @@ function updateCartCounterdata(selectedItemPrice){
             });
           // Calculate total price
           const totalPrice = parseFloat(data.total_price) - subtotal;
-
+alert("totalPrice",totalPrice);
           // Update total price element
           $(".total_cus").html('NT$' + totalPrice.toLocaleString());
         }
