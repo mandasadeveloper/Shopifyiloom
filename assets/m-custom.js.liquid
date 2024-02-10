@@ -263,10 +263,9 @@ function removeItem(id,qty,selectedItemPrice){
     .then((state) => {
        const index = priceupdate.indexOf(id);
         if (index !== -1) {
-            priceupdate.splice(index, 1); // Remove item from priceupdate array
+            // priceupdate.splice(index, 1); 
         }
-     console.log("stateupdate",index);
-      
+      console.log("stateupdate",index);
       updateCartCounterdata();
     })
     .catch((error) => {
