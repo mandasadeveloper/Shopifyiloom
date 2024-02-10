@@ -267,11 +267,11 @@ function removeItem(id,qty,selectedItemPrice){
     let total = state.items_subtotal_price;
         // const totalPrice = $(state).find('.total-price').text(); // Adjust selector as needed
         // const formattedPrice = "{{ " + total + " | money }}"; // Adjust the Liquid syntax as needed
-        var totalPrice = state.total_price;
+        // var totalPrice = state.total_price;
 
         // Update the total price display on the page
         // const formattedPrice =   $('.total-price').html(Shopify.formatMoney(totalPrice));
-        console.log("formattedPrice",formattedPrice);
+        // console.log("formattedPrice",formattedPrice);
       
 
     })
@@ -280,6 +280,24 @@ function removeItem(id,qty,selectedItemPrice){
     });
 }
 
+document.addEventListener('theme:variant:change', function(event) {
+    var variant = event.detail.variant;
+    var container = event.target;
+    if (variant) {
+      console.log('Container ———————— ↓');
+      console.log(container);
+      console.log('Variant —————————— ↓');
+      console.log(variant);
+    }
+  });
+
+  document.addEventListener('theme:cart:change', function(event) {
+    var cart = event.detail.cart;
+    if (cart) {
+      console.log('Cart ———————————— ↓');
+      console.log(cart);
+    }
+  });
 
 // function updateCartCounterdata(selectedItemPrice) {
 // fetch('/cart.js')
