@@ -217,12 +217,6 @@ $(".checkbox-item").on("click", function(){
     // Parse the price text as a float
     var selectedItemPrice = parseFloat(priceText);
 
-      $(".cart__row input:checked").each(function() {
-        var item_id = $(this).parents('.cart__row').attr('data-prd-id');
-          updates[item_id] = 0;
-          console.log(updates);
-      });
-  
     console.log("Price:", selectedItemPrice);
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
     else removeItem(item_id1,qty,selectedItemPrice);
