@@ -264,7 +264,7 @@ function removeItem(id,qty,selectedItemPrice){
     })
     
     .then((state) => {
-        const totalPrice = $(state).find('.total-price-selector').text(); // Adjust selector as needed
+        const totalPrice = $(state).find('.total-price').text(); // Adjust selector as needed
         console.log(totalPrice);
     })
     .catch((error) => {
