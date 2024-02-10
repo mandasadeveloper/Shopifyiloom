@@ -281,9 +281,6 @@ function updateCartCounterdata(selectedItemPrice) {
             try {
                 const data = JSON.parse(responseText);
                 const counterEl = document.querySelectorAll('.count-bubble');
-                console.log("mk-mds", data.items_subtotal_price);
-
-                // Check if data.items exists and is an array
                 if (Array.isArray(data.items)) {
                     // Calculate subtotal of selected items
                     let subtotal = 0;
@@ -292,11 +289,7 @@ function updateCartCounterdata(selectedItemPrice) {
                             subtotal += item.quantity * item.price;
                         }
                     });
-
-                    // Calculate total price
                     const totalPrice = parseFloat(data.total_price) - subtotal;
-                    alert(totalPrice);
-                    // Update total price element
                     $(".total_cus").html('NT$' + totalPrice.toLocaleString());
                 } else {
                     console.error('Error: Unexpected response data format');
