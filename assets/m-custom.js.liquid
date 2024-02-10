@@ -217,11 +217,8 @@ $(".checkbox-item").on("click", function(){
     // var selectedItemPrice = parseFloat(price);
     console.log("Price1:", selectedItemPrice);
     // console.log("selectedItemPrice1:", selectedItemPrice);
-  
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
     else removeItem(item_id1,qty,selectedItemPrice);
-
-  
 });
 function addItem(id,qty,selectedItemPrice){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
