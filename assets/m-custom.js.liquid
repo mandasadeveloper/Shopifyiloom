@@ -209,12 +209,14 @@ $(".order-summary__body .cart__row").each(function() {
 console.log("data---" , priceupdate);
 
 $(".checkbox-item").on("click", function(){
+    var updates = {};
     var item_id1 = $(this).closest('.cart__row').attr('data-prd-id');
     var qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
     alert(item_id1);
     alert(qty);
-     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
-     else removeItem(item_id1,qty);
+     updates[item_id] = 0;
+    if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
+    else removeItem(item_id1,qty);
 });
 function addItem(id,qty){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
@@ -242,6 +244,7 @@ function addItem(id,qty){
 }
 
 function removeItem(id,qty){
+
   fetch(window.Shopify.routes.root + 'cart/update.js', {
     method: 'POST',
     headers: {
@@ -284,7 +287,6 @@ function updateCartCounterdata(){
          console.log(doc1.querySelector(".m-total-price"));
          $(".total_cus").html('');
          $(".total_cus").append(doc1.querySelector(".m-total-price"));
-            console.log("mk-mds---" , doc1);
         }
          });
         }
