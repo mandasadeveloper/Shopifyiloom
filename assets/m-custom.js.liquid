@@ -217,7 +217,7 @@ $(".checkbox-item").on("click", function(){
     // var selectedItemPrice = parseFloat(price);
     console.log("Price1:", selectedItemPrice);
     // console.log("selectedItemPrice1:", selectedItemPrice);
-      var $n = $(this).closest(".cart__row").find(".price-m-cart11 .price").text().trim();
+      var $n = $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
       alert("$n",$n);
     if ($(this).hasClass("qty-btn-plus")) {
       $n.val(Number($n.val()) + 1);
