@@ -275,25 +275,19 @@ function removeItem(id,qty,selectedItemPrice){
 
 
 function updateCartCounterdata(selectedItemPrice) {
-    fetch('/cart.js')
-      .then(response => response.text())
-      .then((state) => {
-      const parsedState = JSON.parse(state);
-        $.ajax({
-         url:'/cart',
-         type:'GET',
-         success: function(data){
-           let parser1 = new DOMParser();
-           const doc1 = parser1.parseFromString(data, 'text/html');
-           console.log("mk", doc1.querySelector(".m-total-price"));
-           $(".total_cus").html('');
-           $(".total_cus").append(doc1.querySelector(".m-total-price"));
-          }
-         });
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-      });
+fetch('/cart.js')
+        .then(response => response.json())
+        .then(data => {
+            // Calculate total price
+            let totalPrice = 0;
+            data.items.forEach(item => {
+                totalPrice += item.quantity * item.price;
+            });
+            document.querySelector('.total-price').innerText = totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        })
+        .catch(error => {
+            console.error('Error fetching cart data:', error);
+        });
 }
 
 //remove checked items
