@@ -267,7 +267,10 @@ function removeItem(id,qty,selectedItemPrice){
     let total = state.items_subtotal_price;
       
         const totalPrice = $(state).find('.total-price').text(); // Adjust selector as needed
-        console.log("total",total);
+          const formattedPrice = "{{ " + total + " | money }}"; // Adjust the Liquid syntax as needed
+        console.log("formattedPrice",formattedPrice);
+      
+
     })
     .catch((error) => {
       console.error('Error:', error);
