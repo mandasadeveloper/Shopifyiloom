@@ -214,7 +214,7 @@ $(".checkbox-item").on("click", function(){
     var qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
     alert(item_id1);
     alert(qty);
-     updates[item_id] = 0;
+     updates[item_id1] = 0;
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
     else removeItem(item_id1,qty);
 });
