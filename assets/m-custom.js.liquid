@@ -287,14 +287,12 @@ function updateCartCounterdata(selectedItemPrice){
               url: '/cart',
               type: 'GET',
               success: function(data){
-                   let parser1 = new DOMParser();
-                    const doc1 = parser1.parseFromString(data, 'text/html');
-                    const totalPriceElement = doc1.querySelector(".m-total-price");
-                    const totalPrice = parseFloat(totalPriceElement.innerText.trim().replace('NT$', '').replace(',', ''));
-                    const updatedTotalPrice = totalPrice - selectedItemPrice;
-                  alert("totalPrice" ,totalPrice);
-                    $(".total_cus").html('NT$' + updatedTotalPrice.toLocaleString()); // Set updated total price
-           
+                let parser1 = new DOMParser();
+                const doc1 = parser1.parseFromString(data, 'text/html');
+                console.log(doc1.querySelector(".m-total-price"));
+                $(".total_cus").html('');
+                $(".total_cus").append(doc1.querySelector(".m-total-price"));
+                // updateCartCounter();
               }
           });
         }
