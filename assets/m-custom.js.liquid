@@ -213,11 +213,12 @@ $(".checkbox-item").on("click", function(){
     var item_id1 = $(this).closest('.cart__row').attr('data-prd-id');
     var qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
     var price =  $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
-    var priceText = $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim().replace('NT$', '').replace(',', '');
+    // var priceText = $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim().replace('NT$', '').replace(',', '');
     // Parse the price text as a float
-    var selectedItemPrice = parseFloat(priceText);
+    var selectedItemPrice = parseFloat(price);
 
     console.log("Price1:", price);
+    console.log("selectedItemPrice1:", selectedItemPrice);
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
     else removeItem(item_id1,qty,selectedItemPrice);
 });
