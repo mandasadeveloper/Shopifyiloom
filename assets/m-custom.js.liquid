@@ -256,6 +256,7 @@ function addItem(id,qty,selectedItemPrice){
 }
 
 function removeItem(id,qty,selectedItemPrice){
+    let updates = {};
   fetch(window.Shopify.routes.root + 'cart/update.js', {
     method: 'POST',
     headers: {
