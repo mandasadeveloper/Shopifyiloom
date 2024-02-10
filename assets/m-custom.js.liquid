@@ -277,7 +277,7 @@ function removeItem(id,qty,selectedItemPrice){
 function updateCartCounterdata(selectedItemPrice) {
     fetch('/cart.js')
         .then(response => response.text())
-        .then((responseText) => {
+        .then((data) => {
             try {
                 let subtotal = 0;
                 data.items.forEach(item => {
