@@ -266,7 +266,10 @@ function removeItem(id,qty,selectedItemPrice){
             // priceupdate.splice(index, 1); 
         }
       console.log("stateupdate",index);
-      updateCartCounterdata();
+      let subtotal = selectedItemPrice * data.items[0].quantity; // Assuming only one item is selected
+      // Calculate new total price
+      console.log("subtotal",subtotal);
+      let totalPrice = parseFloat(data.total_price) - subtotal;
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -274,23 +277,23 @@ function removeItem(id,qty,selectedItemPrice){
 }
 
 
-function updateCartCounterdata(selectedItemPrice) {
-fetch('/cart.js')
-        .then(response => response.json())
-          .then(data => {
-            // Calculate subtotal of selected item
-            let subtotal = selectedItemPrice * data.items[0].quantity; // Assuming only one item is selected
-            alert(subtotal);
-            // Calculate new total price
-            let totalPrice = parseFloat(data.total_price) - subtotal;
+// function updateCartCounterdata(selectedItemPrice) {
+// fetch('/cart.js')
+//         .then(response => response.json())
+//           .then(data => {
+//             // Calculate subtotal of selected item
+//             let subtotal = selectedItemPrice * data.items[0].quantity; // Assuming only one item is selected
+//             alert(subtotal);
+//             // Calculate new total price
+//             let totalPrice = parseFloat(data.total_price) - subtotal;
             
-            // Update UI
-            document.querySelector('.total-price').innerText = totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-        })
-        .catch(error => {
-            console.error('Error fetching cart data:', error);
-        });
-}
+//             // Update UI
+//             document.querySelector('.total-price').innerText = totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+//         })
+//         .catch(error => {
+//             console.error('Error fetching cart data:', error);
+//         });
+// }
 
 //remove checked items
 $(".delete-product").on("click", function() {
