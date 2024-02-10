@@ -283,11 +283,11 @@ function updateCartCounterdata(selectedItemPrice) {
          url:'/cart',
          type:'GET',
          success: function(data){
-           let parser = new DOMParser();
-           const doc = parser.parseFromString(data, 'text/html');
-           console.log(doc.querySelector(".order-summary__body"));
-           // $(".update_cart_items").html('');
-           // $(".update_cart_items").append(doc.querySelector(".order-summary__body"));
+           let parser1 = new DOMParser();
+           const doc1 = parser1.parseFromString(data, 'text/html');
+           console.log(doc1.querySelector(".m-total-price"));
+           $(".total_cus").html('');
+           $(".total_cus").append(doc1.querySelector(".m-total-price"));
           }
          });
       })
