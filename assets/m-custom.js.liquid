@@ -258,13 +258,16 @@ function removeItem(id,qty,selectedItemPrice){
       })
       // body: JSON.stringify({updates})
     })
+    
     .then(response => {
       return response.json();
     })
     
     .then((state) => {
+    let total = state.items_subtotal_price;
+      
         const totalPrice = $(state).find('.total-price').text(); // Adjust selector as needed
-        console.log(totalPrice);
+        console.log("total",total);
     })
     .catch((error) => {
       console.error('Error:', error);
