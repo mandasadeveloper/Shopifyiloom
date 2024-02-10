@@ -213,6 +213,7 @@ $(".checkbox-item").on("click", function(){
     var item_id1 = $(this).closest('.cart__row').attr('data-prd-id');
     var qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
     var price =  $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
+  
     console.log("Price:", price);
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty);
     else removeItem(item_id1,qty);
@@ -287,8 +288,14 @@ function updateCartCounterdata(){
               success: function(data){
                   let parser1 = new DOMParser();
                   const doc1 = parser1.parseFromString(data, 'text/html');
-                  const totalPrice = doc1.querySelector(".m-total-price").innerText; // Extract total price
-                  $(".total_cus").html(totalPrice); // Set total price
+                  const totalPriceElement = doc1.querySelector(".m-total-price");
+                  const totalPrice = totalPriceElement.innerText.trim(); // Extract total price
+                  
+                  // Subtract or add the price of the item
+                  const price = $(".price-m-cart11 .price").text().trim();
+                  const updatedTotalPrice = parseFloat(totalPrice.replace('NT$', '').replace(',', '')) - parseFloat(price.replace('NT$', '').replace(',', ''));
+                  
+                  $(".total_cus").html('NT$' + updatedTotalPrice.toLocaleString()); // Set updated total price
               }
           });
         }
@@ -297,7 +304,6 @@ function updateCartCounterdata(){
         console.error('Error:', error);
     });
 }
-
 
 //remove checked items
 $(".delete-product").on("click", function() {
