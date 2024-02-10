@@ -274,32 +274,30 @@ function removeItem(id,qty,selectedItemPrice){
 }
 
 function updateCartCounterdata(selectedItemPrice){
-    fetch('/cart.js')
+   fetch('/cart.js')
     .then(response => response.text())
     .then((responseText) => {
-        const data = JSON.parse(responseText);
-        const counterEl = document.querySelectorAll('.count-bubble');
-        counterEl.forEach((element) => {
-            element.innerHTML = data.item_count;
-        });
-        if (window.location.href.indexOf("cart") > -1) {
-          $.ajax({
-              url: '/cart',
-              type: 'GET',
-              success: function(data){
-                let parser1 = new DOMParser();
-                const doc1 = parser1.parseFromString(data, 'text/html');
-                console.log(doc1.querySelector(".m-total-price"));
-                $(".total_cus").html('');
-                $(".total_cus").append(doc1.querySelector(".m-total-price"));
-                // updateCartCounter();
-              }
-          });
+      const data = JSON.parse(responseText);
+      const counterEl = document.querySelectorAll('.count-bubble');
+       console.log("mk-mds" , data.items_subtotal_price);
+      counterEl.forEach((element) => {
+        element.innerHTML = data.item_count;
+      });
+      if (window.location.href.indexOf("cart") > -1) {
+        $.ajax({
+         url:'/cart',
+         type:'GET',
+         success: function(data){
+         let parser1 = new DOMParser();
+         const doc1 = parser1.parseFromString(data, 'text/html');
+         console.log(doc1.querySelector(".m-total-price"));
+         $(".total_cus").html('');
+         $(".total_cus").append(doc1.querySelector(".m-total-price"));
+         // updateCartCounter();
+        }
+         });
         }
     })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
 }
 
 //remove checked items
