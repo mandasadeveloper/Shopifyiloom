@@ -267,8 +267,8 @@ function removeItem(id,qty,selectedItemPrice){
     let total = state.items_subtotal_price;
       
         const totalPrice = $(state).find('.total-price').text(); // Adjust selector as needed
-          // const formattedPrice = "{{ " + total + " | money }}"; // Adjust the Liquid syntax as needed
-         const formattedPrice =  $('.total-price').html(total | money_without_currency);
+          const formattedPrice = "{{ " + total + " | money }}"; // Adjust the Liquid syntax as needed
+        // $('.cart-total-price').html(total | money_without_currency);
 
         console.log("formattedPrice",formattedPrice);
       
