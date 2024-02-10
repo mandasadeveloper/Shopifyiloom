@@ -285,14 +285,13 @@ function updateCartCounterdata(){
               url: '/cart',
               type: 'GET',
               success: function(data){
-                  let parser1 = new DOMParser();
-                  const doc1 = parser1.parseFromString(data, 'text/html');
-                  const totalPriceElement = doc1.querySelector(".m-total-price");
-                  const totalPrice = totalPriceElement.innerText.trim(); // Extract total price
-                  const price = $(".price-m-cart11 .price").text().trim();
-                  const updatedTotalPrice = parseFloat(totalPrice.replace('NT$', '').replace(',', '')) - parseFloat(price.replace('NT$', '').replace(',', ''));
-                  console.log("updatedTotalPrice" ,updatedTotalPrice);
-                  $(".total_cus").html('NT$' + updatedTotalPrice.toLocaleString()); // Set updated total price
+                   let parser1 = new DOMParser();
+                    const doc1 = parser1.parseFromString(data, 'text/html');
+                    const totalPriceElement = doc1.querySelector(".m-total-price");
+                    const totalPrice = parseFloat(totalPriceElement.innerText.trim().replace('NT$', '').replace(',', ''));
+                    const updatedTotalPrice = totalPrice - selectedItemPrice;
+                    $(".total_cus").html('NT$' + updatedTotalPrice.toLocaleString()); // Set updated total price
+           
               }
           });
         }
