@@ -292,7 +292,7 @@ function updateCartCounterdata(selectedItemPrice){
                     const totalPriceElement = doc1.querySelector(".m-total-price");
                     const totalPrice = parseFloat(totalPriceElement.innerText.trim().replace('NT$', '').replace(',', ''));
                     const updatedTotalPrice = totalPrice - selectedItemPrice;
-                  alert("updatedTotalPrice" ,updatedTotalPrice);
+                  alert("totalPrice" ,totalPrice);
                     $(".total_cus").html('NT$' + updatedTotalPrice.toLocaleString()); // Set updated total price
            
               }
