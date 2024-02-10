@@ -280,11 +280,9 @@ function updateCartCounterdata(selectedItemPrice) {
         .then((data) => {
             try {
                 let subtotal = 0;
-                data.items.forEach(item => {
                     if (priceupdate.includes(item.id)) {
                         subtotal += item.quantity * item.price;
                     }
-                });
                 const totalPrice = parseFloat(data.total_price) - subtotal;
                 $(".total_cus").html('NT$' + totalPrice.toLocaleString());
             } catch (error) {
