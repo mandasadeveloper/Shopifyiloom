@@ -261,7 +261,9 @@ function removeItem(id,qty,selectedItemPrice){
       return response.json();
     })
     .then((state) => {
+      console.log("selectedItemPrice", selectedItemPrice);
       let subtotal = selectedItemPrice * state.items[0].quantity; // Assuming only one item is selected
+      console.log("subtotal", subtotal);
       // Calculate new total price
       let totalPrice = parseFloat(state.total_price) - subtotal;
       console.log("total",totalPrice);
