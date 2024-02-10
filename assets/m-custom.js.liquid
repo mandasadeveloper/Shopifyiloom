@@ -281,22 +281,8 @@ function removeItem(id,qty,selectedItemPrice){
       // // Calculate new total price
       // let totalPrice = parseFloat(state.total_price) - subtotal;
       // console.log("total",totalPrice);
-      //  updateCartCounter();
-       const parsedState = JSON.parse(state);
-        if (window.location.href.indexOf("cart") > -1) {
-        $.ajax({
-         url:'/cart',
-         type:'GET',
-         success: function(data){
-           let parser = new DOMParser();
-           const doc = parser.parseFromString(data, 'text/html');
-           console.log(doc.querySelector(".order-summary__body"));
-           $(".update_cart_items").html('');
-           $(".update_cart_items").append(doc.querySelector(".order-summary__body"));
-             updateCartCounter();
-          }
-         });
-        }
+       updateCartCounter();
+      
     })
     .catch((error) => {
       console.error('Error:', error);
