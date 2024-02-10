@@ -283,7 +283,7 @@ fetch('/cart.js')
             data.items.forEach(item => {
                 totalPrice += item.quantity * item.price;
             });
-            document.querySelector('.total-price').innerText = totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            document.querySelector('.m-total-price').innerText = totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
         })
         .catch(error => {
             console.error('Error fetching cart data:', error);
