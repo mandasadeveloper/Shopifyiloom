@@ -220,14 +220,14 @@ $(".checkbox-item").on("click", function(){
       var $n = $(this).closest('.cart__row').find(".quantity-input");
       alert("$n",$n);
   
-    if ($(this).hasClass("qty-btn-plus")) {
+    
       $n.val(Number($n.val()) + 1);
-    } else {
+     
       var amount = Number($n.val());
       if (amount > 0) {
         $n.val(amount - 1);
       }
-    }
+    
   
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
     else removeItem(item_id1,qty,selectedItemPrice);
