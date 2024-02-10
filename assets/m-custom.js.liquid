@@ -277,17 +277,22 @@ function removeItem(id,qty,selectedItemPrice){
 function updateCartCounterdata(selectedItemPrice) {
     fetch('/cart.js')
         .then(response => response.text())
-        .then((data) => {
-            try {
-                let subtotal = 0;
-                    if (priceupdate.includes(item.id)) {
-                        subtotal += item.quantity * item.price;
-                    }
-                const totalPrice = parseFloat(data.total_price) - subtotal;
-                $(".total_cus").html('NT$' + totalPrice.toLocaleString());
-            } catch (error) {
-                console.error('Error processing cart data:', error);
+        .then((state) => {
+        const parsedState = JSON.parse(state);
+          if (window.location.href.indexOf("cart") > -1) {
+          $.ajax({
+           url:'/cart',
+           type:'GET',
+           success: function(data){
+             let parser = new DOMParser();
+             const doc = parser.parseFromString(data, 'text/html');
+             console.log(doc.querySelector(".order-summary__body"));
+             $(".update_cart_items").html('');
+             $(".update_cart_items").append(doc.querySelector(".order-summary__body"));
+               updateCartCounter();
             }
+           });
+          }
         })
         .catch((error) => {
             console.error('Error:', error);
