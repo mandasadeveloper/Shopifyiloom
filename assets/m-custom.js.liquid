@@ -293,7 +293,7 @@ function updateCartCounterdata(){
                   // Subtract or add the price of the item
                   const price = $(".price-m-cart11 .price").text().trim();
                   const updatedTotalPrice = parseFloat(totalPrice.replace('NT$', '').replace(',', '')) - parseFloat(price.replace('NT$', '').replace(',', ''));
-                  
+                  console.log("updatedTotalPrice" ,updatedTotalPrice);
                   $(".total_cus").html('NT$' + updatedTotalPrice.toLocaleString()); // Set updated total price
               }
           });
