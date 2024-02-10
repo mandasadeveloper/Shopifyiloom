@@ -276,26 +276,24 @@ function removeItem(id,qty,selectedItemPrice){
 
 function updateCartCounterdata(selectedItemPrice) {
     fetch('/cart.js')
-        .then(response => response.text())
-        .then((state) => {
-        const parsedState = JSON.parse(state);
-          if (window.location.href.indexOf("cart") > -1) {
-          $.ajax({
-           url:'/cart',
-           type:'GET',
-           success: function(data){
-             let parser = new DOMParser();
-             const doc = parser.parseFromString(data, 'text/html');
-             console.log(doc.querySelector(".order-summary__body"));
-             // $(".update_cart_items").html('');
-             // $(".update_cart_items").append(doc.querySelector(".order-summary__body"));
-            }
-           });
+      .then(response => response.text())
+      .then((state) => {
+      const parsedState = JSON.parse(state);
+        $.ajax({
+         url:'/cart',
+         type:'GET',
+         success: function(data){
+           let parser = new DOMParser();
+           const doc = parser.parseFromString(data, 'text/html');
+           console.log(doc.querySelector(".order-summary__body"));
+           // $(".update_cart_items").html('');
+           // $(".update_cart_items").append(doc.querySelector(".order-summary__body"));
           }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+         });
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+      });
 }
 
 //remove checked items
