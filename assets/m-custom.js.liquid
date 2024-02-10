@@ -217,7 +217,7 @@ $(".checkbox-item").on("click", function(){
     // Parse the price text as a float
     var selectedItemPrice = parseFloat(priceText);
 
-    console.log("Price:", price);
+    console.log("Price1:", price);
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
     else removeItem(item_id1,qty,selectedItemPrice);
 });
