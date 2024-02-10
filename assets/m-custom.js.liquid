@@ -263,9 +263,9 @@ function removeItem(id,qty,selectedItemPrice){
     .then((state) => {
       let parser1 = new DOMParser();
       const doc1 = parser1.parseFromString(state, 'text/html');
-      console.log(doc1.querySelector(".m-total-price"));
-      $(".total_cus").html('');
-      $(".total_cus").append(doc1.querySelector(".m-total-price"));
+      // console.log(doc1.querySelector(".m-total-price"));
+      // $(".total_cus").html('');
+      // $(".total_cus").append(doc1.querySelector(".m-total-price"));
       console.log("doc1",doc1);
       let subtotal = selectedItemPrice * state.items[0].quantity; // Assuming only one item is selected
       // Calculate new total price
