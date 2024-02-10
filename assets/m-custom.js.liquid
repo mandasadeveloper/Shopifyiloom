@@ -274,36 +274,40 @@ function removeItem(id,qty,selectedItemPrice){
     });
 }
 
-function updateCartCounterdata(selectedItemPrice){
-   fetch('/cart.js')
-    .then(response => response.text())
-    .then((responseText) => {
-      const data = JSON.parse(responseText);
-      const counterEl = document.querySelectorAll('.count-bubble');
-       console.log("mk-mds" , data.items_subtotal_price);
-      counterEl.forEach((element) => {
-        element.innerHTML = data.item_count;
-      });
-      if (window.location.href.indexOf("cart") > -1) {
-        $.ajax({
-         url:'/cart',
-         type:'GET',
-         success: function(data){
-            let subtotal = 0;
-            data.items.forEach(item => {
-              if(priceupdate.includes(item.id)) {
-                subtotal += item.quantity * item.price;
-              }
-            });
-          // Calculate total price
-          const totalPrice = parseFloat(data.total_price) - subtotal;
-alert("totalPrice",totalPrice);
-          // Update total price element
-          $(".total_cus").html('NT$' + totalPrice.toLocaleString());
-        }
-         });
-        }
-    })
+function updateCartCounterdata(selectedItemPrice) {
+    fetch('/cart.js')
+        .then(response => response.text())
+        .then((responseText) => {
+            try {
+                const data = JSON.parse(responseText);
+                const counterEl = document.querySelectorAll('.count-bubble');
+                console.log("mk-mds", data.items_subtotal_price);
+
+                // Check if data.items exists and is an array
+                if (Array.isArray(data.items)) {
+                    // Calculate subtotal of selected items
+                    let subtotal = 0;
+                    data.items.forEach(item => {
+                        if (priceupdate.includes(item.id)) {
+                            subtotal += item.quantity * item.price;
+                        }
+                    });
+
+                    // Calculate total price
+                    const totalPrice = parseFloat(data.total_price) - subtotal;
+
+                    // Update total price element
+                    $(".total_cus").html('NT$' + totalPrice.toLocaleString());
+                } else {
+                    console.error('Error: Unexpected response data format');
+                }
+            } catch (error) {
+                console.error('Error parsing response data:', error);
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
 //remove checked items
