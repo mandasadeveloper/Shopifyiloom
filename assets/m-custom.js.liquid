@@ -273,7 +273,7 @@ function removeItem(id,qty,selectedItemPrice){
     });
 }
 
-function updateCartCounterdata(){
+function updateCartCounterdata(selectedItemPrice){
     fetch('/cart.js')
     .then(response => response.text())
     .then((responseText) => {
