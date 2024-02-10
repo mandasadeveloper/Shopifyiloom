@@ -289,8 +289,6 @@ function updateCartCounterdata(){
                   const doc1 = parser1.parseFromString(data, 'text/html');
                   const totalPriceElement = doc1.querySelector(".m-total-price");
                   const totalPrice = totalPriceElement.innerText.trim(); // Extract total price
-                  
-                  // Subtract or add the price of the item
                   const price = $(".price-m-cart11 .price").text().trim();
                   const updatedTotalPrice = parseFloat(totalPrice.replace('NT$', '').replace(',', '')) - parseFloat(price.replace('NT$', '').replace(',', ''));
                   console.log("updatedTotalPrice" ,updatedTotalPrice);
