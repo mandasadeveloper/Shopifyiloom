@@ -285,7 +285,7 @@ function updateCartCounterdata(selectedItemPrice) {
          success: function(data){
            let parser1 = new DOMParser();
            const doc1 = parser1.parseFromString(data, 'text/html');
-           console.log(doc1.querySelector(".m-total-price"));
+           console.log("mk", doc1.querySelector(".m-total-price"));
            $(".total_cus").html('');
            $(".total_cus").append(doc1.querySelector(".m-total-price"));
           }
