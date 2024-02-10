@@ -216,6 +216,13 @@ $(".checkbox-item").on("click", function(){
     var priceText = $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim().replace('NT$', '').replace(',', '');
     // Parse the price text as a float
     var selectedItemPrice = parseFloat(priceText);
+
+      $(".cart__row input:checked").each(function() {
+        var item_id = $(this).parents('.cart__row').attr('data-prd-id');
+          updates[item_id] = 0;
+          console.log(updates);
+      });
+  
     console.log("Price:", selectedItemPrice);
     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
     else removeItem(item_id1,qty,selectedItemPrice);
