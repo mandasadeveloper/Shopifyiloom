@@ -271,7 +271,7 @@ function removeItem(id,qty,selectedItemPrice){
           var totalPrice = state.total_price;
 
       // Update the total price display on the page
-     const formattedPrice =   $('.total-price').html(Shopify.formatMoney(totalPrice, '{{ shop.money_format }}'));
+     const formattedPrice =   $('.total-price').html(Shopify.formatMoney(totalPrice));
       
 
         console.log("formattedPrice",formattedPrice);
