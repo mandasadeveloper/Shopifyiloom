@@ -4134,5 +4134,5 @@ line-height: 256.3%;
 }
 }
 .line-through {
-    text-decoration-color: gray;
+    text-decoration-color: gray!important;
 }
