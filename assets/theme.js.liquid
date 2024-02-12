@@ -35,63 +35,6 @@ var __privateMethod = (obj, member, method) => {
   return method;
 };
 
-function switchButton() {
-  setTimeout(function() {
-    const toggleButtons = document.querySelectorAll('[data-switch-fabric]');
-    const imageElements = document.querySelectorAll('.product-card__figure');
-  
-    toggleButtons.forEach(function (button) {
-      const checkbox = button.querySelector('.switch_input');
-  
-      checkbox.addEventListener('change', function () {
-        if (checkbox.checked) {
-          button.classList.add('facets-dialog__swtichButton--active');
-          imageElements.forEach(function (element) {
-            element.classList.add('product-card__figure--active');
-          });
-        } else {
-          button.classList.remove('facets-dialog__swtichButton--active');
-          imageElements.forEach(function (element) {
-            element.classList.remove('product-card__figure--active');
-          });
-        }
-      });
-    });
-  }, 1500); 
-}
-
-function sliceCard() {
-  setTimeout(function() {
-    $(document).ready(function(){
-      $(".collection__results .product-card").slice(0,12).show();
-      $(".load-more").click(function(e){
-        e.preventDefault();
-        $(".collection__results .product-card:hidden").slice(0,12).fadeIn("slow");
-        
-        if($(".collection__results .product-card:hidden").length == 0){
-            $(".load-more").fadeOut("slow");
-          }
-      });
-    })
-  }, 1500); 
-}
-
-function sliceCardOutlet() {
-  setTimeout(function() {
-    $(document).ready(function () {
-      $('.collection__results [data-productCardOutlet]').slice(0, 16).show();
-      $('.load-more').click(function (e) {
-        e.preventDefault();
-        $('.collection__results [data-productCardOutlet]:hidden').slice(0, 16).fadeIn('slow');
-  
-        if ($('.collection__results [data-productCardOutlet]:hidden').length == 0) {
-          $('.load-more').fadeOut('slow');
-        }
-      });
-    })
-  }, 1500); 
-}
-
 // js/common/utilities/country-selector.js
 var CountrySelector = class extends HTMLElement {
   constructor() {
@@ -917,10 +860,10 @@ var template = `
       right: 0;
       pointer-events: none;
       background-image:
-        var(--scroll-shadow-top, linear-gradient(to bottom, rgba(var(--background) / 0.7), rgb(var(--background) / 0))),
-        var(--scroll-shadow-bottom, linear-gradient(to top, rgba(var(--background) / 0.7), rgb(var(--background) / 0))),
-        var(--scroll-shadow-left, linear-gradient(to right, rgba(var(--background) / 0.7), rgb(var(--background) / 0))),
-        var(--scroll-shadow-right, linear-gradient(to left, rgba(var(--background) / 0.7), rgb(var(--background) / 0)));
+        var(--scroll-shadow-top, linear-gradient(to bottom, rgb(var(--background)), rgb(var(--background) / 0))),
+        var(--scroll-shadow-bottom, linear-gradient(to top, rgb(var(--background)), rgb(var(--background) / 0))),
+        var(--scroll-shadow-left, linear-gradient(to right, rgb(var(--background)), rgb(var(--background) / 0))),
+        var(--scroll-shadow-right, linear-gradient(to left, rgb(var(--background)), rgb(var(--background) / 0)));
       background-position: top, bottom, left, right;
       background-repeat: no-repeat;
       background-size: 100% var(--top, 0), 100% var(--bottom, 0), var(--left, 0) 100%, var(--right, 0) 100%;
@@ -2052,26 +1995,7 @@ var LineItemQuantity = class extends HTMLElement {
     super();
     this.addEventListener("change", this._onQuantityChanged);
     this.addEventListener("click", this._onRemoveLinkClicked);
-    this.addEventListener("click", this._onPlusOrMinusClicked);
   }
-  
-  _onPlusOrMinusClicked(event) {
-    const plusButton = event.target.closest('.plus-btn');
-    const minusButton = event.target.closest('.minus-btn');
-    if (plusButton || minusButton) {
-      const lineKey = event.target.getAttribute("data-line-key");
-      if (lineKey) {
-        const input = this.querySelector(`.quantity-input[data-line-key="${lineKey}"]`);
-        if (input) {
-          const currentValue = parseInt(input.value);
-          const newValue = plusButton ? currentValue + 1 : minusButton ? currentValue - 1 : currentValue;
-          input.value = newValue;
-          this._changeLineItemQuantity(lineKey, newValue);
-        }
-      }
-    }
-  }
-  
   _onQuantityChanged(event) {
     if (!event.target.hasAttribute("data-line-key")) {
       return;
@@ -2343,9 +2267,6 @@ var FacetForm = class extends HTMLFormElement {
       }
     }));
     this._isDirty = false;
-    switchButton(); 
-    sliceCard();
-    sliceCardOutlet();
   }
 };
 if (!window.customElements.get("facet-form")) {
@@ -2368,9 +2289,6 @@ var FacetLink = class extends HTMLAnchorElement {
         url
       }
     }));
-    switchButton(); 
-    sliceCard();
-    sliceCardOutlet();
   }
 };
 if (!window.customElements.get("facet-link")) {
@@ -2394,9 +2312,6 @@ var FacetSortBy = class extends HTMLElement {
         url
       }
     }));
-    switchButton(); 
-    sliceCard();
-    sliceCardOutlet();
   }
 };
 if (!window.customElements.get("facet-sort-by")) {
@@ -3229,7 +3144,6 @@ var ProductGallery = class extends HTMLElement {
     document.forms[this.getAttribute("form")]?.addEventListener("variant:change", this._onVariantChangedListener);
     this._carousels = Array.from(this.querySelectorAll("media-carousel"));
     this._pageDots = Array.from(this.querySelectorAll("page-dots"));
-    this._thumnailsArray = Array.from(this.querySelectorAll(".product-gallery__thumbnail"));
     this._viewInSpaceButton = this.querySelector("[data-shopify-xr]");
     this._customCursor = this.querySelector(".product-gallery__cursor");
     this.addEventListener("carousel:change", this._onCarouselChanged);
@@ -3262,50 +3176,11 @@ var ProductGallery = class extends HTMLElement {
       closeSVG: `<svg fill="none" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56">
         <path d="M56 28C56 12.536 43.464 0 28 0S0 12.536 0 28s12.536 28 28 28 28-12.536 28-28Z" fill="#fff"/>
         <path d="M55.5 28C55.5 12.812 43.188.5 28 .5S.5 12.812.5 28 12.812 55.5 28 55.5 55.5 43.188 55.5 28Z" stroke="#252627" stroke-opacity=".12"/>
-        <path d="m22.344 22.343 11.313 11.314m-11.313 0 11.313-11.313" stroke="#252627" stroke-width="1"/>
+        <path d="m22.344 22.343 11.313 11.314m-11.313 0 11.313-11.313" stroke="#252627" stroke-width="2"/>
       </svg>`
     });
     photoswipe.addFilter("thumbEl", (thumbEl, data) => data["thumbnailElement"]);
     photoswipe.on("uiRegister", () => {
-      photoswipe.pswp.ui.registerElement({
-        name: "thumbnails-bar",
-        order: 10,
-        appendTo: "wrapper",
-        html: `<div class="pswp__thumbnails" data-thumbnails></div>`,
-        onInit: (el, pswp) => {
-          const thumbnailsContainer = el.querySelector('[data-thumbnails]');
-          this._currentThumbs = [];
-          this._thumnailsArray.forEach((item, index) => {
-            if (item.hasAttribute('hidden')) {
-              return;
-            } else {
-              this._currentThumbs.push(item);
-            }
-          });
-          this._currentThumbs.forEach((item, index) => {
-            const thumbnailImg = item.querySelector('.product-gallery__thumb');
-            const thumbnail = document.createElement('div');
-            thumbnail.className = 'pswp__thumbnail';
-            thumbnail.setAttribute('data-thumbnail-index', index);
-            thumbnail.innerHTML = `<img src="${thumbnailImg.src}" class="pswp__thumbnail--img" alt="Thumbnail ${index + 1}" loading='eager' width='auto' height='auto'>`;
-            thumbnail.addEventListener('click', () => {
-              pswp.goTo(index);
-            });
-            thumbnailsContainer.appendChild(thumbnail);
-          });
-          const thumbnailsList = el.querySelectorAll("[data-thumbnail-index]");
-          pswp.on("change", () => {
-            thumbnailsList.forEach(thumb => {
-              const thumbnailIndex = thumb.getAttribute("data-thumbnail-index");
-              thumb.classList.remove('pswp__thumbnail--active');
-              if (thumbnailIndex == pswp.currIndex) {
-                thumb.classList.add('pswp__thumbnail--active');
-              }
-            });
-          });
-        }
-      });
-
       photoswipe.pswp.ui.registerElement({
         name: "bottom-bar",
         order: 5,
@@ -3348,8 +3223,8 @@ var ProductGallery = class extends HTMLElement {
         src: image.src,
         srcset: image.srcset,
         msrc: image.currentSrc || image.src,
-        width: parseInt(image.getAttribute("width")) * 2,
-        height: parseInt(image.getAttribute("height")) * 2,
+        width: parseInt(image.getAttribute("width")),
+        height: parseInt(image.getAttribute("height")),
         alt: image.alt,
         thumbCropped: true
       };

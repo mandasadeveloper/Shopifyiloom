@@ -1,0 +1,196 @@
+{% for tag in article.tags %}
+
+  {% if tag contains "tab_" %}
+            {% assign spli_tag_url = tag %}     
+            {% assign art_title = article.title %}
+  {% endif %}
+{% endfor %}
+
+{% if spli_tag_url %}
+<div class="blog-post-rel-mm">
+<div class="blog-post-rel-m">
+     <h1>{{ section.settings.blog_cus }}</h1>
+        <div class="blog-posts m-blog-posts m-blog-posts-related" id="Huratips-Loop" >
+      
+           {% assign countt = 0 %}
+          {%- for article in blog.articles  -%}
+           
+             {% assign rel_art = article.title %}
+            {% unless art_title == rel_art %}
+           
+
+     
+            
+              {%- for block in section.blocks -%}
+            
+
+                  <div {% render 'surface', class: 'blog-posts-newsletter v-stack gap-6 sm:gap-8 text-center rounded', text_color: block.settings.text_color, background: block.settings.background, background_fallback: 'bg-secondary' %}>
+                    <div class="blog-posts-newsletter__content v-stack gap-4 justify-items-center sm:gap-6">
+                      {%- render 'icon' with 'picto-envelope', width: 24, height: 24 -%}
+
+                      {%- if block.settings.title != blank -%}
+                        <p class="h4">{{- block.settings.title -}}</p>
+                      {%- endif -%}
+
+                      {%- if block.settings.content != blank -%}
+                        <div class="prose">
+                          {{- block.settings.content -}}
+                        </div>
+                      {%- endif -%}
+                    </div>
+
+                    {%- form 'customer', id: 'blog-posts-newsletter-form', class: 'form form--tight' -%}
+                      <div class="fieldset">
+                        {%- if form.posted_successfully? -%}
+                          {%- capture success_message -%}{{ 'general.newsletter.subscribed_successfully' | t }}{%- endcapture -%}
+                          {%- render 'banner', content: success_message, status: 'success' -%}
+                        {%- else -%}
+                          {%- if form.errors -%}
+                            {%- assign content = form.errors | default_errors -%}
+                            {%- render 'banner', status: 'error', content: content -%}
+                          {%- endif -%}
+                        {%- endif -%}
+
+                        <input type="hidden" name="contact[tags]" value="newsletter">
+
+                        {%- assign label = 'blog.comments.email' | t -%}
+                        {%- render 'input', type: 'email', name: 'contact[email]', label: label, value: customer.email, required: true, autocomplete: 'email' -%}
+                      </div>
+
+                      {%- render 'button', content: block.settings.button_text, icon: 'picto-envelope', type: 'submit', size: 'xl', secondary: true -%}
+                    {%- endform -%}
+
+                    {%- if block.settings.subtext != blank -%}
+                      <p class="text-sm text-subdued">{{- block.settings.subtext -}}</p>
+                    {%- endif -%}
+                  </div>
+              {%- endfor -%}
+          {%- for tag in article.tags -%}
+
+{% if tag contains spli_tag_url %}
+ {% assign countt = countt | plus: 1 %}
+          {% if countt < 4 %}
+     
+            {%- if section.settings.feature_first_article and forloop.first -%}
+              {%- assign background_color = article.metafields.banner.background_color.value | default: section.settings.feature_article_background -%}
+              {%- assign text_color = article.metafields.banner.text_color.value | default: section.settings.feature_article_text_color -%}
+              {%- capture sizes -%}(max-width: 999px) 100vw, calc(min(100vw, {{ settings.page_width }}px) * 0.65){%- endcapture -%}
+              {%- render 'm-blog-post-card-related', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, background: background_color, text_color: text_color, sizes: sizes -%}
+            {%- else -%}
+              {%- capture sizes -%}(max-width: 699px) 100vw, (max-width: 1149px) calc(100vw / 2 - 40px), (max-width: 1399px) calc(min(100vw, {{ settings.page_width }}px) / 3 - 40px) , calc(min(100vw, {{ settings.page_width }}px) / 3 - 80px) {%- endcapture -%}
+              {%- render 'm-blog-post-card-related', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, sizes: sizes -%}
+            {%- endif -%}
+            
+        {% endif %}
+   {% endif %}
+{%- endfor -%}
+                 {% endunless %}
+          {%- endfor -%}
+         
+    
+</div>
+
+</div>
+</div>
+{% endif %}
+{% schema %}
+{
+  "name": "Related Blog Magazine",
+  "class": "shopify-section--main-blog",
+  "tag": "section",
+  "settings": [
+    
+    {
+  "type": "text",
+  "id": "blog_cus",
+  "label": "Heading"
+},
+
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags",
+      "default": true,
+      "info": "Categorize your blog posts by [adding tags](https://help.shopify.com/en/manual/online-store/blogs/writing-blogs#add-tags-to-a-blog-post)."
+    },
+    {
+      "type": "color",
+      "id": "banner_background",
+      "label": "Background"
+    },
+    {
+      "type": "color",
+      "id": "banner_text_color",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text"
+    },
+    {
+      "type": "header",
+      "content": "Blog post listing"
+    },
+   
+    {
+      "type": "checkbox",
+      "id": "feature_first_article",
+      "label": "Feature first blog post",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "feature_article_background",
+      "label": "Featured article background"
+    },
+    {
+      "type": "color",
+      "id": "feature_article_text_color",
+      "label": "Featured article text"
+    },
+ 
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "label": "Show excerpt",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "label": "Show date",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "label": "Show author",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_comments_count",
+      "label": "Show comments count",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category",
+      "label": "Show category",
+      "info": "The first post's tag will be shown as category.",
+      "default": true
+    }
+  ],
+   "presets": [
+    {
+      "name": "Related Blog Magazine"
+    }
+  ]
+}
+{% endschema %}
