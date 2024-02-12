@@ -715,8 +715,8 @@ height-observer, visibility-progress, scroll-area, video-media, model-media, med
 }
 
 .animated-arrow:before {
-  border-block-start-width: 1px;
-  border-inline-end-width: 1px;
+  border-block-start-width: 2px;
+  border-inline-end-width: 2px;
   transform: rotate(calc(var(--transform-logical-flip) * 45deg));
   border-color: currentColor;
   width: .5rem;
@@ -1306,11 +1306,10 @@ scroll-carousel {
     height: var(--spacing-8);
     background: linear-gradient(to bottom, rgb(var(--dialog-background)), rgb(var(--dialog-background) / .6) 50%, rgb(var(--dialog-background) / 0));
     z-index: 1;
+    width: 100%;
     position: absolute;
     top: 100%;
-    left: 50%;
-    width: 90%;
-    transform: translateX(-50%);
+    left: 0;
   }
 
   .drawer > [is="close-button"] {
@@ -2019,8 +2018,7 @@ scroll-carousel {
 }
 
 .section {
-  /* padding-block-start: calc(var(--background-differs-from-previous) * var(--calculated-section-spacing-block-start)  / 3 ); */
-  padding-block-start: calc(var(--background-differs-from-previous) * var(--calculated-section-spacing-block-start)  / 5 );
+  padding-block-start: calc(var(--background-differs-from-previous) * var(--calculated-section-spacing-block-start));
   padding-block-end: var(--calculated-section-spacing-block-end);
 }
 
@@ -3151,23 +3149,12 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
 .quick-buy-drawer__info {
   gap: var(--spacing-6);
   display: grid;
-  height: 100%;
-  max-height: 400px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.quick-buy-drawer__info::-webkit-scrollbar {
-  display: none;
 }
 
 @media screen and (min-width: 700px) {
   .quick-buy-drawer {
     --drawer-header-padding: var(--spacing-6);
-    width: 464px;
-    max-width: 464px;
+    width: 560px;
     height: auto;
   }
 
@@ -3190,7 +3177,6 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
 
   .quick-buy-drawer__info {
     gap: var(--spacing-8);
-    width: 405px;
   }
 }
 
@@ -3637,10 +3623,6 @@ tfoot td {
   place-items: center;
   display: grid;
   position: relative;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-image: var(--swatch-background-img);
 }
 
 :disabled + .color-swatch, .color-swatch.is-disabled {
@@ -3656,8 +3638,7 @@ tfoot td {
   transition: opacity .2s ease-in-out, transform .2s ease-in-out;
   position: absolute;
   transform: scale(.75);
-  box-shadow: 0 0 0 1px var(--color-grey-06);;
-  color: var(--color-grey-06);
+  box-shadow: 0 0 0 2px;
 }
 
 :checked + .color-swatch:before, .color-swatch.is-selected:before {
@@ -6688,8 +6669,7 @@ split-lines {
 .images-scrolling-mobile__item {
   align-content: start;
   gap: var(--spacing-4);
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
 }
 
 @media screen and (min-width: 700px) {
@@ -6715,7 +6695,6 @@ split-lines {
   object-fit: cover;
   object-position: center;
   will-change: transform;
-  overflow: hidden;
 }
 
 .images-scrolling-desktop__media-wrapper > :first-child {
@@ -7479,6 +7458,14 @@ split-lines {
   display: none;
 }
 
+.native-share--disabled .product-info__share-buttons {
+  display: block;
+}
+
+.product-info__native-share {
+  display: none;
+}
+
 .native-share--enabled .product-info__native-share {
   align-items: center;
   gap: var(--spacing-2-5);
@@ -7612,7 +7599,7 @@ split-lines {
 
 .product-gallery__zoom {
   position: absolute;
-  top: var(--spacing-5);
+  top: var(--spacing-4);
 }
 
 .product-gallery__zoom:not(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
@@ -9941,3 +9928,24 @@ split-lines {
   display: -webkit-box;
   overflow: hidden;
 }
+@font-face {
+  font-family: 'Montserrat';
+  src: url('https://cdn.shopify.com/s/files/1/0575/1576/9926/files/Montserrat-Regular_f1bec71d-710e-4dea-aa6d-bb09ad490507.ttf?v=1701431085');
+}
+
+/* Font Family */
+
+@font-face {
+  font-family: 'Noto_Sans_TC';
+  src: url('https://cdn.shopify.com/s/files/1/0575/1576/9926/files/Noto_Sans_TC.ttf?v=1700885436') format('truetype');
+}
+
+@font-face {
+  font-family: 'Avenir_Regular';
+  src: url('https://cdn.shopify.com/s/files/1/0575/1576/9926/files/Avenir_Regular.ttf?v=1700886449') format('truetype');
+}
+@font-face {
+  font-family: 'NotoSansCJKkr-Regular';
+  src: url('https://cdn.shopify.com/s/files/1/0575/1576/9926/files/NotoSansCJKkr-Regular.otf?v=1700888589') format('truetype');
+}
+/*End Font Family */

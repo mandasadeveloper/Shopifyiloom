@@ -1,5 +1,4 @@
 {%- render 'section-spacing-collapsing' -%}
-<link rel="stylesheet" href="{{ 'section-main-collection.css' | asset_url }}">
 
 {%- if section.settings.show_filters and collection.filters.size > 0 -%}
   {%- assign show_filters = true -%}
@@ -79,74 +78,35 @@
   {%- else -%}
     {%- paginate collection.products by section.settings.products_per_page -%}
       <div class="collection {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %}">
-        <h1 class="collection__title text-p text-p--primaryFont text-p--30">{{ collection.title }}</h1>
         {%- if show_filters or section.settings.show_sort_by -%}
           {%- comment -%}
-            IMPLEMENTATION NOTE: we have to output the drawer no matter what, as it is used on mobile (all the time) or desktop (when in drawer mode)
+          IMPLEMENTATION NOTE: we have to output the drawer no matter what, as it is used on mobile (all the time) or desktop (when in drawer mode)
           {%- endcomment -%}
 
-          {% comment %}
-            <facet-drawer header-bordered id="facets-drawer" class="facets-drawer drawer" open-from="left">
-              <p class="h5" slot="header">{{ 'collection.faceting.filters' | t }}</p>
-              {%- render 'facets-vertical', results: collection, show_filters: true, show_sort_by: section.settings.show_sort_by, update_on_change: false -%}
-            </facet-drawer>
-          {% endcomment %}
-
-          <facet-drawer header-bordered id="facets-drawer-sort" class="facets-drawer drawer" open-from="bottom">
-            <p class="h5" slot="header" hidden>{{ 'collection.faceting.filters' | t }}</p>
-            {%- render 'facets-vertical-sort',
-              results: collection,
-              show_filters: true,
-              show_sort_by: section.settings.show_sort_by,
-              update_on_change: false
-            -%}
-          </facet-drawer>
-          <facet-drawer header-bordered id="facets-drawer-series" class="facets-drawer drawer" open-from="bottom">
-            <p class="h5" slot="header" hidden>{{ 'collection.faceting.filters' | t }}</p>
-            {%- render 'facets-vertical-filter',
-              results: collection,
-              show_filters: true,
-              show_sort_by: section.settings.show_sort_by,
-              update_on_change: false
-            -%}
+          <facet-drawer header-bordered id="facets-drawer" class="facets-drawer drawer" open-from="left">
+            <p class="h5" slot="header">{{ 'collection.faceting.filters' | t }}</p>
+            {%- render 'facets-vertical', results: collection, show_filters: true, show_sort_by: section.settings.show_sort_by, update_on_change: false -%}
           </facet-drawer>
 
           {%- if section.settings.filter_layout == 'horizontal' -%}
-            {%- render 'collection-top-bar',
-              results: collection,
-              show_filters: show_filters,
-              show_active_filters: show_filters,
-              show_sort_by: section.settings.show_sort_by
-            -%}
+            {%- render 'collection-top-bar', results: collection, show_filters: show_filters, show_active_filters: show_filters, show_sort_by: section.settings.show_sort_by -%}
           {%- else -%}
-            {%- render 'collection-top-bar',
-              results: collection,
-              show_filters: false,
-              show_active_filters: show_filters,
-              show_sort_by: section.settings.show_sort_by
-            -%}
+            {%- render 'collection-top-bar', results: collection, show_filters: false, show_active_filters: show_filters, show_sort_by: section.settings.show_sort_by -%}
           {%- endif -%}
 
           {%- comment -%}We also need to render the button, that is floating on mobile{%- endcomment -%}
-          {% comment %}
-            {%- if show_filters -%}
-              <facet-floating-filter class="facets__floating-filter md:hidden">
-                {%- assign filter_label = 'collection.faceting.filter_and_sort' | t -%}
-                {%- render 'button', size: 'xl', content: filter_label, icon: 'filter', style: 'fill', background: settings.text_color, text_color: settings.background, aria_controls: 'facets-drawer' -%}
-              </facet-floating-filter>
-            {%- endif -%}
-          {% endcomment %}
+          {%- if show_filters -%}
+            <facet-floating-filter class="facets__floating-filter md:hidden">
+              {%- assign filter_label = 'collection.faceting.filter_and_sort' | t -%}
+              {%- render 'button', size: 'xl', content: filter_label, icon: 'filter', style: 'fill', background: settings.text_color, text_color: settings.background, aria_controls: 'facets-drawer' -%}
+            </facet-floating-filter>
+          {%- endif -%}
         {%- endif -%}
 
         {%- if show_filters and section.settings.filter_layout == 'sidebar' -%}
           <div class="collection__facets">
             <safe-sticky class="collection__facets-scroller">
-              {%- render 'facets-vertical',
-                results: collection,
-                show_filters: true,
-                show_sort_by: false,
-                update_on_change: true
-              -%}
+              {%- render 'facets-vertical', results: collection, show_filters: true, show_sort_by: false, update_on_change: true -%}
             </safe-sticky>
           </div>
         {%- endif -%}
@@ -170,229 +130,93 @@
             <div class="v-stack gap-6">
               <div class="v-stack gap-4 md:hidden">
                 {%- comment -%}We have to duplicate some information on mobile and tablet here{%- endcomment -%}
-                <p class="text-center collection-product-hide">
-                  {{ 'collection.products_count' | t: count: collection.products_count }}
-                </p>
-                <div class="collection-filter-mobile-hide">
-                  {%- render 'active-facets', results: collection -%}
-                </div>
+                <p class="text-center">{{ 'collection.products_count' | t: count: collection.products_count }}</p>
+                {%- render 'active-facets', results: collection -%}
               </div>
 
               <reveal-items selector=".product-list > *">
                 <product-list class="product-list" role="region" aria-live="polite">
                   {%- for product in collection.products -%}
-                    {% assign productLaunchingEvent = product.metafields.custom.product_launch_event.value %}
-                    {% assign productWishButton = product.metafields.custom.product_wish_button.value %}
-                    {% unless productWishButton or productLaunchingEvent.launching_event_applied_or_not %}
-                      {% assign collectionsInProduct = '' %}
-                      {% for collection in product.collections %}
-                        {% assign collectionsInProduct = collectionsInProduct | append: collection.title %}
-                      {% endfor %}
-                      {% unless collectionsInProduct contains 'ONLINE OUTLET' %}
-                        {%- for block in section.blocks -%}
-                          {%- if forloop.parentloop.index != block.settings.position -%}
-                            {%- continue -%}
-                          {%- endif -%}
+                    {%- for block in section.blocks -%}
+                      {%- if forloop.parentloop.index != block.settings.position -%}
+                        {%- continue -%}
+                      {%- endif -%}
 
-                          <div
-                            id="block-{{ section.id }}-{{ block.id }}"
-                            {% render 'surface',
-                              class: 'product-list__promo group',
-                              text_color: block.settings.text_color
-                            %}
-                            {{ block.shopify_attributes }}
-                          >
-                            <a
-                              {% if block.settings.link_url %}
-                                href="{{ block.settings.link_url }}"
-                              {% endif %}
-                              class="content-over-media h-full rounded-sm"
-                              style="--content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}"
-                            >
-                              {%- case block.type -%}
-                                {%- when 'promotion_image' -%}
-                                  {%- if block.settings.image != blank -%}
-                                    {%- capture image_class -%}zoom-image {% if block.settings.mobile_image != blank %}hidden sm:block{% endif %}{%- endcapture -%}
-                                    {%- capture sizes -%}(max-width: 699px) 100vw, {{ 400 | times: block.settings.column_span }}px{%- endcapture -%}
-                                    {{-
-                                      block.settings.image
-                                      | image_url: width: block.settings.image.width
-                                      | image_tag:
-                                        loading: 'lazy',
-                                        sizes: sizes,
-                                        widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600',
-                                        class: image_class
-                                    -}}
-                                  {%- endif -%}
-
-                                  {%- if block.settings.mobile_image != blank -%}
-                                    {{-
-                                      block.settings.mobile_image
-                                      | image_url: width: block.settings.mobile_image.width
-                                      | image_tag:
-                                        loading: 'lazy',
-                                        widths: '200,300,400,500,600,700,800,900,1000,1200',
-                                        class: 'zoom-image sm:hidden'
-                                    -}}
-                                  {%- endif -%}
-
-                                {%- when 'promotion_video' -%}
-                                  {%- if block.settings.video -%}
-                                    <video-media autoplay>
-                                      {{-
-                                        block.settings.video
-                                        | video_tag: playsinline: true, muted: true, loop: true, preload: 'metadata'
-                                      -}}
-                                    </video-media>
-                                  {%- else -%}
-                                    <video-media host="{{ block.settings.external_video_url.type }}" autoplay>
-                                      <template>
-                                        {%- if block.settings.external_video_url.type == 'youtube' -%}
-                                          <iframe
-                                            src="https://www.youtube.com/embed/{{ block.settings.external_video_url.id }}?playsinline=1&autoplay=1&controls=0&mute=1&loop=1&playlist={{ block.settings.external_video_url.id }}&enablejsapi=1&rel=0&modestbranding=1&origin={{ 'https://' | append: request.host | url_encode }}"
-                                            allow="autoplay; encrypted-media"
-                                            allowfullscreen="allowfullscreen"
-                                          ></iframe>
-                                        {%- elsif block.settings.external_video_url.type == 'vimeo' -%}
-                                          <iframe
-                                            src="https://player.vimeo.com/video/{{ block.settings.external_video_url.id }}?autoplay=1&autopause=1&background=1&loop=1&muted=1&transparent=0&responsive=1&portrait=0&title=0&byline=0&color={{ settings.text_color | remove_first: '#' }}"
-                                            allow="autoplay; encrypted-media;"
-                                            allowfullscreen="allowfullscreen"
-                                          ></iframe>
-                                        {%- endif -%}
-                                      </template>
-                                    </video-media>
-                                  {%- endif -%}
-                              {%- endcase -%}
-
-                              {%- if block.settings.title != blank or block.settings.link_text != blank -%}
-                                <div class="collection-text {{ block.settings.text_position }}">
-                                  <div class="v-stack gap-4 sm:gap-6 {% if block.settings.text_position contains 'text-center' %}justify-items-center{% elsif block.settings.text_position contains 'text-end' %}justify-items-end{% endif %}">
-                                    {%- if block.settings.title != blank or block.settings.content != blank -%}
-                                      <div class="prose">
-                                        {%- if block.settings.title != blank -%}
-                                          <p class="{{ block.settings.heading_tag }}">
-                                            {{ block.settings.title | escape }}
-                                          </p>
-                                        {%- endif -%}
-
-                                        {{- block.settings.content -}}
-                                      </div>
-                                    {%- endif -%}
-
-                                    {%- if block.settings.link_text != blank -%}
-                                      <div class="h-stack gap-4">
-                                        <span class="bold">{{- block.settings.link_text | escape -}}</span>
-
-                                        <div class="circle-button circle-button--sm ring-current">
-                                          <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
-                                          <span class="animated-arrow"></span>
-                                        </div>
-                                      </div>
-                                    {%- endif -%}
-                                  </div>
-                                </div>
+                      <div id="block-{{ section.id }}-{{ block.id }}" {% render 'surface', class: 'product-list__promo group', text_color: block.settings.text_color %} {{ block.shopify_attributes }}>
+                        <a {% if block.settings.link_url %}href="{{ block.settings.link_url }}"{% endif %} class="content-over-media h-full rounded-sm" style="--content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
+                          {%- case block.type -%}
+                            {%- when 'promotion_image' -%}
+                              {%- if block.settings.image != blank -%}
+                                {%- capture image_class -%}zoom-image {% if block.settings.mobile_image != blank %}hidden sm:block{% endif %}{%- endcapture -%}
+                                {%- capture sizes -%}(max-width: 699px) 100vw, {{ 400 | times: block.settings.column_span }}px{%- endcapture -%}
+                                {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600', class: image_class -}}
                               {%- endif -%}
-                            </a>
-                          </div>
-                        {%- endfor -%}
-                        {%- render 'product-card', product: product, stacked: true, show_badges: true -%}
-                      {% endunless %}
-                    {% endunless %}
+
+                              {%- if block.settings.mobile_image != blank -%}
+                                {{- block.settings.mobile_image | image_url: width: block.settings.mobile_image.width | image_tag: loading: 'lazy', widths: '200,300,400,500,600,700,800,900,1000,1200', class: 'zoom-image sm:hidden' -}}
+                              {%- endif -%}
+
+                            {%- when 'promotion_video' -%}
+                              {%- if block.settings.video -%}
+                                <video-media autoplay>
+                                  {{- block.settings.video | video_tag: playsinline: true, muted: true, loop: true, preload: 'metadata' -}}
+                                </video-media>
+                              {%- else -%}
+                                <video-media host="{{ block.settings.external_video_url.type }}" autoplay>
+                                  <template>
+                                    {%- if block.settings.external_video_url.type == 'youtube' -%}
+                                      <iframe src="https://www.youtube.com/embed/{{ block.settings.external_video_url.id }}?playsinline=1&autoplay=1&controls=0&mute=1&loop=1&playlist={{ block.settings.external_video_url.id }}&enablejsapi=1&rel=0&modestbranding=1&origin={{ 'https://' | append: request.host | url_encode }}" allow="autoplay; encrypted-media" allowfullscreen="allowfullscreen"></iframe>
+                                    {%- elsif block.settings.external_video_url.type == 'vimeo' -%}
+                                      <iframe src="https://player.vimeo.com/video/{{ block.settings.external_video_url.id }}?autoplay=1&autopause=1&background=1&loop=1&muted=1&transparent=0&responsive=1&portrait=0&title=0&byline=0&color={{ settings.text_color | remove_first: '#' }}" allow="autoplay; encrypted-media;" allowfullscreen="allowfullscreen"></iframe>
+                                    {%- endif -%}
+                                  </template>
+                                </video-media>
+                              {%- endif -%}
+                          {%- endcase -%}
+
+                          {%- if block.settings.title != blank or block.settings.link_text != blank -%}
+                            <div class="{{ block.settings.text_position }}">
+                              <div class="v-stack gap-4 sm:gap-6 {% if block.settings.text_position contains 'text-center' %}justify-items-center{% elsif block.settings.text_position contains 'text-end' %}justify-items-end{% endif %}">
+                                {%- if block.settings.title != blank or block.settings.content != blank -%}
+                                  <div class="prose">
+                                    {%- if block.settings.title != blank -%}
+                                      <p class="{{ block.settings.heading_tag }}">{{ block.settings.title | escape }}</p>
+                                    {%- endif -%}
+
+                                    {{- block.settings.content -}}
+                                  </div>
+                                {%- endif -%}
+
+                                {%- if block.settings.link_text != blank -%}
+                                  <div class="h-stack gap-4">
+                                    <span class="bold">{{- block.settings.link_text | escape -}}</span>
+
+                                    <div class="circle-button circle-button--sm ring-current">
+                                      <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+                                      <span class="animated-arrow"></span>
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        </a>
+                      </div>
+                    {%- endfor -%}
+
+                    {%- render 'product-card', product: product, stacked: true, show_badges: true -%}
                   {%- endfor -%}
                 </product-list>
               </reveal-items>
             </div>
           {%- endif -%}
         </div>
+
         {%- render 'pagination', paginate: paginate, facet: true, class: 'collection__pagination' -%}
-        {% if collection.products_count > 12 %}
-          <a href="" class="load-more text-p text-p0.--14">Explore More</a>
-        {% endif %}
       </div>
     {%- endpaginate -%}
   {%- endif -%}
 </div>
-
-<style>
-  .collection__results .product-card {
-    display: none;
-  }
-
-  .load-more {
-    border: 1px solid var(--color-primary);
-    font-family: var(--font-secondary);
-    padding: 12px 18px;
-    display: flex;
-    font-weight: var(--font-weight-500);
-    max-width: max-content;
-    justify-content: center;
-    margin: 0 auto;
-    margin-top: 142px;
-  }
-
-  .load-more:hover {
-    background: var(--color-primary);
-    color: var(--color-white);
-  }
-
-  .shopify-section--main-collection {
-    margin-bottom: 114px;
-  }
-
-  .template-collection .product-card__quick-buy .text-with-icon.justify-center {
-    flex-direction: row-reverse;
-  }
-
-  @media (max-width: 768px) {
-    .template-collection .collection-banner .h0 {
-      font-size: var(--font-size-20);
-    }
-
-    .shopify-section--collection-banner .collection-banner .collection-banner-img {
-      height: 240px;
-    }
-
-    .shopify-section--collection-banner .place-self-center {
-      place-self: baseline;
-      height: 100%;
-      display: flex;
-      align-items: center;
-    }
-
-    .shopify-section--collection-banner .collection-title {
-      top: 25px;
-    }
-
-    .load-more {
-      font-size: var(--font-size-12);
-      margin-top: 40px;
-    }
-
-    .shopify-section--main-collection {
-      margin-bottom: 30px;
-    }
-
-    .template-search .text-center.collection-product-hide,
-    .template-collection .collection__results .text-center.collection-product-hide {
-      display: none;
-    }
-  }
-</style>
-
-<script>
-  $(document).ready(function () {
-    $('.collection__results .product-card').slice(0, 12).show();
-    $('.load-more').click(function (e) {
-      e.preventDefault();
-      $('.collection__results .product-card:hidden').slice(0, 12).fadeIn('slow');
-
-      if ($('.collection__results .product-card:hidden').length == 0) {
-        $('.load-more').fadeOut('slow');
-      }
-    });
-  });
-</script>
 
 {% schema %}
 {
@@ -750,10 +574,10 @@
       "type": "range",
       "id": "products_per_page",
       "label": "Products per page",
-      "min": 1000,
-      "max": 5000,
-      "step": 1000,
-      "default": 5000
+      "min": 8,
+      "max": 50,
+      "step": 1,
+      "default": 24
     },
     {
       "type": "select",

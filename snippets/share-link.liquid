@@ -19,7 +19,7 @@ Supported variables
   {%- when 'twitter' -%}
     https://twitter.com/share?{% if title != blank %}text={{ title | url_param_escape }}&{% endif %}url={{ share_url }}
 
-  {%- when 'facebook' -%}
+  {%- when 'facebook-m' -%}
     https://www.facebook.com/sharer.php?u={{ share_url }}
 
   {%- when 'pinterest' -%}
@@ -27,4 +27,11 @@ Supported variables
 
   {%- when 'email' -%}
     mailto:?&subject={{ title | escape }}&body={{ share_url }}
+  {%- when 'copy-link' -%}
+https://plus.google.com/share?url={{ url | url_param_escape }}
+{% when 'line' %}
+https://line.me/R/msg/text/?{{ article.metafields.global.description | strip_html | truncate: 200 | url_param_escape }}%20{{ article.url | url_param_escape }}
+  {%- when 'whatsp-m' -%}
+ https://api.whatsapp.com/send?text={{ shop.url | append: share_permalink }}
+
 {%- endcase -%}
