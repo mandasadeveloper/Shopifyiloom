@@ -1,5 +1,4 @@
-  
-  
+
   /* Magazaine Blog CSS */
   .blog-banner .m-blog-filter-list [aria-selected=true]{
   background-color:#3C3C3C;
@@ -45,22 +44,26 @@
   background: white;
   }
   .m-blog-posts .m-badge{
-    font-family: 'Avenir LT Std';
+        font-family: 'Avenir_Regular';
     font-size: 10px !important;
     font-weight: 900;
-    letter-spacing: .8px;
+    letter-spacing: 1px;
     color: black;
     background: white;
     border-radius: 2px;
     border: 1px solid #3C3C3C;
     text-transform: uppercase;
-    line-height: 8.66px;
+    line-height: 13.66px;
     left: auto !important;
     right: 15px !important;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-block-start: 6px !important;
-    padding-block-end: 6px !important;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-block-start: 2px !important;
+    padding-block-end: 2px !important;
+    /* min-width: 75px; */
+    display: flex;
+    justify-content: center;
+    height: 22px;
   }
   .product-list-m .product-card__figure img{
   width:100%;
@@ -139,7 +142,7 @@
   line-height: 34.75px;
   }
   .blog-post-card-related .blog-post-card_info_m .v-stack .h3 a{
-  line-height: 23.17px;
+  /* line-height: 23.17px; */
   }
   
   .article-meta-manda1{
@@ -456,7 +459,7 @@
   }
   .m-article-banner .article-banner__content{
   position: absolute;
-  bottom: 15px;
+  bottom: 45px;
   /* left: 164px; */
   /* transform: translate(-261px, 0px); */
   justify-items: flex-start;
@@ -1165,18 +1168,24 @@
   text-transform: capitalize;
   }
   .article-event .article-content .prose a{
-  color: #FFF;
-  font-family: 'Noto_Sans_TC';
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 26.06px;
-  letter-spacing: 1.8px;
-  text-transform: capitalize;
-  background: #3C3C3C !important;
-  width: 600px;
-  height: 60px;
-  padding: 16px 90px;
+      color: #FFF;
+    font-family: 'Noto_Sans_TC';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 26.06px;
+    letter-spacing: 1.8px;
+    text-transform: capitalize;
+    background: #3C3C3C !important;
+    /* width: 600px; */
+    height: auto;
+    padding: 16px 30px;
+    min-width: 600px;
+    max-width: 600px;
+    display: block;
+    margin: auto;
+    word-wrap: break-word;
+
   }
   .article-event .article-content{
   text-align: center;
@@ -1301,7 +1310,7 @@
   height: 22px;
   }
   .product-list-mm .product-card__info .v-stack {
-  gap: 10px;
+  gap: 6px;
   }
   .section-stack-event .section-header .h2{
   color: #3C3C3C;
@@ -1328,7 +1337,7 @@
   }
   .product-list-mm .product-card__info {
   padding: 19px 0px;
-  gap: 13px;
+  /* gap: 13px; */
   }
   .article-event1 .article-banner__content {
   padding-bottom: 37px;
@@ -1339,10 +1348,10 @@
   .event-container1{
   margin-bottom: 0px !important;
   }
-  .m-blog-posts-news .blog-post-card__figure img{
+  /* .m-blog-posts-news .blog-post-card__figure img{
   min-height: 400px;
   max-height: 400px;
-  }
+  } */
   @media screen and (min-width: 767px){
   #m-loadMore{
   display:none;
@@ -1789,10 +1798,10 @@ height: 24px;
   .m_blog-news .blog-post-card_info_mm .v-stack-m {
   gap: 20px;
   }
-  .m-blog-posts-news .blog-post-card__figure img{
+  /* .m-blog-posts-news .blog-post-card__figure img{
   min-height: 232px;
   max-height: 232px;
-  }
+  } */
   .text-with-icon1{
   font-size: 14px;
   line-height: 17.07px;
@@ -1823,7 +1832,7 @@ height: 24px;
   gap: 38px;
   }
   .article-news .news-container .article-content{
-  gap: 14px;
+  gap: 27px;
   }
   .m-article-banner1 .article-banner__content {
   position: absolute;
@@ -1902,9 +1911,15 @@ height: 24px;
   }
   .article-event .article-content .prose a{
   font-size: 14px;
-  padding: 12px 25px;
+  padding: 12px 20px;
   letter-spacing: 1.4px;
   line-height: 20.27px;
+      min-width: auto;
+    /* max-width: 600px; */
+    display: block;
+    max-width: 300px;
+    margin: auto;
+    word-wrap: break-word;
   }
   .article-event .article-content .botton-txt-event a{
   padding: 12px 63px;
@@ -1914,7 +1929,7 @@ height: 24px;
   line-height: 20.27px;
   }
   .blog-post-card-event {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   }
   .blog-post-card-event .v-stack-m  .v-stack{
   gap: 6px;
@@ -2087,7 +2102,7 @@ height: 24px;
   }
   .m--blog-posts__container .m-blog-posts {
   /* grid-template-columns: repeat(2,1fr); */
-  gap: 16px;
+  gap: 22px;
   
   }
   .m--blog-posts__container{
@@ -2180,12 +2195,12 @@ height: 24px;
   font-weight:500;
   }
   .m-article-banner .article-banner__content h1{
-  font-size: 18px;
+  font-size: 22px;
   line-height:26.06px;
       text-align: left;
   }
   .article-meta-manda .article-meta-m{
-  font-size: 12px;
+  font-size: 14px;
   line-height:17.38px;
   }
   .m-article-banner .article-banner__content{
@@ -2267,10 +2282,10 @@ height: 24px;
   .article-manda .article-content img, .article-manda .article-content span img{
   min-width: 100%;
   }
-  .article-bottom-m{
+  /* .article-bottom-m{
   padding-left: 21px;
   padding-right: 21px;
-  }
+  } */
   .article-share-mob .share-buttons{
   padding-left: 21px;
   padding-right: 21px;
@@ -2377,14 +2392,14 @@ height: 24px;
   .mm--blog-posts__container{
   max-width: 989px;
   } */
-  .m-blog-posts-news .blog-post-card__figure img {
+  /* .m-blog-posts-news .blog-post-card__figure img {
   min-height: 310px;
   max-height: 310px;
-  }
-  .m-blog-posts-event .blog-post-card__figure img {
+  } */
+  /* .m-blog-posts-event .blog-post-card__figure img {
   max-height: 294px;
   min-height: 294px;
-  }
+  } */
 
   /* .article-manda .article-content {
   max-width: 989px;
@@ -2568,14 +2583,14 @@ margin-top: 13px
   }
   }
   @media screen and (min-width: 1024px){
-  .product-list-mm .bg-custom img{
+  /* .product-list-mm .bg-custom img{
   max-height: 332px;
   min-height: 332px;
   }
   .bg-cuss1 .product-list-mm .bg-custom img{
   max-height: 284.58px;
   min-height: 284.58px;
-  }
+  } */
   }
   
   @media screen and (max-width: 1024px){
@@ -3156,10 +3171,10 @@ margin-top: 13px
   /* .m--blog-posts__container{
   max-width: 1300px !important;
   } */
-  .m-blog-posts-news .blog-post-card__figure img {
+  /* .m-blog-posts-news .blog-post-card__figure img {
   min-height: 414px;
   max-height: 414px;
-  }
+  } */
   }
   
   .update_cart_items{
@@ -3779,6 +3794,16 @@ line-height: 256.3%;
 .m-blog-posts blog-post-card.blog-post-card{
     max-width:434px;
 }
+  .m-blog-posts blog-post-card.blog-post-card-related{
+    max-width:434px;
+}
+   .m-blog-posts blog-post-card.blog-post-card-related:nth-child(odd) {
+    margin-left: auto;
+}
+
+.m-blog-posts blog-post-card.blog-post-card-related:nth-child(even) {
+    margin-right: auto;
+}
 }
 @media screen and (max-width: 1023px){
   .m-blog-posts.blog-posts{
@@ -3821,6 +3846,9 @@ line-height: 256.3%;
   .m-blog-posts-event.blog-posts{
     --article-per-row: var(--blog-posts-per-row, 3)!important;
  }
+  .m-blog-posts-event blog-post-card.blog-post-card {
+    max-width: 554px;
+}
 }
 @media screen and (min-width: 1237px) and (max-width: 1719px){
   .m-blog-posts-news.blog-posts{
@@ -3845,10 +3873,11 @@ line-height: 256.3%;
 }  
 
 .m-blog-posts-news blog-post-card.blog-post-card{
-    max-width:434px;
+    min-width:554px;
+    max-width: 554px;
 }
   .m-blog-posts-event blog-post-card.blog-post-card{
-    max-width:434px;
+    min-width:554px;
 }
 }
 @media screen and (max-width: 1236px){
@@ -3859,28 +3888,56 @@ line-height: 256.3%;
     --article-per-row: var(--blog-posts-per-row, 1)!important;
  }
   .m_blog-news .blog-post-card-m {
-    max-width: 320px;
+    /* max-width: 320px;
     min-height: 390px;
-    max-height: 390px;
+    max-height: 390px; */
     margin: auto;
   }
   .m-blog-posts-event .blog-post-card-event {
-    max-width: 320px;
+    /* max-width: 320px; */
     /* min-height: 390px; */
-    max-height: 398px;
-    margin: auto;
+    /* max-height: 398px; */
+    /* margin: auto; */
   }
   .m_blog-news .blog-post-card-m1 {
-    max-width: 320px;
-    min-height: 390px;
+    /* max-width: 320px;
+    min-height: 390px; */
     /* max-height: 390px; */
-    margin: auto;
+    /* margin: auto; */
  }
   .m-blog-posts-event .blog-post-card_info_me .v-stack-m{
     gap: 20px!important;
   }
+  .m_blog-news .m-blog-posts-news {
+    gap: 54px;
+}
+  .m_blog-news .blog-post-card_info_mm .v-stack-m{
+  gap: 20px;
+  }
+}
+.social_sharin_bg{
+  background-color: white!important;
 }
 
 
-
 /* div */
+
+
+/* product grid */
+.cus_m span{
+    color: black;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+
+  /* @font-face {
+  font-family: "Avenir LT Std 65 Medium";
+  src: url("https://cdn.shopify.com/s/files/1/0575/1576/9926/files/Avenir_LT_Std_95_Black.otf?v=1707714647");
+}
+  
+.m-blog-posts .m-badge{
+  font-family: 'Avenir LT Std 65 Medium'!important;
+} */
