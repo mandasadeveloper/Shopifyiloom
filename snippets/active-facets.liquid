@@ -37,7 +37,7 @@ Supported variables
           {%- if section.settings.show_filter_group_name or filter.type == 'boolean' -%}
             {{- filter.label }}: {{ active_value.label -}}
           {%- else -%}
-            {{- active_value.label -}}
+            {{- active_value.label | remove: 'series: ' | remove: 'space: ' | remove: 'series : ' | remove: 'space : ' | remove: 'series :' | remove: 'space :' }}
           {%- endif -%}
 
           <a href="{{ active_value.url_to_remove }}" is="facet-link" class="tap-area" aria-label="{{ 'collection.faceting.remove_filter' | t: name: active_value.label }}" data-no-instant>{% render 'icon' with 'delete' %}</a>
@@ -55,7 +55,7 @@ Supported variables
       {%- capture default_url -%}{{ routes.search_url }}?q={{ search.terms }}&type=product&sort_by={{ search.sort_by }}{%- endcapture -%}
     {%- endif -%}
 
-    <a href="{{ default_url }}" is="facet-link" class="facet-clear-all text-subdued">
+    <a href="{{ default_url }}" is="facet-link" class="facet-clear-all text-subdued text-p text-p--14">
       <span class="link">{{ 'collection.faceting.clear_filters' | t }}</span>
     </a>
   {%- endif -%}
