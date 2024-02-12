@@ -11,6 +11,7 @@
         "title": {
           "type": "title",
           "settings": {
+            "heading_tag": "h2"
           }
         },
         "badges": {
@@ -21,11 +22,13 @@
         "price": {
           "type": "price",
           "settings": {
+            "show_taxes_notice": false
           }
         },
         "rating": {
           "type": "rating",
           "settings": {
+            "show_empty": false
           }
         },
         "payment_terms": {
@@ -41,11 +44,17 @@
         "description": {
           "type": "description",
           "settings": {
+            "collapse_content": false
           }
         },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
+            "hide_sold_out_variants": false,
+            "stack_blocks": true,
+            "selector_mode": "block",
+            "color_mode": "color",
+            "size_chart_page": ""
           }
         },
         "quantity_selector": {
@@ -56,11 +65,42 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
           }
         },
-        "pickup_availability": {
-          "type": "pickup_availability",
+        "growave_loyalty_wishlist_block_product_fave_button_fqeQCY": {
+          "type": "shopify:\/\/apps\/growave-loyalty-wishlist\/blocks\/block.product.faveButton\/b3d2efbe-110a-4e27-84a8-1f2ed63996a4",
           "settings": {
+            "textColor": "",
+            "backgroundColor": "",
+            "iconColor": "",
+            "boxShadow": "",
+            "hoverTextColor": "",
+            "hoverBackgroundColor": "",
+            "hoverBorderColor": "",
+            "hoverBoxShadow": "",
+            "margin": "",
+            "padding": "",
+            "buttonWidth": "",
+            "buttonHeight": "",
+            "mobileBreakpoint": "",
+            "mobileButtonWidth": "",
+            "fontSize": "",
+            "fontWeight": "",
+            "fontFamily": "",
+            "letterSpacing": "",
+            "textTransform": "",
+            "border": "",
+            "borderRadius": "",
+            "favedIconCode": "",
+            "favedIconSize": "",
+            "unFavedIconCode": "",
+            "unFavedIconSize": ""
           }
         }
       },
@@ -75,13 +115,50 @@
         "description",
         "variant_picker",
         "quantity_selector",
-        "buy_buttons"
+        "buy_buttons",
+        "growave_loyalty_wishlist_block_product_fave_button_fqeQCY"
       ],
       "settings": {
+        "full_width": true,
+        "show_fixed_add_to_cart": true,
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": "",
+        "basic_composition_heading": "",
+        "show_discount_button": false,
+        "discount_button_text": "",
+        "button_text": "Enter",
+        "frame-title": "关于帧大小",
+        "frame-detail": "床架的'规格'标记以床垫尺寸为准。 床架的实际测量规格请在下面的'尺寸'区域确认。",
+        "hide_frame_info": false,
+        "event_heading": "",
+        "event_details": ""
+      }
+    },
+    "1707280636afa1edb3": {
+      "type": "apps",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "1707280636afa1edb3"
   ]
 }

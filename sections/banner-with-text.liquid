@@ -1,0 +1,184 @@
+<div class="il-bannerWithText il-bannerWithText--{{section.id}}{% if section.settings.custom-class != blank %} {{ section.settings.custom-class }}{% endif %}">
+  <div class="il-bannerWithText__wrapper">
+    {% if section.settings['banner-image-mobile'] != blank %}
+      <picture>
+        <source media="(max-width:768px)" srcset="{{ section.settings.banner-image-mobile | img_url: "master" }}">
+        <img
+          class="il-bannerWithText__bannerImage"
+          src="{{ section.settings.banner-image | img_url: "master" }}"
+          alt="banner-image"
+        >
+      </picture>
+    {% else %}
+      <img
+        class="il-bannerWithText__bannerImage"
+        src="{{ section.settings.banner-image | img_url: "master" }}"
+        alt="banner-image"
+      >
+    {% endif %}
+    <div class="il-bannerWithText__content">
+      {% if section.settings.title != blank %}
+        <p class="il-bannerWithText__title">{{ section.settings.title }}</p>
+      {% else %}
+        <img class="il-bannerWithText__logo" src="{{ section.settings.logo | img_url: "master" }}" alt="logo">
+      {% endif %}
+      <div class="il-bannerWithText__description">{{ section.settings.description }}</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .il-bannerWithText__wrapper {
+    position: relative;
+  }
+
+  .il-bannerWithText__bannerImage {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .il-bannerWithText__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .il-bannerWithText__title {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-400);
+    text-transform: var(--text-uppercase);
+    text-align: center;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 1.8px;
+    margin-bottom: 20px;
+  }
+
+  .il-bannerWithText--{{section.id}} .il-bannerWithText__title {
+    color: {% if section.settings['font-color'] != blank %}{{ section.settings['font-color'] }}{% else %}var(--color-primary){% endif %};
+  }
+
+  .il-bannerWithText__logo {
+    width: 100%;
+    max-width: 120px;
+    margin-bottom: 20px;
+  }
+
+  .il-bannerWithText__description {
+    text-align: center;
+  }
+
+  .il-bannerWithText__description p,
+  .il-bannerWithText__description h5 {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-400);
+    text-align: center;
+    line-height: normal;
+  }
+
+  .il-bannerWithText--topBanner .il-bannerWithText__description p,
+  .il-bannerWithText--topBanner .il-bannerWithText__description h5 {
+    font-size: var(--font-size-36);
+  }
+
+  .il-bannerWithText--bottomBanner .il-bannerWithText__description p,
+  .il-bannerWithText--bottomBanner .il-bannerWithText__description h5 {
+    font-size: var(--font-size-20);
+  }
+
+
+  .il-bannerWithText--{{section.id}} .il-bannerWithText__description p,
+  .il-bannerWithText--{{section.id}} .il-bannerWithText__description h5 {
+    color: {{ section.settings.font-color }};
+  }
+
+  .il-bannerWithText__description h5 {
+    font-weight: var(--font-weight-500);
+  }
+
+  @media (max-width: 1200px) {
+    .il-bannerWithText--topBanner .il-bannerWithText__description p,
+    .il-bannerWithText--topBanner .il-bannerWithText__description h5 {
+      font-size: var(--font-size-28);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .il-bannerWithText--topBanner .il-bannerWithText__description p,
+    .il-bannerWithText--topBanner .il-bannerWithText__description h5 {
+      font-size: var(--font-size-22);
+    }
+
+    .il-bannerWithText--bottomBanner .il-bannerWithText__description p,
+    .il-bannerWithText--bottomBanner .il-bannerWithText__description h5 {
+      font-size: var(--font-size-12);
+    }
+
+    .il-bannerWithText__logo {
+      max-width: 68px;
+    }
+
+    .il-bannerWithText--bottomBanner .il-bannerWithText__bannerImage {
+      height: 150px;
+      object-fit: cover;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "banner with Text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner-image",
+      "label": "Banner"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner-image-mobile",
+      "label": "Banner Mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "About"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "font-color",
+      "label": "Font Color"
+    },
+    {
+      "type": "text",
+      "id": "custom-class",
+      "label": "Custom Class"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner with Text"
+    }
+  ]
+}
+{% endschema %}

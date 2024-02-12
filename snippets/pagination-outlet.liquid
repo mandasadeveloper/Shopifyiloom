@@ -1,0 +1,227 @@
+{%- comment -%}
+  ----------------------------------------------------------------------------------------------------------------------
+  PAGINATION COMPONENT
+  ----------------------------------------------------------------------------------------------------------------------
+
+  Create a pagination from the pagination object. To be use, this snippet must be included between a "paginate"/"endpaginate"
+  block
+
+  ********************************************
+  Supported variables
+  ********************************************
+
+  * paginate: the paginate object to use (required)
+  * facet: if set to true, it adds a "facet-link" custom elements to allow live reload of faceting search
+  * hash: a hash string that is appended to generated URL
+  * class: extra class being added to the container
+{%- endcomment -%}
+
+{%- if paginate.pages > 1 -%}
+  <nav class="{{ class }} pagination" role="navigation" aria-label="{{ 'general.accessibility.pagination' | t }}">
+    {%- assign firstLink = paginate.parts | where: 'is_link', true | first -%}
+    {%- assign lastLink = paginate.parts | where: 'is_link', true | last -%}
+    {% assign totalValues = paginate.parts.size %}
+
+    {% if firstLink %}
+      <li class="il-pagination__singleItem il-pagination__singleItem--first">
+        <a
+          href="?page=1"
+          {% if facet %}
+            is="facet-link"
+          {% endif %}
+          rel="next"
+          aria-label="{{ 'general.accessibility.go_to_page' | t: index: next_page }}"
+          class="pagination-link"
+        >
+          <span class="visuallyhidden">page</span>
+          <img
+            src="{{ 'Group_6497.png' | file_img_url }}"
+            class="il-pagination__itemImage"
+          >
+            
+        </a>
+      </li>
+    {% endif %}
+
+    {%- if paginate.previous.is_link -%}
+      {%- assign previous_page = paginate.current_page | minus: 1 -%}
+      <li>
+        <a
+          class="pagination__item group pagination-link"
+          {% if facet %}
+            is="facet-link"
+          {% endif %}
+          rel="prev"
+          aria-label="{{ 'general.accessibility.go_to_page' | t: index: previous_page }}"
+          href="{{ paginate.previous.url }}{{ hash }}"
+        >
+          <span class="animated-arrow animated-arrow--reverse"></span>
+        </a>
+      </li>
+    {%- else -%}
+      <li>
+        <span class="pagination__item pagination__item--disabled">
+          <span class="animated-arrow animated-arrow--reverse"></span>
+        </span>
+      </li>
+    {%- endif -%}
+
+    <ul class="il-pagination_wrapper">
+      {%- for part in paginate.parts -%}
+        {%- if part.is_link -%}
+          <li class="il-pagination__item">
+            <a
+              href="{{ part.url }}"
+              {% if facet %}
+                is="facet-link"
+              {% endif %}
+              rel="next"
+              aria-label="{{ 'general.accessibility.go_to_page' | t: index: next_page }}"
+              class="il-pagination__link"
+            >
+              <span class="visuallyhidden">page</span> {{ part.title }}
+            </a>
+          </li>
+        {%- else -%}
+          {%- if part.title == paginate.current_page -%}
+            <li class="pagination__current" aria-current="page">
+              <span class="visuallyhidden">page</span> {{ part.title }}
+            </li>
+          {%- else -%}
+            <li><span class="visuallyhidden">page</span> {{ part.title }}</li>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+    {%- if paginate.next.is_link -%}
+      {%- assign next_page = paginate.current_page | plus: 1 -%}
+      <li>
+        <a
+          class="pagination__item group pagination-link"
+          {% if facet %}
+            is="facet-link"
+          {% endif %}
+          rel="next"
+          href="{{ paginate.next.url }}{{ hash }}"
+        >
+          <span class="animated-arrow"></span>
+        </a>
+      </li>
+    {%- else -%}
+      <li>
+        <span class="pagination__item pagination__item--disabled">
+          <span class="animated-arrow"></span>
+        </span>
+      </li>
+    {%- endif -%}
+
+    {%- if lastLink -%}
+      <li class="il-pagination__singleItem il-pagination__singleItem--last">
+        <a
+          href="?page={{ totalValues }}"
+          {% if facet %}
+            is="facet-link"
+          {% endif %}
+          rel="next"
+          aria-label="{{ 'general.accessibility.go_to_page' | t: index: next_page }}"
+          class="pagination-link"
+        >
+          <span class="visuallyhidden">page {{ totalValues }}</span>
+          <img
+            src="{{ 'Group_6498.png' | file_img_url }}"
+            class="il-pagination__itemImage"
+          >
+        </a>
+      </li>
+    {%- endif -%}
+  </nav>
+{%- endif -%}
+
+<style>
+  .visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+  }
+
+  .il-pagination_wrapper li,
+  .il-pagination__item,
+  .collection__pagination li {
+    list-style: none;
+  }
+
+  .pagination__current {
+    padding: 0;
+  }
+
+  .il-pagination_wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .collection__pagination.pagination {
+    display: flex;
+    align-items: center;
+  }
+
+  .il-pagination_wrapper li {
+    padding: 10px 15px;
+    font-size: var(--font-size-16);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.48px;
+    text-transform: uppercase;
+    font-family: var(--font-tertiary);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .il-pagination_wrapper .pagination__current {
+    background: var(--color-light-beige);
+  }
+
+  .il-pagination__itemImage {
+    width: 100%;
+    max-width: 18px;
+  }
+
+  .pagination__item .animated-arrow:before {
+    border-block-start-width: 1px;
+    border-inline-end-width: 1px;
+  }
+
+  .load-more {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .load-more {
+      width: 100%;
+      padding: 12px 28px;
+      font-size: var(--font-size-14);
+      margin-top: 50px;
+      display: flex;
+      align-items: center;
+    }
+
+    .collection__pagination.pagination {
+      display: none;
+    }
+
+    .load-more__image {
+      width: 100%;
+      max-width: 24px;
+    }
+  }
+</style>

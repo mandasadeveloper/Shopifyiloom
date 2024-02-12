@@ -1,4 +1,12 @@
 {%- render 'section-spacing-collapsing' -%}
+<link rel="stylesheet" href="{{ 'section-main-product.css' | asset_url }}">
+<script defer src="{{ 'variants.js' | asset_url }}"></script>
+<script defer src="{{ 'product.js' | asset_url }}"></script>
+<script
+  src="https://iloom-react-assets.s3.ap-northeast-2.amazonaws.com/1.0/iloom-sidebar.js?v=184088495876431160121697099420"
+  async=""
+  type="module"
+></script>
 
 <style>
   #shopify-section-{{ section.id }} {
@@ -39,13 +47,24 @@
   }
 </style>
 
-<div {% render 'section-properties', tight: true %}>
-  <div class="product">
+{% assign collection = '' %}
+{% assign productEvent = product.metafields.custom.product_launch_event.value %}
+{% liquid
+  assign now = 'now' | date: '%Y-%m-%dT%H:%M'
+%}
+
+<div id="react-store"></div>
+
+<div {% render 'section-properties', narrow: true %}>
+  {% render 'breadcrumbs', collection: collection %}
+  <div class="product{% if productEvent.end_date < now %} product--eventEnd{% endif %}">
+    {% render 'product-info-mobile', product: product %}
+
     {%- if product.media.size > 0 -%}
       {%- render 'product-gallery', product: product -%}
     {%- endif -%}
 
-    {%- render 'product-info', product: product, update_url: true -%}
+    {%- render 'product-info', product: product, update_url: true, productEvent: productEvent -%}
   </div>
 </div>
 
@@ -54,19 +73,47 @@
 {%- if section.settings.show_fixed_add_to_cart and product.available and buy_buttons_block != blank -%}
   {%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
 
-  <product-quick-add form="{{ product_form_id }}" class="product-quick-add">
+  <product-quick-add
+    form="{{ product_form_id }}"
+    class="product-quick-add"
+    {% if productEvent.start_date >= now %}
+      hidden
+    {% endif %}
+    {{ block.shopify_attributes }}
+  >
     {%- assign button_label = 'product.general.add_to_cart_button' | t -%}
-
-    <buy-buttons template="{{ product.template_suffix }}" form="{{ product_form_id }}" force-secondary-button class="sm:hidden">
-      {%- render 'button', type: 'submit', content: button_label, form: product_form_id, background: buy_buttons_block.settings.atc_button_background, text_color: buy_buttons_block.settings.atc_button_text_color, secondary: true, stretch: true, size: 'lg' -%}
+    <div class="product-form__wishlist">
+      <button class="product-info__native-wishlist">
+        {%- render 'icon' with 'wishlist', width: 24, height: 24 -%}
+      </button>
+    </div>
+    <buy-buttons
+      template="{{ product.template_suffix }}"
+      form="{{ product_form_id }}"
+      force-secondary-button
+    >
+      {%- render 'button',
+        type: 'submit',
+        content: button_label,
+        form: product_form_id,
+        background: buy_buttons_block.settings.atc_button_background,
+        text_color: buy_buttons_block.settings.atc_button_text_color,
+        secondary: true,
+        stretch: true,
+        size: 'lg'
+      -%}
     </buy-buttons>
 
     {%- assign image = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
 
-    <div class="product-quick-add__variant {% if image == blank %}no-image{% endif %} hidden sm:grid">
+    <div class="product-quick-add__variant {% if image == blank %}no-image{% endif %} hidden">
       {%- if image != blank -%}
         <variant-media widths="80,160" form="{{ product_form_id }}">
-          {{- image | image_url: width: image.width | image_tag: loading: 'lazy', sizes: '80px', widths: '80,160', class: 'rounded-xs' -}}
+          {{-
+            image
+            | image_url: width: image.width
+            | image_tag: loading: 'lazy', sizes: '80px', widths: '80,160', class: 'rounded-xs'
+          -}}
         </variant-media>
       {%- endif -%}
 
@@ -78,21 +125,32 @@
         {%- endif -%}
 
         <a href="{{ product.url }}" class="bold truncate-text">{{ product.title }}</a>
-        {%- render 'price-list', product: product, variant: product.selected_or_first_available_variant, form_id: product_form_id -%}
+        {%- render 'price-list',
+          product: product,
+          variant: product.selected_or_first_available_variant,
+          form_id: product_form_id
+        -%}
       </div>
 
       <buy-buttons template="{{ product.template_suffix }}" form="{{ product_form_id }}" force-secondary-button>
-        {%- render 'button', type: 'submit', content: button_label, form: product_form_id, background: buy_buttons_block.settings.atc_button_background, text_color: buy_buttons_block.settings.atc_button_text_color, secondary: true -%}
+        {%- render 'button',
+          type: 'submit',
+          content: button_label,
+          form: product_form_id,
+          background: buy_buttons_block.settings.atc_button_background,
+          text_color: buy_buttons_block.settings.atc_button_text_color,
+          secondary: true
+        -%}
       </buy-buttons>
     </div>
   </product-quick-add>
 {%- endif -%}
 
 {%- comment -%}
-IMPLEMENTATION NOTE: Shopify does not currently allows to render a given section within the context of a given product. However,
-when rendering the quick buy popovers, we want to be able to re-use the merchant's choices (such as the selector type). This
-is however only possible by rendering the whole product page, and extracting the relevant part. Here, we therefore render the
-quick buy information in a template, that will be extracted in JS, but ensure it is not visible in the main product page
+  IMPLEMENTATION NOTE: Shopify does not currently allows to render a given section within the context of a given product. However,
+  when rendering the quick buy popovers, we want to be able to re-use the merchant's choices (such as the selector type). This
+  is however only possible by rendering the whole product page, and extracting the relevant part. Here, we therefore render the
+  quick buy information in a template, that will be extracted in JS, but ensure it is not visible in the main product page
 {%- endcomment -%}
 <template id="quick-buy-content">
   {%- capture product_form_id -%}quick-buy-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
@@ -102,13 +160,33 @@ quick buy information in a template, that will be extracted in JS, but ensure it
 
     {%- if image != blank -%}
       <variant-media widths="80,160" form="{{ product_form_id }}">
-        {{- image | image_url: width: image.width | image_tag: loading: 'lazy', sizes: '80px', widths: '80,160', class: 'quick-buy-drawer__media rounded-xs' -}}
+        {{-
+          image
+          | image_url: width: image.width
+          | image_tag: loading: 'lazy', sizes: '80px', widths: '80,160', class: 'quick-buy-drawer__media rounded-xs'
+        -}}
       </variant-media>
     {%- endif -%}
 
     <div class="v-stack gap-0.5">
+      {% liquid
+        echo '<p class="il-product__series text-p text-p--secondaryFont text-p--14">'
+        for tag in product.tags
+          if tag contains 'series:'
+            assign trimmedTag = tag | remove: 'series: ' | remove: 'series : ' | remove: 'series :' | downcase
+            echo '<span class="il-product__seriesItem">'
+            echo trimmedTag
+            echo '</span>'
+          endif
+        endfor
+        echo '</p>'
+      %}
       <a href="{{ product.url }}" class="bold justify-self-start">{{ product.title }}</a>
-      {%- render 'price-list', product: product, variant: product.selected_or_first_available_variant, form_id: product_form_id -%}
+      {%- render 'price-list',
+        product: product,
+        variant: product.selected_or_first_available_variant,
+        form_id: product_form_id
+      -%}
     </div>
   </div>
 
@@ -121,14 +199,45 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           {%- render block -%}
 
         {%- when 'variant_picker' -%}
-          {%- render 'variant-picker', product: product, form_id: product_form_id, update_url: false, hide_sold_out_variants: block.settings.hide_sold_out_variants, hide_size_chart: true, force_dropdown_as_block: true, block: block -%}
+          {%- render 'variant-picker',
+            product: product,
+            form_id: product_form_id,
+            update_url: false,
+            hide_sold_out_variants: block.settings.hide_sold_out_variants,
+            hide_size_chart: true,
+            force_dropdown_as_block: true,
+            block: block
+          -%}
 
         {%- when 'buy_buttons' -%}
-          {%- render 'buy-buttons', product: product, form_id: product_form_id, show_payment_button: block.settings.show_payment_button, button_size: 'lg' -%}
+          {%- render 'buy-buttons',
+            product: product,
+            form_id: product_form_id,
+            show_payment_button: block.settings.show_payment_button,
+            button_size: 'lg'
+          -%}
       {%- endcase -%}
     {%- endfor -%}
   </div>
 </template>
+
+{% render 'basic-composition-drawer' %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let collectionTitle = `{{ product.collections[0].title }}`;
+    let collectionLink = `{{ product.collections[0].url }}`;
+    let dataElement = document.querySelector('[data-collection-name]');
+
+    if (dataElement) {
+      dataElement.innerText = collectionTitle;
+      dataElement.setAttribute('href', collectionLink);
+    } else {
+      let data = document.querySelector('[data-collection]');
+      data.style.display = 'none';
+    }
+  });
+</script>
 
 {% schema %}
 {
@@ -138,6 +247,11 @@ quick buy information in a template, that will be extracted in JS, but ensure it
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "product_event",
+      "name": "Product Event",
+      "limit": 1
     },
     {
       "type": "vendor",
@@ -254,6 +368,30 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "id": "collapse_content",
           "label": "Collapse content",
           "default": false
+        }
+      ]
+    },
+    {
+      "name": "Product Add-ons",
+      "type": "addon_products",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_erp",
+          "label": "Show ERP",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "erp_heading",
+          "label": "ERP Heading",
+          "default": "在商店的经验"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
         }
       ]
     },
@@ -1096,6 +1234,40 @@ quick buy information in a template, that will be extracted in JS, but ensure it
           "default": "start"
         }
       ]
+    },
+    {
+      "name": "Event & Outlet Details",
+      "type": "product_event_outlet",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Product Event"
+        },
+        {
+          "type": "text",
+          "id": "heading_event",
+          "label": "Event Details Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "content_event",
+          "label": "Event Details Content"
+        },
+        {
+          "type": "header",
+          "content": "Product Outlet"
+        },
+        {
+          "type": "text",
+          "id": "heading_outlet",
+          "label": "Outelet Details Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "content_outlet",
+          "label": "Outelet Details Content"
+        }
+      ]
     }
   ],
   "settings": [
@@ -1154,7 +1326,7 @@ quick buy information in a template, that will be extracted in JS, but ensure it
       "default": "carousel_thumbnails_left"
     },
     {
-      "type":"select",
+      "type": "select",
       "id": "mobile_media_size",
       "label": "Mobile media size",
       "options": [
@@ -1260,6 +1432,60 @@ quick buy information in a template, that will be extracted in JS, but ensure it
       "type": "color",
       "id": "input_text_color",
       "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "basic_composition_heading",
+      "label": "Composition Popup Heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "composition_image",
+      "label": "Composition Popup Image"
+    },
+    {
+      "type": "header",
+      "content": "Discount Popup"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_discount_button",
+      "label": "Show Discount Popup",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "discount_button_icon",
+      "label": "Discount Button Icon"
+    },
+    {
+      "type": "text",
+      "id": "discount_button_text",
+      "label": "Discount Button Text"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Newsletter Button Text",
+      "default": "Enter"
+    },
+    {
+      "type": "text",
+      "id": "frame-title",
+      "label": "Frame Info Title",
+      "default": "关于帧大小"
+    },
+    {
+      "type": "text",
+      "id": "frame-detail",
+      "label": "Frame Info Detail",
+      "default": "床架的'规格'标记以床垫尺寸为准。 床架的实际测量规格请在下面的'尺寸'区域确认。"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_frame_info",
+      "label": "Hide Frame Info",
+      "default": false
     }
   ]
 }
