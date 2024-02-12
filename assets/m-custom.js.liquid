@@ -201,119 +201,14 @@ $(selectAllItems).click(function() {
 });
 
 //  mk-mds check box update
-let priceupdate = [];
-$(".order-summary__body .cart__row").each(function() {
-    var item_id = $(this).attr('data-prd-id');
-    priceupdate.push(item_id);
-});
-console.log("data---" , priceupdate);
-
-// $(".checkbox-item").on("click", function(){
-//     var updates = {};
-//     var item_id1 = $(this).closest('.cart__row').attr('data-prd-id');
-//     var qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
-//     var selectedItemPrice =  $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
-//     console.log("Price1:", selectedItemPrice);
-//     // console.log("selectedItemPrice1:", selectedItemPrice);
-//     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
-//     else removeItem(item_id1,qty,selectedItemPrice);
+// let priceupdate = [];
+// $(".order-summary__body .cart__row").each(function() {
+//     var item_id = $(this).attr('data-prd-id');
+//     priceupdate.push(item_id);
 // });
-function addItem(id,qty,selectedItemPrice){
-  fetch(window.Shopify.routes.root + 'cart/add.js', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-     body: JSON.stringify({ item:[
-      {
-        id,quantity:qty
-      }
-    ]})
-    
-    })
-    .then(response => {
-      return response.json();
-    })
-    .then((state) => {
-      console.log("stateadd" ,state);
-      updateCartCounter();
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
+// console.log("data---" , priceupdate);
 
-function removeItem(id,qty,selectedItemPrice){
-    let updates = {};
-  fetch(window.Shopify.routes.root + 'cart/update.js', {
-    method: 'POST',
-    headers: {
-     'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ update:{
-          id,quantity:0
-        }
-      })
-      // body: JSON.stringify({updates})
-    })
-    
-    .then(response => {
-      return response.json();
-    })
-    
-    .then((state) => {
-      console.log("stateremove" ,state);
-      updateCartCounter();
-    let total = state.items_subtotal_price;
-        // const totalPrice = $(state).find('.total-price').text(); // Adjust selector as needed
-        // const formattedPrice = "{{ " + total + " | money }}"; // Adjust the Liquid syntax as needed
-        // var totalPrice = state.total_price;
 
-        // Update the total price display on the page
-        // const formattedPrice =   $('.total-price').html(Shopify.formatMoney(totalPrice));
-        // console.log("formattedPrice",formattedPrice);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
-
-// document.addEventListener('theme:variant:change', function(event) {
-//     var variant = event.detail.variant;
-//     var container = event.target;
-//     if (variant) {
-//       console.log('Container ———————— ↓');
-//       console.log(container);
-//       console.log('Variant —————————— ↓');
-//       console.log(variant);
-//     }
-//   });
-
-//   document.addEventListener('theme:cart:change', function(event) {
-//     var cart = event.detail.cart;
-//     if (cart) {
-//       console.log('Cart ———————————— ↓');
-//       console.log(cart);
-//     }
-//   });
-
-// function updateCartCounterdata(selectedItemPrice) {
-// fetch('/cart.js')
-//         .then(response => response.json())
-//           .then(data => {
-//             // Calculate subtotal of selected item
-//             let subtotal = selectedItemPrice * data.items[0].quantity; // Assuming only one item is selected
-//             alert(subtotal);
-//             // Calculate new total price
-//             let totalPrice = parseFloat(data.total_price) - subtotal;
-            
-//             // Update UI
-//             document.querySelector('.total-price').innerText = totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-//         })
-//         .catch(error => {
-//             console.error('Error fetching cart data:', error);
-//         });
-// }
 
 //remove checked items
 $(".delete-product").on("click", function() {
