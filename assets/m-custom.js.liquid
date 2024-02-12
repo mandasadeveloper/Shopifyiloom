@@ -413,10 +413,15 @@ $( ".checkbox-item" ).on( "change", function() {
   // Do something based on the checkbox state
   if (isChecked) {
     console.log("Checkbox is checked");
-    // Perform some action
+    
   } else {
     console.log("Checkbox is unchecked");
-    // Perform some other action
+    var updatedQuantity = 0;
+    console.log(updatedQuantity);
+    var variantId = $(this).parents('.cart__row').attr('data-prd-id');
+    console.log(variantId);
+    var updates = {};
+    
   }
 } );
 // check event
