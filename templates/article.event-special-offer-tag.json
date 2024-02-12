@@ -20,9 +20,16 @@
       ],
       "settings": {
       }
+    },
+    "social_sharing1_btnzqw": {
+      "type": "social-sharing1",
+      "settings": {
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "f4b1081a-c672-4172-81d2-f8b33aee6a3c",
+    "social_sharing1_btnzqw"
   ]
 }
