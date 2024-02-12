@@ -4139,6 +4139,5 @@ line-height: 256.3%;
 
 
 .predictive-search1 .predictive-search__tabs {
-    gap: var(--spacing-6);
     gap: 40px;
 }
