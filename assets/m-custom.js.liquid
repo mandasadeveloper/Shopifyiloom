@@ -437,6 +437,7 @@ $( ".checkbox-item" ).on( "change", function() {
       return response.text();
     })
     .then((state) => {
+      console.log(state);
       const parsedState = JSON.parse(state);
         // if (window.location.href.indexOf("cart") > -1) {
         // $.ajax({
