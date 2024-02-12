@@ -4136,3 +4136,9 @@ line-height: 256.3%;
 .line-through {
     text-decoration-color: gray!important;
 }
+
+
+.predictive-search1 .predictive-search__tabs {
+    gap: var(--spacing-6);
+    gap: 40px;
+}
