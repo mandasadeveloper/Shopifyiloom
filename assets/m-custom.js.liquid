@@ -250,10 +250,14 @@ function removeItem(id,qty,selectedItemPrice){
     headers: {
      'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ update:{
-          id,quantity:0
-        }
+     body: JSON.stringify({
+            updates: {
+                [id]: 0 // Set the quantity of the item with the given id to 0
+            }
+        })
       })
+
+    
       // body: JSON.stringify({updates})
     })
     
