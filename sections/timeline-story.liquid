@@ -1,0 +1,250 @@
+<div class="il-timelineStory">
+  <div class="il-timelineStory__container">
+    {% for block in section.blocks %}
+      <div class="il-timelineStory__card">
+        <p class="il-timelineStory__year">{{ block.settings.year }}</p>
+        <p class="il-timelineStory__title">{{ block.settings.title }}</p>
+        <div class="il-timelineStory__description">{{ block.settings.description }}</div>
+        <div class="il-timelineStory__imgWrapper">
+          <img class="il-timelineStory__img" src="{{ block.settings.image-id | img_url: "master" }}" alt="img">
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .il-timelineStory {
+    padding: 0 48px;
+    padding-top: {{ section.settings.padding-top }}px;
+    padding-bottom: {{ section.settings.padding-bottom }}px;
+    border-top: 1px dashed var(--color-grey-04);
+  }
+
+  .il-timelineStory__container {
+    max-width: 1720px;
+    margin:  0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .il-timelineStory__card {
+    flex-basis: 16.66%;
+  }
+
+  .il-timelineStory__year {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-20);
+    font-weight: var(--font-weight-500);
+    text-transform: var(--text-capitalize);
+    line-height: normal;
+  }
+
+  .il-timelineStory__title {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-500);
+    text-transform: var(--text-capitalize);
+    line-height: normal;
+    letter-spacing: -0.36px;
+    margin: 8px 0;
+  }
+
+  .il-timelineStory__description {
+    height: 80px;
+  }
+
+  .il-timelineStory__description p {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-400);
+    text-transform: var(--text-capitalize);
+    line-height: normal;
+  }
+
+  .il-timelineStory__imgWrapper {
+    margin-top: 26px;
+    width: auto;
+  }
+
+  .il-timelineStory__img {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 1500px) {
+    .il-timelineStory__title {
+      height: 35px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .il-timelineStory__description {
+      height: 110px;
+    }
+
+    .il-timelineStory__title {
+      height: 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .il-timelineStory {
+      border-top: none;
+      padding: 32px 0px 36px 20px;
+    }
+
+    .il-timelineStory__container {
+      flex-wrap: nowrap;
+      gap: 20px;
+      overflow: scroll;
+      justify-content: flex-start;
+      padding-bottom: 22px;
+    }
+
+    .il-timelineStory__container {
+      flex-wrap: nowrap;
+      gap: 20px;
+      overflow: scroll;
+      overflow-y: hidden;
+      justify-content: flex-start;
+      padding-bottom: 22px;
+    }
+
+    .il-timelineStory__card {
+      flex: none;
+    }
+
+    .il-timelineStory__container::-webkit-scrollbar {
+      height: 2px;
+    }
+
+    .il-timelineStory__container::-webkit-scrollbar-thumb {
+      background: var(--color-grey-07);
+    }
+
+    .il-timelineStory__container::-webkit-scrollbar-track {
+      margin: 12px;
+      background: var(--color-grey-05);
+    }
+
+    .il-timelineStory__year {
+      font-size: var(--font-size-16);
+    }
+
+    .il-timelineStory__title {
+      font-size: var(--font-size-12);
+      letter-spacing: -0.36px;
+      margin: 12px 0 8px;
+    }
+
+    .il-timelineStory__description p {
+      font-size: var(--font-size-10);
+    }
+
+    .il-timelineStory__imgWrapper {
+      margin-top: 43px;
+    }
+
+    .il-timelineStory__img {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .il-timelineStory__container {
+      gap: 0;
+      margin-bottom: 36px;
+    }
+
+    .il-timelineStory {
+      padding: 0;
+    }
+
+    .il-timelineStory__card {
+      flex-basis: 50%;
+      padding-left: 8px;
+      min-width: 60%;
+    }
+
+    .il-timelineStory__container {
+      margin-left: 12px;
+    }
+
+    .il-timelineStory__description {
+      height: 60px;
+    }
+
+    .il-timelineStory__imgWrapper {
+      margin-top: 20px;
+    }
+
+    .il-timelineStory__title {
+      height: auto;
+    } 
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Timeline Story",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding-top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding-bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline",
+      "name": "Timeline",
+      "settings": [
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image-id",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Timeline Story"
+    }
+  ]
+}
+{% endschema %}

@@ -22,7 +22,7 @@
     },
     "social": {
       "follow_on": "Follow on {{ social_media }}",
-      "share": "Share",
+      "share": "分享到",
       "share_on": "Share on {{ social_media }}",
       "share_email": "Share by email"
     },
@@ -69,17 +69,17 @@
     "general": {
       "description": "Description",
       "view_product": "View product",
-      "quick_add": "+ Quick add",
+      "quick_add": "Cart",
       "add_to_cart_short": "+ Add",
-      "add_to_cart_button": "Add to cart",
+      "add_to_cart_button": "装菜篮子",
       "pre_order_button": "Pre-order",
       "sold_out_button": "Sold out",
       "unavailable_button": "Unavailable",
       "added_to_cart": "Added to your cart!",
       "sold_out_badge": "Sold out",
       "on_sale_badge": "On sale",
-      "discount_badge_html": "Save {{ savings }}",
-      "sku": "SKU:",
+      "discount_badge_html": "{{ savings }} OFF",
+      "sku": "品號",
       "variant": "Variant",
       "view_in_space": "View in your space",
       "taxes_included": "Tax included.",
@@ -99,12 +99,15 @@
     "price": {
       "regular_price": "Regular price",
       "sale_price": "Sale price",
-      "from_price_html": "From {{ price_min }}"
+      "from_price_html": "{{ price_min }}"
     },
     "quantity": {
-      "label": "Quantity",
+      "label": "數量",
       "increase_quantity": "Increase quantity",
       "decrease_quantity": "Decrease quantity"
+    },
+    "total_price": {
+      "label": "订货金额"
     },
     "rating_count": {
       "zero": "No reviews",
@@ -143,9 +146,10 @@
     },
     "faceting": {
       "filters": "Filters",
-      "filter_and_sort": "Filter and sort",
+      "filter_and_sort": "商品排序",
+      "filter_and_series": "系列搜尋",
       "filter_button": "Filter",
-      "clear_filters": "Clear all",
+      "clear_filters": "全部清除",
       "apply_filters": "Apply",
       "sort_by": "Sort by",
       "remove_filter": "Remove filter \"{{ name }}\"",
@@ -162,11 +166,11 @@
       "empty_blog": "This blog is empty",
       "back_to_home": "Back to home",
       "view": "View",
-      "all_posts": "All"
+      "all_posts": "All posts"
     },
     "post": {
       "written_by": "By {{ author }}",
-      "share": "分享",
+      "share": "Share",
       "tags": "Tags",
       "continue_reading": "Reading next"
     },
@@ -174,7 +178,7 @@
       "leave_comment": "Leave a comment",
       "moderated": "All comments are moderated before being published.",
       "name": "Name",
-      "email": "電子郵件",
+      "email": "E-mail",
       "message": "Message",
       "submit": "Submit",
       "comment_sent": "Your comment has been sent. We will publish it in a little while, as our blog is moderated.",
@@ -189,7 +193,7 @@
   "contact": {
     "form": {
       "name": "Name",
-      "email": "電子郵件",
+      "email": "E-mail",
       "message": "Message",
       "submit": "Send message",
       "success_message": "Your message has been sent."
@@ -206,43 +210,43 @@
       "continue_shopping": "Continue shopping"
     },
     "login": {
-      "title": "登入",
-      "email": "電子郵件",
-      "password": "密碼",
-      "submit": "登入",
-      "forgot_password": "忘記密碼了嗎？",
-      "sign_up": "報名"
+      "title": "Login",
+      "email": "E-mail",
+      "password": "Password",
+      "submit": "Login",
+      "forgot_password": "Forgot your password?",
+      "sign_up": "Sign up"
     },
     "recover_password": {
-      "title": "恢復密碼",
-      "email": "電子郵件",
-      "submit": "恢復",
-      "back_to_login": "回到登入",
-      "success_message": "一封電子郵件已發送到您的地址，其中包含重設密碼的說明。"
+      "title": "Recover password",
+      "email": "E-mail",
+      "submit": "Recover",
+      "back_to_login": "Back to login",
+      "success_message": "An e-mail has been sent to your address with instructions to reset your password."
     },
     "register": {
-      "title": "報名",
-      "first_name": "名",
-      "last_name": "姓",
-      "email": "電子郵件",
-      "password": "密碼",
+      "title": "Sign up",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "E-mail",
+      "password": "Password",
       "accepts_marketing": "Register to our newsletter",
-      "submit": "加入",
-      "login": "登入"
+      "submit": "Create account",
+      "login": "Login"
     },
     "activate_account": {
       "title": "Activate account",
-      "instructions": "輸入密碼以建立您的帳戶：",
-      "password": "密碼",
-      "password_confirmation": "確認密碼",
+      "instructions": "Enter a password to create your account:",
+      "password": "Password",
+      "password_confirmation": "Password confirmation",
       "submit": "Activate",
       "cancel": "Cancel"
     },
     "reset_password": {
-      "title": "重新設密碼",
-      "password": "密碼",
-      "password_confirmation": "確認密碼",
-      "submit": "重置"
+      "title": "Reset password",
+      "password": "Password",
+      "password_confirmation": "Password confirmation",
+      "submit": "Reset"
     },
     "order": {
       "order": "Order",
@@ -280,8 +284,8 @@
       "address_title": "Address {{ position }}",
       "delete_confirm": "Remove this address? Once confirmed, this action cannot be undone.",
       "fill_form": "Please fill in the information below:",
-      "first_name": "名",
-      "last_name": "姓",
+      "first_name": "First name",
+      "last_name": "Last name",
       "company": "Company",
       "phone": "Phone number",
       "address1": "Address 1",
@@ -300,27 +304,27 @@
       "continue_shopping": "Continue shopping",
       "weight": "Weight",
       "subtotal": "Subtotal",
-      "total": "總金額",
+      "total": "總計(含運費)",
       "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\" class=\"link\">shipping<\/a> calculated at checkout",
-      "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
+      "taxes_included_but_shipping_at_checkout": "在支付頁面上會顯示遠距離運費及促銷優惠。",
       "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\" class=\"link\">Shipping<\/a> calculated at checkout.",
-      "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout",
+      "taxes_and_shipping_at_checkout": "在支付頁面上會顯示遠距離運費及促銷優惠。",
       "add_order_note": "Add order note",
       "edit_order_note": "Edit order note",
       "order_note": "Order note",
       "save_note": "Save",
-      "view_cart": "View cart",
+      "view_cart": "查看購物車",
       "checkout": "Checkout",
       "we_accept": "We accept"
     },
     "order": {
-      "product": "商品",
-      "total": "價格",
-      "quantity": "數量",
+      "product": "Product",
+      "total": "Total",
+      "quantity": "Quantity",
       "change_quantity": "Change quantity",
       "increase_quantity": "Increase quantity",
       "decrease_quantity": "Decrease quantity",
-      "remove": "Remove"
+      "remove": "删除"
     },
     "free_shipping_bar": {
       "limit_unreached_html": "Spend {{ remaining_amount }} more and get free shipping!",
@@ -349,11 +353,11 @@
       "title": "Search",
       "terms": "Results for \"{{ terms }}\"",
       "search_placeholder": "Search for...",
-      "products": "產品",
-      "suggestions": "建議",
-      "collections": "收藏",
-      "posts": "部落格文章",
-      "pages": "頁數",
+      "products": "Products",
+      "suggestions": "Suggestions",
+      "collections": "Collections",
+      "posts": "Blog posts",
+      "pages": "Pages",
       "clear": "Clear",
       "view_all": "View all",
       "view_all_results": "View all results",
@@ -395,7 +399,7 @@
       "follow_us": "Follow us",
       "powered_by": "This shop is powered by",
       "store_owner": "Store owner?",
-      "login": "登入"
+      "login": "Login"
     },
     "storefront_access": {
       "enter_password": "Enter using password",
@@ -417,24 +421,21 @@
     }
   },
   "shopify": {
-    "checkout": {
-      "general": {
-        "cart": "商品"
-      },
-      "contact": {
-        "last_name_label": "姓",
-        "optional_last_name_label": "姓氏（可選）"
+    "collections": {
+      "sorting": {
+        "price_ascending": "價格: 由低至高",
+        "price_descending": "價格: 由高至低",
+        "date_ascending": "上架時間: 由舊到新",
+        "date_descending": "上架時間: 由新到舊"
       }
-    },
-    "page_titles": {
-      "products": "產品"
     }
   },
   "customer_accounts": {
-    "account_information": {
-      "profile_card": {
-        "last_name": "姓",
-        "first_name": "名"
+    "orders": {
+      "order_list": {
+        "filter": {
+          "clear_all": "全部清除"
+        }
       }
     }
   }

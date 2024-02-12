@@ -1,0 +1,323 @@
+<div class="il-verticalSlider">
+  <div class="il-verticalSlider__header">
+    <p class="il-verticalSlider__heading">{{ section.settings.title }}</p>
+  </div>
+  <div class="il-verticalSlider__wrapper">
+    <div class="il-verticalSlider__swiper swiper" data-vertical-slider>
+      <div class="il-verticalSlider__swiperWrapper swiper-wrapper">
+        {% for block in section.blocks %}
+          <div class="il-verticalSlider__container swiper-slide">
+            <div class="il-verticalSlider__contentWrapper">
+              <div class="il-verticalSlider__imgwrapper">
+                <img
+                  class="il-verticalSlider__img"
+                  src="{{ block.settings['slide-image'] | img_url: "master" }}"
+                  alt="image"
+                >
+              </div>
+              <div class="il-verticalSlider__content il-verticalSlider__content--{{ block.id }}">
+                <div class="il-verticalSlider__innerContent">
+                  <div class="il-verticalSlider__slideNumberContainer">
+                    <p class="il-verticalSlider__slideNumber il-verticalSlider__slideNumber--{{ block.id }}">
+                      {{ block.settings['slide-number'] }}
+                    </p>
+                  </div>
+                  <p class="il-verticalSlider__slideTitle">{{ block.settings['slide-title'] }}</p>
+                  <div class="il-verticalSlider__slideDescription">
+                    {{ block.settings['slide-description'] }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-scrollbar" data-scrollbar></div>
+    </div>
+  </div>
+</div>
+<style>
+  .il-verticalSlider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-top: {{ section.settings.padding-top }}px;
+    padding-bottom: {{ section.settings.padding-bottom }}px;
+  }
+
+  .il-verticalSlider__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .il-verticalSlider__heading {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-500);
+    text-transform: var(--text-uppercase);
+    text-align: center;
+    line-height: normal;
+    letter-spacing: 1.8px;
+  }
+
+  .il-verticalSlider__wrapper {
+    width: 100%;
+  }
+
+  .il-verticalSlider__container {
+    height: auto !important;
+  }
+
+  .il-verticalSlider__contentWrapper {
+    display: flex;
+  }
+
+  .il-verticalSlider__imgwrapper {
+    flex-basis: 50%;
+  }
+
+  .il-verticalSlider__img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .il-verticalSlider__content {
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  {% for block in section.blocks %}
+    .il-verticalSlider__content--{{ block.id }} {
+      background: {% if block.settings.bg-color != blank %}{{ block.settings.bg-color }}{% else %}var(--color-white){% endif %};
+    }
+
+    .il-verticalSlider__slideNumber--{{ block.id }} {
+      color:{% if block.settings.bg-color != blank %}{{ block.settings.bg-color }}{% else %}var(--color-primary){% endif %};
+    }
+  {% endfor %}
+
+  .il-verticalSlider__slideNumberContainer {
+    display: inline-flex;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    background: var(--color-ivory);
+  }
+
+  .il-verticalSlider__slideNumber {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-500);
+    text-transform: var(--text-capitalize);
+    text-align: center;
+    line-height: normal;
+    letter-spacing: 1.6px;
+  }
+
+  .il-verticalSlider__slideTitle {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-30);
+    font-weight: var(--font-weight-400);
+    text-transform: var(--text-uppercase);
+    color: var(--color-ivory);
+    line-height: normal;
+    letter-spacing: 3px;
+    padding: 14px 0 20px;
+  }
+
+  .il-verticalSlider__slideDescription p {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-400);
+    text-transform: var(--text-capitalize);
+    color: var(--color-ivory);
+    line-height: normal;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .il-verticalSlider__swiper .swiper-scrollbar {
+    background: var(--color-primary);
+    left: 50%;
+  }
+
+  .il-verticalSlider__swiper .swiper-scrollbar-drag {
+    background: var(--color-white);
+  }
+
+  .il-verticalSlider__swiper .swiper-scrollbar.swiper-scrollbar-vertical, .swiper-vertical>.swiper-scrollbar {
+    width: var(--swiper-scrollbar-size,2px);
+  }
+
+  @media (max-width: 1200px) {
+    .il-verticalSlider__content {
+      padding: 0 20px;
+    }
+
+    .il-verticalSlider__innerContent {
+      width: 100%;
+    }
+  }
+
+  @media(max-width: 768px) {
+    .il-verticalSlider__contentWrapper {
+      flex-direction: column;
+    }
+
+    .il-verticalSlider__imgwrapper {
+      flex-basis: 100%;
+    }
+
+    .il-verticalSlider__content {
+      flex-basis: 100%;
+      padding: 32px 20px 50px;
+    }
+
+    .il-verticalSlider__innerContent {
+      width: 100%;
+    }
+
+    .il-verticalSlider__slideNumber {
+      font-size: var(--font-size-12);
+    }
+
+    .il-verticalSlider__slideTitle {
+      font-size: var(--font-size-18);
+      padding: 12px 0 10px;
+    }
+
+    .il-verticalSlider__slideDescription p {
+      font-size: var(--font-size-12);
+    }
+
+    .il-verticalSlider__swiper .swiper-scrollbar {
+      left: 15px;
+      width: calc(100% - 30px);
+      height: 2px;
+      margin: 20px auto;
+      bottom: 0;
+      top: auto;
+    }
+
+    .il-verticalSlider {
+      gap: 0;
+      padding-top: 60px;
+    }
+
+    .il-verticalSlider__header {
+      margin-bottom: 20px;
+    }
+
+    .il-verticalSlider__heading {
+      font-size: var(--font-size-14);
+    }
+  }
+</style>
+
+<script>
+  var swiperVerticle = new Swiper('[data-vertical-slider]', {
+    direction: 'vertical',
+    autoHeight: true,
+    slidesPerView: 1,
+    keyboard: {
+      enabled: true,
+      onlyInViewport: false,
+    },
+    breakpoints: {
+      280: {
+        direction: 'horizontal',
+      },
+      768: {
+        direction: 'vertical',
+      },
+    },
+    scrollbar: {
+      el: '[data-scrollbar]',
+    },
+    mousewheel: {
+      enable: true,
+      releaseOnEdges: true,
+    },
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Vertical Image Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "BRAND HOUSE"
+    },
+    {
+      "type": "range",
+      "id": "padding-top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding-bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slider",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide-image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "slide-number",
+          "label": "Slide Number"
+        },
+        {
+          "type": "text",
+          "id": "slide-title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "slide-description",
+          "label": "Description"
+        },
+        {
+          "type": "color",
+          "id": "bg-color",
+          "label": "Background Color"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vertical Image Slider"
+    }
+  ]
+}
+{% endschema %}

@@ -16,90 +16,24 @@ Supported variables
 
 {%- case type -%}
   {%- when 'product' -%}
-  
     {%- assign product = item -%}
 
-    <a href="{{ product.url }}" data-instant class="predictive-search-result group pro-r-m">
+    <a href="{{ product.url }}" data-instant class="predictive-search-result group">
       {%- if product.featured_media -%}
         {{- product.featured_media | image_url: width: product.featured_media.width | image_tag: sizes: '96px', widths: '96,192' -}}
       {%- endif -%}
 
       <div class="v-stack gap-1 sm:gap-1.5">
         {%- if settings.show_vendor -%}
-          <!-- <span class="text-xs text-subdued">{{ product.vendor }}</span> -->
+          <span class="text-xs text-subdued">{{ product.vendor }}</span>
         {%- endif -%}
 
-        <div class="v-stack m-pro-cus justify-items-start gap-0.5">
-   <span class="mm-vendor hh">
-        {% for tag in product.tags %}
-        {% if tag contains "series:" %}
-          {% assign tag_split = tag | split: 'series:' %}
-           <p>{{ tag_split[1] }}</p>
-        {% endif %}
-      {% endfor %}
-       <!-- {{ product.vendor }} -->
-               </span>
+        <div class="v-stack justify-items-start gap-0.5">
           <span class="bold">
             <span class="reversed-link">{{ product.title }}</span>
           </span>
 
           {%- render 'price-list', product: product -%}
- {%- if settings.product_color_display != 'hide' and show_swatches != false -%}
-      {%- assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
-
-      {%- for color_label in color_label_list -%}
-        {%- if product.options_by_name[color_label] != blank -%}
-          {%- assign product_option = product.options_by_name[color_label] -%}
-          {%- capture name -%}swatch-{{ section.id }}-{{ product.id }}-{{ product_option.position }}{%- endcapture -%}
-
-          <div class="product-card__aside">
-            {%- case settings.product_color_display -%}
-              {%- when 'count' -%}
-                <p class="product-card__color-count text-sm text-subdued">{{- 'product.general.available_colors_count' | t: count: product_option.values.size -}}</p>
-
-              {%- when 'swatch' -%}
-                <fieldset class="product-card__swatch-list h-stack {% if settings.color_swatch_style == 'rectangle' %}gap-2.5{% else %}gap-0.5{% endif %}" data-option-position="{{ product_option.position }}">
-                  {%- for option_value in product_option.values limit: 4 -%}
-                    {%- if forloop.first or product.selected_or_first_available_variant.matched and option_value == product_option.selected_value -%}
-                      {%- assign selected = true -%}
-                    {%- else -%}
-                      {% assign selected = false %}
-                    {%- endif -%}
-
-                    {%- render 'swatch', type: 'colors', value: option_value, name: name, size: 'sm', selected: selected -%}
-                  {%- endfor -%}
-
-                  {% if product_option.values.size > 4 %}
-                    <a href="{{ product.url }}" data-instant class="color-swatch__view-more {% if settings.color_swatch_style == 'round' %}rounded-full{% endif %} text-xxs text-subdued">+{{ product_option.values.size | minus: 4 }}</a>
-                  {% endif %}
-                </fieldset>
-
-              {%- when 'variant' -%}
-                <fieldset class="product-card__variant-list" data-option-position="{{ product_option.position }}">
-                  {%- for option_value in product_option.values limit: 4 -%}
-                    {%- assign variant_option = 'option' | append: product_option.position -%}
-                    {%- assign variant_for_value = product.variants | where: variant_option, option_value | first -%}
-
-                    {%- if forloop.first or variant_for_value.matched and option_value == product_option.selected_value -%}
-                      {%- assign selected = true -%}
-                    {%- else -%}
-                      {% assign selected = false %}
-                    {%- endif -%}
-
-                    {%- render 'swatch', type: 'thumbnail', image: variant_for_value.featured_media, value: option_value, name: name, size: 'sm', selected: selected -%}
-                  {%- endfor -%}
-
-                  {%- if product_option.values.size > 4 -%}
-                    <a href="{{ product.url }}" data-instant class="thumbnail-swatch__view-more text-xs text-subdued">+{{ product_option.values.size | minus: 4 }}</a>
-                  {%- endif -%}
-                </fieldset>
-              {%- endcase -%}
-          </div>
-
-          {%- break -%}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endif -%}
         </div>
       </div>
     </a>
@@ -112,38 +46,20 @@ Supported variables
     </a>
 
   {%- when 'article' -%}
-
     {%- assign article = item -%}
 
-    <a href="{{ article.url }}" data-instant class="predictive-search-result group m-blog-cus">
+    <a href="{{ article.url }}" data-instant class="predictive-search-result group">
       {%- if article.image -%}
         {{- article.image | image_url: width: article.image.width | image_tag: sizes: '96px', widths: '96,192' -}}
       {%- endif -%}
-   
 
-          {%liquid
-          assign split_1 = article.url | split: '/blogs/'
-          assign split_2 = split_1[1] | split: '/'
-          assign blog_handle = split_2[0] | strip
-          assign article_blog = blogs[blog_handle]
-          %}
-          
-
-      
       <div class="v-stack justify-items-start gap-2 sm:gap-3">
         {%- if section.settings.show_article_category and article.tags.size > 0 -%}
-          <!-- <span class="badge badge--primary">{{ article.tags | first }}</span> -->
-          <span class="badge badge--primary"> {{ article_blog.title }}</span> 
-            <span class="reversed-link rm-reversed-link">{{ article.blog.title }}</span>
+          <span class="badge badge--primary">{{ article.tags | first }}</span>
         {%- endif -%}
 
         <span class="bold">
-          <span class="reversed-link m-blog-art">{{ article.title }}</span>
-            <span class="reversed-link">{{ blog.title }}</span>
-
-
-
-  
+          <span class="reversed-link">{{ article.title }}</span>
         </span>
       </div>
     </a>

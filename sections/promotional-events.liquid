@@ -1,0 +1,244 @@
+{% assign counter = 0 %}
+
+<div class="il-promotionalBlogs">
+  <div class="il-promotionalBlogs__header">
+    <p class="il-promotionalBlogs__title">{{ section.settings.title }}</p>
+  </div>
+  <div class="il-promotionalBlogs__blogsList">
+    {% for article in section.settings.blogs.articles %}
+      {% liquid
+        assign now = 'now' | date: '%Y-%m-%d'
+        assign start_time = article.metafields.custom.event_date | date: '%Y-%m-%d'
+        assign end_time = article.metafields.custom.event_end_date | date: '%Y-%m-%d'
+        assign is_between = false
+
+        if article.metafields.custom.event_date != blank and article.metafields.custom.event_end_date != blank
+          if now >= start_time and now < end_time
+            assign is_between = true
+          else
+            assign is_between = false
+          endif
+        endif
+      %}
+
+      {% assign getProduct = article.metafields.custom.enable_product_blog.value %}
+      <a class="il-promotionalBlogs__article" href="{% if getProduct %}{{ getProduct.url }}{% else %}{{ article.url }}{% endif %}">
+        <div class="il-promotionalBlogs__imgWrapper">
+          <img
+            class="il-promotionalBlogs__img"
+            src="{{ article.image  | img_url: 'master' }}"
+            alt="{{ article.title }}"
+          >
+          {% assign badgeValue = '' %}
+          {% for tag in article.tags %}
+            {% if tag contains 'event_tag_' %}
+              {% assign badgeValue = '活動' %}
+            {% elsif tag contains 'order_tag_' %}
+              {% assign badgeValue = '預購' %}
+            {% elsif tag contains 'offer_tag_' %}
+              {% assign badgeValue = '特別企劃' %}
+            {% endif %}
+          {% endfor %}
+
+          {% if badgeValue != '' %}
+            <div class="il-promotionalBlogs__badge">
+              <p class="il-promotionalBlogs__badgeText">{{ badgeValue }}</p>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="il-promotionalBlogs__content">
+          <p class="il-promotionalBlogs__articleTitle">{{ article.title }}</p>
+          {% if article.metafields.custom.event_date != blank %}
+            <p class="il-promotionalBlogs__articleDate">
+              <span class="il-promotionalBlogs__startDate">{{ article.metafields.custom.event_date }}</span>
+              {% if article.metafields.custom.event_end_date %}
+                <span>~</span>
+                <span class="il-promotionalBlogs__startDate">{{ article.metafields.custom.event_end_date }}</span>
+              {% endif %}
+            </p>
+          {% endif %}
+        </div>
+      </a>
+      {% assign counter = counter | plus: 1 %}
+     
+      {% if counter == 3 %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .il-promotionalBlogs {
+    padding: 0 48px;
+    padding-top: {{ section.settings.padding-top }}px;
+    padding-bottom: {{ section.settings.padding-bottom }}px;
+    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .il-promotionalBlogs__title {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-30);
+    font-weight: var(--font-weight-500);
+    text-transform: var(--text-capitalize);
+    text-align: center;
+    line-height: normal;
+  }
+
+  .il-promotionalBlogs__blogsList {
+    display: flex;
+    max-width: 1720px;
+    gap: 30px;
+    margin: 0 auto;
+  }
+
+  .il-promotionalBlogs__imgWrapper {
+    width: 100%;
+    position: relative;
+  }
+
+  .il-promotionalBlogs__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 553px;
+  }
+
+  .il-promotionalBlogs__badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    padding: 6px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 2px;
+    background: var(--color-red);
+  }
+
+  .il-promotionalBlogs__badgeText {
+    color: var(--color-white);
+    font-family: var(--font-tertiary);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-900);
+    line-height: normal;
+    letter-spacing: 0.96px;
+  }
+
+  .il-promotionalBlogs__content {
+    margin-top: 20px;
+  }
+
+  .il-promotionalBlogs__articleTitle {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: 26px;
+    font-weight: var(--font-weight-500);
+    text-transform: var(--text-uppercase);
+    line-height: normal;
+  }
+
+  .il-promotionalBlogs__article {
+    flex-basis: 33%;
+    width: 33%;
+  }
+
+  .il-promotionalBlogs__articleDate {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-400);
+    line-height: normal;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 768px) {
+    .shopify-section .il-promotionalBlogs {
+      padding: 60px 20px 40px;
+      gap: 20px;
+    }
+
+    .il-promotionalBlogs .il-promotionalBlogs__blogsList {
+      flex-direction: column;
+      width: 100%;
+      gap: 0;
+    }
+
+    .il-promotionalBlogs__article {
+      margin-bottom: 40px;
+    }
+
+    .il-promotionalBlogs .il-promotionalBlogs__articleTitle {
+      font-size: var(--font-size-16);
+    }
+
+    .il-promotionalBlogs .il-promotionalBlogs__articleDate {
+      font-size: var(--font-size-12);
+      margin-top: 9px;
+    }
+
+    .il-promotionalBlogs .il-promotionalBlogs__content {
+      margin-top: 14px;
+    }
+
+    .il-promotionalBlogs .il-promotionalBlogs__title {
+      font-size: var(--font-size-18);
+    }
+
+    .il-promotionalBlogs__article {
+      flex-basis: 100%;
+      width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Promotional Events",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "檔期活動"
+    },
+    {
+      "type": "range",
+      "id": "padding-top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 130
+    },
+    {
+      "type": "range",
+      "id": "padding-bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "blog",
+      "id": "blogs",
+      "label": "Blog"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promotional Events"
+    }
+  ]
+}
+{% endschema %}

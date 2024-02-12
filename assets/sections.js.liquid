@@ -327,7 +327,7 @@ var MegaMenuDisclosure = class extends DropdownDisclosure {
     this.addEventListener("pointerover", this._preloadImages.bind(this));
   }
   get mouseOverDelayTolerance() {
-    return 500;
+    return 250;
   }
   _transitionIn(hasOpenSiblings) {
     const timelineSequence = [[this.contentElement, { opacity: 1 }, { duration: 0.2 }], "mega-menu"], contentDelay = hasOpenSiblings ? 0.1 : 0;

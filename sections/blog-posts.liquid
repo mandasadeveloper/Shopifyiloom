@@ -51,6 +51,131 @@
   </div>
 </div>
 
+<style>
+  .template-collection .shopify-section--blog-posts .h2 {
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-30);
+    font-weight: var(--font-weight-500);
+    line-height: normal;
+    letter-spacing: 3px;
+    text-transform: capitalize;
+    color: var( --color-primary);
+  }
+
+  .template-collection .shopify-section--blog-posts .section-header {
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .template-collection .shopify-section--blog-posts .section-stack {
+    gap: 0;
+  }
+
+  .template-collection .blog-post-card__info .h3 a {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-20);
+    font-weight: var(--font-weight-500);
+    line-height: normal;
+    color: var( --color-primary);
+  }
+
+  .template-collection .blog-post-card.snap-center.group {
+    gap: 16px;
+  }
+
+  .template-collection .blog-post-card .badge.badge--primary {
+    height: auto;
+    top: auto;
+    bottom: 12px;
+    right: 12px;
+    left: auto;
+    border-radius: 2px;
+    border: 1px solid var(--color-primary);
+    background: var(--color-white);
+    font-family: var(--font-tertiary);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: var(--font-weight-900);
+    line-height: normal;
+    letter-spacing: 0.8px;
+    color: var(--color-primary);
+  }
+
+  .template-collection .shopify-section--blog-posts {
+    background: var(--color-grey-01);
+  }
+
+  .template-collection .shopify-section--blog-posts .section.section-blends {
+    padding: 130px 20px 110px;
+    width: 100%;
+    max-width: 1340px;
+    margin: 0 auto;
+  }
+
+  .template-collection .section-header {
+    grid-template-columns: auto;
+  }
+
+  .template-collection .blog-posts.scroll-area.bleed {
+    gap: 20px;
+  }
+
+  .template-collection .blog-post-card.snap-center.group .blog-post-card__figure.rounded {
+    border-radius: 0px;
+    padding-bottom: 57.5%;
+  }
+
+  .template-collection .blog-post-card.snap-center.group .blog-post-card__figure.rounded .w-full.h-full.object-cover.zoom-image {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+
+  .il-productBlogPost__hashTagMainWrap {
+    display: flex;
+    gap: 2px;
+    flex-wrap: wrap;
+  }
+
+  .il-productBlogPost__hashTag {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-400);
+    line-height: normal;
+    color: var(--color-grey-06);
+  }
+
+  .blog-posts {
+    gap: 30px;
+  }
+
+  @media (max-width: 768px) {
+    .template-collection .shopify-section--blog-posts .h2 {
+      font-size: var(--font-size-18);
+      letter-spacing: 1.8px;
+    }
+
+    .template-collection .blog-post-card__info .h3 a {
+      font-size: var(--font-size-14);
+    }
+
+    .il-productBlogPost__hashTag {
+      font-size: var(--font-size-12);
+    }
+
+    .template-collection .shopify-section--blog-posts .section.section-blends {
+      padding: 60px 20px 40px;
+    }
+
+    .template-collection .blog-post-card .badge.badge--primary {
+      font-size: var(--font-size-8);
+      font-style: normal;
+      font-weight: var(--font-weight-900);
+      line-height: normal;
+      letter-spacing: 0.64px;
+    }
+  }
+</style>
+
 {% schema %}
 {
   "name": "Blog posts",
