@@ -538,9 +538,7 @@ $( ".select-all" ).on( "change", function() {
         .then(response => {
         return response.json();
         })
-        .then((state) => {
-          console.log(state);
-        })
+       
         .then((responseText) => {
       const data = JSON.parse(responseText);
       const counterEl = document.querySelectorAll('.count-bubble');
