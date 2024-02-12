@@ -215,8 +215,8 @@ $(".checkbox-item").on("click", function(){
     var selectedItemPrice =  $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
     console.log("Price1:", selectedItemPrice);
     // console.log("selectedItemPrice1:", selectedItemPrice);
-    if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
-    else removeItem(item_id1,qty,selectedItemPrice);
+    // if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
+    // else removeItem(item_id1,qty,selectedItemPrice);
 });
 function addItem(id,qty,selectedItemPrice){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
