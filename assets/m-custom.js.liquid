@@ -421,6 +421,41 @@ $( ".checkbox-item" ).on( "change", function() {
     var variantId = $(this).parents('.cart__row').attr('data-prd-id');
     console.log(variantId);
     var updates = {};
+    // Add the updated quantity for the specific variant
+  updates[variantId] = updatedQuantity;
+
+  // Make the AJAX request to update the cart
+  
+  fetch(window.Shopify.routes.root + 'cart/update.js', {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       body: JSON.stringify({updates})
+     })
+     .then((response) => {
+      return response.text();
+    })
+    .then((state) => {
+      const parsedState = JSON.parse(state);
+        // if (window.location.href.indexOf("cart") > -1) {
+        // $.ajax({
+        //  url:'/cart',
+        //  type:'GET',
+        //  success: function(data){
+        //    let parser = new DOMParser();
+        //    const doc = parser.parseFromString(data, 'text/html');
+        //    console.log(doc.querySelector(".order-summary__body"));
+        //    $(".update_cart_items").html('');
+        //    $(".update_cart_items").append(doc.querySelector(".order-summary__body"));
+        //      updateCartCounter();
+        //   }
+        //  });
+        // }
+     })
+     .catch((error) => {
+       console.error('Error:', error);
+     });
     
   }
 } );
