@@ -3382,6 +3382,11 @@ compare-at-price .price{
   .m-search-drawer .color-swatch{
   width: 22px;
   height: 22px;
+  --swatch-offset: 4px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: var(--swatch-background-img);
   }
   .blog-event-ovrlay{
   background: rgba(0,0,0,1);
