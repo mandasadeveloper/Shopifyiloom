@@ -4114,7 +4114,7 @@ line-height: 256.3%;
 }
 
 
-.color-swatch{
+.product-card__swatch-list .color-swatch{
   width: 22px;
   height: 22px;
   --swatch-offset: 4px;
