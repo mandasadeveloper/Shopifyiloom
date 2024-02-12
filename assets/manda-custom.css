@@ -4133,3 +4133,6 @@ line-height: 256.3%;
     gap: 4px;
 }
 }
+.line-through {
+    text-decoration-color: gray;
+}
