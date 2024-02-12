@@ -435,6 +435,7 @@ $( ".checkbox-item" ).on( "change", function() {
      })
      .then((response) => {
       return response.text();
+      console.log(response);
     })
     .then((state) => {
       const parsedState = JSON.parse(state);
