@@ -1,0 +1,113 @@
+{{- 'custom.css' | asset_url | stylesheet_tag: preload: true -}}
+<div class="il-productsList">
+  <div class="il-productsList__header">
+    <p class="il-productsList__title">{{ section.settings.title }}</p>
+  </div>
+  <div class="il-productsList__listContainer">
+    <div class="il-productList__swiper swiper">
+      <div class="swiper-wrapper">
+        {% for product in section.settings['collection-id'].products %}
+          <div class="swiper-slide">{% render 'product-card-home', product: product %}</div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-next productList-next"></div>
+      <div class="swiper-button-prev productList-prev"></div>
+      <div class="il-productList__scrollContainer">
+        <div class="swiper-scrollbar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .il-productsList {
+    padding-top: {{ section.settings.padding-top }}px;
+    padding-bottom: {{ section.settings.padding-bottom }}px;
+    padding-left: 100px;
+  }
+
+  .il-productsList__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .il-productsList__title {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-30);
+    font-weight: var(--font-weight-500);
+    text-transform: var(--text-capitalize);
+    line-height: normal;
+    letter-spacing: 3px;
+  }
+
+  .il-productsList__listContainer {
+    margin-top: 40px;
+  }
+
+  .il-productList__swiper {
+    padding-bottom: 120px;
+  }
+</style>
+
+<script>
+  var listSwiper = new Swiper('.il-productList__swiper', {
+    slidesPerView: 4.2,
+    grabCursor: true,
+    speed: 1000,
+    loop: false,
+    spaceBetween: 30,
+    navigation: {
+      nextEl: '.swiper-button-next.productList-next',
+      prevEl: '.swiper-button-prev.productList-prev',
+    },
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Products List",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "New products"
+    },
+    {
+      "type": "collection",
+      "id": "collection-id",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "padding-top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 130
+    },
+    {
+      "type": "range",
+      "id": "padding-bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 110
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products List"
+    }
+  ]
+}
+{% endschema %}

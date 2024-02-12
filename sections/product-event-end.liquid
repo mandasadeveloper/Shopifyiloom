@@ -1,0 +1,120 @@
+{% assign productEvent = product.metafields.custom.product_launch_event.value %}
+
+{% liquid
+  assign now = 'now' | date: '%Y-%m-%dT%H:%M'
+%}
+
+{% if productEvent.end_date < now %}
+  <div class="il-productEventEnd">
+    <div class="il-productEventEnd__container">
+      <div class="il-productEventEnd__body">
+        <div class="il-productEventEnd__contentWrap">
+          <h2 class="il-productEventEnd__heading text-p text-p--40">
+            {{ section.settings.heading }}
+          </h2>
+          <p class="il-productEventEnd__text text-p text-p--20">
+            {{ section.settings.content }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .il-productEventEnd {
+      background: url({{ section.settings.background_banner_image | img_url: 'master' }}) no-repeat;
+      background-size: cover;
+      min-height: 600px;
+      padding-top: 0;
+      padding-bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .il-productEventEnd__body {
+      display: flex;
+      justify-content: center;
+      color: var(--color-white);
+      gap: 32px;
+      padding: 60px 67px;
+      border-radius: 4px;
+      max-width: 525px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      background: rgba(0, 0, 0, 0.81);
+    }
+
+    .il-productEventEnd__container {
+      width: 100%;
+    }
+
+    .il-productEventEnd__heading {
+      color: var(--color-red);
+      font-weight: var(--font-weight-600);
+      line-height: normal;
+      text-align: center;
+    }
+
+    .il-productEventEnd__text {
+      color: var(--color-light-beige);
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .il-productEventEnd {
+        background: url({{ section.settings.background_image_mobile | img_url: 'master' }}) no-repeat;
+        background-size: cover;
+        padding: 0 15px;
+        min-height: 500px;
+      }
+
+      .il-productEventEnd__body {
+        padding: 40px 20px;
+        gap: 0;
+      }
+
+      .il-productEventEnd__heading {
+        font-size: var(--font-size-30);
+      }
+
+      .il-productEventEnd__text {
+        margin-top: 15px;
+      }
+    }
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Event End",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Dekstop Background Image",
+      "id": "background_banner_image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image_mobile",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "text",
+      "label": "Heading",
+      "id": "heading"
+    },
+    {
+      "type": "textarea",
+      "label": "Content",
+      "id": "content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Event End"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,166 @@
+{%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
+
+<div class="product-info product-info__mobile">
+  {%- for block in section.blocks -%}
+    {%- assign previous_block_index = forloop.index0 | minus: 1 -%}
+    {%- assign previous_block = section.blocks[previous_block_index] -%}
+    {%- assign next_block = section.blocks[forloop.index] -%}
+    {%- case block.type -%}
+      {%- when '@app' -%}
+        {%- render block -%}
+
+      {%- when 'vendor' -%}
+        {%- if product.vendor != blank -%}
+          <div class="product-info__vendor" {{ block.shopify_attributes }}>
+            {%- render 'vendor' with product.vendor -%}
+          </div>
+        {%- endif -%}
+
+      {%- when 'title' -%}
+        {% liquid
+          echo '<p class="il-product__series text-p text-p--secondaryFont text-p--14">'
+          for tag in product.tags
+            if tag contains 'series:'
+              assign trimmedTag = tag | remove: 'series: ' | remove: 'series : ' | remove: 'series :' | downcase
+              echo '<span class="il-product__seriesItem">'
+              echo trimmedTag
+              echo '</span>'
+            endif
+          endfor
+          echo '</p>'
+        %}
+        {%- if request.page_type == 'product' -%}
+          <div class="il-product__title">
+            <h1
+              class="product-info__title text-p text-p--primaryFont text-p--28 {{ block.settings.heading_tag }}"
+              {{ block.shopify_attributes }}
+            >
+              {{ product.title }}
+            </h1>
+            <div
+              class="product-form__share {% if block.settings.alignment == 'center' %}justify-self-center{% elsif block.settings.alignment == 'end' %}justify-self-end{% endif %}"
+              {{ block.shopify_attributes }}
+              data-toggle-container
+            >
+              <div class="product-info__share-buttons" data-toggle-container-inner>
+                <div class="share-buttons">
+                  <button class="share-buttons--close" data-share-btn-close></button>
+                  <span class="product-info__shareHeading text-p text-p--16 text-p--primaryFont">
+                    {{- 'general.social.share' | t -}}
+                  </span>
+                  <ul class="il-shareList">
+                    <li class="il-shareList__item">
+                      <button class="il-shareList__btn" onclick="shareLine()" data-share-line>
+                        {% render 'icon' with 'line-share' %}
+                      </button>
+                    </li>
+                    <li class="il-shareList__item">
+                      <button class="il-shareList__btn" onclick="shareFacebook()" data-share-facebook>
+                        {% render 'icon' with 'facebook-share' %}
+                      </button>
+                    </li>
+                    <li class="il-shareList__item">
+                      <button class="il-shareList__btn" onclick="shareWhatsapp()" data-share-whatsapp>
+                        {% render 'icon' with 'whatsapp-share' %}
+                      </button>
+                    </li>
+                    <li class="il-shareList__item">
+                      <button class="il-shareList__btn" data-share-link>
+                        {% render 'icon' with 'link-share' %}
+                      </button>
+                      <div class="il-shareList__toast" data-copy-toast>已複製</div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <button class="product-info__native-share" data-share-btn>
+                {%- render 'icon' with 'share' -%}
+              </button>
+            </div>
+          </div>
+        {%- else -%}
+          <h2 class="product-info__title {{ block.settings.heading_tag }}" {{ block.shopify_attributes }}>
+            <a href="{{ product.url }}">{{ product.title }}</a>
+          </h2>
+        {%- endif -%}
+
+      {%- when 'badges' -%}
+        {%- render 'product-badges',
+          product: product,
+          types: 'image',
+          form_id: product_form_id,
+          class: 'product-info__badge-list',
+          block: block
+        -%}
+
+      {%- when 'price' -%}
+        <div class="product-info__price">
+          <div class="rating-with-text">
+            {%- render 'price-list',
+              variant: product.selected_or_first_available_variant,
+              form_id: product_form_id,
+              size: 'lg',
+              block: block
+            -%}
+            {%- render 'product-badges',
+              types: 'sold_out, discount',
+              product: product,
+              form_id: product_form_id,
+              class: 'product-info__badge-list'
+            -%}
+
+            {%- comment -%}If the next block is a rating block, then we add it as part of this one to have it inline{%- endcomment -%}
+            {%- if next_block.type == 'rating' -%}
+              {%- render 'product-rating',
+                product: product,
+                show_empty: next_block.settings.show_empty,
+                block: next_block
+              -%}
+            {%- endif -%}
+          </div>
+          {% if section.settings.composition_image == blank %}
+            <variant-sku
+              form="{{ product_form_id }}"
+              class="product-info__sku text-xs text-subdued"
+              {% if product.selected_or_first_available_variant.sku == blank %}
+                hidden
+              {% endif %}
+              {{ block.shopify_attributes }}
+            >
+              {{- 'product.general.sku' | t }}
+              {{ product.selected_or_first_available_variant.sku -}}
+            </variant-sku>
+          {% endif %}
+
+          {%- if block.settings.show_taxes_notice -%}
+            <p class="text-sm text-subdued">
+              {%- if cart.taxes_included -%}
+                {{ 'product.general.taxes_included' | t }}
+              {%- else -%}
+                {{ 'product.general.taxes_excluded' | t }}
+              {%- endif -%}
+
+              {%- if shop.shipping_policy.body != blank -%}
+                {{ 'product.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+              {%- endif -%}
+            </p>
+          {%- endif -%}
+        </div>
+
+      {%- when 'rating' -%}
+        {%- comment -%}If the previous block is of type price, then the rating has been rendered inside it so we do not render it twice{%- endcomment -%}
+
+        {%- if previous_block.type != 'price' -%}
+          <div class="product-info__rating">
+            <div class="product-info__ratingWrapper">
+              {% comment %} {%- render 'product-rating', product: product, show_empty: block.settings.show_empty, block: block -%} {% endcomment %}
+              {% for i in (1..5) %}
+                {% render 'icon' with 'star' %}
+              {% endfor %}
+              <span class="product-info__ratingText">4.3 (185)</span>
+            </div>
+          </div>
+        {%- endif -%}
+    {%- endcase -%}
+  {%- endfor -%}
+</div>

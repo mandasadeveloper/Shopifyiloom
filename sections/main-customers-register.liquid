@@ -1,5 +1,5 @@
 <div class="sm:container">
-  <div class="customer-form custom-frm-sign-up">
+  <div class="customer-form">
     {%- if section.settings.image != blank -%}
       {{- section.settings.image | image_url: width: section.settings.image.width | image_tag: loading: 'lazy', sizes: '50vw', widths: '300,400,500,600,700,800,1000,1200,1400', class: 'customer-form__image rounded' -}}
     {%- endif -%}
@@ -10,9 +10,6 @@
           <h1 class="h2">
             {%- assign content = 'customer.register.title' | t -%}
             {%- render 'styled-text', content: content, gradient: section.settings.heading_gradient -%}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="320" height="2" viewBox="0 0 320 2" fill="none">
-          <path d="M0 1H320" stroke="black"/>
-          </svg>
           </h1>
 
           <div class="v-stack gap-6">
@@ -44,14 +41,11 @@
                           {%- assign first_name_label = 'customer.register.first_name' | t -%}
                           {%- render 'input', name: 'customer[first_name]', label: first_name_label, autocomplete: 'given-name', required: true -%}
                         {%- else -%}
- 
-                          {%- assign last_name_label = 'customer.register.last_name' | t -%}
-                          {%- render 'input', name: 'customer[last_name]', label: last_name_label, autocomplete: 'family-name', required: true -%}
-                        
                           {%- assign first_name_label = 'customer.register.first_name' | t -%}
                           {%- render 'input', name: 'customer[first_name]', label: first_name_label, autocomplete: 'given-name', required: true -%}
 
-                      
+                          {%- assign last_name_label = 'customer.register.last_name' | t -%}
+                          {%- render 'input', name: 'customer[last_name]', label: last_name_label, autocomplete: 'family-name', required: true -%}
                         {%- endif -%}
 
                         {%- assign email_label = 'customer.register.email' | t -%}
@@ -60,36 +54,18 @@
                         {%- assign password_label = 'customer.register.password' | t -%}
                         {%- render 'input', type: 'password', name: 'customer[password]', label: password_label, minlength: 5, autocomplete: 'new-password', required: true -%}
 
-
-                        {%- assign password_labell = section.settings.varify_password -%}
-                        {%- render 'input', type: 'password', name: 'customer[password_confirmation]', label: password_labell, minlength: 5, autocomplete: 'new-password', required: true -%}
-                        
-
-
-
-
-
-                        
                         {%- if block.settings.show_email_consent -%}
                           {%- assign consent_label = 'customer.register.accepts_marketing' | t -%}
                           {%- render 'checkbox', name: 'customer[accepts_marketing]', label: consent_label -%}
                         {%- endif -%}
                       </div>
-                      <div class="m-copun">
-                      <p>
-                      <span><svg xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22" fill="none">
-                      <rect x="1.4375" y="0.5" width="20.9535" height="21" rx="10.4767" stroke="#D9D9D9"/>
-                      <path d="M7.92188 11L10.4166 13.5L16.9028 7" stroke="#D9D9D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg></span>                    
-                      {{ section.settings.copun }}
-                      </p>
-                      </div>
+
                       {%- assign submit_label = 'customer.register.submit' | t -%}
                     {%- render 'button', content: submit_label, type: 'submit', size: 'xl', stretch: true, secondary: true, background: section.settings.button_background, text_color: section.settings.button_text_color -%}
 
-                      <!-- <div>
+                      <div>
                         <a href="{{ routes.account_login_url }}" class="link text-subdued">{{ 'customer.register.login' | t }}</a>
-                      </div> -->
+                      </div>
                     {%- endform -%}
                   </div>
               {%- endcase -%}
@@ -117,17 +93,6 @@
       "type": "header",
       "content": "Colors",
       "info": "Gradient replaces solid colors when set."
-    },
- {
-      "type": "text",
-      "id": "copun",
-      "label": "Coupon code text"
-    },
-    
-     {
-      "type": "text",
-      "id": "varify_password",
-      "label": "varify_password"
     },
     {
       "type": "color",
