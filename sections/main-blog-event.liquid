@@ -255,7 +255,12 @@
          
      
 </div>
+{% assign blog_size =  blog.articles.size %}
+{% assign set_size = section.settings.articles_per_page1 | plus: 0 %}
+{% if blog_size <= set_size %}
+{% else %}
 <div id="m-loadMore-event"><a href="#">More<span>{% render 'down-arrow' %}</span></a></div>
+  {% endif %}
     </div>
   {%- endif -%}
 </div>
