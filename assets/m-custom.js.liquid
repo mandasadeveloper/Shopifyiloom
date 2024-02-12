@@ -208,16 +208,16 @@ $(".order-summary__body .cart__row").each(function() {
 });
 console.log("data---" , priceupdate);
 
-$(".checkbox-item").on("click", function(){
-    var updates = {};
-    var item_id1 = $(this).closest('.cart__row').attr('data-prd-id');
-    var qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
-    var selectedItemPrice =  $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
-    console.log("Price1:", selectedItemPrice);
-    // console.log("selectedItemPrice1:", selectedItemPrice);
-    if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
-    else removeItem(item_id1,qty,selectedItemPrice);
-});
+// $(".checkbox-item").on("click", function(){
+//     var updates = {};
+//     var item_id1 = $(this).closest('.cart__row').attr('data-prd-id');
+//     var qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
+//     var selectedItemPrice =  $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
+//     console.log("Price1:", selectedItemPrice);
+//     // console.log("selectedItemPrice1:", selectedItemPrice);
+//     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
+//     else removeItem(item_id1,qty,selectedItemPrice);
+// });
 function addItem(id,qty,selectedItemPrice){
   fetch(window.Shopify.routes.root + 'cart/add.js', {
     method: 'POST',
