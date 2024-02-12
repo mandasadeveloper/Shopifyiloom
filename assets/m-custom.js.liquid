@@ -408,7 +408,16 @@ $(document).on("click", ".qty-btn-plus, .qty-btn-minus" , function()
 
 // check event
 $( ".checkbox-item" ).on( "change", function() {
-  alert( "Handler for `change` called." );
+ var isChecked = $(this).prop("checked");
+  
+  // Do something based on the checkbox state
+  if (isChecked) {
+    console.log("Checkbox is checked");
+    // Perform some action
+  } else {
+    console.log("Checkbox is unchecked");
+    // Perform some other action
+  }
 } );
 // check event
 
