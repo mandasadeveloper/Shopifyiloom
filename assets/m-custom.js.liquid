@@ -243,41 +243,41 @@ function addItem(id,qty,selectedItemPrice){
     });
 }
 
-// function removeItem(id,qty,selectedItemPrice){
-//     let updates = {};
-//   fetch(window.Shopify.routes.root + 'cart/update.js', {
-//     method: 'POST',
-//     headers: {
-//      'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({ update:{
-//           id,quantity:0
-//         }
-//       })
-//       // body: JSON.stringify({updates})
-//     })
+function removeItem(id,qty,selectedItemPrice){
+    let updates = {};
+  fetch(window.Shopify.routes.root + 'cart/update.js', {
+    method: 'POST',
+    headers: {
+     'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ update:{
+          id,quantity:0
+        }
+      })
+      // body: JSON.stringify({updates})
+    })
     
-//     .then(response => {
-//       return response.json();
-//     })
+    .then(response => {
+      return response.json();
+    })
     
-//     .then((state) => {
-//       console.log("stateremove" ,state);
-//       updateCartCounter();
-//     let total = state.items_subtotal_price;
-//       console.log("Total" + total);
-//         // const totalPrice = $(state).find('.total-price').text(); // Adjust selector as needed
-//         // const formattedPrice = "{{ " + total + " | money }}"; // Adjust the Liquid syntax as needed
-//         // var totalPrice = state.total_price;
+    .then((state) => {
+      console.log("stateremove" ,state);
+      updateCartCounter();
+    let total = state.items_subtotal_price;
+      console.log("Total" + total);
+        // const totalPrice = $(state).find('.total-price').text(); // Adjust selector as needed
+        // const formattedPrice = "{{ " + total + " | money }}"; // Adjust the Liquid syntax as needed
+        // var totalPrice = state.total_price;
 
-//         // Update the total price display on the page
-//         // const formattedPrice =   $('.total-price').html(Shopify.formatMoney(totalPrice));
-//         // console.log("formattedPrice",formattedPrice);
-//     })
-//     .catch((error) => {
-//       console.error('Error:', error);
-//     });
-// }
+        // Update the total price display on the page
+        // const formattedPrice =   $('.total-price').html(Shopify.formatMoney(totalPrice));
+        // console.log("formattedPrice",formattedPrice);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
 
 // document.addEventListener('theme:variant:change', function(event) {
 //     var variant = event.detail.variant;
