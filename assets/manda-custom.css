@@ -4098,7 +4098,7 @@ line-height: 256.3%;
     gap: 25px!important;
   }
 
-.color-swatch {
+.product-info__variant-picker .color-swatch {
     width: 20px;
     height: 20px;
     --swatch-offset: 4px;
