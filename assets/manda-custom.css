@@ -4129,4 +4129,7 @@ line-height: 256.3%;
     width: 16px;
     height: 16px;
 }
+  .m-search-drawer .m-pro-cus {
+    gap: 4px;
+}
 }
