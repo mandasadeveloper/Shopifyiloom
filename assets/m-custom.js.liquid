@@ -532,7 +532,33 @@ $('.checkout_custom').on('click', function(e) {
   $(".cart__row input:checked").each(function() {
     var updatedQuantity = $(this).parents('.cart__row').find('.m-quantity-cus').find('input').val();
     var item_idd = $(this).parents('.cart__row').attr('data-prd-id');
-    console.log(updatedQuantity);
+    var updates = {};
+    updates[variantId] = updatedQuantity;
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       body: JSON.stringify({updates})
+     })
+     .then((response) => {
+      return response.text();
+    })
+    .then((state) => {
+      const parsedState = JSON.parse(state);
+  
+        $.ajax({
+         url:'/cart',
+         type:'GET',
+         success: function(data){
+           console.log(data);
+          }
+         });
+     
+     })
+     .catch((error) => {
+       console.error('Error:', error);
+     });
   }); 
   
 });
