@@ -451,3 +451,16 @@ function updateCartCounter() {
 //      $(".m-search-icon").css({"display": "none"});
 // });
 // Search icon
+
+
+
+$( ".checkbox-item" ).on( "change", function() {
+   var isChecked = $(this).prop("checked");
+   if (isChecked) {
+      console.log("Checkbox is checked");
+   }
+  else{
+      console.log("Checkbox is unchecked");
+  }
+ 
+});
