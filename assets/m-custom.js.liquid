@@ -464,6 +464,7 @@ $( ".checkbox-item" ).on( "change", function() {
       });
       console.log(total);
   console.log(currencyFormat);
-      $('.price').html(total , currencyFormat);
+      $('.total-price').html(total , currencyFormat);
+  console.log((formatMoney(total, currencyFormat))));
  
 });
