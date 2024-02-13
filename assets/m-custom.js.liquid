@@ -462,6 +462,7 @@ $( ".checkbox-item" ).on( "change", function() {
     
   } else {
     console.log("Checkbox is unchecked");
+    $('.select-all').removeAttr( "checked" );
     var updatedQuantity = 0;
     console.log(updatedQuantity);
     var variantId = $(this).parents('.cart__row').attr('data-prd-id');
