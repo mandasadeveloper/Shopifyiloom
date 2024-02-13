@@ -523,107 +523,107 @@ $( ".checkbox-item" ).on( "change", function() {
 
 
 // all select
-// $( ".select-all" ).on( "change", function() {
-//   var isChecked_all = $(this).prop("checked");
-//   // Do something based on the checkbox state
-//   if (isChecked_all) {
-//     console.log("Checkbox is checked all");
+$( ".select-all" ).on( "change", function() {
+  var isChecked_all = $(this).prop("checked");
+  // Do something based on the checkbox state
+  if (isChecked_all) {
+    console.log("Checkbox is checked all");
 
-//      let updates = {};
-//     $(".cart__row input").each(function() {
-//       var item_id = $(this).parents('.cart__row').attr('data-prd-id');
-//       var item_qty = $(this).parents('.order-summary').find('.cart__row').find('.m-quantity-cus').find('input').val();
-//       console.log(item_qty);
-//         updates[item_id] = item_qty;
-//         console.log(updates);
-//         });
-//     fetch(window.Shopify.routes.root + 'cart/update.js', {
-//         method: 'POST',
-//         headers: {
-//         'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({ updates })
+     let updates = {};
+    $(".cart__row input").each(function() {
+      var item_id = $(this).parents('.cart__row').attr('data-prd-id');
+      var item_qty = $(this).parents('.order-summary').find('.cart__row').find('.m-quantity-cus').find('input').val();
+      console.log(item_qty);
+        updates[item_id] = item_qty;
+        console.log(updates);
+        });
+    fetch(window.Shopify.routes.root + 'cart/update.js', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ updates })
         
-//         })
-//         .then((response) => {
-//       return response.text();
-//     })
-//     .then((responseText) => {
-//       const data = JSON.parse(responseText);
-//       const counterEl = document.querySelectorAll('.count-bubble');
-//        console.log(data.items_subtotal_price);
-//       counterEl.forEach((element) => {
-//         element.innerHTML = data.item_count;
-//       });
-//       if (window.location.href.indexOf("cart") > -1) {
-//         $.ajax({
-//          url:'/cart',
-//          type:'GET',
-//          success: function(data){
-//          let parser1 = new DOMParser();
-//          const doc1 = parser1.parseFromString(data, 'text/html');
-//          console.log(doc1.querySelector(".m-total-price"));
-//          $(".total_cus").html('');
-//          $(".total_cus").append(doc1.querySelector(".m-total-price"));
-//          // updateCartCounter();
-//         }
-//          });
-//         }
-//     })
-//         .catch((error) => {
-//         console.error('Error:', error);
-//         });
+        })
+        .then((response) => {
+      return response.text();
+    })
+    .then((responseText) => {
+      const data = JSON.parse(responseText);
+      const counterEl = document.querySelectorAll('.count-bubble');
+       console.log(data.items_subtotal_price);
+      counterEl.forEach((element) => {
+        element.innerHTML = data.item_count;
+      });
+      if (window.location.href.indexOf("cart") > -1) {
+        $.ajax({
+         url:'/cart',
+         type:'GET',
+         success: function(data){
+         let parser1 = new DOMParser();
+         const doc1 = parser1.parseFromString(data, 'text/html');
+         console.log(doc1.querySelector(".m-total-price"));
+         $(".total_cus").html('');
+         $(".total_cus").append(doc1.querySelector(".m-total-price"));
+         // updateCartCounter();
+        }
+         });
+        }
+    })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
      
 
 
 
 
-//   } else {
-//     console.log("Checkbox is unchecked all");
-//     let updates = {};
-//     $(".cart__row input").each(function() {
-//       var item_id = $(this).parents('.cart__row').attr('data-prd-id');
-//         updates[item_id] = 0;
-//         console.log(updates);
-//         });
-//     fetch(window.Shopify.routes.root + 'cart/update.js', {
-//         method: 'POST',
-//         headers: {
-//         'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({ updates })
+  } else {
+    console.log("Checkbox is unchecked all");
+    let updates = {};
+    $(".cart__row input").each(function() {
+      var item_id = $(this).parents('.cart__row').attr('data-prd-id');
+        updates[item_id] = 0;
+        console.log(updates);
+        });
+    fetch(window.Shopify.routes.root + 'cart/update.js', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ updates })
         
-//         })
-//         .then((response) => {
-//       return response.text();
-//     })
-//     .then((responseText) => {
-//       const data = JSON.parse(responseText);
-//       const counterEl = document.querySelectorAll('.count-bubble');
-//        console.log(data.items_subtotal_price);
-//       counterEl.forEach((element) => {
-//         element.innerHTML = data.item_count;
-//       });
-//       if (window.location.href.indexOf("cart") > -1) {
-//         $.ajax({
-//          url:'/cart',
-//          type:'GET',
-//          success: function(data){
-//          let parser1 = new DOMParser();
-//          const doc1 = parser1.parseFromString(data, 'text/html');
-//          console.log(doc1.querySelector(".m-total-price"));
-//          $(".total_cus").html('');
-//          $(".total_cus").append(doc1.querySelector(".m-total-price"));
-//          // updateCartCounter();
-//         }
-//          });
-//         }
-//     })
-//         .catch((error) => {
-//         console.error('Error:', error);
-//         });
-//   }
-// });
+        })
+        .then((response) => {
+      return response.text();
+    })
+    .then((responseText) => {
+      const data = JSON.parse(responseText);
+      const counterEl = document.querySelectorAll('.count-bubble');
+       console.log(data.items_subtotal_price);
+      counterEl.forEach((element) => {
+        element.innerHTML = data.item_count;
+      });
+      if (window.location.href.indexOf("cart") > -1) {
+        $.ajax({
+         url:'/cart',
+         type:'GET',
+         success: function(data){
+         let parser1 = new DOMParser();
+         const doc1 = parser1.parseFromString(data, 'text/html');
+         console.log(doc1.querySelector(".m-total-price"));
+         $(".total_cus").html('');
+         $(".total_cus").append(doc1.querySelector(".m-total-price"));
+         // updateCartCounter();
+        }
+         });
+        }
+    })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
+  }
+});
 // all select
 
 
