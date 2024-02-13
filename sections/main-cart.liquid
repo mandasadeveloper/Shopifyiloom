@@ -183,7 +183,7 @@
           </svg> -->
     <safe-sticky class="cart-order__recap m-cart-right v-stack gap-6">
             <form action="{{ routes.cart_url }}" method="POST" class="cart-form rounded">
-              <input id="your-name" type="text" name="attributes[there is elevator]" value="{{ cart.attributes["Your name"] }}">
+              <input id="your-name" type="hidden" name="attributes[there is elevator]" value="No">
               {%- for block in section.blocks -%}
                 {%- case block.type -%}
                   {%- when '@app' -%}
