@@ -550,6 +550,7 @@ $('.checkout_custom').on('click', function(e) {
           console.error("Error clearing cart:", error);
         }
       });
+    setTimeout(function () {
   $.ajax({
          type: 'POST',
          url: '/cart/add.js',
@@ -563,6 +564,7 @@ $('.checkout_custom').on('click', function(e) {
          },
          error: function(){}
        });
+       }, 1000);
     
   }); 
   
