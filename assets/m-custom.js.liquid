@@ -525,6 +525,10 @@ $( ".checkbox-item" ).on( "change", function() {
  
 });
 
-$('.checkout_custom').on('click', function() {
-  alert('njdkfnd');
+$('.checkout_custom').on('click', function(e) {
+  e.preventDefault();
+  $(".cart__row input:checked").each(function() {
+    var item_idd = $(this).attr('data-prd-id');
+    console.log(item_idd);
+  });  
 });
