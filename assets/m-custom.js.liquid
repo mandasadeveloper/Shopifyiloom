@@ -516,6 +516,7 @@ $( ".checkbox-item" ).on( "change", function() {
      }
      else{
        $('.select-all').removeAttr('checked');
+       console.log('checked');
      }
      var currencyFormat = window.themeVariables.settings.currencyCodeEnabled ? window.themeVariables.settings.moneyWithCurrencyFormat : window.themeVariables.settings.moneyFormat;
      var total = 0;
