@@ -457,10 +457,12 @@ function updateCartCounter() {
 $( ".checkbox-item" ).on( "change", function() {
    var isChecked = $(this).prop("checked");
    if (isChecked) {
+     var total = 0;
       $(".cart__row").each(function() {
-        var ggg = $(this).attr('prd-prc');
-        console.log(ggg);
+        var price = parseFloat($(this).attr('prd-prc'));
+            total += price;
       });
+     console.log("Total price:", total);
    }
   else{
       console.log("Checkbox is unchecked");
