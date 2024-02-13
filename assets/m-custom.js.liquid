@@ -526,39 +526,30 @@ $( ".checkbox-item" ).on( "change", function() {
 });
 
 $('.checkout_custom').on('click', function(e) {
-  
-  var updates = {};
   e.preventDefault();
+  
   $(".cart__row input:checked").each(function() {
     var updatedQuantity = $(this).parents('.cart__row').find('.m-quantity-cus').find('input').val();
-    var item_idd = $(this).parents('.cart__row').attr('data-prd-id');
-    var updates = {};
-    updates[item_idd] = updatedQuantity;
-    fetch(window.Shopify.routes.root + 'cart/add.js', {
-       method: 'POST',
-       headers: {
-         'Content-Type': 'application/json'
-       },
-       body: JSON.stringify({updates})
-     })
-     .then((response) => {
-      return response.text();
+    var item_id = $(this).parents('.cart__row').attr('data-prd-id');
+    
+    // Prepare the data to be sent in the request
+    var formData = new FormData();
+    formData.append('id', item_id);
+    formData.append('quantity', updatedQuantity);
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      body: formData
     })
-    .then((state) => {
-      const parsedState = JSON.parse(state);
-  
-        $.ajax({
-         url:'/cart',
-         type:'GET',
-         success: function(data){
-           console.log(data);
-          }
-         });
-     
-     })
-     .catch((error) => {
-       console.error('Error:', error);
-     });
-  }); 
-  
+    .then(response => {
+      if (response.ok) {
+        window.location.href = '/checkout'; // Redirect to the checkout page
+      } else {
+        throw new Error('Failed to add item to cart');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
 });
