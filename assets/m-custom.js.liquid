@@ -588,6 +588,7 @@ $( ".select-all" ).on( "change", function() {
      }
     else{
       var total = 0;
+      $('.total_cus').html((formatMoney(total, currencyFormat)));
       console.log((formatMoney(total, currencyFormat)));
     }
 });
