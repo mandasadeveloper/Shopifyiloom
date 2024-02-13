@@ -484,6 +484,7 @@ $( ".checkbox-item" ).on( "change", function() {
     })
     .then((responseText) => {
       const data = JSON.parse(responseText);
+      console.log(data);
       const counterEl = document.querySelectorAll('.count-bubble');
        console.log(data.items_subtotal_price);
       counterEl.forEach((element) => {
