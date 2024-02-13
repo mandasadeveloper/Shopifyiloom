@@ -414,6 +414,10 @@ $( ".checkbox-item" ).on( "change", function() {
   
   // Do something based on the checkbox state
   if (isChecked) {
+    $('.checkbox-item').each(function() {
+      this.checked = true;
+      console.log('check-ghvjjhewdw');
+    });
     console.log("Checkbox is checked");
     var updatedQuantity = $(this).parents('.cart__row').find('.m-quantity-cus').find('input').val();
     console.log(updatedQuantity);
