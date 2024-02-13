@@ -191,6 +191,7 @@ $(selectAllItems).click(function() {
   if (this.checked) {
     $(checkboxItem).each(function() {
       this.checked = true;
+      console.log('check');
     });
   } else {
     $(checkboxItem).each(function() {
