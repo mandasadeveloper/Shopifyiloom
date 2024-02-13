@@ -196,7 +196,7 @@ $(selectAllItems).click(function() {
   } else {
     $(checkboxItem).each(function() {
       this.checked = false;
-      console.log('uncheck');
+      $(selectAllItems).removeAttr( "checked" );
     });
   }
   
