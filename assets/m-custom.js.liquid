@@ -508,14 +508,13 @@ function formatMoney(cents, format = "") {
     return formatString.replace(placeholderRegex, value);
   }
 }
-$(document).ready(function() {
+
 $( ".checkbox-item" ).on( "change", function() {
      var isChecked_alll = $(this).prop("checked");
      if(isChecked_alll){
        console.log('checked');
      }
      else{
-       
        console.log('uncheckkk');
        $('.select-all').removeAttr('checked');
      }
@@ -532,7 +531,7 @@ $( ".checkbox-item" ).on( "change", function() {
       console.log((formatMoney(total, currencyFormat)));
  
 });
-});
+
 $('.checkout_custom').on('click', function(e) {
   
 
