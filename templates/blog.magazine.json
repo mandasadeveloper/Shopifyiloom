@@ -1,21 +1,5 @@
 {
   "sections": {
-    "86ebae58-365d-41db-a403-3bacd4fa8194": {
-      "type": "image-with-text-overlay",
-      "disabled": true,
-      "settings": {
-        "full_width": true,
-        "allow_transparent_header": false,
-        "enable_parallax": false,
-        "image_size": "auto",
-        "image": "shopify:\/\/shop_images\/01_2c6e2ef5-bbf8-4a62-ad9d-1f12bfe35a0f.jpg",
-        "mobile_text_position": "place-self-center text-center",
-        "desktop_text_position": "sm:place-self-center sm:text-center",
-        "text_color": "#ffffff",
-        "overlay_color": "#000000",
-        "overlay_opacity": 30
-      }
-    },
     "main": {
       "type": "main-blog-magazine",
       "settings": {
@@ -42,7 +26,6 @@
     }
   },
   "order": [
-    "86ebae58-365d-41db-a403-3bacd4fa8194",
     "main"
   ]
 }

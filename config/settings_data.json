@@ -34,7 +34,6 @@
     "heading_apparition": "split_fade",
     "color_swatch_style": "round",
     "show_sold_out_badge": false,
-    "show_sold_out_badge": false,
     "show_discount": false,
     "discount_mode": "percentage",
     "product_color_display": "swatch",
