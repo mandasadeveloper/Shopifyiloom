@@ -526,9 +526,23 @@ $( ".checkbox-item" ).on( "change", function() {
 });
 
 $('.checkout_custom').on('click', function(e) {
+  var updates = {};
   e.preventDefault();
   $(".cart__row input:checked").each(function() {
     var item_idd = $(this).parents('.cart__row').attr('data-prd-id');
     console.log(item_idd);
-  });  
+  }); 
+  fetch(window.Shopify.routes.root + 'cart/add.js', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(updates)
+})
+.then(response => {
+  return response.json();
+})
+.catch((error) => {
+  console.error('Error:', error);
+});
 });
