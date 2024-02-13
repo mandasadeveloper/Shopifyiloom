@@ -510,7 +510,18 @@ function formatMoney(cents, format = "") {
 }
 
 $( ".checkbox-item" ).on( "change", function() {
-    var currencyFormat = window.themeVariables.settings.currencyCodeEnabled ? window.themeVariables.settings.moneyWithCurrencyFormat : window.themeVariables.settings.moneyFormat;
+     var isChecked = $(this).prop("checked");
+     if (isChecked) {
+      $('.checkbox-item').each(function() {
+      this.checked = true;
+      console.log('check-ghvjjhewdw');
+      $('.select-all').attr('checked' , true);
+     });
+     }
+     else{
+      $('.select-all').removeAttr( "checked" );
+     }
+     var currencyFormat = window.themeVariables.settings.currencyCodeEnabled ? window.themeVariables.settings.moneyWithCurrencyFormat : window.themeVariables.settings.moneyFormat;
      var total = 0;
       $(".cart__row input:checked").each(function() {
         var price = $(this).parents('.cart__row').attr('prd-prc');
@@ -518,8 +529,8 @@ $( ".checkbox-item" ).on( "change", function() {
         total += price_actual;
       });
       console.log(total);
-  console.log(currencyFormat);
+      console.log(currencyFormat);
       $('.total_cus').html((formatMoney(total, currencyFormat)));
-  console.log((formatMoney(total, currencyFormat)));
+      console.log((formatMoney(total, currencyFormat)));
  
 });
