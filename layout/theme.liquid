@@ -46,6 +46,9 @@
     {%- unless settings.heading_font.system? -%}
       <link rel="preload" href="{{ settings.heading_font | font_url }}" as="font" type="font/woff2" crossorigin>
     {%- endunless -%}
+    {%- comment -%} manda css file{%- endcomment -%}
+    <link type="text/css" href="{{ 'manda-custom.css' | asset_url }}" rel="stylesheet">
+    {%- comment -%} end manda css file{%- endcomment -%}
 
     {%- unless settings.text_font.system? -%}
       <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
@@ -170,16 +173,25 @@
       window.addEventListener('scroll', scrollFunction);
       backToTop.addEventListener('click', scrollToTop);
     </script>
-<!-- M JS file -->
+    <!-- M JS file -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-   <script  src="{{ 'm-custom.js' | asset_url }}"></script>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <link href='https://fonts.googleapis.com/css?family=Poppins:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"
+    >
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="{{ 'm-custom.js' | asset_url }}"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    >
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700,400italic" rel="stylesheet" type="text/css">
 
     <!-- End M JS file -->
-
   </body>
 </html>
