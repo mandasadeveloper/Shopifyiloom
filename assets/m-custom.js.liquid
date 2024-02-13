@@ -463,7 +463,6 @@ $( ".checkbox-item" ).on( "change", function() {
         total += price_actual;
       });
       console.log(total);
-      var formattedTotal = Shopify.formatMoney(total);
-      $('.total-price').html(formattedTotal);
+      $('.total-price').html(total);
  
 });
