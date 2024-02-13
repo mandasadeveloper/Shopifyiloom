@@ -533,7 +533,7 @@ $('.checkout_custom').on('click', function(e) {
     var updatedQuantity = $(this).parents('.cart__row').find('.m-quantity-cus').find('input').val();
     var item_idd = $(this).parents('.cart__row').attr('data-prd-id');
     var updates = {};
-    updates[variantId] = updatedQuantity;
+    updates[item_idd] = updatedQuantity;
     fetch(window.Shopify.routes.root + 'cart/add.js', {
        method: 'POST',
        headers: {
