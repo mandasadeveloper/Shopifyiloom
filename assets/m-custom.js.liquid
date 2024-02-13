@@ -543,7 +543,7 @@ $('.checkout_custom').on('click', function(e) {
     })
     .then(response => {
       if (response.ok) {
-        window.location.href = '/checkout'; // Redirect to the checkout page
+        console.log('Item added to cart successfully');
       } else {
         throw new Error('Failed to add item to cart');
       }
@@ -552,4 +552,8 @@ $('.checkout_custom').on('click', function(e) {
       console.error('Error:', error);
     });
   });
+
+  // Redirect to the checkout page after adding all checked items to the cart
+  window.location.href = '/checkout';
 });
+
