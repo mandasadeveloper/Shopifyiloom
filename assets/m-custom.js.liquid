@@ -528,7 +528,7 @@ $( ".checkbox-item" ).on( "change", function() {
 $('.checkout_custom').on('click', function(e) {
   e.preventDefault();
   $(".cart__row input:checked").each(function() {
-    var item_idd = $(this).attr('data-prd-id');
+    var item_idd = $(this).parents('.cart__row').attr('data-prd-id');
     console.log(item_idd);
   });  
 });
