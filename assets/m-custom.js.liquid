@@ -326,24 +326,24 @@ $(".delete-product").on("click", function() {
         updates[item_id] = 0;
         console.log(updates);
         });
-    // fetch(window.Shopify.routes.root + 'cart/update.js', {
-    //     method: 'POST',
-    //     headers: {
-    //     'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({ updates })
+    fetch(window.Shopify.routes.root + 'cart/update.js', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ updates })
         
-    //     })
-    //     .then(response => {
-    //     return response.json();
-    //     })
-    //     .then((state) => {
-    //       // updateCartCounter();
-    //       // location.reload();
-    //     })
-    //     .catch((error) => {
-    //     console.error('Error:', error);
-    //     });
+        })
+        .then(response => {
+        return response.json();
+        })
+        .then((state) => {
+          // updateCartCounter();
+          // location.reload();
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
 });
 
 //remove checked items
