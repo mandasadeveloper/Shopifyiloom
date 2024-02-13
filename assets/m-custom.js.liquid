@@ -510,7 +510,13 @@ function formatMoney(cents, format = "") {
 }
 
 $( ".checkbox-item" ).on( "change", function() {
-     
+     var isChecked_alll = $(this).prop("checked");
+     if(isChecked_alll){
+
+     }
+     else{
+       $('.select-all').removeAttr('checked');
+     }
      var currencyFormat = window.themeVariables.settings.currencyCodeEnabled ? window.themeVariables.settings.moneyWithCurrencyFormat : window.themeVariables.settings.moneyFormat;
      var total = 0;
       $(".cart__row input:checked").each(function() {
