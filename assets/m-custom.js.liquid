@@ -539,6 +539,17 @@ $('.checkout_custom').on('click', function(e) {
       quantity:updatedQuantity
       };
   items.push(item);
+    $.ajax({
+        type: 'POST',
+        url: '/cart/clear.js',
+        dataType: 'json',
+        success: function(response) {
+          console.log("Cart cleared successfully");
+        },
+        error: function(xhr, status, error) {
+          console.error("Error clearing cart:", error);
+        }
+      });
   $.ajax({
          type: 'POST',
          url: '/cart/add.js',
