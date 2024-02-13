@@ -457,7 +457,10 @@ function updateCartCounter() {
 $( ".checkbox-item" ).on( "change", function() {
    var isChecked = $(this).prop("checked");
    if (isChecked) {
-      console.log("Checkbox is checked");
+      $(".cart__row").each(function() {
+        var ggg = $(this).attr('prd-prc');
+        console.log(ggg);
+      });
    }
   else{
       console.log("Checkbox is unchecked");
