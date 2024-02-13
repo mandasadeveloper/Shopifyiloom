@@ -526,34 +526,33 @@ $( ".checkbox-item" ).on( "change", function() {
 });
 
 $('.checkout_custom').on('click', function(e) {
-  e.preventDefault();
   
+
+  e.preventDefault();
+     var items = [];
   $(".cart__row input:checked").each(function() {
     var updatedQuantity = $(this).parents('.cart__row').find('.m-quantity-cus').find('input').val();
-    var item_id = $(this).parents('.cart__row').attr('data-prd-id');
+    var item_idd = $(this).parents('.cart__row').attr('data-prd-id');
+ 
+    var item = {
+      id:item_idd,
+      quantity:updatedQuantity
+      };
+  items.push(item);
+  $.ajax({
+         type: 'POST',
+         url: '/cart/add.js',
+         dataType: 'json',
+         data: {
+           items: items
+         },
+         success: function(response){
+          console.log(response);
+           window.location.href = "/checkout";
+         },
+         error: function(){}
+       });
     
-    // Prepare the data to be sent in the request
-    var formData = new FormData();
-    formData.append('id', item_id);
-    formData.append('quantity', updatedQuantity);
-
-    fetch('/cart/add.js', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-        console.log('Item added to cart successfully');
-      } else {
-        throw new Error('Failed to add item to cart');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  });
-
-  // Redirect to the checkout page after adding all checked items to the cart
-  window.location.href = '/checkout';
+  }); 
+  
 });
-
