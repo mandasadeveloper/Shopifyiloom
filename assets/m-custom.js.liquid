@@ -527,41 +527,23 @@ $( ".select-all" ).on( "change", function() {
         updates[item_id] = 0;
         console.log(updates);
         });
-    f  fetch(window.Shopify.routes.root + 'cart/update.js', {
-       method: 'POST',
-       headers: {
-         'Content-Type': 'application/json'
-       },
-       body: JSON.stringify({updates})
-     })
-     .then((response) => {
-      return response.text();
-    })
-    .then((responseText) => {
-      const data = JSON.parse(responseText);
-      const counterEl = document.querySelectorAll('.count-bubble');
-       console.log(data.items_subtotal_price);
-      counterEl.forEach((element) => {
-        element.innerHTML = data.item_count;
-      });
-      if (window.location.href.indexOf("cart") > -1) {
-        $.ajax({
-         url:'/cart',
-         type:'GET',
-         success: function(data){
-         let parser1 = new DOMParser();
-         const doc1 = parser1.parseFromString(data, 'text/html');
-         console.log(doc1.querySelector(".m-total-price"));
-         $(".total_cus").html('');
-         $(".total_cus").append(doc1.querySelector(".m-total-price"));
-         // updateCartCounter();
-        }
-         });
-        }
-    })
-     .catch((error) => {
-       console.error('Error:', error);
-     });
+    fetch(window.Shopify.routes.root + 'cart/update.js', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ updates })
+        
+        })
+        .then(response => {
+        return response.text();
+        })
+        .then((state) => {
+          console.log(state);
+        })
+        .catch((error) => {
+        console.error('Error:', error);
+        });
   }
 });
 // all select
