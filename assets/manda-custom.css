@@ -44,7 +44,7 @@
   background: white;
   }
   .m-blog-posts .m-badge{
-        font-family: 'Avenir_Regular';
+        font-family: 'Montserrat Bold';
     font-size: 10px !important;
     font-weight: 900;
     letter-spacing: 1px;
@@ -3941,3 +3941,9 @@ line-height: 256.3%;
 .m-blog-posts .m-badge{
   font-family: 'Avenir LT Std 65 Medium'!important;
 } */
+
+@font-face {
+  font-family: "Montserrat Bold";
+  src: url("https://cdn.shopify.com/s/files/1/0575/1576/9926/files/Montserrat-Bold.ttf?v=1707813345");
+}
+
