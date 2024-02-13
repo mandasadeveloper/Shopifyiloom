@@ -676,3 +676,8 @@ function updateCartCounter() {
 //      $(".m-search-icon").css({"display": "none"});
 // });
 // Search icon
+
+
+
+
+
