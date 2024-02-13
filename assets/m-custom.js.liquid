@@ -455,7 +455,7 @@ function updateCartCounter() {
 
 
 $( ".checkbox-item" ).on( "change", function() {
-
+    var currencyFormat = window.themeVariables.settings.currencyCodeEnabled ? window.themeVariables.settings.moneyWithCurrencyFormat : window.themeVariables.settings.moneyFormat;
      var total = 0;
       $(".cart__row input:checked").each(function() {
         var price = $(this).parents('.cart__row').attr('prd-prc');
@@ -463,6 +463,7 @@ $( ".checkbox-item" ).on( "change", function() {
         total += price_actual;
       });
       console.log(total);
+  console.log(currencyFormat);
       $('.total-price').html(total);
  
 });
