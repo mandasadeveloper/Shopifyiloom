@@ -417,6 +417,7 @@ $( ".checkbox-item" ).on( "change", function() {
     $('.checkbox-item').each(function() {
       this.checked = true;
       console.log('check-ghvjjhewdw');
+      $('.select-all').attr('checked' , true);
     });
     console.log("Checkbox is checked");
     var updatedQuantity = $(this).parents('.cart__row').find('.m-quantity-cus').find('input').val();
