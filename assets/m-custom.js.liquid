@@ -598,3 +598,9 @@ $( ".select-all" ).on( "change", function() {
       console.log((formatMoney(total, currencyFormat)));
     }
 });
+
+
+$( ".select-check" ).on( "change", function() {
+  var sel_val = $(this).val();
+  alert(sel_val);
+});
