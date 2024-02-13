@@ -525,7 +525,7 @@ $( ".select-all" ).on( "change", function() {
       var item_id = $(this).parents('.cart__row').attr('data-prd-id');
       var item_qty = $(this).parents('.order-summary').find('.cart__row').find('.m-quantity-cus').find('input').val();
       console.log(item_qty);
-        updates[item_id] = 0;
+        updates[item_id] = item_qty;
         console.log(updates);
         });
     fetch(window.Shopify.routes.root + 'cart/update.js', {
