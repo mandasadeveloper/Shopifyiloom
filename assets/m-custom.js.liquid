@@ -569,3 +569,25 @@ $('.checkout_custom').on('click', function(e) {
   }); 
   
 });
+
+
+$( ".select-all" ).on( "change", function() {
+     var isChecked_all = $(this).prop("checked");
+     if(isChecked_all){
+     var currencyFormat = window.themeVariables.settings.currencyCodeEnabled ? window.themeVariables.settings.moneyWithCurrencyFormat : window.themeVariables.settings.moneyFormat;
+     var total = 0;
+      $(".cart__row input:checked").each(function() {
+        var price = $(this).parents('.cart__row').attr('prd-prc');
+        var price_actual = parseFloat(price);
+        total += price_actual;
+      });
+      console.log(total);
+      console.log(currencyFormat);
+      $('.total_cus').html((formatMoney(total, currencyFormat)));
+      console.log((formatMoney(total, currencyFormat)));
+     }
+    else{
+      var total = 0;
+      console.log((formatMoney(total, currencyFormat)));
+    }
+});
