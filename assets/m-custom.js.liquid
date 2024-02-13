@@ -318,7 +318,8 @@ function removeItem(id,qty,selectedItemPrice){
 // }
 
 //remove checked items
-$(".delete-product").on("click", function() {
+$(".delete-product").on("click", function(e) {
+  e.preventDefault();
   let updates = {};
   $(".cart__row input:checked").each(function() {
       var item_id = $(this).parents('.cart__row').attr('data-prd-id');
