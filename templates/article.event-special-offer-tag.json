@@ -62,10 +62,16 @@
         "product_card_background": "",
         "product_card_text_color": ""
       }
+    },
+    "social_sharing1_btnzqw": {
+      "type": "social-sharing1",
+      "settings": {
+      }
     }
   },
   "order": [
     "main",
-    "f4b1081a-c672-4172-81d2-f8b33aee6a3c"
+    "f4b1081a-c672-4172-81d2-f8b33aee6a3c",
+    "social_sharing1_btnzqw"
   ]
 }

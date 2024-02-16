@@ -37,21 +37,20 @@
             ----------------------------------------------------------------------------------------------------------------
             {%- endcomment -%}
             <table class="order-summary">
-            <div class="select-all-op"><input type="checkbox" class="select-all select-all-mobile" checked />
-              <!-- mk-mds  -->
-              <div class="select-all-mob">全部</div> 
-              <!-- end-mk-mds  -->
-              <div class="dot-mob-m"></div>
-            </div>
+  <div class="select-all-op"><input type="checkbox" class="select-all select-all-mobile" /><div class="select-all-mob">전체</div> <div class="dot-mob-m"></div>
+   
+</div>
               <thead class="order-summary__header">
+               
                 <tr>
-                  <th class="select-product-m"> <div><input type="checkbox" class="select-all" id="black" checked /></div> <div>{{ 'cart.order.product' | t }}</div></th>
+                  
+                  <th class="select-product-m"> <div><input type="checkbox" class="select-all" id="black" /></div> <div>{{ 'cart.order.product' | t }}</div></th>
                   <th class="w-0">{{ 'cart.order.quantity' | t }}</th>
                   <th class="text-end">{{ 'cart.order.total' | t }}</th>
                 </tr>
               </thead>
 
-              <tbody class="order-summary__body update_cart_items shubh_cart">
+              <tbody class="order-summary__body update_cart_items">
                 {%- for line_item in cart.items -%}
                   {%- assign line_max_quantity = '' -%}
 
@@ -59,7 +58,7 @@
                     {%- assign line_max_quantity = line_item.variant.inventory_quantity -%}
                   {%- endif -%}
 
-                  <tr class="cart__row" data-prd-id="{{ line_item.id }}" prd-prc="{{ line_item.final_line_price }}">
+                  <tr class="cart__row" data-prd-id="{{ line_item.id }}">
                     <td>{%- render 'line-item', line_item: line_item -%}</td>
 
                     <td class="hidden align-center text-center text-subdued sm:table-cell">
@@ -82,28 +81,21 @@
                     </td>
 
                     <td class="hidden align-center text-subdued text-end sm:table-cell price-m-cart">
-                  <!-- mk-mds  -->
-                      <div class="mk-cart v-stack justify-center gap-2">     
-                        <span class="price-m-cart11" cart_p="{{ line_item.final_line_price }}">
+                        <span class="price-m-cart11">
                         {{ line_item.final_line_price | money }}<br>
-                  {% if line_item.variant.compare_at_price %}
-<span class="comp_price">
-                        {{ line_item.variant.compare_at_price | times:line_item.quantity | money }}
-</span>
-                    {% endif %}
+                
                         </span>
-                        <span class="text-xs">
-                        <a href="{{ line_item.url_to_remove }}" class="link">
-                          <!-- {{ 'cart.order.remove' | t }} -->
-                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                          <path d="M10.4648 10.5L1.48729 1.5" stroke="#3C3C3C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M10.4658 1.5L1.48828 10.5" stroke="#3C3C3C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                        </a>
+                  
+                         <span class="text-xs">
+                          <a href="{{ line_item.url_to_remove }}" class="link">
+                  <!-- {{ 'cart.order.remove' | t }} -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M10.4648 10.5L1.48729 1.5" stroke="#3C3C3C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10.4658 1.5L1.48828 10.5" stroke="#3C3C3C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                  </a>
                         </span>
-                      </div>
-                  <!-- end-mk-mds  -->
-                    </td>
+                  </td>
                   </tr>
                  
                 {%- endfor -%}
@@ -151,12 +143,12 @@
           <div class="m-elevator1">
           <div class="m-ele-cus">
           <div class="select-check-div">
-          <input type="radio" class="select-check radio-custom" id="yes" name="yesno" value="Have" />
+          <input type="radio" class="select-check radio-custom" id="yes" name="yesno" value="Yes" />
           <label for="yes" class="radio-custom-label">{{ section.settings.check-box-select }}</label>
           </div>
           
           <div class="m-ele-cus">
-          <input type="radio" class="select-check radio-custom" id="no" name="yesno" value="No" checked />
+          <input type="radio" class="select-check radio-custom" id="no" name="yesno" value="No" />
           <label for="no" class="radio-custom-label">{{ section.settings.check-box-select1 }}</label>
           </div>
           </div> 
@@ -188,7 +180,6 @@
           </svg> -->
     <safe-sticky class="cart-order__recap m-cart-right v-stack gap-6">
             <form action="{{ routes.cart_url }}" method="POST" class="cart-form rounded">
-              <input id="check_val" type="hidden" name="attributes[there is elevator]" value="No">
               {%- for block in section.blocks -%}
                 {%- case block.type -%}
                   {%- when '@app' -%}
@@ -220,7 +211,7 @@
 
                       <div class="h-stack gap-4 justify-between m-total">
                         <span class="h5 m-total-head">{{ 'cart.general.total' | t }}</span>
-                        <span class="h5 m-total-price total_cus desk">{{- cart.total_price | money_with_currency -}}</span>
+                        <span class="h5 m-total-price total_cus">{{- cart.total_price | money_with_currency -}}</span>
                       </div>
                        <div class="shiping-checkout">
                          <span>{{ section.settings.shiping-checkout }}</span>
@@ -274,11 +265,11 @@
 
                   {%- when 'checkout_button' -%}
                     {%- assign checkout_button = 'cart.general.checkout' | t -%}
-                    <div class="checkout_button_m">  
-                      <div class="delete-product1" type="button"> <button  class="delete-product">{{ section.settings.delete_product }}</button></div>
-                      <!-- <div class="checkout-cus"> {%- render 'button', type: 'submit', content: checkout_button, size: 'xl', name: 'checkout', stretch: true, block: block, class: "m-btn-cas" -%}</div> -->
-                      <div class="checkout-cus"><button class="button button--xl w-full checkout_custom">{{ checkout_button }}</button></div>
-                    </div>
+              <div class="checkout_button_m">  
+                 <div class="delete-product1" type="button"> <button  class="delete-product">{{ section.settings.delete_product }}</button></div>
+
+                    <div class="checkout-cus"> {%- render 'button', type: 'submit', content: checkout_button, size: 'xl', name: 'checkout', stretch: true, block: block, class: "m-btn-cas" -%}</div>
+              </div>
                 
                   {%- endcase -%}
               {%- endfor -%}

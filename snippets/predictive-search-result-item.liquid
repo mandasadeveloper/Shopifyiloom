@@ -19,9 +19,9 @@ Supported variables
   
     {%- assign product = item -%}
 
-    <a href="{{ product.url }}" data-instant class="predictive-search-result group pro-r-m rr">
+    <a href="{{ product.url }}" data-instant class="predictive-search-result group pro-r-m">
       {%- if product.featured_media -%}
-        <img src="{{ product.featured_media | img_url: 'master' }}" width="auto" height="auto">
+        {{- product.featured_media | image_url: width: product.featured_media.width | image_tag: sizes: '96px', widths: '96,192' -}}
       {%- endif -%}
 
       <div class="v-stack gap-1 sm:gap-1.5">
@@ -30,24 +30,15 @@ Supported variables
         {%- endif -%}
 
         <div class="v-stack m-pro-cus justify-items-start gap-0.5">
-          <!-- mk-mds  -->
-         <span class="mm-vendor hh">
-          {% capture series_tags %}
-            {% for tag in product.tags %}
-              {% if tag contains "series:" %}
-                {% assign tag_split = tag | split: 'series:' %}
-                {% if forloop.first %}
-                  {{ tag_split[1] }}
-                {% else %}
-                  /{{ tag_split[1] }}
-                {% endif %}
-              {% endif %}
-            {% endfor %}
-          {% endcapture %}
-          {{ series_tags | strip }}
-           <!-- {{ product.vendor }} -->
-         </span>
-         <!-- end-mk-mds  -->
+   <span class="mm-vendor hh">
+        {% for tag in product.tags %}
+        {% if tag contains "series:" %}
+          {% assign tag_split = tag | split: 'series:' %}
+           <p>{{ tag_split[1] }}</p>
+        {% endif %}
+      {% endfor %}
+       <!-- {{ product.vendor }} -->
+               </span>
           <span class="bold">
             <span class="reversed-link">{{ product.title }}</span>
           </span>
@@ -121,41 +112,41 @@ Supported variables
     </a>
 
   {%- when 'article' -%}
-  <!-- mk-mds  -->
+
     {%- assign article = item -%}
-    {%liquid
-    assign split_1 = article.url | split: '/blogs/'
-    assign split_2 = split_1[1] | split: '/'
-    assign blog_handle = split_2[0] | strip
-    assign article_blog = blogs[blog_handle]
-    %}
-    {% if article_blog.handle contains 'news' or article_blog.handle contains 'event' or article_blog.handle contains 'magazine' %}
-    <a href="{{ article.url }}" data-instant class="1-{{ article_blog.handle }} predictive-search-result group m-blog-cus">
+
+    <a href="{{ article.url }}" data-instant class="predictive-search-result group m-blog-cus">
       {%- if article.image -%}
-    
-      <img src="{{ article.image | img_url: 'master' }}" width="auto" height="auto">
+        {{- article.image | image_url: width: article.image.width | image_tag: sizes: '96px', widths: '96,192' -}}
       {%- endif -%}
+   
+
           {%liquid
           assign split_1 = article.url | split: '/blogs/'
           assign split_2 = split_1[1] | split: '/'
           assign blog_handle = split_2[0] | strip
           assign article_blog = blogs[blog_handle]
           %}
+          
 
+      
       <div class="v-stack justify-items-start gap-2 sm:gap-3">
-        
+        {%- if section.settings.show_article_category and article.tags.size > 0 -%}
           <!-- <span class="badge badge--primary">{{ article.tags | first }}</span> -->
           <span class="badge badge--primary"> {{ article_blog.title }}</span> 
             <span class="reversed-link rm-reversed-link">{{ article.blog.title }}</span>
+        {%- endif -%}
 
         <span class="bold">
           <span class="reversed-link m-blog-art">{{ article.title }}</span>
             <span class="reversed-link">{{ blog.title }}</span>
+
+
+
+  
         </span>
       </div>
     </a>
-    {% endif %}
-  <!-- end-mk-mds  -->
 
   {%- when 'collection' -%}
     {%- assign collection = item -%}
@@ -163,7 +154,6 @@ Supported variables
     <a href="{{ collection.url }}" data-instant class="predictive-search-result group">
       {%- if collection.featured_image -%}
         {{- collection.featured_image | image_url: width: collection.featured_image.width | image_tag: sizes: '96px', widths: '96,192' -}}
-        <!-- <img src="{{ collection.featured_image | img_url: 'master' }}" width="auto" height="auto"> -->
       {%- endif -%}
 
       <div class="v-stack justify-items-start gap-0.5">

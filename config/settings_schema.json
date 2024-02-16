@@ -654,12 +654,6 @@
       },
       {
         "type": "checkbox",
-        "id": "show_discount1",
-        "label": "Show discount badge bottom",
-        "default": true
-      },
-      {
-        "type": "checkbox",
         "id": "show_discount",
         "label": "Show discount badge",
         "default": true

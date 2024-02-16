@@ -31,7 +31,7 @@
     }
   }
 </style>
-
+{% if article.metafields.custom.event_article_product.value != blank %}
 <div class='bg-cuss bg-cuss1'>
   <div class="section-stack section-stack-event">
     {%- assign link_url = section.settings.link_url | default: section.settings.collection.url -%}
@@ -75,7 +75,7 @@
     </div>
   </div>
 </div>
-
+{% endif %}
 {% schema %}
 {
   "name": "Featured Coll event",
