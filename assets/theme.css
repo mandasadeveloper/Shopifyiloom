@@ -2798,8 +2798,8 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
 }
 
 .product-card__image:not(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
-  border-top-left-radius: var(--rounded-sm);
-  border-top-right-radius: var(--rounded-sm);
+/*   border-top-left-radius: var(--rounded-sm);
+  border-top-right-radius: var(--rounded-sm); */
 }
 
 .product-card__image:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)) {
@@ -9948,4 +9948,15 @@ split-lines {
   font-family: 'NotoSansCJKkr-Regular';
   src: url('https://cdn.shopify.com/s/files/1/0575/1576/9926/files/NotoSansCJKkr-Regular.otf?v=1700888589') format('truetype');
 }
-/*End Font Family */
+/* mk-mds */
+.ssw-socialconnect>div>a{
+  border-radius: 50% !important;
+}
+@media(max-width:767px){
+  .product-card__quick-buy {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem !important;
+  }
+}
+/* end-mk-mds */

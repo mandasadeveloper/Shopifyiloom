@@ -88,7 +88,7 @@
       </div>
 
       {%- paginate search.results by section.settings.products_per_page -%}
-        <div class="collection {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %} product-list-desktop">
+        <div class="collection {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %} product-list-desktop m-serch-mgt">
           {%- if show_filters or section.settings.show_sort_by -%}
             {%- comment -%}
               IMPLEMENTATION NOTE: we have to output the drawer no matter what, as it is used on mobile (all the time) or desktop (when in drawer mode)
@@ -231,7 +231,10 @@
           </div>
         </div>
 
+{% assign pagg = section.settings.articles_per_page1 | plus: 1 %}
+{% if search.results_count > pagg  %} 
   <div id="m-loadMore-search"><a href="#">More<span>{% render 'down-arrow' %}</span></a></div>
+{% endif %}
 
 
 
