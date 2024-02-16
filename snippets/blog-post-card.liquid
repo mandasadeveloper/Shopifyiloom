@@ -60,14 +60,6 @@ Supported parameters
             <p {% if featured %}class="text-lg"{% endif %}>{{ 'general.on_boarding.blog_post_excerpt' | t }}</p>
           {%- endif -%}
         {%- endif -%}
-        {% assign hashTagValue = article.metafields.custom.hashtag.value %}
-        <div class="il-productBlogPost__hashTagMainWrap">
-          {% for hashTag in hashTagValue %}
-            <p class="il-productBlogPost__hashTag text-p text-p--14">
-              {{ hashTag }}
-            </p>
-          {% endfor %}
-        </div>
       </div>
 
       {%- if show_date or show_author or show_comments_count -%}
