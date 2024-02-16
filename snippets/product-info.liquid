@@ -1,11 +1,6 @@
 {%- capture product_form_id -%}product-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
-{% liquid
-  assign hideCaution = product.metafields.custom.caution
-  assign now = 'now' | date: '%Y-%m-%dT%H:%M'
-  assign productEvent = product.metafields.custom.product_launch_event.value
-%}
 
-<safe-sticky class="product-info product-info__desktop">
+<safe-sticky class="product-info">
   {%- for block in section.blocks -%}
     {%- assign previous_block_index = forloop.index0 | minus: 1 -%}
     {%- assign previous_block = section.blocks[previous_block_index] -%}
@@ -23,74 +18,8 @@
         {%- endif -%}
 
       {%- when 'title' -%}
-        {% liquid
-          echo '<p class="il-product__series text-p text-p--secondaryFont text-p--14">'
-          for tag in product.tags
-            if tag contains 'series:'
-              assign trimmedTag = tag | remove: 'series: ' | remove: 'series : ' | remove: 'series :' | downcase
-              echo '<span class="il-product__seriesItem">'
-              echo trimmedTag
-              echo '</span>'
-            endif
-          endfor
-          echo '</p>'
-        %}
         {%- if request.page_type == 'product' -%}
-          <div class="il-product__title">
-            <h1
-              class="product-info__title text-p text-p--primaryFont text-p--28 {{ block.settings.heading_tag }}"
-              {{ block.shopify_attributes }}
-            >
-              {{ product.title }}
-            </h1>
-            <div class="il-product__titlenNextBlock">
-              <div class="product-form__wishlist">
-                <button class="product-info__native-wishlist">
-                  {%- render 'icon' with 'wishlist', width: 24, height: 24 -%}
-                </button>
-              </div>
-              <div
-                class="product-form__share {% if block.settings.alignment == 'center' %}justify-self-center{% elsif block.settings.alignment == 'end' %}justify-self-end{% endif %}"
-                {{ block.shopify_attributes }}
-                data-toggle-container
-              >
-                <div class="product-info__share-buttons" data-toggle-container-inner>
-                  <div class="share-buttons">
-                    <button class="share-buttons--close" data-share-btn-close></button>
-                    <span class="product-info__shareHeading text-p text-p--16 text-p--primaryFont">
-                      {{- 'general.social.share' | t -}}
-                    </span>
-                    <ul class="il-shareList">
-                      <li class="il-shareList__item">
-                        <button class="il-shareList__btn" onclick="shareLine()" data-share-line>
-                          {% render 'icon' with 'line-share' %}
-                        </button>
-                      </li>
-                      <li class="il-shareList__item">
-                        <button class="il-shareList__btn" onclick="shareFacebook()" data-share-facebook>
-                          {% render 'icon' with 'facebook-share' %}
-                        </button>
-                      </li>
-                      <li class="il-shareList__item">
-                        <button class="il-shareList__btn" onclick="shareWhatsapp()" data-share-whatsapp>
-                          {% render 'icon' with 'whatsapp-share' %}
-                        </button>
-                      </li>
-                      <li class="il-shareList__item">
-                        <button class="il-shareList__btn" data-share-link>
-                          {% render 'icon' with 'link-share' %}
-                        </button>
-                        <div class="il-shareList__toast" data-copy-toast>已複製</div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <button class="product-info__native-share" data-share-btn>
-                  {%- render 'icon' with 'share' -%}
-                </button>
-              </div>
-            </div>
-          </div>
+          <h1 class="product-info__title {{ block.settings.heading_tag }}" {{ block.shopify_attributes }}>{{ product.title }}</h1>
         {%- else -%}
           <h2 class="product-info__title {{ block.settings.heading_tag }}" {{ block.shopify_attributes }}>
             <a href="{{ product.url }}">{{ product.title }}</a>
@@ -98,96 +27,24 @@
         {%- endif -%}
 
       {%- when 'badges' -%}
-        {%- render 'product-badges',
-          product: product,
-          types: 'image',
-          form_id: product_form_id,
-          class: 'product-info__badge-list',
-          block: block
-        -%}
+        {%- render 'product-badges', product: product, types: 'custom', form_id: product_form_id, class: 'product-info__badge-list', block: block -%}
 
       {%- when 'sku' -%}
-        {% if section.settings.composition_image != blank %}
-          <div class="product-info__compositionWrapper">
-            <div class="product-info__composition">
-              <p class="product-info__coompositionTitle text-p text-p--14">
-                {{ section.settings.basic_composition_heading }}
-                {% render 'icon' with 'info' %}
-              </p>
-            </div>
-            <variant-sku
-              form="{{ product_form_id }}"
-              class="product-info__sku text-xs text-subdued"
-              {% if product.selected_or_first_available_variant.sku == blank %}
-                hidden
-              {% endif %}
-              {{ block.shopify_attributes }}
-            >
-              {{- 'product.general.sku' | t }}
-              {{ product.selected_or_first_available_variant.sku -}}
-            </variant-sku>
-          </div>
-        {% endif %}
-
-      {%- when 'product_event' -%}
-        {% if product.metafields.custom.product_event != blank %}
-          {% assign product_event = product.metafields.custom.product_event.value %}
-          <div class="product-info__event full-bleed">
-            <a
-              class="product-info__eventLink text-p text-p--primaryFont text-p--14"
-              href="{{ product_event.event_url }}"
-            >
-              <span class="product-info__event--iconPercent">
-                {% render 'icon' with 'percent' %}
-              </span>
-              {{ product_event.event_name }}
-              <span class="product-info__event--iconRight">
-                {% render 'icon' with 'chevron-right' %}
-              </span>
-            </a>
-          </div>
-        {% endif %}
+        <variant-sku form="{{ product_form_id }}" class="product-info__sku text-xs text-subdued" {% if product.selected_or_first_available_variant.sku == blank %}hidden{% endif %} {{ block.shopify_attributes }}>
+          {{- 'product.general.sku' | t }} {{ product.selected_or_first_available_variant.sku -}}
+        </variant-sku>
 
       {%- when 'price' -%}
         <div class="product-info__price">
           <div class="rating-with-text">
-            {%- render 'price-list',
-              variant: product.selected_or_first_available_variant,
-              form_id: product_form_id,
-              size: 'lg',
-              block: block
-            -%}
-            {%- render 'product-badges',
-              types: 'sold_out, discount',
-              product: product,
-              form_id: product_form_id,
-              class: 'product-info__badge-list'
-            -%}
+            {%- render 'price-list', variant: product.selected_or_first_available_variant, form_id: product_form_id, size: 'lg', block: block -%}
+            {%- render 'product-badges', types: 'sold_out, discount', product: product, form_id: product_form_id, class: 'product-info__badge-list' -%}
 
             {%- comment -%}If the next block is a rating block, then we add it as part of this one to have it inline{%- endcomment -%}
             {%- if next_block.type == 'rating' -%}
-              {%- render 'product-rating',
-                product: product,
-                show_empty: next_block.settings.show_empty,
-                block: next_block
-              -%}
+              {%- render 'product-rating', product: product, show_empty: next_block.settings.show_empty, block: next_block -%}
             {%- endif -%}
           </div>
-          {% if section.settings.composition_image == blank %}
-            <div class="product-info__skuWrapper text-xs text-subdued">
-              <variant-sku
-                form="{{ product_form_id }}"
-                class="product-info__sku text-xs text-subdued"
-                {% if product.selected_or_first_available_variant.sku == blank %}
-                  hidden
-                {% endif %}
-                {{ block.shopify_attributes }}
-              >
-                {{ 'product.general.sku' | t }}
-                {{ product.selected_or_first_available_variant.sku -}}
-              </variant-sku>
-            </div>
-          {% endif %}
 
           {%- if block.settings.show_taxes_notice -%}
             <p class="text-sm text-subdued">
@@ -209,14 +66,7 @@
 
         {%- if previous_block.type != 'price' -%}
           <div class="product-info__rating">
-            <div class="product-info__ratingWrapper">
-              {% comment %} {%- render 'product-rating', product: product, show_empty: block.settings.show_empty, block: block -%} {% endcomment %}
-              {% for i in (1..4) %}
-                {% render 'icon' with 'star' %}
-              {% endfor %}
-              {% render 'icon' with 'star-half' %}
-              <span class="product-info__ratingText">4.3 (185)</span>
-            </div>
+            {%- render 'product-rating', product: product, show_empty: block.settings.show_empty, block: block -%}
           </div>
         {%- endif -%}
 
@@ -239,12 +89,7 @@
             {%- capture accordion_title -%}{{ 'product.general.description' | t }}{%- endcapture -%}
             {%- capture accordion_content -%}<div class="prose">{{ product.description }}</div>{%- endcapture -%}
 
-            {%- render 'accordion',
-              title: accordion_title,
-              content: accordion_content,
-              class: 'product-info__accordion',
-              block: block
-            -%}
+            {%- render 'accordion', title: accordion_title, content: accordion_content, class: 'product-info__accordion', block: block -%}
           {%- endif -%}
         {%- else -%}
           {%- if product.description != blank -%}
@@ -258,13 +103,7 @@
 
       {%- when 'variant_picker' -%}
         <div class="product-info__variant-picker" {{ block.shopify_attributes }}>
-          {%- render 'variant-picker',
-            product: product,
-            form_id: product_form_id,
-            update_url: update_url,
-            hide_sold_out_variants: block.settings.hide_sold_out_variants,
-            block: block
-          -%}
+          {%- render 'variant-picker', product: product, form_id: product_form_id, update_url: update_url, hide_sold_out_variants: block.settings.hide_sold_out_variants, block: block -%}
         </div>
 
       {%- when 'product_variations' -%}
@@ -310,39 +149,16 @@
 
                     {%- case block.settings.color_mode -%}
                       {%- when 'color' -%}
-                        {%- render 'swatch',
-                          type: 'colors',
-                          href: product_variation.url,
-                          value: value,
-                          selected: selected
-                        -%}
+                        {%- render 'swatch', type: 'colors', href: product_variation.url, value: value, selected: selected -%}
 
                       {%- when 'variant' -%}
-                        {%- render 'swatch',
-                          type: 'thumbnail',
-                          href: product_variation.url,
-                          value: value,
-                          image: product_variation.featured_media,
-                          selected: selected,
-                          bordered: true
-                        -%}
+                        {%- render 'swatch', type: 'thumbnail', href: product_variation.url, value: value, image: product_variation.featured_media, selected: selected, bordered: true -%}
 
                       {%- when 'block' -%}
-                        {%- render 'swatch',
-                          type: 'block',
-                          href: product_variation.url,
-                          value: value,
-                          selected: selected
-                        -%}
+                        {%- render 'swatch', type: 'block', href: product_variation.url, value: value, selected: selected -%}
 
                       {%- when 'block_swatch' -%}
-                        {%- render 'swatch',
-                          type: 'block',
-                          href: product_variation.url,
-                          value: value,
-                          selected: selected,
-                          show_colors: true
-                        -%}
+                        {%- render 'swatch', type: 'block', href: product_variation.url, value: value, selected: selected, show_colors: true -%}
                     {%- endcase -%}
                   {%- endfor -%}
                 </div>
@@ -358,31 +174,12 @@
           <div class="product-info__property" {{ block.shopify_attributes }}>
             {%- if block.settings.type == 'text' -%}
               {%- if block.settings.allow_long_text -%}
-                {%- render 'input',
-                  label: block.settings.label,
-                  name: name,
-                  form: product_form_id,
-                  multiline: 4,
-                  required: block.settings.required,
-                  maxlength: block.settings.max_length
-                -%}
+                {%- render 'input', label: block.settings.label, name: name, form: product_form_id, multiline: 4, required: block.settings.required, maxlength: block.settings.max_length -%}
               {%- else -%}
-                {%- render 'input',
-                  type: 'text',
-                  label: block.settings.label,
-                  name: name,
-                  form: product_form_id,
-                  required: block.settings.required,
-                  maxlength: block.settings.max_length
-                -%}
+                {%- render 'input', type: 'text', label: block.settings.label, name: name, form: product_form_id, required: block.settings.required, maxlength: block.settings.max_length -%}
               {%- endif -%}
             {%- else -%}
-              {%- render 'checkbox',
-                label: block.settings.label,
-                name: name,
-                required: block.settings.required,
-                form: product_form_id
-              -%}
+              {%- render 'checkbox', label: block.settings.label, name: name, required: block.settings.required, form: product_form_id -%}
             {%- endif -%}
           </div>
         {%- endif -%}
@@ -391,40 +188,12 @@
         {%- if product.available -%}
           <div class="product-info__quantity-selector {{ block.shopify_attributes }}">
             <div class="form-control">
-              <label for="{{ product_form_id }}-quantity" class="block-label text-subdued">
-                {{- 'product.quantity.label' | t -}}
-              </label>
+              <label for="{{ product_form_id }}-quantity" class="block-label text-subdued">{{- 'product.quantity.label' | t -}}:</label>
 
               <quantity-selector class="quantity-selector">
-                <button
-                  type="button"
-                  class="quantity-selector__button"
-                  data-quantity-minus=""
-                  aria-label="{{ 'product.quantity.decrease_quantity' | t }}"
-                >
-                  {% render 'icon' with 'minus', width: 18, height: 18 %}
-                </button>
-                <input
-                  id="{{ product_form_id }}-quantity"
-                  type="text"
-                  is="quantity-input"
-                  inputmode="numeric"
-                  class="quantity-selector__input"
-                  name="quantity"
-                  form="{{ product_form_id }}"
-                  size="2"
-                  value="1"
-                  autocomplete="off"
-                  data-quantity-input=""
-                >
-                <button
-                  type="button"
-                  class="quantity-selector__button"
-                  data-quantity-plus=""
-                  aria-label="{{ 'product.quantity.increase_quantity' | t }}"
-                >
-                  {% render 'icon' with 'plus', width: 18, height: 18 %}
-                </button>
+                <button type="button" class="quantity-selector__button" aria-label="{{ 'product.quantity.decrease_quantity' | t }}">{% render 'icon' with 'minus', width: 10, height: 2 %}</button>
+                <input id="{{ product_form_id }}-quantity" type="text" is="quantity-input" inputmode="numeric" class="quantity-selector__input" name="quantity" form="{{ product_form_id }}" size="2" value="1" autocomplete="off">
+                <button type="button" class="quantity-selector__button" aria-label="{{ 'product.quantity.increase_quantity' | t }}">{% render 'icon' with 'plus', width: 10, height: 10 %}</button>
               </quantity-selector>
             </div>
           </div>
@@ -432,52 +201,21 @@
 
       {%- when 'inventory' -%}
         <div class="product-info__inventory {{ block.shopify_attributes }}">
-          {%- render 'inventory',
-            product: product,
-            low_threshold: block.settings.low_inventory_threshold,
-            form_id: product_form_id
-          -%}
+          {%- render 'inventory', product: product, low_threshold: block.settings.low_inventory_threshold, form_id: product_form_id -%}
         </div>
 
       {%- when 'buy_buttons' -%}
         {%- assign main_form_exists = true -%}
 
-        <div class="product-info__total-price">
-          <div class="form-control">
-            <label class="block-label text-subdued">{{- 'product.total_price.label' | t -}}</label>
-            <total-price class="total-price" data-total-price="">
-              {{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}
-            </total-price>
-          </div>
-        </div>
-
         {%- if request.page_type != 'password' -%}
-          <div
-            class="product-info__buy-buttons"
-            {% if productEvent.start_date >= now %}
-              hidden
-            {% endif %}
-            {{ block.shopify_attributes }}
-          >
-            {%- render 'buy-buttons',
-              product: product,
-              form_id: product_form_id,
-              show_payment_button: block.settings.show_payment_button,
-              show_gift_card_recipient: block.settings.show_gift_card_recipient,
-              atc_button_background: block.settings.atc_button_background,
-              atc_button_text_color: block.settings.atc_button_text_color,
-              payment_button_background: block.settings.payment_button_background,
-              payment_button_text_color: block.settings.payment_button_text_color
-            -%}
+          <div class="product-info__buy-buttons" {{ block.shopify_attributes }}>
+            {%- render 'buy-buttons', product: product, form_id: product_form_id, show_payment_button: block.settings.show_payment_button, show_gift_card_recipient: block.settings.show_gift_card_recipient, atc_button_background: block.settings.atc_button_background, atc_button_text_color: block.settings.atc_button_text_color, payment_button_background: block.settings.payment_button_background, payment_button_text_color: block.settings.payment_button_text_color -%}
           </div>
         {%- endif -%}
 
       {%- when 'pickup_availability' -%}
         <div class="product-info__pickup-availability" {{ block.shopify_attributes }}>
-          {%- render 'pickup-availability',
-            product_variant: product.selected_or_first_available_variant,
-            form_id: product_form_id
-          -%}
+          {%- render 'pickup-availability', product_variant: product.selected_or_first_available_variant, form_id: product_form_id -%}
         </div>
 
       {%- when 'text' -%}
@@ -492,12 +230,7 @@
       {%- when 'collapsible_text' -%}
         {%- if block.settings.title != blank and block.settings.content != blank -%}
           {%- capture accordion_content -%}<div class="prose">{{ block.settings.content }}</div>{%- endcapture -%}
-          {%- render 'accordion',
-            title: block.settings.title,
-            content: accordion_content,
-            class: 'product-info__accordion',
-            block: block
-          -%}
+          {%- render 'accordion', title: block.settings.title, content: accordion_content, class: 'product-info__accordion', block: block -%}
         {%- endif -%}
 
       {%- when 'image' -%}
@@ -506,26 +239,14 @@
             {%- capture sizes -%}{{ block.settings.max_width }}px{%- endcapture -%}
             {%- capture widths -%}{{ block.settings.max_width }}, {{ block.settings.max_width | times: 2 | at_most: block.settings.image.width }}{%- endcapture -%}
             {%- capture style -%}width: {{ block.settings.max_width }}px; {% if block.settings.alignment == 'center' %}margin-inline: auto{% elsif block.settings.alignment == 'end' %}margin-inline-start: auto;{% endif %}{%- endcapture -%}
-            {{-
-              block.settings.image
-              | image_url: width: block.settings.image.width
-              | image_tag: loading: 'lazy', style: style, sizes: sizes, widths: widths
-            -}}
+            {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', style: style, sizes: sizes, widths: widths -}}
           </div>
         {%- endif -%}
 
       {%- when 'button' -%}
         {%- if block.settings.text != blank -%}
           <div class="product-info__button" {{ block.shopify_attributes }}>
-            {%- render 'button',
-              content: block.settings.text,
-              href: block.settings.link,
-              size: block.settings.size,
-              style: block.settings.style,
-              stretch: block.settings.stretch,
-              background: block.settings.background,
-              text_color: block.settings.text_color
-            -%}
+            {%- render 'button', content: block.settings.text, href: block.settings.link, size: block.settings.size, style: block.settings.style, stretch: block.settings.stretch, background: block.settings.background, text_color: block.settings.text_color -%}
           </div>
         {%- endif -%}
 
@@ -537,21 +258,12 @@
         {%- endif -%}
 
       {%- when 'associated_products' -%}
-        <product-recommendations
-          class="block"
-          product="{{ product.id }}"
-          limit="{{ block.settings.products_count }}"
-          intent="complementary"
-          {{ block.shopify_attributes }}
-        >
+        <product-recommendations class="block" product="{{ product.id }}" limit="{{ block.settings.products_count }}" intent="complementary" {{ block.shopify_attributes }}>
           {%- if recommendations.performed and recommendations.products_count > 0 -%}
             <div class="product-info__complementary-products v-stack gap-3 sm:gap-4">
               {%- assign carousel_id = 'carousel-' | append: block.id -%}
 
-              {%- if block.settings.title != blank
-                or block.settings.stack_products == false
-                and recommendations.products_count > 1
-              -%}
+              {%- if block.settings.title != blank or block.settings.stack_products == false and recommendations.products_count > 1 -%}
                 <div class="h-stack justify-between gap-4">
                   {%- if block.settings.title != blank -%}
                     <p>{{ block.settings.title | escape }}</p>
@@ -559,23 +271,8 @@
 
                   {%- if block.settings.stack_products == false and recommendations.products_count > 1 -%}
                     <div class="h-stack gap-2 hidden sm:flex">
-                      <button
-                        is="prev-button"
-                        class="circle-chevron hover:colors"
-                        aria-controls="{{ carousel_id }}"
-                        aria-label="{{ 'general.accessibility.previous' | t | escape }}"
-                        disabled
-                      >
-                        {%- render 'icon' with 'chevron-left-small', direction_aware: true -%}
-                      </button>
-                      <button
-                        is="next-button"
-                        class="circle-chevron hover:colors"
-                        aria-controls="{{ carousel_id }}"
-                        aria-label="{{ 'general.accessibility.next' | t | escape }}"
-                      >
-                        {%- render 'icon' with 'chevron-right-small', direction_aware: true -%}
-                      </button>
+                      <button is="prev-button" class="circle-chevron hover:colors" aria-controls="{{ carousel_id }}" aria-label="{{ 'general.accessibility.previous' | t | escape }}" disabled>{%- render 'icon' with 'chevron-left-small', direction_aware: true -%}</button>
+                      <button is="next-button" class="circle-chevron hover:colors" aria-controls="{{ carousel_id }}" aria-label="{{ 'general.accessibility.next' | t | escape }}">{%- render 'icon' with 'chevron-right-small', direction_aware: true -%}</button>
                     </div>
                   {%- endif -%}
                 </div>
@@ -588,15 +285,9 @@
               {%- endcapture -%}
 
               {%- assign horizontal_products_blends = true -%}
-              {%- assign section_background = section.settings.background_gradient
-                | default: section.settings.background
-                | default: settings.background
-              -%}
+              {%- assign section_background = section.settings.background_gradient | default: section.settings.background | default: settings.background -%}
 
-              {%- if block.settings.background != 'rgba(0,0,0,0)'
-                and block.settings.background != blank
-                and block.settings.background != section_background
-              -%}
+              {%- if block.settings.background != 'rgba(0,0,0,0)' and block.settings.background != blank and block.settings.background != section_background -%}
                 {%- assign horizontal_products_blends = false -%}
               {%- endif -%}
 
@@ -605,11 +296,7 @@
                   {{- horizontal_products -}}
                 </div>
               {%- else -%}
-                <scroll-carousel
-                  selector=".horizontal-product"
-                  id="{{ carousel_id }}"
-                  class="horizontal-product-list-carousel {% unless horizontal_products_blends %}separate{% endunless %} scroll-area bleed sm:unbleed"
-                >
+                <scroll-carousel selector=".horizontal-product" id="{{ carousel_id }}" class="horizontal-product-list-carousel {% unless horizontal_products_blends %}separate{% endunless %} scroll-area bleed sm:unbleed">
                   <div class="horizontal-product-list {% if horizontal_products_blends %}divide-x{% else %}separate{% endif %}">
                     {{- horizontal_products -}}
                   </div>
@@ -633,160 +320,24 @@
         {%- endif -%}
 
       {%- when 'share_buttons' -%}
-        <div
-          class="product-form__share {% if block.settings.alignment == 'center' %}justify-self-center{% elsif block.settings.alignment == 'end' %}justify-self-end{% endif %}"
-          {{ block.shopify_attributes }}
-        >
+        <div class="product-form__share {% if block.settings.alignment == 'center' %}justify-self-center{% elsif block.settings.alignment == 'end' %}justify-self-end{% endif %}" {{ block.shopify_attributes }}>
           <div class="product-info__share-buttons">
             <div class="share-buttons">
               <span class="text-subdued">{{- 'general.social.share' | t -}}</span>
 
               <ul class="h-stack" role="list">
-                <li>
-                  <a
-                    href="{% render 'share-link', host: 'facebook', title: product.title, description: product.description, url: product.url %}"
-                    class="share-buttons__item"
-                    aria-label="{{ 'general.social.share_on' | t: social_media: 'Facebook' }}"
-                  >
-                    {%- render 'icon' with 'facebook', width: 20, height: 20 -%}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="{% render 'share-link', host: 'twitter', title: product.title, description: product.description, url: product.url %}"
-                    class="share-buttons__item"
-                    aria-label="{{ 'general.social.share_on' | t: social_media: 'Twitter' }}"
-                  >
-                    {%- render 'icon' with 'twitter', width: 20, height: 20 -%}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="{% render 'share-link', host: 'pinterest', title: product.title, description: product.description, url: product.url %}"
-                    class="share-buttons__item"
-                    aria-label="{{ 'general.social.share_on' | t: social_media: 'Pinterest' }}"
-                  >
-                    {%- render 'icon' with 'pinterest', width: 20, height: 20 -%}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="{% render 'share-link', host: 'email', title: product.title, description: product.description, url: product.url %}"
-                    class="share-buttons__item"
-                    aria-label="{{ 'general.social.share_email' | t }}"
-                  >
-                    {%- render 'icon' with 'email' -%}
-                  </a>
-                </li>
+                <li><a href="{% render 'share-link', host: 'facebook', title: product.title, description: product.description, url: product.url %}" class="share-buttons__item" aria-label="{{ 'general.social.share_on' | t: social_media: 'Facebook' }}">{%- render 'icon' with 'facebook', width: 20, height: 20 -%}</a></li>
+                <li><a href="{% render 'share-link', host: 'twitter', title: product.title, description: product.description, url: product.url %}" class="share-buttons__item" aria-label="{{ 'general.social.share_on' | t: social_media: 'Twitter' }}">{%- render 'icon' with 'twitter', width: 20, height: 20 -%}</a></li>
+                <li><a href="{% render 'share-link', host: 'pinterest', title: product.title, description: product.description, url: product.url %}" class="share-buttons__item" aria-label="{{ 'general.social.share_on' | t: social_media: 'Pinterest' }}">{%- render 'icon' with 'pinterest', width: 20, height: 20 -%}</a></li>
+                <li><a href="{% render 'share-link', host: 'email', title: product.title, description: product.description, url: product.url %}" class="share-buttons__item" aria-label="{{ 'general.social.share_email' | t }}">{%- render 'icon' with 'email' -%}</a></li>
               </ul>
             </div>
           </div>
 
           <button is="share-button" class="product-info__native-share">
-            {%- render 'icon' with 'share' -%}
-            {{- 'general.social.share' | t -}}
+            {%- render 'icon' with 'share' -%} {{- 'general.social.share' | t -}}
           </button>
         </div>
-
-      {%- when 'addon_products' -%}
-        {% if block.settings.show_erp %}
-          <div class="product-info__productERP">
-            <button class="il-product__erp" data-product-erp>
-              {% comment %} <span class="il-product__erp--iconStore">
-                {%- render 'icon' with 'store' -%}
-              </span>
-              {{ block.settings.erp_heading }}
-              <span class="il-product__erp--iconStore--iconRight">
-                {% render 'icon' with 'chevron-right' %}
-              </span> {% endcomment %}
-              {% comment %} handle inside of react {% endcomment %}
-            </button>
-          </div>
-        {% endif %}
-
-        {% if section.settings.show_discount_button and product.metafields.custom.product_event_subscription_coupon %}
-          <button class="product-info__discountPopup" data-discount-button>
-            <img
-              src="{{ section.settings.discount_button_icon | img_url: 'master'}}"
-              class="product-info__icon"
-              height="auto"
-              width="auto"
-              loading="lazy"
-            >
-            <p class="product-info__iconText">{{ section.settings.discount_button_text }}</p>
-          </button>
-
-          <script
-            type="text/javascript"
-          >
-            document.querySelector('[data-discount-button]').addEventListener('click', function () {
-              {% if customer %}
-                var isLoggedIn = true;
-              {% else %}
-                var isLoggedIn = false;
-              {% endif %}
-
-              if (!isLoggedIn) {
-                  localStorage.setItem('redirectAfterLogin', window.location.href);
-                  window.location.replace('{{ routes.account_login_url }}');
-              } else {
-                  openKlaviyoForm();
-              }
-            });
-
-            function openKlaviyoForm() {
-              window._klOnsite = window._klOnsite || [];
-              window._klOnsite.push(['openForm', 'TipMeY']);
-            }
-          </script>
-        {% endif %}
-
-        {% if hideCaution %}
-          <div class="product-info__informationContainer">
-            <div class="product-info__innerInformationContainer">
-              {%- render 'icon' with 'caution' -%}
-              <p class="product-info__innerInformationTitle text-p text-p--primaryFont text-p--14">
-                {{ section.settings['frame-title'] }}
-              </p>
-            </div>
-            <p class="product-info__innerInformationDescription text-p text-p--primaryFont text-p--14">
-              {{ section.settings['frame-detail'] }}
-            </p>
-          </div>
-        {% endif %}
-
-        {% render 'addon-products', heading: block.settings.heading %}
-      {%- when 'product_event_outlet' -%}
-        {% assign showOutlet = true %}
-        {% if block.settings.heading_event != blank and productEvent.launching_event_applied_or_not %}
-          <div class="il-productEndEventNotification">
-            <h3 class="il-productEndEventNotification__heading text-p text-p--22">
-              {{ block.settings.heading_event }}
-            </h3>
-            <p class="il-productEndEventNotification__content text-p text-p--14">
-              {{ block.settings.content_event }}
-            </p>
-          </div>
-          {% assign showOutlet = false %}
-        {% endif %}
-
-        {% assign collectionsInProduct = '' %}
-        {% for collection in product.collections %}
-          {% assign collectionsInProduct = collectionsInProduct | append: collection.title %}
-        {% endfor %}
-        {% if block.settings.heading_outlet != blank
-          and collectionsInProduct contains 'ONLINE OUTLET'
-          and showOutlet
-        %}
-          <div class="il-productEndEventNotification">
-            <h3 class="il-productEndEventNotification__heading text-p text-p--22">
-              {{ block.settings.heading_outlet }}
-            </h3>
-            <p class="il-productEndEventNotification__content text-p text-p--14">
-              {{ block.settings.content_outlet }}
-            </p>
-          </div>
-        {% endif %}
     {%- endcase -%}
   {%- endfor -%}
 

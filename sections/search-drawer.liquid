@@ -1,48 +1,167 @@
-<search-drawer {% if request.design_mode %}handle-section-events{% endif %} class="search-drawer {% if section.settings.full_width %}search-drawer--full{% endif %} drawer drawer--lg" id="search-drawer">
-  <form action="{{ routes.search_url }}" method="get" class="v-stack gap-5 sm:gap-8" role="search">
+<search-drawer {% if request.design_mode %}handle-section-events{% endif %} class="m-search-drawer  search-drawer {% if section.settings.full_width %}search-drawer--full{% endif %} drawer drawer--lg" id="search-drawer">
+  <form action="{{ routes.search_url }}" method="get" class="v-stack gap-5 sm:gap-8 m-form-search" role="search">
     <div class="search-input">
-      <input type="search" name="q" placeholder="{{ 'search.general.search_placeholder' | t }}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="{{ 'search.general.title' | t | escape }}">
-      <button type="reset" class="text-subdued">{{ 'search.general.clear' | t }}</button>
-      <button type="button" is="close-button">
+     <input type="hidden" name="blog[archive]" value="hide" />
+    <input type="hidden" name="type" value="product">
+      
+      <input type="search" name="q"  autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="{{ 'search.general.title' | t | escape }}">
+      <button type="reset" class="text-subdued m-text-subduedd">{{ 'search.general.clear' | t }}</button>
+      <button type="button" class="m-close-btn" is="close-button">
         <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>
-        {%- render 'icon' with 'close' -%}
+        <!-- {%- render 'icon' with 'close1' -%} -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M21 3L3 21" stroke="#3C3C3C" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3 3L21 21" stroke="#3C3C3C" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </button>
-    </div>
-
+      <div class="m-search-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
+      <path d="M17.4167 30.0833C24.4123 30.0833 30.0833 24.4123 30.0833 17.4167C30.0833 10.4211 24.4123 4.75 17.4167 4.75C10.4211 4.75 4.75 10.4211 4.75 17.4167C4.75 24.4123 10.4211 30.0833 17.4167 30.0833Z" stroke="#3C3C3C" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M33.2508 33.2498L26.3633 26.3623" stroke="#3C3C3C" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" width="560" height="2" viewBox="0 0 560 2" fill="none">
+      <path d="M0 1L560 0.999951" stroke="#3C3C3C"/>
+      </svg>
     <style>
       #shopify-section-{{ section.id }} {
         --predictive-search-column-count: 3;
       }
     </style>
-
+    <input type="hidden" name="blog[archive]" value="hide" />
     <input type="hidden" name="type" value="product">
 
-    <predictive-search class="predictive-search" section-id="{{ section.id }}">
-      {%- if section.settings.search_menu.links.size > 0 -%}
-        <div slot="idle">
-          <div class="v-stack gap-3 sm:gap-4">
-            {%- if section.settings.search_menu_show_title -%}
-              <p class="bold text-subdued">{{ section.settings.search_menu.title }}</p>
+    <predictive-search class="predictive-search predictive-search1" section-id="{{ section.id }}">
+
+        <div slot="idle"  class="m-idle-cus">
+             {%- if section.settings.search_menu_show_title -%}
+              <p class="bold text-subdued m-h1-cus">{{ section.settings.search_menu.title }}</p>
             {%- endif -%}
+             <div class="v-stack gap-3 sm:gap-4 m-idle-cusss">
+         
 
             <ul class="v-stack gap-2 sm:gap-3" role="list">
               {%- for link in section.settings.search_menu.links -%}
                 <li>
                   <a href="{{ link.url }}" class="h5">
-                    <span class="reversed-link hover:show">{{ link.title }}</span>
+                    <span class="reversed-link m-reversed-link hover:show">{{ link.title }}</span>
                   </a>
                 </li>
               {%- endfor -%}
             </ul>
           </div>
-        </div>
+<div class="idle-cus">
+     {%- for product in section.settings.products_popular -%}
+
+    {%- assign product = item -%}
+
+    <a href="{{ product.url }}" data-instant class="predictive-search-result group pro-r-m">
+      {%- if product.featured_media -%}
+
+        <img src="{{ product.featured_media | img_url: 'master' }}" width="auto" height="auto">
       {%- endif -%}
 
-      <div slot="results">
+      <div class="v-stack gap-1 sm:gap-1.5">
+        <!-- {%- if settings.show_vendor -%}
+          <span class="text-xs text-subdued">{{ product.vendor }}</span>
+        {%- endif -%} -->
+
+        <div class="v-stack m-pro-cus gg justify-items-start gap-0.5">
+        <!-- mk-mds  -->
+         <span class="mm-vendor hh">
+        {% capture series_tags %}
+          {%- for tag in product.tags -%}
+          {%- if tag contains "series:" -%}
+          {%- assign tag_split = tag | split: 'series:' -%}
+          /{{- tag_split[1] | strip -}}
+          {%- endif -%}
+          {%- endfor -%}
+          {% endcapture %}
+          {{- series_tags | strip | remove_first: '/' -}}
+           <!-- {{ product.vendor }} -->
+         </span>
+         <!-- end-mk-mds  -->
+          <span class="bold">
+            <span class="reversed-link n-reversed-link">{{ product.title }}</span>
+          </span>
+
+          {%- render 'price-list', product: product -%}
+ {%- if settings.product_color_display != 'hide' and show_swatches != true -%}
+      {%- assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
+
+      {%- for color_label in color_label_list -%}
+        {%- if product.options_by_name[color_label] != blank -%}
+          {%- assign product_option = product.options_by_name[color_label] -%}
+          {%- capture name -%}swatch-{{ section.id }}-{{ product.id }}-{{ product_option.position }}{%- endcapture -%}
+
+          <div class="product-card__aside">
+            {%- case settings.product_color_display -%}
+              {%- when 'count' -%}
+                <p class="product-card__color-count text-sm text-subdued">{{- 'product.general.available_colors_count' | t: count: product_option.values.size -}}</p>
+
+              {%- when 'swatch' -%}
+                <fieldset class="product-card__swatch-list h-stack {% if settings.color_swatch_style == 'rectangle' %}gap-2.5{% else %}gap-0.5{% endif %}" data-option-position="{{ product_option.position }}">
+                  {%- for option_value in product_option.values limit: 4 -%}
+                    {%- if forloop.first or product.selected_or_first_available_variant.matched and option_value == product_option.selected_value -%}
+                      {%- assign selected = true -%}
+                    {%- else -%}
+                      {% assign selected = false %}
+                    {%- endif -%}
+
+                    {%- render 'swatch', type: 'colors', value: option_value, name: name, size: 'sm', selected: selected -%}
+                  {%- endfor -%}
+
+                  {% if product_option.values.size > 4 %}
+                    <a href="{{ product.url }}" data-instant class="color-swatch__view-more {% if settings.color_swatch_style == 'round' %}rounded-full{% endif %} text-xxs text-subdued">+{{ product_option.values.size | minus: 4 }}</a>
+                  {% endif %}
+                </fieldset>
+
+              {%- when 'variant' -%}
+                <fieldset class="product-card__variant-list" data-option-position="{{ product_option.position }}">
+                  {%- for option_value in product_option.values limit: 4 -%}
+                    {%- assign variant_option = 'option' | append: product_option.position -%}
+                    {%- assign variant_for_value = product.variants | where: variant_option, option_value | first -%}
+
+                    {%- if forloop.first or variant_for_value.matched and option_value == product_option.selected_value -%}
+                      {%- assign selected = true -%}
+                    {%- else -%}
+                      {% assign selected = false %}
+                    {%- endif -%}
+
+                    {%- render 'swatch', type: 'thumbnail', image: variant_for_value.featured_media, value: option_value, name: name, size: 'sm', selected: selected -%}
+                  {%- endfor -%}
+
+                  {%- if product_option.values.size > 4 -%}
+                    <a href="{{ product.url }}" data-instant class="thumbnail-swatch__view-more text-xs text-subdued">+{{ product_option.values.size | minus: 4 }}</a>
+                  {%- endif -%}
+                </fieldset>
+              {%- endcase -%}
+          </div>
+
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+        </div>
+      </div>
+    </a>
+
+
+  
+            {%- endfor -%}
+</div>   
+  
+         
+        </div>
+  
+
+      
+
+      <div slot="results"> 
         {%- if predictive_search.performed -%}
           {%- assign results_count = 0 -%}
           {%- assign categories_count = 0 -%}
-
           {%- for resource in predictive_search.resources -%}
             {%- assign results_count = results_count | plus: resource.last.size -%}
 
@@ -52,6 +171,7 @@
           {%- endfor -%}
 
           {%- if results_count == 0 -%}
+            
             <div class="empty-state">
               <p class="h6">{{ 'search.general.no_results' | t }}</p>
             </div>
@@ -71,14 +191,14 @@
                 <slot role="tablist" part="tab-list" name="title"></slot>
                 <slot part="tab-panels" name="content"></slot>
               </template>
-
+              
               {%- if predictive_search.resources.products.size > 0 -%}
                 <div class="predictive-search__tab-item" slot="title">
                   <button type="button" class="h5">{{- 'search.general.products' | t -}}</button>
 
                   {%- if section.settings.full_width -%}
                     <button type="submit" class="text-with-icon group">
-                      <span><span class="reversed-link">{{ 'search.general.view_all' | t }}</span></span>
+                      <span><span class="reversed-link gg-reversed-link">{{ 'search.general.view_all' | t }}</span></span>
                       <span class="circle-chevron group-hover:colors">{%- render 'icon' with 'chevron-right-small', direction_aware: true -%}</span>
                     </button>
                   {%- endif -%}
@@ -90,40 +210,42 @@
               {%- endif -%}
 
               {%- if predictive_search.resources.queries.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
+                {% comment %}
+                <div class="predictive-search__tab-item " slot="title">
                   <button type="button" class="h5">{{- 'search.general.suggestions' | t -}}</button>
                 </div>
-
+                {% endcomment %}
                 <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
                   {%- render 'predictive-search-result-item' for predictive_search.resources.queries as item, type: 'query' -%}
                 </div>
               {%- endif -%}
 
               {%- if predictive_search.resources.articles.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
+                <div class="predictive-search__tab-item " slot="title">
                   <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
                 </div>
-
                 <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
                   {%- render 'predictive-search-result-item' for predictive_search.resources.articles as item, type: 'article' -%}
                 </div>
               {%- endif -%}
 
               {%- if predictive_search.resources.collections.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
+                {% comment %}
+                <div class="predictive-search__tab-item " slot="title">
                   <button type="button" class="h5">{{- 'search.general.collections' | t -}}</button>
                 </div>
-
+                {% endcomment %}
                 <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
                   {%- render 'predictive-search-result-item' for predictive_search.resources.collections as item, type: 'collection' -%}
                 </div>
               {%- endif -%}
 
               {%- if predictive_search.resources.pages.size > 0 -%}
+                 {% comment %}
                 <div class="predictive-search__tab-item" slot="title">
                   <button type="button" class="h5">{{- 'search.general.pages' | t -}}</button>
                 </div>
-
+               {% endcomment %}
                 <div slot="content" class="predictive-search__tab-content v-stack gap-2 justify-start">
                   {%- render 'predictive-search-result-item' for predictive_search.resources.pages as item, type: 'page' -%}
                 </div>
@@ -161,25 +283,52 @@
               {%- endif -%}
 
               {%- if article_results.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
-                  <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
-                </div>
-
-                <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
-                  {%- render 'predictive-search-result-item' for article_results as item, type: 'article' -%}
-                </div>
-              {%- endif -%}
+               {% assign mkShown = false %}
+                  {% for article in article_results %}
+                    {% assign split_1 = article.url | split: '/blogs/' %}
+                    {% assign split_2 = split_1[1] | split: '/' %}
+                    {% assign blog_handle = split_2[0] | strip %}
+                    {% assign article_blog = blogs[blog_handle] %}
+                    {% if article_blog.handle contains 'news' or article_blog.handle contains 'event' or article_blog.handle contains 'magazine' %}
+                      {% unless mkShown %}        
+                        <div class="predictive-search__tab-item" slot="title">
+                          <button type="button" class="h5">{{ 'search.general.posts' | t }}</button>
+                        </div>
+                        {% assign mkShown = true %}
+                      {% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                  <div slot="content" class="predictive-search__tab-content v-stack gap-2 justify-start">
+                    {%- render 'predictive-search-result-item' for article_results as item, type: 'article' -%}
+                  </div>
+                {%- endif -%}
 
               {%- if page_results.size > 0 -%}
+                 {% comment %}
                 <div class="predictive-search__tab-item" slot="title">
                   <button type="button" class="h5">{{- 'search.general.pages' | t -}}</button>
                 </div>
+                {% endcomment %}
 
                 <div slot="content" class="predictive-search__tab-content v-stack gap-2 justify-start">
                   {%- render 'predictive-search-result-item' for page_results as item, type: 'page' -%}
                 </div>
               {%- endif -%}
             </x-tabs>
+          <!-- mk-mds -->
+        {%- if product_results.size > 0 -%}
+        {% else %}
+            {% unless mkShown %}
+              <div class="empty-state">
+                <p class="h6">{{ 'search.general.no_results' | t }}</p>
+              </div>
+              {% endunless %}
+          {% endif %}
+          <!-- end-mk-mds -->
+          {% else %}
+            <div class="empty-state">
+              <p class="h6">{{ 'search.general.no_results' | t }}</p>
+            </div>
           {%- endif -%}
         {%- endif -%}
       </div>
@@ -260,6 +409,12 @@
       "id": "search_menu",
       "label": "Menu",
       "info": "This menu won't show dropdown items."
+    },
+   
+     {
+      "type": "product_list",
+      "id": "products_popular",
+      "label": "Seach Page (Popular Product)"
     },
     {
       "type": "checkbox",

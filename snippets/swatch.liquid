@@ -46,18 +46,13 @@
 {%- capture id -%}swatch-{{ section.id }}-{{ form }}-{{ context }}-{{ name | handle }}-{{ value | handle }}{%- endcapture -%}
 
 {% liquid
-  assign count = 0
-
-  paginate shop.metaobjects.variant_color.values by 1000
-    for variant_colors in shop.metaobjects.variant_color.values
-      assign color_name = variant_colors.color_name | downcase
-      assign value_lowrcase = value | downcase
-      assign count = count | plus: 1
-      if color_name == value_lowrcase
-        assign swatch_bgImg = variant_colors.color_image | img_url: 'master'
-      endif
-    endfor
-  endpaginate
+  for variant_colors in shop.metaobjects.variant_color.values
+    assign color_name = variant_colors.color_name | downcase
+    assign value_lowrcase = value | downcase
+    if color_name == value_lowrcase
+      assign swatch_bgImg = variant_colors.color_image | img_url: 'master'
+    endif
+  endfor
 %}
 
 {%- liquid
@@ -275,13 +270,7 @@
         style="{{ swatch_style }}"
       >
         <span class="sr-only">{{ label | default: value }}</span>
-        <img
-          class="swatch__image"
-          height="auto"
-          width="auto"
-          loading="lazy"
-          src="{{ color_image | img_url: "master" }}"
-        >
+        <img class="swatch__image" height="auto" width="auto" loading="lazy" src="{{ color_image | img_url: "master" }}">
       </label>
     {%- endif -%}
 {%- endcase -%}
