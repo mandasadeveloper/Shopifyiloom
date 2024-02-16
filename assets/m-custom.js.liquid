@@ -200,131 +200,15 @@ $(selectAllItems).click(function() {
   
 });
 
-//  mk-mds check box update
-let priceupdate = [];
-$(".order-summary__body .cart__row").each(function() {
-    var item_id = $(this).attr('data-prd-id');
-    priceupdate.push(item_id);
-});
-console.log("data---" , priceupdate);
-
-// $(".checkbox-item").on("click", function(){
-//     var updates = {};
-//     var item_id1 = $(this).closest('.cart__row').attr('data-prd-id');
-//     var qty = $(this).closest('.cart__row').find('.cart__qty-input').val();
-//     var selectedItemPrice =  $(this).closest('.cart__row').find(".price-m-cart11 .price").text().trim();
-//     console.log("Price1:", selectedItemPrice);
-//     // console.log("selectedItemPrice1:", selectedItemPrice);
-//     if(!priceupdate.includes(item_id1)) addItem(item_id1,qty,selectedItemPrice);
-//     else removeItem(item_id1,qty,selectedItemPrice);
-// });
-function addItem(id,qty,selectedItemPrice){
-  fetch(window.Shopify.routes.root + 'cart/add.js', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-     body: JSON.stringify({ item:[
-      {
-        id,quantity:qty
-      }
-    ]})
-    
-    })
-    .then(response => {
-      return response.json();
-    })
-    .then((state) => {
-      console.log("stateadd" ,state);
-      updateCartCounter();
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
-
-function removeItem(id,qty,selectedItemPrice){
-    let updates = {};
-  fetch(window.Shopify.routes.root + 'cart/update.js', {
-    method: 'POST',
-    headers: {
-     'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ update:{
-          id,quantity:0
-        }
-      })
-      // body: JSON.stringify({updates})
-    })
-    
-    .then(response => {
-      return response.json();
-    })
-    
-    .then((state) => {
-      console.log("stateremove" ,state);
-      updateCartCounter();
-    let total = state.items_subtotal_price;
-        // const totalPrice = $(state).find('.total-price').text(); // Adjust selector as needed
-        // const formattedPrice = "{{ " + total + " | money }}"; // Adjust the Liquid syntax as needed
-        // var totalPrice = state.total_price;
-
-        // Update the total price display on the page
-        // const formattedPrice =   $('.total-price').html(Shopify.formatMoney(totalPrice));
-        // console.log("formattedPrice",formattedPrice);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
-
-// document.addEventListener('theme:variant:change', function(event) {
-//     var variant = event.detail.variant;
-//     var container = event.target;
-//     if (variant) {
-//       console.log('Container ———————— ↓');
-//       console.log(container);
-//       console.log('Variant —————————— ↓');
-//       console.log(variant);
-//     }
-//   });
-
-//   document.addEventListener('theme:cart:change', function(event) {
-//     var cart = event.detail.cart;
-//     if (cart) {
-//       console.log('Cart ———————————— ↓');
-//       console.log(cart);
-//     }
-//   });
-
-// function updateCartCounterdata(selectedItemPrice) {
-// fetch('/cart.js')
-//         .then(response => response.json())
-//           .then(data => {
-//             // Calculate subtotal of selected item
-//             let subtotal = selectedItemPrice * data.items[0].quantity; // Assuming only one item is selected
-//             alert(subtotal);
-//             // Calculate new total price
-//             let totalPrice = parseFloat(data.total_price) - subtotal;
-            
-//             // Update UI
-//             document.querySelector('.total-price').innerText = totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-//         })
-//         .catch(error => {
-//             console.error('Error fetching cart data:', error);
-//         });
-// }
-
 //remove checked items
-$(".delete-product").on("click", function(event) {
-  event.preventDefault();
+$(".delete-product").on("click", function() {
   let updates = {};
   $(".cart__row input:checked").each(function() {
       var item_id = $(this).parents('.cart__row').attr('data-prd-id');
         updates[item_id] = 0;
         console.log(updates);
         });
-    fetch(window.Shopify.routes.root + 'cart/update.js', {
+  fetch(window.Shopify.routes.root + 'cart/update.js', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
@@ -390,13 +274,13 @@ $(document).on("click", ".qty-btn-plus, .qty-btn-minus" , function()
          url:'/cart',
          type:'GET',
          success: function(data){
-           let parser = new DOMParser();
-           const doc = parser.parseFromString(data, 'text/html');
-           console.log(doc.querySelector(".order-summary__body"));
-           $(".update_cart_items").html('');
-           $(".update_cart_items").append(doc.querySelector(".order-summary__body"));
-             updateCartCounter();
-          }
+         let parser = new DOMParser();
+         const doc = parser.parseFromString(data, 'text/html');
+         console.log(doc.querySelector(".order-summary__body"));
+         $(".update_cart_items").html('');
+         $(".update_cart_items").append(doc.querySelector(".order-summary__body"));
+         updateCartCounter();
+        }
          });
         }
      })
@@ -437,6 +321,11 @@ function updateCartCounter() {
     })
 }
 
+
+
+
+
+
 // Bubble update
 
 
@@ -452,178 +341,3 @@ function updateCartCounter() {
 //      $(".m-search-icon").css({"display": "none"});
 // });
 // Search icon
-
-
-
-
-
-
-
-
-// new
-
-// js/common/utilities/format-money.js
-function formatMoney(cents, format = "") {
-  if (typeof cents === "string") {
-    cents = cents.replace(".", "");
-  }
-  const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/, formatString = format || window.themeVariables.settings.moneyFormat;
-  function defaultTo(value2, defaultValue) {
-    return value2 == null || value2 !== value2 ? defaultValue : value2;
-  }
-  function formatWithDelimiters(number, precision, thousands, decimal) {
-    precision = defaultTo(precision, 2);
-    thousands = defaultTo(thousands, ",");
-    decimal = defaultTo(decimal, ".");
-    if (isNaN(number) || number == null) {
-      return 0;
-    }
-    number = (number / 100).toFixed(precision);
-    let parts = number.split("."), dollarsAmount = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + thousands), centsAmount = parts[1] ? decimal + parts[1] : "";
-    return dollarsAmount + centsAmount;
-  }
-  let value = "";
-  switch (formatString.match(placeholderRegex)[1]) {
-    case "amount":
-      value = formatWithDelimiters(cents, 2);
-      break;
-    case "amount_no_decimals":
-      value = formatWithDelimiters(cents, 0);
-      break;
-    case "amount_with_space_separator":
-      value = formatWithDelimiters(cents, 2, " ", ".");
-      break;
-    case "amount_with_comma_separator":
-      value = formatWithDelimiters(cents, 2, ".", ",");
-      break;
-    case "amount_with_apostrophe_separator":
-      value = formatWithDelimiters(cents, 2, "'", ".");
-      break;
-    case "amount_no_decimals_with_comma_separator":
-      value = formatWithDelimiters(cents, 0, ".", ",");
-      break;
-    case "amount_no_decimals_with_space_separator":
-      value = formatWithDelimiters(cents, 0, " ");
-      break;
-    case "amount_no_decimals_with_apostrophe_separator":
-      value = formatWithDelimiters(cents, 0, "'");
-      break;
-    default:
-      value = formatWithDelimiters(cents, 2);
-      break;
-  }
-  if (formatString.indexOf("with_comma_separator") !== -1) {
-    return formatString.replace(placeholderRegex, value);
-  } else {
-    return formatString.replace(placeholderRegex, value);
-  }
-}
-
-$(document).on("change", ".shubh_cart .checkbox-item", function() {
-    console.log("okkk")
-    var isChecked_all = $(this).prop("checked");
-    if(isChecked_all){
-        var count = 0;
-        var totalcount=0;
-        console.log('checked');
-        $(".shubh_cart .cart__row .checkbox-item").each(function() {
-            totalcount++;
-            if($(this).prop("checked")){
-                count++;
-            }
-        })
-        console.log(count)
-        console.log(totalcount)
-        if(totalcount == count){
-            $('.select-all').prop('checked', true);
-        }      
-    }
-    else{
-        console.log('uncheckkk');
-        $('.select-all').prop('checked', false);
-    }
-    var currencyFormat = window.themeVariables.settings.currencyCodeEnabled ? window.themeVariables.settings.moneyWithCurrencyFormat : window.themeVariables.settings.moneyFormat;
-    var total = 0;
-    $(".cart__row input:checked").each(function() {
-        var price = $(this).parents('.cart__row').attr('prd-prc');
-        var price_actual = parseFloat(price);
-        total += price_actual;
-    });
-    $('.total_cus').html((formatMoney(total, currencyFormat)));
-});
-
-
-// checkout
-$('.checkout_custom').on('click', function(e) {
-  
-
-  e.preventDefault();
-     var items = [];
-  $(".cart__row input:checked").each(function() {
-    var updatedQuantity = $(this).parents('.cart__row').find('.m-quantity-cus').find('input').val();
-    var item_idd = $(this).parents('.cart__row').attr('data-prd-id');
- 
-    var item = {
-      id:item_idd,
-      quantity:updatedQuantity
-      };
-  items.push(item);
-    $.ajax({
-        type: 'POST',
-        url: '/cart/clear.js',
-        dataType: 'json',
-        success: function(response) {
-          console.log("Cart cleared successfully");
-        },
-        error: function(xhr, status, error) {
-          console.error("Error clearing cart:", error);
-        }
-      });
-    setTimeout(function () {
-  $.ajax({
-         type: 'POST',
-         url: '/cart/add.js',
-         dataType: 'json',
-         data: {
-           items: items
-         },
-         success: function(response){
-          console.log(response);
-           window.location.href = "/checkout";
-         },
-         error: function(){}
-       });
-       }, 1000);
-    
-  }); 
-  
-});
-// checkout
-
-$( ".select-all" ).on( "change", function() {
-     var isChecked_all = $(this).prop("checked");
-     if(isChecked_all){
-     var currencyFormat = window.themeVariables.settings.currencyCodeEnabled ? window.themeVariables.settings.moneyWithCurrencyFormat : window.themeVariables.settings.moneyFormat;
-     var total = 0;
-      $(".cart__row input:checked").each(function() {
-        var price = $(this).parents('.cart__row').attr('prd-prc');
-        var price_actual = parseFloat(price);
-        total += price_actual;
-      });
-      console.log(total);
-      console.log(currencyFormat);
-      $('.total_cus').html((formatMoney(total, currencyFormat)));
-      // console.log((formatMoney(total, currencyFormat)));
-     }
-    else{
-      var total = 0;
-      $('.total_cus').html((formatMoney(total, currencyFormat)));
-      console.log((formatMoney(total, currencyFormat)));
-    }
-});
-
-
-$( ".select-check" ).on( "change", function() {
-  var sel_val = $(this).val();
-   $('#check_val').val(sel_val);
-});

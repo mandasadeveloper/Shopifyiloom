@@ -64,20 +64,6 @@ Supported variables
   {%- endcomment -%}
 
   {%- if product.media.size > 0 -%}
-    <!-- mk-mds -->
-    {% if product.metafields.custom.product_wish_button %}
-      <button
-        class="product_card__outOfStock text-p text-p--12"
-        data-product-id="{{ product.id }}"
-        data-product-name="{{ product.title }}"
-        data-gtag-manager
-      >
-        我想買
-      </button>
-    {% else %}
-      <a href="javascript:void(0)" class="il-productCard__wishList">{% render 'icon' with 'wishlist-new' %}</a>
-    {% endif %}
-     <!-- end-mk-mds -->
     <div class="product-card__figure">
       <a href="{{ product.url }}" data-instant>
         {%- capture sizes -%}
@@ -105,43 +91,28 @@ Supported variables
             {%- form 'product', product, is: 'product-form' -%}
               <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
-                <div class="pointer-fine:hidden">
-                  <button
-                    type="submit"
-                    is="custom-button"
-                    class="product-card__mobile-quick-buy-button"
-                    aria-label="{{ quick_add_label | escape }}"
-                  >
-                    {% comment %} {%- render 'icon' with 'quick-buy-cart' -%} {% endcomment %}
-                    {{ quick_add_label }}
-                  </button>
-                </div>
-
-                <div class="pointer-coarse:hidden">
-                  {%- render 'button', content: quick_add_label, aria_controls: quick_buy_id, icon: 'cart-new' -%}
-                </div>
-            {%- endform -%}
-          {%- else -%}
-            {%- capture quick_buy_id -%}quick-buy-{{ section.id }}-{{ product.id }}{%- endcapture -%}
-
-          
               <div class="pointer-fine:hidden">
-                <button
-                  type="button"
-                  aria-controls="{{ quick_buy_id }}"
-                  aria-expanded="false"
-                  aria-label="{{ quick_add_label | escape }}"
-                  is="custom-button"
-                  class="product-card__mobile-quick-buy-button"
-                >
-                  {% comment %} {%- render 'icon' with 'quick-buy-cart' -%} {% endcomment %}
-                  {{ quick_add_label }}
+                <button type="submit" is="custom-button" class="product-card__mobile-quick-buy-button" aria-label="{{ quick_add_label | escape }}">
+                  {%- render 'icon' with 'quick-buy-cart' -%}
                 </button>
               </div>
 
               <div class="pointer-coarse:hidden">
-                {%- render 'button', content: quick_add_label, aria_controls: quick_buy_id, icon: 'cart-new' -%}
+                {%- render 'button', type: 'submit', content: quick_add_label -%}
               </div>
+            {%- endform -%}
+          {%- else -%}
+            {%- capture quick_buy_id -%}quick-buy-{{ section.id }}-{{ product.id }}{%- endcapture -%}
+
+            <div class="pointer-fine:hidden">
+              <button type="button" aria-controls="{{ quick_buy_id }}" aria-expanded="false" aria-label="{{ quick_add_label | escape }}" is="custom-button" class="product-card__mobile-quick-buy-button">
+                {%- render 'icon' with 'quick-buy-cart' -%}
+              </button>
+            </div>
+
+            <div class="pointer-coarse:hidden">
+              {%- render 'button', content: quick_add_label, aria_controls: quick_buy_id -%}
+            </div>
 
             <quick-buy-drawer id="{{ quick_buy_id }}" header-bordered open-from="bottom" handle="{{ product.handle }}" role="region" aria-live="polite" class="quick-buy-drawer drawer">
               {%- comment -%}Quick buy content is filled on demand for performance reasons {%- endcomment -%}
@@ -170,23 +141,14 @@ Supported variables
       {%- else -%}
         <!-- {%- render 'vendor' with product.vendor, class: 'text-xs nn' -%} -->
         <div class="cus_m">
-        {% capture series_tags %}
-        {%- for tag in product.tags -%}
-          {%- if tag contains "series:" -%}
-            {%- assign tag_split = tag | split: 'series:' -%}
-            /{{- tag_split[1] | strip -}}
-          {%- endif -%}
-        {%- endfor -%}
-        {% endcapture %}
-        <p>{{- series_tags | strip | remove_first: '/' -}}</p>
-        {% comment %}
         {% for tag in product.tags %}
-            {% if tag contains "series:" %}
-              {% assign tag_split = tag | split: 'series:' %}
-               <span>{{ tag_split[1] }}</span>
-            {% endif %}
-        {% endfor %}
-        {% endcomment %}
+        
+        {% if tag contains "series:" %}
+          {% assign tag_split = tag | split: 'series:' %}
+           <span>{{ tag_split[1] }}</span>
+        {% endif %}
+        
+      {% endfor %}
          </div>
       {%- endif -%}
     {%- endif -%}
@@ -206,7 +168,6 @@ Supported variables
       {%- endif -%}
 
       {%- render 'price-list', product: product, text_alignment: text_alignment -%}
-     
     </div>
 
     {%- if show_rating and mobile_reduced or text_alignment == 'center' -%}
@@ -216,10 +177,9 @@ Supported variables
 
     {%- if settings.product_color_display != 'hide' and show_swatches != false -%}
       {%- assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ',' -%}
+
       {%- for color_label in color_label_list -%}
-        
         {%- if product.options_by_name[color_label] != blank -%}
-            
           {%- assign product_option = product.options_by_name[color_label] -%}
           {%- capture name -%}swatch-{{ section.id }}-{{ product.id }}-{{ product_option.position }}{%- endcapture -%}
 

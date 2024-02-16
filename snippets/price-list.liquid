@@ -104,13 +104,12 @@ Supported variables
       {%- endcapture -%}
 
       {%- if cheapest_variant.price < cheapest_variant.compare_at_price -%}
-        <sale-price wdqe class="{{ on_sale_price_classes }}">
+        <sale-price class="{{ on_sale_price_classes }}">
           <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
-           {% comment %} {{- 'product.price.from_price_html' | t: price_min: price_min -}} {% endcomment %}
-           {{- product.price | money_with_currency -}}
+          {{- 'product.price.from_price_html' | t: price_min: price_min -}}
         </sale-price>
 
-        <compare-at-price gg class="{{ compare_at_price_classes }}">
+        <compare-at-price class="{{ compare_at_price_classes }}">
           <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
 
           {%- if settings.currency_code_enabled -%}
@@ -126,7 +125,7 @@ Supported variables
         </sale-price>
       {%- endif -%}
     {%- elsif product.price < product.compare_at_price -%}
-      <sale-price hhh class="{{ on_sale_price_classes }}">
+      <sale-price class="{{ on_sale_price_classes }}">
         <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
 
         {%- if settings.currency_code_enabled -%}
@@ -194,19 +193,4 @@ Supported variables
       </unit-price>
     {%- endif -%}
   {%- endunless -%}
-  <!-- mk-mds  -->
-
-    {% if settings.show_discount1 %}
-        {%- assign variant = product.selected_or_first_available_variant -%}
-        {%- if settings.discount_mode == 'percentage' -%}
-          {%- assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round | append: '%' -%}
-        {%- else -%}
-          {%- capture savings -%}{%- endcapture -%}
-        {%- endif -%}
-         {% if savings != blank %}
-          <span class="preoff">{{ savings }} OFF</span>
-        {% endif %}
-    {% endif %}
- 
-  <!-- end-mk-mds  -->
 </price-list>

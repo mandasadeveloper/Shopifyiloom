@@ -21,16 +21,13 @@
   <!-- {%- render 'icon' with 'search' -%} -->
         </button>
       </div>
-<!-- mk-mds  -->
-  {% comment %}
+
       {%- unless search.results_count > 0 -%}
         <div class="justify-self-center">
           {%- assign button_content = 'search.general.title' | t -%}
           {%- render 'button', type: 'submit', content: button_content, size: 'xl' -%}
         </div>
       {%- endunless -%}
-  {% endcomment %}
-<!-- end-mk-mds  -->
     </div>
 
   </form>
@@ -146,7 +143,7 @@
                 </div>
 
                 <reveal-items selector=".product-list > *">
-                  <product-list class=" product-list product-list-desktop hh" role="region" aria-live="polite">
+                  <product-list class="product-list product-list-desktop hh" role="region" aria-live="polite">
                     {%- assign product_results = search.results | where: 'object_type', 'product' -%}
 
                     {%- for product in product_results -%}
