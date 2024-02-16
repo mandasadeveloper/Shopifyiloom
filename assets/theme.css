@@ -1743,6 +1743,7 @@ scroll-carousel {
 .checkbox-container {
   align-items: baseline;
   display: flex;
+      align-self: normal;
 }
 
 .checkbox {
