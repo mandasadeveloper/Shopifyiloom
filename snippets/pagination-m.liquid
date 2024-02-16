@@ -57,7 +57,7 @@ Supported variables
     {%- endif -%}
   {%- for page in (1..paginate.pages) -%}
         <li class="pagination-item mandasa_pagination-item{% if page == paginate.current_page %} current_mm{% endif %}">
-          <a href="{{ blog.handle }}{% if template == 'search' %}?type=product&q={{ search.terms | escape }}&page={{ page }}{% else %}?page={{ page }}{{ hash }}{% endif %}" {% if facet %}is="facet-link"{% endif %} aria-label="{{ 'general.accessibility.go_to_page' | t: index: page }}">
+          <a href="{{ blog.handle }}?page={{ page }}{{ hash }}" {% if facet %}is="facet-link"{% endif %} aria-label="{{ 'general.accessibility.go_to_page' | t: index: page }}">
             {{ page }}
           </a>
         </li>

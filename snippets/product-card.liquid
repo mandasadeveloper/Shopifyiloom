@@ -238,7 +238,6 @@ Supported variables
                     {%- endif -%}
 
                     {%- render 'swatch', type: 'colors', value: option_value, name: name, size: 'sm', selected: selected -%}
-    
                   {%- endfor -%}
 
                   {% if product_option.values.size > 4 %}
@@ -274,11 +273,3 @@ Supported variables
     {%- endif -%}
   </div>
 </product-card>
-
-
-<style>
- :checked+.color-swatch:before, .color-swatch.is-selected:before {
-    opacity: 1!important;
-    transform: scale(1)!important;
-}
-</style>

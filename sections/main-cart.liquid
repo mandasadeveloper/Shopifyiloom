@@ -37,7 +37,7 @@
             ----------------------------------------------------------------------------------------------------------------
             {%- endcomment -%}
             <table class="order-summary">
-            <div class="select-all-op"><input type="checkbox" class="select-all select-all-mobile" />
+            <div class="select-all-op"><input type="checkbox" class="select-all select-all-mobile" checked />
               <!-- mk-mds  -->
               <div class="select-all-mob">全部</div> 
               <!-- end-mk-mds  -->
@@ -51,7 +51,7 @@
                 </tr>
               </thead>
 
-              <tbody class="order-summary__body update_cart_items">
+              <tbody class="order-summary__body update_cart_items shubh_cart">
                 {%- for line_item in cart.items -%}
                   {%- assign line_max_quantity = '' -%}
 
@@ -59,7 +59,7 @@
                     {%- assign line_max_quantity = line_item.variant.inventory_quantity -%}
                   {%- endif -%}
 
-                  <tr class="cart__row" data-prd-id="{{ line_item.id }}" prd-prc="{{ line_item.price }}">
+                  <tr class="cart__row" data-prd-id="{{ line_item.id }}" prd-prc="{{ line_item.final_line_price }}">
                     <td>{%- render 'line-item', line_item: line_item -%}</td>
 
                     <td class="hidden align-center text-center text-subdued sm:table-cell">
@@ -84,8 +84,13 @@
                     <td class="hidden align-center text-subdued text-end sm:table-cell price-m-cart">
                   <!-- mk-mds  -->
                       <div class="mk-cart v-stack justify-center gap-2">     
-                        <span class="price-m-cart11">
+                        <span class="price-m-cart11" cart_p="{{ line_item.final_line_price }}">
                         {{ line_item.final_line_price | money }}<br>
+                  {% if line_item.variant.compare_at_price %}
+<span class="comp_price">
+                        {{ line_item.variant.compare_at_price | times:line_item.quantity | money }}
+</span>
+                    {% endif %}
                         </span>
                         <span class="text-xs">
                         <a href="{{ line_item.url_to_remove }}" class="link">

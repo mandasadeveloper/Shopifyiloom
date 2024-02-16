@@ -316,7 +316,8 @@ function removeItem(id,qty,selectedItemPrice){
 // }
 
 //remove checked items
-$(".delete-product").on("click", function() {
+$(".delete-product").on("click", function(event) {
+  event.preventDefault();
   let updates = {};
   $(".cart__row input:checked").each(function() {
       var item_id = $(this).parents('.cart__row').attr('data-prd-id');
@@ -452,6 +453,15 @@ function updateCartCounter() {
 // });
 // Search icon
 
+
+
+
+
+
+
+
+// new
+
 // js/common/utilities/format-money.js
 function formatMoney(cents, format = "") {
   if (typeof cents === "string") {
@@ -509,42 +519,41 @@ function formatMoney(cents, format = "") {
   }
 }
 
-$( ".checkbox-item" ).on( "change", function() {
-     var isChecked_alll = $(this).prop("checked");
-     if(isChecked_alll){
-       var count = 0;
-  var totalcount=0;
-       console.log('checked');
-       $(".cart__row .checkbox-item").each(function() {
-         totalcount++;
-         if($(this).prop("checked")){
-           count++;
-         }
-       })
-       console.log(count)
-       console.log(totalcount)
-      if(totalcount == count){
-       $('.select-all').prop('checked', true);
-      }
-     }
-     else{
-       console.log('uncheckkk');
-       $('.select-all').prop('checked', false);
-     }
-     var currencyFormat = window.themeVariables.settings.currencyCodeEnabled ? window.themeVariables.settings.moneyWithCurrencyFormat : window.themeVariables.settings.moneyFormat;
-     var total = 0;
-      $(".cart__row input:checked").each(function() {
+$(document).on("change", ".shubh_cart .checkbox-item", function() {
+    console.log("okkk")
+    var isChecked_all = $(this).prop("checked");
+    if(isChecked_all){
+        var count = 0;
+        var totalcount=0;
+        console.log('checked');
+        $(".shubh_cart .cart__row .checkbox-item").each(function() {
+            totalcount++;
+            if($(this).prop("checked")){
+                count++;
+            }
+        })
+        console.log(count)
+        console.log(totalcount)
+        if(totalcount == count){
+            $('.select-all').prop('checked', true);
+        }      
+    }
+    else{
+        console.log('uncheckkk');
+        $('.select-all').prop('checked', false);
+    }
+    var currencyFormat = window.themeVariables.settings.currencyCodeEnabled ? window.themeVariables.settings.moneyWithCurrencyFormat : window.themeVariables.settings.moneyFormat;
+    var total = 0;
+    $(".cart__row input:checked").each(function() {
         var price = $(this).parents('.cart__row').attr('prd-prc');
         var price_actual = parseFloat(price);
         total += price_actual;
-      });
-      console.log(total);
-      console.log(currencyFormat);
-      $('.total_cus').html((formatMoney(total, currencyFormat)));
-      console.log((formatMoney(total, currencyFormat)));
- 
+    });
+    $('.total_cus').html((formatMoney(total, currencyFormat)));
 });
 
+
+// checkout
 $('.checkout_custom').on('click', function(e) {
   
 
@@ -589,7 +598,7 @@ $('.checkout_custom').on('click', function(e) {
   }); 
   
 });
-
+// checkout
 
 $( ".select-all" ).on( "change", function() {
      var isChecked_all = $(this).prop("checked");
@@ -618,5 +627,3 @@ $( ".select-check" ).on( "change", function() {
   var sel_val = $(this).val();
    $('#check_val').val(sel_val);
 });
-
-
