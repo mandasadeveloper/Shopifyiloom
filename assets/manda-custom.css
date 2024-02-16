@@ -3974,10 +3974,7 @@ line-height: 256.3%;
       font-family: 'Montserrat';
     font-weight: 400;
 }
-.price-m-cart .mk-cart{
-    justify-content: flex-end;
-    display: flex;
-}
+
 
 .m-cart-bottom .radio-custom + .radio-custom-label:before{
     width: 20px !important;
@@ -4199,7 +4196,10 @@ line-height: 256.3%;
 
 
 
-
+.price-m-cart .mk-cart{
+    justify-content: flex-end;
+    display: flex;
+}
 
 @font-face {
   font-family: "Montserrat Bold";
