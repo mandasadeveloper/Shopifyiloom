@@ -10,7 +10,11 @@
   border-bottom: 1px solid #666;
   border-left:0px; 
   }
-  
+  .price-m-cart .mk-cart{
+    justify-content: flex-end;
+    display: flex;
+}
+
   .m-blog-posts .blog-post-card__figure img{
   /* min-height: 280.715px;
   max-height: 280.715px; */
@@ -4196,10 +4200,6 @@ line-height: 256.3%;
 
 
 
-.price-m-cart .mk-cart{
-    justify-content: flex-end;
-    display: flex;
-}
 
 @font-face {
   font-family: "Montserrat Bold";
