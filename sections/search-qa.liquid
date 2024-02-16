@@ -110,8 +110,7 @@
 
           <div class="collection__results">
             {%- if search.results_count == 0 -%}
-              {{ search.results_count }}
-              <div class="empty-state hhh">
+              <div class="empty-state">
                 <div class="empty-state__icon-wrapper">
                   {%- render 'icon' with 'picto-stop', width: 32, height: 32, stroke_width: 1 -%}
                   <span class="count-bubble count-bubble--lg">0</span>
@@ -143,13 +142,13 @@
               </div>
             {%- endif -%}
           </div>
-         
+
           {%- render 'pagination', paginate: paginate, facet: true, class: 'collection__pagination' -%}
         </div>
       {%- endpaginate -%}
     </div>
   {%- else -%}
-    <div class="empty-state bbbg">
+    <div class="empty-state">
       <h1 class="h2">
         {%- if search.performed -%}
           {{- 'search.general.no_results' | t -}}

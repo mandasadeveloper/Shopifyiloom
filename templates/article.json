@@ -5,11 +5,13 @@
       "blocks": {
         "navigation": {
           "type": "navigation",
+          "disabled": true,
           "settings": {
           }
         },
         "comments": {
           "type": "comments",
+          "disabled": true,
           "settings": {
             "show_gravatar": true,
             "comments_per_page": 5
@@ -22,14 +24,16 @@
       ],
       "settings": {
         "allow_transparent_header": false,
-        "layout": "image_text_overlay",
-        "show_author": true,
-        "show_date": true,
-        "show_comments_count": true,
-        "show_share_buttons": true,
-        "banner_background": "#f0f0f0",
-        "banner_text_color": "rgba(0,0,0,0)",
-        "overlay_color": "rgba(0,0,0,0)",
+        "layout": "content_first",
+        "show_author": false,
+        "show_date": false,
+        "show_comments_count": false,
+        "show_share_buttons": false,
+        "back": "回目录",
+        "contact": "1:1咨询",
+        "banner_background": "",
+        "banner_text_color": "",
+        "overlay_color": "#000000",
         "overlay_opacity": 0,
         "content_width": "750px"
       }

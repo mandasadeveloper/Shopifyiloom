@@ -1,0 +1,73 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "disabled": true,
+      "settings": {
+        "allow_transparent_header": false,
+        "content": "<p>Get access to our latest news by signing up for our newsletter.<\/p>",
+        "show_newsletter_form": true,
+        "show_tags": true,
+        "banner_background": "",
+        "banner_text_color": "",
+        "button_background": "",
+        "button_text_color": "",
+        "articles_per_page": 6,
+        "feature_first_article": true,
+        "feature_article_background": "",
+        "feature_article_text_color": "",
+        "show_excerpt": true,
+        "show_date": true,
+        "show_author": false,
+        "show_comments_count": false,
+        "show_category": true
+      }
+    },
+    "d08c5eeb-6d90-4e03-9f8d-2ea0824942d7": {
+      "type": "main-q-a-blog",
+      "settings": {
+        "allow_transparent_header": false,
+        "content": "",
+        "tab1": "公告",
+        "url1": "https:\/\/iloomtaiwan.myshopify.com\/blogs\/notice-2",
+        "tab2": "Q&A",
+        "url2": "https:\/\/iloomtaiwan.myshopify.com\/blogs\/q-a",
+        "tab3": "資料室",
+        "url3": "https:\/\/iloomtaiwan.myshopify.com\/blogs\/archive\/",
+        "num": "資料室",
+        "title": "제목",
+        "date": "등록일",
+        "text_one": "如果找不到您需要的答案，請使用1:1諮詢",
+        "found_txt": "기타 문의사항은 1:1 문의 또는 고객센터(1577-5670)를 이용해주세요.",
+        "contact_btn": "1:1諮詢",
+        "show_newsletter_form": false,
+        "show_tags": true,
+        "menu": "qa-tag",
+        "banner_background": "",
+        "banner_text_color": "",
+        "button_background": "",
+        "button_text_color": "",
+        "articles_per_page": 10,
+        "articles_per_page1": "10",
+        "feature_first_article": true,
+        "feature_article_background": "",
+        "feature_article_text_color": "",
+        "show_excerpt": true,
+        "show_date": true,
+        "show_author": false,
+        "show_comments_count": false,
+        "show_category": true
+      }
+    },
+    "a0b3164c-227b-4e56-a89c-6a60e8cb0456": {
+      "type": "main-search1",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "d08c5eeb-6d90-4e03-9f8d-2ea0824942d7",
+    "a0b3164c-227b-4e56-a89c-6a60e8cb0456"
+  ]
+}

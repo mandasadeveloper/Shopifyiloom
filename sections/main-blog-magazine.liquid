@@ -1,23 +1,3 @@
-{%- assign page_url = content_for_header | split:'"pageurl":"' | last | split:'"' | first | split: request.host | last | replace:'\/','/' | replace:'%20',' ' | replace:'\u0026','&'  -%}
-{% assign param = blank %}
-
-{%- for i in (1..1) -%}
-
-  {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
-  {%- assign query_string = page_url | split:'?' | last -%}
-  {%- assign qry_parts= query_string | split:'&' -%}
-
-  {%- for part in qry_parts -%}
-    {%- assign key_and_value = part | split:'=' -%}
-    {%- if key_and_value.size > 1 -%}
-      {% if key_and_value[0] == 'sort_by' %}
-        {% assign param = key_and_value[1] %}
-      {% endif %}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endfor -%}
-
-
 {%- render 'section-spacing-collapsing' -%}
 
 <style>
@@ -37,7 +17,7 @@
   }
 </style>
 
-<div class="blog m_blog" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %} >
+<div class="blog m_blog" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
   {%- if blog.articles_count == 0 -%}
     <div class="empty-state">
       <div class="empty-state__icon-wrapper">
@@ -54,10 +34,7 @@
   {%- else -%}
     <header {% render 'surface', class: 'blog-banner', text_color: section.settings.banner_text_color, background: section.settings.banner_background, background_fallback: 'bg-secondary' %}>
       <div class="m-container">
-  
-      <img src="{{ blog.metafields.custom.magazine_banner.value | img_url: 'master' }}" class="img-m-banner">
-         <img src="{{ blog.metafields.custom.magazine_banner_mobile.value | img_url: 'master' }}" class="mob-img-m-banner">
-        <div class="blog-banner-content1 m-banner">
+        <div class="blog-banner-content m-banner v-stack gap-10 text-center justify-items-center">
           <div class="v-stack  gap-5 sm:gap-8">
             <h1 class="h0">{{- blog.title -}}</h1>
 
@@ -102,14 +79,14 @@
                   <a href="{{ blog.url }}" class="{% if current_tags == blank %}selected{% endif %}">{{ 'blog.general.all_posts' | t }}</a>
                 </li>
 
-                <!-- {%- for tag in blog.all_tags -%}
+                {%- for tag in blog.all_tags -%}
                  
                 
                     {% if tag contains "tab_" %}
                
                     
                   <li role="tab" aria-selected="{% if current_tags contains tag %}true{% else %}false{% endif %}">
-                   {% assign spli_tag = tag | split: 'tab_'  %}
+ {% assign spli_tag = tag | split: 'tab_'  %}
                     {%- if current_tags contains tag -%}
                       {{- spli_tag[1] | link_to_remove_tag: tag -}}
                     {%- else -%}
@@ -117,13 +94,7 @@
                     {%- endif -%}
                   </li> 
                       {% endif %}
-                {%- endfor -%} -->
-  {% for link in section.settings.main-menuu.links %}
-  <li role="tab" aria-selected="{% if link.url == canonical_url %}true{% else %}false{% endif %}">
-    <!-- Main menu -->
-    <a href="{{ link.url }}">{{ link.title }}</a>
-  </li> 
- {% endfor %}
+                {%- endfor -%}
               </ul>
             </div>
           </div>
@@ -131,36 +102,29 @@
       </div>
     </header>
 
-    <div class="blog-posts__container m--blog-posts__container" show-mobile-m="{{ section.settings.articles_per_page1 }}">
+    <div class="blog-posts__container m--blog-posts__container">
 
 
 
       
       {%- paginate blog.articles by section.settings.articles_per_page -%}
         <!-- Sort By Dropdown -->
-       <!-- mk-mds -->
-      {% assign articles = blog.articles %}
-      {% assign sortBy = param %}
-      <form class="sort-form" id="sort-form">
-      <ul class="sort-options">
-      <li class="sort-option">
-      <input type="radio" id="new-old" name="sort_by" value="new-old">
-      <label for="new-old" class='{% if sortBy == blank %} latest {% endif %} {% if sortBy == "new-old" %} latest {% endif %}'>最新的</label>
-    </li>
-    <li class="sort-option {{ request.locale }}">
-      <input type="radio" id="manual" name="sort_by" value="manual">
-      <label class="{% if sortBy == "manual" %} latest {% endif %}" for="manual">熱門排序</label>
-    </li>
-  </ul>
-  <input type="submit" value="Sort" class="m-sort">
-</form>
+    <form>
+      <label for="sort-by">Sort By:</label>
+      <select id="sort-by" name="sort-by">
+        <option value="featured">Featured</option>
+        <option value="old-new">Old to New</option>
+        <option value="new-old">New to Old</option>
+        <option value="a-z">A-Z</option>
+        <option value="z-a">Z-A</option>
+      </select>
+      <input type="submit" value="Sort">
+    </form>
 
     <!-- Article Sorting -->
-     {% assign articles = blog.articles %}
-{% assign sortBy = param %}
+    {% assign articles = blog.articles %}
 
-    {% case sortBy %}
-      
+    {% case sort-by %}
       {% when 'featured' %}
         {% assign articles = blog.articles | where: 'featured', true %}
       {% when 'old-new' %}
@@ -172,8 +136,8 @@
       {% when 'z-a' %}
         {% assign articles = blog.articles | sort: 'title' | reverse %}
     {% endcase %}
-       
-        <div class="blog-posts m-blog-posts m_desktop" id="Huratips-Loop">
+        {% render 'collection-top-bar1' %}
+        <div class="blog-posts m-blog-posts" id="Huratips-Loop">
           {%- for article in articles -%}
             {%- assign article_index = forloop.index -%}
 
@@ -237,91 +201,15 @@
             {%- endif -%}
           {%- endfor -%}
         </div>
-      <div class="page-desk-m">
         {%- render 'pagination-m', paginate: paginate -%}
-    </div>  
-      
-   
-
+      <div id="Huratips-Pagination">
+    {% if paginate.next %}
+    <a href="{{ paginate.next.url }}">Loading More</a>
+          <!-- <a href="{{ paginate.next.url }}" id="loadMore">Load More</a> -->
+    {% endif %}  
+</div>
 
       {%- endpaginate -%}
-    <!-- mandasa-dev for mobile -->
-
-
-       
-        <div class="blog-posts m-blog-posts m_mobile" id="Huratips-Loop" >
-          
-          {%- for article in blog.articles -%}
-    
-
-        
-              {%- for block in section.blocks -%}
-
-                  <div {% render 'surface', class: 'blog-posts-newsletter v-stack gap-6 sm:gap-8 text-center rounded', text_color: block.settings.text_color, background: block.settings.background, background_fallback: 'bg-secondary' %}>
-                    <div class="blog-posts-newsletter__content v-stack gap-4 justify-items-center sm:gap-6">
-                      {%- render 'icon' with 'picto-envelope', width: 24, height: 24 -%}
-
-                      {%- if block.settings.title != blank -%}
-                        <p class="h4">{{- block.settings.title -}}</p>
-                      {%- endif -%}
-
-                      {%- if block.settings.content != blank -%}
-                        <div class="prose">
-                          {{- block.settings.content -}}
-                        </div>
-                      {%- endif -%}
-                    </div>
-
-                    {%- form 'customer', id: 'blog-posts-newsletter-form', class: 'form form--tight' -%}
-                      <div class="fieldset">
-                        {%- if form.posted_successfully? -%}
-                          {%- capture success_message -%}{{ 'general.newsletter.subscribed_successfully' | t }}{%- endcapture -%}
-                          {%- render 'banner', content: success_message, status: 'success' -%}
-                        {%- else -%}
-                          {%- if form.errors -%}
-                            {%- assign content = form.errors | default_errors -%}
-                            {%- render 'banner', status: 'error', content: content -%}
-                          {%- endif -%}
-                        {%- endif -%}
-
-                        <input type="hidden" name="contact[tags]" value="newsletter">
-
-                        {%- assign label = 'blog.comments.email' | t -%}
-                        {%- render 'input', type: 'email', name: 'contact[email]', label: label, value: customer.email, required: true, autocomplete: 'email' -%}
-                      </div>
-
-                      {%- render 'button', content: block.settings.button_text, icon: 'picto-envelope', type: 'submit', size: 'xl', secondary: true -%}
-                    {%- endform -%}
-
-                    {%- if block.settings.subtext != blank -%}
-                      <p class="text-sm text-subdued">{{- block.settings.subtext -}}</p>
-                    {%- endif -%}
-                  </div>
-              {%- endfor -%}
-          
-
-            {%- if section.settings.feature_first_article and forloop.first -%}
-              {%- assign background_color = article.metafields.banner.background_color.value | default: section.settings.feature_article_background -%}
-              {%- assign text_color = article.metafields.banner.text_color.value | default: section.settings.feature_article_text_color -%}
-              {%- capture sizes -%}(max-width: 999px) 100vw, calc(min(100vw, {{ settings.page_width }}px) * 0.65){%- endcapture -%}
-              {%- render 'm-blog-post-card1', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, background: background_color, text_color: text_color, sizes: sizes -%}
-            {%- else -%}
-              {%- capture sizes -%}(max-width: 699px) 100vw, (max-width: 1149px) calc(100vw / 2 - 40px), (max-width: 1399px) calc(min(100vw, {{ settings.page_width }}px) / 3 - 40px) , calc(min(100vw, {{ settings.page_width }}px) / 3 - 80px) {%- endcapture -%}
-              {%- render 'm-blog-post-card1', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, sizes: sizes -%}
-            {%- endif -%}
-
-             
-          
-          {%- endfor -%}
-         
-     
-</div>
-{% assign blog_size =  blog.articles.size %}
-{% assign set_size = section.settings.articles_per_page1 | plus: 0 %}
-{% if blog_size <= set_size %}
-{% else %}
-<div id="m-loadMore"><a href="#">More<span>{% render 'down-arrow' %}</span></a></div>
-{% endif %}
     </div>
   {%- endif -%}
 </div>
@@ -396,9 +284,14 @@
       "content": "Banner"
     },
      {
-      "type": "link_list",
-      "id": "main-menuu",
-      "label": "Tab Menu"
+      "type": "image_picker",
+      "id": "imgpicker",
+      "label": "Blog banner Image"
+    },
+ {
+      "type": "image_picker",
+      "id": "imgpicker_mob",
+      "label": "Blog Mobile banner Image"
     },
     {
       "type": "checkbox",
@@ -459,11 +352,6 @@
       "step": 1,
       "default": 6
     },
-     {
-      "type": "text",
-      "id": "articles_per_page1",
-      "label": "Articles per page on mobile"
-    },
     {
       "type": "checkbox",
       "id": "feature_first_article",
@@ -518,3 +406,25 @@
   ]
 }
 {% endschema %}
+<style>
+{% if section.settings.imgpicker.src %}
+.m-container{  
+  background-image:url('{{ section.settings.imgpicker.src | img_url: 'master' }}');  
+background-repeat: no-repeat;    
+  background-position: center;  
+  background-size: cover;   
+  background-attachment: unset;
+      height: 376px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+}{% endif %}
+ @media only screen and (max-width: 767px) and (min-width: 5px){
+    .m-container{
+  background-image:url('{{ section.settings.imgpicker_mob.src | img_url: 'master' }}'); 
+          height: 324px;
+}
+    }
+  
+</style> 

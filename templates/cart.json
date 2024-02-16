@@ -6,13 +6,10 @@
         "totals": {
           "type": "totals",
           "settings": {
-            "show_order_weight": false,
-            "show_shipping_text": false
           }
         },
         "cart_note": {
           "type": "cart_note",
-          "disabled": true,
           "settings": {
           }
         },
@@ -28,15 +25,6 @@
         "checkout_button"
       ],
       "settings": {
-        "show_shipping_estimator": false,
-        "cart-tooltip": "怡倫家具專屬付費拆裝服務(選擇)",
-        "tooltip_txt_hover": "필요한지묻기",
-        "delete_product": "刪除所選商品",
-        "elevator": "是否有電梯",
-        "check-box-select": "有",
-        "check-box-select1": "無",
-        "shiping-checkout": "運費、稅金和折扣代碼在確認付款時計算。",
-        "show_payment_icons": true
       }
     }
   },

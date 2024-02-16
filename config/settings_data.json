@@ -6,8 +6,6 @@
     "block_border_radius": 24,
     "block_shadow_opacity": 10,
     "block_shadow_vertical_offset": 18,
-    "icon_stroke_width": 1,
-    "button_style": "fill",
     "background": "#f0f0f0",
     "text_color": "#1a1a1a",
     "header_background": "#f0f0f0",
@@ -24,34 +22,13 @@
     "heading_font_size": "large",
     "heading_letter_spacing": -2,
     "text_font": "din_next_n4",
-    "currency_code_enabled": false,
     "show_page_transition": true,
     "heading_apparition": "split_fade",
-    "show_vendor": true,
-    "show_sold_out_badge": false,
-    "show_discount": false,
     "product_color_display": "swatch",
     "product_info_alignment": "start",
-    "cart_type": "drawer",
     "cart_icon": "shopping_basket",
     "checkout_accent_color": "#f0c417",
-    "checkout_button_color": "#1a1a1a",
-    "products_popular": [
-      "daily-light_ims11ab00a",
-      "daily-light_ims15ab00a",
-      "eddi-kids_hsfc123"
-    ],
-    "content_for_index": [
-
-    ],
-    "blocks": {
-      "855628211100114053": {
-        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
-        "disabled": false,
-        "settings": {
-        }
-      }
-    }
+    "checkout_button_color": "#1a1a1a"
   },
   "presets": {
     "Sound": {

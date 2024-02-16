@@ -22,28 +22,18 @@ Supported parameters
 {%- endcomment -%}
 
 {%- capture card_content -%}
-  {%- for tag in article.tags -%}
-{% if tag contains "tab_" %}
-{% assign spli_tag = tag | split: 'tab_'  %}
-  {% assign spli_taggg = spli_tag[1]  %}
- {% endif %}
-    {%- endfor -%}
   {%- if article -%}
     {%- if article.image != blank -%}
-      <a href="{{ article.url }}" class="blog-post-card__figure {% unless featured %}rounded{% endunless %}">
-
-     
- 
-
-
-        
+      <a {% if article.metafields.custom.pdf_link != blank %} href="{{ article.metafields.custom.pdf_link }}" target="_blank" {% else %} href="{{ article.url }} {% endif %}" class="blog-post-card__figure mandasa_blog-post-card">
         {%- if featured != true and show_category and article.tags.size > 0 -%}
-          <span class="badge m-badge badge--primary">{{ spli_taggg }}</span>
-         <!-- <span class="badge m-badge badge--primary">{{ blog.title }}</span> -->
+          <span class="badge badge--primary">{{ article.tags | first }}</span>
         {%- endif -%}
-
-        {% comment %}{{- article.image | image_url: width: article.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '300,400,500,600,800,1000,1200,1400,1600,1800,2000', class: 'w-full h-full object-cover zoom-image zoom-image1' -}}{% endcomment %}
-        <img class="w-full h-full object-cover zoom-image zoom-image1" src="{{ article.image | img_url: 'master' }}" loading="lazy" width="auto" height="auto">
+        <div class="mandsa_tags">{{ article.tags | first }}</div>
+        {{- article.image | image_url: width: article.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '300,400,500,600,800,1000,1200,1400,1600,1800,2000', class: 'w-full object-cover' -}}
+        <div class="mandsa_titl_archiv">{{ article.metafields.custom.item_name }}</div>
+        <div class="iloom_imgg">
+          <span>{% render 'iloom-logo' %}</span>
+        </div>
       </a>
     {%- endif -%}
   {%- else -%}
@@ -52,14 +42,14 @@ Supported parameters
     </div>
   {%- endif -%}
 
-  <div class="blog-post-card__info blog-post-card_info_m">
-    <div class="v-stack v-stack-m  {% if featured %}gap-5 sm:gap-6{% else %}gap-4 sm:gap-5{% endif %}">
-      <div class="v-stack gap-3 {% if featured %}sm:gap-5{% else %}sm:gap-4{% endif %}">
+  <div class="blog-post-card__info">
+    <div class="v-stack {% if featured %}gap-5 sm:gap-6{% else %}gap-4 sm:gap-5{% endif %}">
+      <div class="v-stack gap-3 mandasa_gap_cus {% if featured %}sm:gap-5{% else %}sm:gap-41{% endif %}">
         {%- if featured and show_category and article.tags.size > 0 -%}
           <span class="badge badge--current badge--lg">{{ article.tags | first }}</span>
         {%- endif -%}
 
-        <p class="{% if heading_size != blank %}{{ heading_size }}{% elsif featured %}h2{% else %}h3{% endif %}">
+        <p class="{% if heading_size != blank %}{{ heading_size }}{% elsif featured %}h2{% else %}mandasa_archive_title{% endif %}">
           {%- if article -%}
             <a href="{{ article.url }}">{{ article.title }}</a>
           {%- else -%}
@@ -69,37 +59,13 @@ Supported parameters
 
         {%- if show_excerpt -%}
           {%- if article -%}
-            <p  class="m-para" {% if featured %}class="text-lg"{% endif %}>{{ article.excerpt_or_content | strip_html | truncate: 24 }}</p>
+            <p class="mandasa_archive_excerpt" {% if featured %}class="text-lg"{% endif %}>{{ article.excerpt_or_content | strip_html | truncate: 200 }}</p>
           {%- else -%}
-            <p  class="m-para" {% if featured %}class="text-lg"{% endif %}>{{ 'general.on_boarding.blog_post_excerpt' | t }}</p>
+            <p class="mandasa_archive_excerpt" {% if featured %}class="text-lg"{% endif %}>{{ 'general.on_boarding.blog_post_excerpt' | t }}</p>
           {%- endif -%}
         {%- endif -%}
       </div>
-<div class="m-tags">
 
-{% comment %}
-{%- for tagss in article.tags -%}
-  {% if tagss contains "tab_" %}
-    {% assign spli_tag = tagss | split: 'tab_'  %}
-    {{ spli_tag[1] }} &nbsp;   
-  {% else%}
-  {{ tagss }}&nbsp;
-  {% endif %}
-{% endfor %}
-{% endcomment %}
-  
-{% for clr_img in article.metafields.custom.hashtag.value %}
-                 
-
-               {{ clr_img }}&nbsp;&nbsp;
-        
-    {% endfor %}
-  <!-- {%- for tagss in article.tags -%}
-  {% unless tagss contains "tab_" %}
-    #{{ tagss }}&nbsp;
-  {% endunless %}
-{% endfor %} -->
-</div>
       {%- if show_date or show_author or show_comments_count -%}
         <div class="blog-post-card__meta">
           {%- if show_date -%}
@@ -129,12 +95,17 @@ Supported parameters
 {%- endcapture -%}
 
 {%- if featured -%}
-  <blog-post-card {% render 'surface', class: 'blog-post-card-related blog-post-card-m blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
+  <blog-post-card {% render 'surface', class: 'blog-post-card1 content-cussd blog-post-card--featured snap-center group rounded', background: background, text_color: text_color, background_fallback: 'bg-secondary' %}>
     {{- card_content -}}
   </blog-post-card>
 {%- else -%}
-  <blog-post-card class="blog-post-card-related  blog-post-card-m snap-center group">
+  <blog-post-card class="blog-post-card1 content-cussd  snap-center group">
     {{- card_content -}}
   </blog-post-card>
 {%- endif -%}
 
+{% style %}
+  .content-cussd{
+    display:none;
+  }
+{% endstyle %}

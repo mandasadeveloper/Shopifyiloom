@@ -1,5 +1,3 @@
-
-
 {%- render 'section-spacing-collapsing' -%}
 
 <style>
@@ -19,7 +17,9 @@
   }
 </style>
 
-<div class="blog m_blog-news" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %} >
+<div class="blog blogcus" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
+   
+
   {%- if blog.articles_count == 0 -%}
     <div class="empty-state">
       <div class="empty-state__icon-wrapper">
@@ -34,12 +34,10 @@
       </div>
     </div>
   {%- else -%}
-    <header {% render 'surface', class: 'blog-banner', text_color: section.settings.banner_text_color, background: section.settings.banner_background, background_fallback: 'bg-secondary' %}>
-      <div class="m-container">
-        <!-- <img src="{{ section.settings.imgpicker.src | img_url: 'master' }}" class="img-m-banner">
-         <img src="{{ section.settings.imgpicker_mob.src | img_url: 'master' }}" class="mob-img-m-banner"> -->
-        <div class="blog-banner-content11 m-banner1">
-          <div class="v-stack  gap-5 sm:gap-8">
+    <header class="mandasa_dev_con" {% render 'surface', class: 'blog-banner', text_color: section.settings.banner_text_color, background: section.settings.banner_background, background_fallback: 'bg-secondary' %}>
+      <div class="container">
+        <div class="blog-banner-content-head v-stack gap-10 text-center justify-items-center">
+          <div class="v-stack gap-5 sm:gap-8">
             <h1 class="h0">{{- blog.title -}}</h1>
 
             {%- if section.settings.content != blank -%}
@@ -73,49 +71,203 @@
             {%- endform -%}
           {%- endif -%}
         </div>
-  </div>
-          <div class="m-contain">
-        {%- if section.settings.show_tags and blog.all_tags.size > 0 -%}
-          <div class="scroll-area bleed sm:unbleed justify-items-center">
-            <div class="blog-filter-list m-blog-filter-list">
-              <ul class="h-stack bold text-base" role="tablist">
-                <li role="tab" aria-selected="{% if current_tags == blank %}true{% else %}false{% endif %}">
-                  <a href="{{ blog.url }}" class="{% if current_tags == blank %}selected{% endif %}">{{ 'blog.general.all_posts' | t }}</a>
-                </li>
 
-                {%- for tag in blog.all_tags -%}
+        
+      </div>
+    </header>
+
+    <div class="mandasa_dev_con">
+      
+      <!-- mandasa-dev -->
+      <h2></h2>
+      <div class="mandasa_dev_tab">
+        
+        <div class="mandasa-tab-btn"><a href="{{ section.settings.url1 }}">{{ section.settings.tab1 }}</a></div>
+        <div class="mandasa-tab-btn mandasa-active-tab mandasa_qa"><a href="{{ section.settings.url2 }}">{{ section.settings.tab2 }}</a></div>
+        <div class="mandasa-tab-btn"><a href="{{ section.settings.url3 }}">{{ section.settings.tab3 }}</a></div>
+        
+      </div>
+      {% render 'main-search' %}
+      <div class="mandasa_text">
+        <p>{{ section.settings.text_one }}</p>
+      </div>
+      <div class="mandasa_contact">
+        <button type="button">{{ section.settings.contact_btn }}</button>
+      </div>
+     
+      <!-- mandasa-dev -->
+      <!-- <p class="mandasa_top_text">총{{ blog.articles.size }}</p> -->
+      
+      <div class="mandasa_article_head mandasa_tab_head1" article-show-mobile="{{ section.settings.articles_per_page1 }}" style="display: none;">
+            <div class="mandasa_num mandasa_hedd"><span>{{ section.settings.num }}</span></div>
+            <div class="mandasa_titl mandasa_hedd"><span>{{ section.settings.title }}</span></div>
+            <div class="mandasa_res-date mandasa_hedd"><span>{{ section.settings.date }}</span></div>
+      </div>
+       
+     
+          <div class="scroll-area bleed sm:unbleed justify-items-left mandasa_tab_head1 mandasa_article_head">
+            <div class="blog-filter-list mandasa_block_list">
+              <ul class="h-stack bold text-base" role="tablist">
+                <!-- <li role="tab" aria-selected="{% if current_tags == blank %}true{% else %}false{% endif %}">
+                  <a href="{{ blog.url }}" class="{% if current_tags == blank %}selected{% endif %}">{{ 'blog.general.all_posts' | t }}</a>
+                </li> -->
+                {% for article in search.results limit:1 %}
+                  {%- for tag in article.tags limit:1-%}
+                    {% if tag contains "qa_" %}
+                  <li role="tab" aria-selected="true" class="mandasa_search_tag">
+                    {% assign spli_tag = tag | split: 'qa_'  %}
+                    {%- if current_tags contains tag -%}
+                      <a>{{- spli_tag[1] -}}</a>
+                    {%- else -%}
+                       <a>{{- spli_tag[1] -}}</a>
+                    {%- endif -%}
+                  </li>
+                    {% endif %}
+                    {% endfor %}
+                  
+                    {% assign tag_t = article.tags  %}
                  
-                
-                    {% if tag contains "tab_" %}
-               
-                    
+                  
+                  
+                {% endfor %}
+                {%- for article in blog.articles -%}
+                {%- for tag in blog.all_tags -%}
+                  {% if tag contains "qa_" %}
                   <li role="tab" aria-selected="{% if current_tags contains tag %}true{% else %}false{% endif %}">
- {% assign spli_tag = tag | split: 'tab_'  %}
+                    {% assign spli_tag = tag | split: 'qa_'  %}
                     {%- if current_tags contains tag -%}
                       {{- spli_tag[1] | link_to_remove_tag: tag -}}
                     {%- else -%}
                       {{- spli_tag[1] | link_to_tag: tag -}}
                     {%- endif -%}
-                  </li> 
-                      {% endif %}
+                  </li>
+                    {% endif %}
+                {%- endfor -%}
                 {%- endfor -%}
               </ul>
             </div>
           </div>
-        {%- endif -%}
-      </div>
-    </header>
-
-    <div class="blog-posts__container m--blog-posts__container" show-mobile-mm="{{ section.settings.articles_per_page1 }}">
-
-
-
       
-      {%- paginate blog.articles by section.settings.articles_per_page -%}
-       {% assign articles = blog.articles %}
-       
-        <div class="blog-posts m-blog-posts-news m_desktop" id="Huratips-Loop">
-          {%- for article in articles -%}
+      <!-- mandasa-dev -->
+      {%- if search.results_count > 0 -%}
+      {%- paginate search.results by section.settings.articles_per_page -%}
+        <div class="blog-posts1 mandasa_desktop">
+          
+          {% for article in search.results %}
+            {% assign resultt = search.results_count | plus: 0  %} 
+            
+            
+     
+          
+            {%- assign article_index = forloop.index -%}
+          
+            {%- if section.blocks.size > 0 -%}
+              {%- for block in section.blocks -%}
+                {%- assign block_position = block.settings.position | at_most: section.settings.articles_per_page -%}
+
+                {%- if block_position == article_index -%}
+                  <div {% render 'surface', class: 'blog-posts-newsletter v-stack gap-6 sm:gap-8 text-center rounded', text_color: block.settings.text_color, background: block.settings.background, background_fallback: 'bg-secondary' %}>
+                    <div class="blog-posts-newsletter__content v-stack gap-4 justify-items-center sm:gap-6">
+                      {%- render 'icon' with 'picto-envelope', width: 24, height: 24 -%}
+
+                      {%- if block.settings.title != blank -%}
+                        <p class="h4">{{- block.settings.title -}}</p>
+                      {%- endif -%}
+
+                      {%- if block.settings.content != blank -%}
+                        <div class="prose">
+                          {{- block.settings.content -}}
+                        </div>
+                      {%- endif -%}
+                    </div>
+
+                    {%- form 'customer', id: 'blog-posts-newsletter-form', class: 'form form--tight' -%}
+                      <div class="fieldset">
+                        {%- if form.posted_successfully? -%}
+                          {%- capture success_message -%}{{ 'general.newsletter.subscribed_successfully' | t }}{%- endcapture -%}
+                          {%- render 'banner', content: success_message, status: 'success' -%}
+                        {%- else -%}
+                          {%- if form.errors -%}
+                            {%- assign content = form.errors | default_errors -%}
+                            {%- render 'banner', status: 'error', content: content -%}
+                          {%- endif -%}
+                        {%- endif -%}
+
+                        <input type="hidden" name="contact[tags]" value="newsletter">
+
+                        {%- assign label = 'blog.comments.email' | t -%}
+                        {%- render 'input', type: 'email', name: 'contact[email]', label: label, value: customer.email, required: true, autocomplete: 'email' -%}
+                      </div>
+
+                      {%- render 'button', content: block.settings.button_text, icon: 'picto-envelope', type: 'submit', size: 'xl', secondary: true -%}
+                    {%- endform -%}
+
+                    {%- if block.settings.subtext != blank -%}
+                      <p class="text-sm text-subdued">{{- block.settings.subtext -}}</p>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+
+           
+            {%- for tag in article.tags -%}
+              
+             {% if tag contains "qa_" %}
+              {% assign spli_tag_art = tag | split: 'qa_'  %}
+             {% endif %}
+            {%- endfor -%}
+            {% assign final_titl_value = final_titl %}
+            {% assign article_title_value = article.title %}
+            {% assign blog_ur = blog.url | append: '?searchTxt='  %}
+            
+
+          {%liquid
+          assign split_1 = article.url | split: '/blogs/'
+          assign split_2 = split_1[1] | split: '/'
+          assign blog_handle = split_2[0] | strip
+          assign article_blog = blogs[blog_handle]
+          %}
+
+            {% assign specific_title = article_blog.title %}
+
+            {% if specific_title == 'Q&A' %}
+            <div class="mandasa_blog_table">
+              <div class="mandasa_article_head mandasa_article_head1 mandasa_qa_flex">
+                <div class="mandasa_search mandasa_num_qa mandasa_tablee mandasa_qa_cont"><a href="{{ article.url }}">{{ spli_tag_art[1] }}</a></div>
+                <div class="mandasa_search mandasa_titl_qa mandasa_tablee mandasa_qa_cont"><a href="{{ article.url }}" class="mandasa_artcle_search">{{ article.title }}</a></div>
+                <!-- <div class="mandasa_search mandasa_res-date mandasa_tablee">{{- article.published_at | default: 'now' | date: '%Y.%m.%d' -}}</div> -->
+              </div>
+            
+            </div>
+            {% else %}
+            {% if forloop.index == 1 %}
+              <div class="search-results mandasa_desktop"  data-found="{{ section.settings.found_txt }}">{{ section.settings.found_txt }}</div>
+             {% endif %} 
+          {% endif %}
+        
+          {%- endfor -%}
+        
+        </div>
+        {% if specific_title == 'Q&A' %}
+        <div class="mandasa_desktop">
+        {%- render 'pagination-m', paginate: paginate -%}
+        </div>
+        {% endif %}
+      {%- endpaginate -%}
+      {% else %}
+        {% if specific_title == 'Q&A' %}
+        {% else %}
+        <div class="search-results mandasa_desktop"  data-found="{{ section.settings.found_txt }}">{{ section.settings.found_txt }}</div>
+        {% endif %}
+      {% endif %}
+     <!-- mandasa-dev for mobile -->
+    <div class="blog-posts1 mandasa_mobile">
+    {%- if search.results_count > 0 -%}
+
+
+          {% for article in search.results %}
+            
             {%- assign article_index = forloop.index -%}
 
             {%- if section.blocks.size > 0 -%}
@@ -167,108 +319,60 @@
               {%- endfor -%}
             {%- endif -%}
 
-            {%- if section.settings.feature_first_article and forloop.first -%}
+            <!-- {%- if section.settings.feature_first_article and forloop.first -%}
               {%- assign background_color = article.metafields.banner.background_color.value | default: section.settings.feature_article_background -%}
               {%- assign text_color = article.metafields.banner.text_color.value | default: section.settings.feature_article_text_color -%}
               {%- capture sizes -%}(max-width: 999px) 100vw, calc(min(100vw, {{ settings.page_width }}px) * 0.65){%- endcapture -%}
-              {%- render 'm-blog-post-card-news', article: article, featured: section.settings.feature_first_article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, background: background_color, text_color: text_color, sizes: sizes -%}
+              {%- render 'blog-post-card', article: article, featured: section.settings.feature_first_article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, background: background_color, text_color: text_color, sizes: sizes -%}
             {%- else -%}
               {%- capture sizes -%}(max-width: 699px) 100vw, (max-width: 1149px) calc(100vw / 2 - 40px), (max-width: 1399px) calc(min(100vw, {{ settings.page_width }}px) / 3 - 40px) , calc(min(100vw, {{ settings.page_width }}px) / 3 - 80px) {%- endcapture -%}
-              {%- render 'm-blog-post-card-news', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, sizes: sizes -%}
-            {%- endif -%}
+              {%- render 'blog-post-card', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, sizes: sizes -%}
+            {%- endif -%} -->
+            {%- for tag in article.tags -%}
+              
+             {% if tag contains "qa_" %}
+              {% assign spli_tag_art = tag | split: 'qa_'  %}
+             {% endif %}
+            {%- endfor -%}
+
+           {%liquid
+          assign split_1 = article.url | split: '/blogs/'
+          assign split_2 = split_1[1] | split: '/'
+          assign blog_handle = split_2[0] | strip
+          assign article_blog = blogs[blog_handle]
+          %}
+
+            {% assign specific_title = article_blog.title %}
+
+            {% if specific_title == 'Q&A' %}
+            <div class="mandasa_blog_table mandasa_contenttt">
+              <div class="mandasa_article_head mandasa_article_head1">
+                <div class="mandasa_num_qa mandasa_tablee mandasa_qa_cont"><a href="{{ article.url }}">{{ spli_tag_art[1] }}</a></div>
+                <div class="mandasa_titl_qa mandasa_tablee mandasa_qa_cont"><a href="{{ article.url }}">{{ article.title }}</a></div>
+                <!-- <div class="mandasa_res-date mandasa_tablee d">{{- article.published_at | default: 'now' | date: '%Y.%m.%d' -}}</div> -->
+              </div>
+            </div>
+            {% else %}
+            {% if forloop.index == 1 %}
+              <div class="search-results mandasa_mobile"  data-found="{{ section.settings.found_txt }}">{{ section.settings.found_txt }}</div>
+              {% endif %}
+           {% endif %}
           {%- endfor -%}
+          
+          <!-- <div id="loadMore"><a href="#">More<span>{% render 'down-arrow' %}</span></a></div> -->
         </div>
-      <div class="page-desk-m">
-        {%- render 'pagination-m', paginate: paginate -%}
-    </div>  
-      
-   
-
-
-      {%- endpaginate -%}
-    <!-- mandasa-dev for mobile -->
-
-
-       
-        <div class="blog-posts m-blog-posts-news m_mobile" id="Huratips-Loop" >
-          
-          {%- for article in blog.articles -%}
-    
-
+      {% else %}
         
-              {%- for block in section.blocks -%}
-
-                  <div {% render 'surface', class: 'blog-posts-newsletter v-stack gap-6 sm:gap-8 text-center rounded', text_color: block.settings.text_color, background: block.settings.background, background_fallback: 'bg-secondary' %}>
-                    <div class="blog-posts-newsletter__content v-stack gap-4 justify-items-center sm:gap-6">
-                      {%- render 'icon' with 'picto-envelope', width: 24, height: 24 -%}
-
-                      {%- if block.settings.title != blank -%}
-                        <p class="h4">{{- block.settings.title -}}</p>
-                      {%- endif -%}
-
-                      {%- if block.settings.content != blank -%}
-                        <div class="prose">
-                          {{- block.settings.content -}}
-                        </div>
-                      {%- endif -%}
-                    </div>
-
-                    {%- form 'customer', id: 'blog-posts-newsletter-form', class: 'form form--tight' -%}
-                      <div class="fieldset">
-                        {%- if form.posted_successfully? -%}
-                          {%- capture success_message -%}{{ 'general.newsletter.subscribed_successfully' | t }}{%- endcapture -%}
-                          {%- render 'banner', content: success_message, status: 'success' -%}
-                        {%- else -%}
-                          {%- if form.errors -%}
-                            {%- assign content = form.errors | default_errors -%}
-                            {%- render 'banner', status: 'error', content: content -%}
-                          {%- endif -%}
-                        {%- endif -%}
-
-                        <input type="hidden" name="contact[tags]" value="newsletter">
-
-                        {%- assign label = 'blog.comments.email' | t -%}
-                        {%- render 'input', type: 'email', name: 'contact[email]', label: label, value: customer.email, required: true, autocomplete: 'email' -%}
-                      </div>
-
-                      {%- render 'button', content: block.settings.button_text, icon: 'picto-envelope', type: 'submit', size: 'xl', secondary: true -%}
-                    {%- endform -%}
-
-                    {%- if block.settings.subtext != blank -%}
-                      <p class="text-sm text-subdued">{{- block.settings.subtext -}}</p>
-                    {%- endif -%}
-                  </div>
-              {%- endfor -%}
-          
-
-            {%- if section.settings.feature_first_article and forloop.first -%}
-              {%- assign background_color = article.metafields.banner.background_color.value | default: section.settings.feature_article_background -%}
-              {%- assign text_color = article.metafields.banner.text_color.value | default: section.settings.feature_article_text_color -%}
-              {%- capture sizes -%}(max-width: 999px) 100vw, calc(min(100vw, {{ settings.page_width }}px) * 0.65){%- endcapture -%}
-              {%- render 'm-blog-post-card-news1', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, background: background_color, text_color: text_color, sizes: sizes -%}
-            {%- else -%}
-              {%- capture sizes -%}(max-width: 699px) 100vw, (max-width: 1149px) calc(100vw / 2 - 40px), (max-width: 1399px) calc(min(100vw, {{ settings.page_width }}px) / 3 - 40px) , calc(min(100vw, {{ settings.page_width }}px) / 3 - 80px) {%- endcapture -%}
-              {%- render 'm-blog-post-card-news1', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, sizes: sizes -%}
-            {%- endif -%}
-
-
-          {%- endfor -%}
-         
-     
-</div>
-      {% assign blog_size =  blog.articles.size %}
-{% assign set_size = section.settings.articles_per_page1 | plus: 0 %}
-{% if blog_size <= set_size %}
-{% else %}
-<div id="m-loadMore-news"><a href="#">More<span>{% render 'down-arrow' %}</span></a></div>
-  {% endif %}
+        <div class="search-results mandasa_mobile"  data-found="{{ section.settings.found_txt }}">{{ section.settings.found_txt }}</div>
+      {% endif %}
+      <!-- mandasa-dev for mobile -->
     </div>
   {%- endif -%}
 </div>
 
 {% schema %}
 {
-  "name": "Blog Magazine",
+  "name": "Q&A blog",
   "class": "shopify-section--main-blog",
   "tag": "section",
   "blocks": [
@@ -335,16 +439,6 @@
       "type": "header",
       "content": "Banner"
     },
-     {
-      "type": "image_picker",
-      "id": "imgpicker",
-      "label": "Blog banner Image"
-    },
- {
-      "type": "image_picker",
-      "id": "imgpicker_mob",
-      "label": "Blog Mobile banner Image"
-    },
     {
       "type": "checkbox",
       "id": "allow_transparent_header",
@@ -357,6 +451,75 @@
       "id": "content",
       "label": "Content",
       "default": "<p>Get access to our latest news by signing up for our newsletter.</p>"
+    },
+   {
+      "type": "text",
+      "id": "tab1",
+      "label": "Tab 1",
+      "default": "公告"
+    },
+   {
+      "type": "url",
+      "id": "url1",
+      "label": "Tab 1 link"
+    },
+   {
+      "type": "text",
+      "id": "tab2",
+      "label": "Tab 2",
+      "default": "Q&A"
+    },
+    {
+      "type": "url",
+      "id": "url2",
+      "label": "Tab 2 link"
+    },
+   {
+      "type": "text",
+      "id": "tab3",
+      "label": "Tab 3",
+      "default": "資料室"
+    },
+    {
+      "type": "url",
+      "id": "url3",
+      "label": "Tab 3 link"
+    },
+    {
+      "type": "text",
+      "id": "num",
+      "label": "Heading of number",
+      "default": "資料室"
+    },
+   {
+      "type": "text",
+      "id": "title",
+      "label": "Heading of title",
+      "default": "제목"
+    },
+   {
+      "type": "text",
+      "id": "date",
+      "label": "Heading of date",
+      "default": "등록일"
+    },
+    {
+      "type": "text",
+      "id": "text_one",
+      "label": "Text Below Search",
+      "default": "如果找不到您需要的答案，请使用1:1咨询。"
+    },
+    {
+      "type": "text",
+      "id": "found_txt",
+      "label": "Not found text",
+      "default": "기타 문의사항은 1:1 문의 또는 고객센터(1577-5670)를 이용해주세요."
+    },
+    {
+      "type": "text",
+      "id": "contact_btn",
+      "label": "Contact Button text",
+      "default": "1:1咨询"
     },
     {
       "type": "checkbox",
@@ -399,12 +562,12 @@
       "type": "range",
       "id": "articles_per_page",
       "label": "Articles per page",
-      "min": 2,
+      "min": 1,
       "max": 24,
       "step": 1,
       "default": 6
     },
-     {
+    {
       "type": "text",
       "id": "articles_per_page1",
       "label": "Articles per page on mobile"
@@ -460,6 +623,13 @@
       "info": "The first post's tag will be shown as category.",
       "default": true
     }
+  ],
+  "presets": [
+    {
+      "name": "Q&A blog"
+    }
   ]
 }
 {% endschema %}
+
+

@@ -35,6 +35,8 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
     
    {%- comment -%} manda css file{%- endcomment -%}
 <link type="text/css" href="{{ 'manda-custom.css' | asset_url }}" rel="stylesheet">
+<link type="text/css" href="{{ 'mandasa-dev.css' | asset_url }}" rel="stylesheet">
+
      {%- comment -%} end manda css file{%- endcomment -%}
      
     {%- unless settings.heading_font.system? -%}
@@ -57,6 +59,8 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
     {{ content_for_header }}
 
     {{- 'theme.css' | asset_url | stylesheet_tag: preload: true -}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   </head>
 
   <body class="{% if settings.show_page_transition %}page-transition{% endif %} {% if settings.zoom_image_on_hover %}zoom-image--enabled{% endif %}">
@@ -89,16 +93,20 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
       {%- endif -%}
     </main>
 <!-- M JS file -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-      <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-   <script  src="{{ 'm-custom.js' | asset_url }}"></script>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <link href='https://fonts.googleapis.com/css?family=Poppins:400,700,400italic' rel='stylesheet' type='text/css'>
-
+   {{ 'https://cdn.shopify.com/s/files/1/0382/4185/files/ajaxinate.js?937' | script_tag }}
+  
+    <script type="module" src="{{ 'm-custom.js' | asset_url }}"></script>
+    <script type="module" src="{{ 'mandasa-div.js' | asset_url }}"></script>
     <!-- End M JS file -->
 
+<script>
+  $( document ).on('click', '#check_order', function() {
+  alert('ok');
+  e.preventDefault();
+  setTimeout(function () {
+  $("button").trigger("click");
+    }, 2500);
+});
+</script>
   </body>
-
 </html>

@@ -92,14 +92,37 @@
   {%- endif -%}
 </style>
 
-<div class="article" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
-  {%- render 'article-banner', show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, layout: section.settings.layout, article_image: article_image -%}
+<div class="article mandasa_article_bg" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
+  {% comment %} {%- render 'article-banner', show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, layout: section.settings.layout, article_image: article_image -%} {% endcomment %}
 
-  <div class="container">
-    <div class="article-content v-stack gap-8 sm:gap-10">
+  <div class="container1 mandasa_dev_con">
+     {%- for tag in article.tags -%}
+        {% if tag contains "qa_" %}
+          {% assign qa = true %}
+        {% assign spli_tag_url = tag %}
+        {% assign spli_tag = tag | split: 'qa_'  %}
+         
+        {% endif %}
+       {% endfor %}
+    <div class="aa mandasa_art_con article-content v-stack gap-8 sm:gap-8">
+      <div class="mandasa_article_title">
+        <p class="blog_tit"><span class="{% if qa %} qa_titlee {% endif %}">{{ blog.title }}</span>{% if qa %}<span class="mandasa_qa_art_tag {% if qa %} qa_titlee {% endif %}"> {% render 'less-then' %}  {{ spli_tag[1] }}</span>{% endif %}</p>
+        <div class="date_titl">
+          <p class="mandasa_article_t">{{ article.title }}</p>
+          <p class="m_datee"><span>{{ article.published_at | date: "%Y.%m.%d" }}</span></p>
+        </div>
+      </div>
       <div class="prose">
         {{ article.content }}
       </div>
+      <div class="mandasa_back_btn">
+        <a href="{{ blog.url }}" class="mandasa_back">{{ section.settings.back }}</a>
+      </div>
+      {% if qa %}
+      <div class="mandasa_btn_contact">
+        <button class="mandasa_con_artt">{{ section.settings.contact }}</button>
+      </div>
+      {% endif %}
 
       {%- if section.settings.show_share_buttons -%}
         <div class="share-buttons gap-3">
@@ -201,6 +224,18 @@
       "id": "show_share_buttons",
       "label": "Show share buttons",
       "default": true
+    },
+    {
+      "type": "text",
+      "id": "back",
+      "label": "Blog back button",
+      "default": "목록으로 가기"
+    },
+    {
+      "type": "text",
+      "id": "contact",
+      "label": "Contact button",
+      "default": "1:1咨询"
     },
     {
       "type": "color",

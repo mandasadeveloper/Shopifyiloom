@@ -1,0 +1,41 @@
+
+  <div id="predictive-search-results">
+   
+      <h3 id="predictive-search-products">
+        Products
+      </h3>
+      <ul role="listbox" aria-labelledby="predictive-search-products">
+        {%- for product in predictive_search.resources.products -%}
+          <li role="option">
+            <a href="{{ product.url }}">
+              {{ product | image_url: width: 50 | image_tag }}
+              <span>{{ product.title }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+   
+    <button>
+      Search for “{{ predictive_search.terms }}”
+    </button>
+  </div>
+
+
+
+{% schema %}
+  {
+    "name": "Predictive Search",
+    "settings": [],
+    "presets": [
+    {
+      "name": "Predictive Search"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -4436,6 +4436,9 @@ split-lines {
   margin-inline-start: auto;
   margin-inline-end: auto;
   padding-block-start: var(--spacing-10);
+  /* mandasa */
+  padding-block-end: var(--spacing-10);
+   /* mandasa */
 }
 
 .article-content > .share-buttons .share-buttons__item {
@@ -9928,24 +9931,3 @@ split-lines {
   display: -webkit-box;
   overflow: hidden;
 }
-@font-face {
-  font-family: 'Montserrat';
-  src: url('https://cdn.shopify.com/s/files/1/0575/1576/9926/files/Montserrat-Regular_f1bec71d-710e-4dea-aa6d-bb09ad490507.ttf?v=1701431085');
-}
-
-/* Font Family */
-
-@font-face {
-  font-family: 'Noto_Sans_TC';
-  src: url('https://cdn.shopify.com/s/files/1/0575/1576/9926/files/Noto_Sans_TC.ttf?v=1700885436') format('truetype');
-}
-
-@font-face {
-  font-family: 'Avenir_Regular';
-  src: url('https://cdn.shopify.com/s/files/1/0575/1576/9926/files/Avenir_Regular.ttf?v=1700886449') format('truetype');
-}
-@font-face {
-  font-family: 'NotoSansCJKkr-Regular';
-  src: url('https://cdn.shopify.com/s/files/1/0575/1576/9926/files/NotoSansCJKkr-Regular.otf?v=1700888589') format('truetype');
-}
-/*End Font Family */

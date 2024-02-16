@@ -1,0 +1,114 @@
+<!-- search.json -->
+
+
+<section class="search-content">
+  <div class="search-content-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="search-content-group">
+          <div class="search-content-inner">
+            <div id="search">
+              {% if search.performed %}
+              {% paginate search.results by 8 %}
+
+              {% if search.terms == "" %}
+
+              <!--<div class="expanded-message">
+
+              </div> -->
+              <div class="search-field ddts">
+                <form class="search" action="/search">                    
+                  <input type="text" name="q" class="search_box" placeholder="{{ 'general.search.placeholder' | t }}" value=""  />
+                      <input name="view" type="hidden" value="json">
+                  <button class="search_submit" type="submit">
+                    <i class="zmdi zmdi-search"></i>
+                  </button>
+                </form>
+              </div>
+              {% else %}
+
+              {% if search.results == empty %}            
+              <div class="expanded-message">
+                <h2>{{ 'general.search.no_results_title' | t }}</h2>
+                <span class="subtext">{{ 'general.search.no_results_html' | t: search: search.terms }}</span>                
+              </div>            
+              <div class="search-field">
+                <form class="search" action="/search">                   
+                  <input type="text" name="q" class="search_box" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}"  />
+                  <input name="view" type="hidden" value="json">
+                  <button class="search_submit" type="submit">
+                    <i class="zmdi zmdi-search"></i>
+                  </button>
+                </form>
+              </div>
+              {% else %}
+			  <div class="expanded-message">
+                <div class="search-field">
+                  <form class="search" action="/search">                   
+                    <input type="text" name="q" class="search_box" placeholder="{{ 'general.search.placeholder' | t }}" value="{{ search.terms | escape }}"  />
+                    <input name="view" type="hidden" value="json">
+                    <button class="search_submit" type="submit">
+                      <i class="zmdi zmdi-search"></i>
+                    </button>
+                  </form>
+                </div>
+                <span class="subtext">{{ 'general.search.results_html' | t: search: search.terms }}</span>
+                <span class="results">{{ search.results_count }} {{ 'general.search.results_title' |t }}</span>
+              </div>
+              <!-- Begin results -->
+               {% for article in search.results %}
+                 {{ article.title }}
+        <div class="article-content product-item-wrapper col-sm-4 item">
+        {% include 'blog-post-card', article: article %}
+      </div>
+    {% endfor %}
+              <!-- End results -->
+
+              {% include 'pagination' %}
+
+              {% endif %}
+              {% endif %}
+
+              {% endpaginate %}
+
+              {% else %}            
+              <!--<div class="expanded-message">
+
+              </div> --> 
+              <div class="search-field">
+                <form class="search" action="/search">                                        
+                  <input type="text" name="q" class="search_box" placeholder="{{ 'general.search.placeholder' | t }}" value="" />
+                 <input name="view" type="hidden" value="json">
+                  <button class="search_submit" type="submit">
+                    <i class="zmdi zmdi-search"></i>
+                  </button>
+                </form>
+              </div>
+              {% endif %}	   
+            </div> <!-- /#search -->
+          </div>
+        </div>                
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "blog-search",
+    "settings": [],
+    "presets": [
+    {
+      "name": "blog-search"
+    }
+  ]
+    
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

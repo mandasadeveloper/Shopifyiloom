@@ -162,11 +162,11 @@
       "empty_blog": "This blog is empty",
       "back_to_home": "Back to home",
       "view": "View",
-      "all_posts": "All"
+      "all_posts": "全部"
     },
     "post": {
       "written_by": "By {{ author }}",
-      "share": "分享",
+      "share": "Share",
       "tags": "Tags",
       "continue_reading": "Reading next"
     },
@@ -174,7 +174,7 @@
       "leave_comment": "Leave a comment",
       "moderated": "All comments are moderated before being published.",
       "name": "Name",
-      "email": "電子郵件",
+      "email": "E-mail",
       "message": "Message",
       "submit": "Submit",
       "comment_sent": "Your comment has been sent. We will publish it in a little while, as our blog is moderated.",
@@ -189,7 +189,7 @@
   "contact": {
     "form": {
       "name": "Name",
-      "email": "電子郵件",
+      "email": "E-mail",
       "message": "Message",
       "submit": "Send message",
       "success_message": "Your message has been sent."
@@ -206,43 +206,43 @@
       "continue_shopping": "Continue shopping"
     },
     "login": {
-      "title": "登入",
-      "email": "電子郵件",
-      "password": "密碼",
-      "submit": "登入",
-      "forgot_password": "忘記密碼了嗎？",
-      "sign_up": "報名"
+      "title": "Login",
+      "email": "E-mail",
+      "password": "Password",
+      "submit": "Login",
+      "forgot_password": "Forgot your password?",
+      "sign_up": "Sign up"
     },
     "recover_password": {
-      "title": "恢復密碼",
-      "email": "電子郵件",
-      "submit": "恢復",
-      "back_to_login": "回到登入",
-      "success_message": "一封電子郵件已發送到您的地址，其中包含重設密碼的說明。"
+      "title": "Recover password",
+      "email": "E-mail",
+      "submit": "Recover",
+      "back_to_login": "Back to login",
+      "success_message": "An e-mail has been sent to your address with instructions to reset your password."
     },
     "register": {
-      "title": "報名",
-      "first_name": "名",
-      "last_name": "姓",
-      "email": "電子郵件",
-      "password": "密碼",
+      "title": "Sign up",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "email": "E-mail",
+      "password": "Password",
       "accepts_marketing": "Register to our newsletter",
-      "submit": "加入",
-      "login": "登入"
+      "submit": "Create account",
+      "login": "Login"
     },
     "activate_account": {
       "title": "Activate account",
-      "instructions": "輸入密碼以建立您的帳戶：",
-      "password": "密碼",
-      "password_confirmation": "確認密碼",
+      "instructions": "Enter a password to create your account:",
+      "password": "Password",
+      "password_confirmation": "Password confirmation",
       "submit": "Activate",
       "cancel": "Cancel"
     },
     "reset_password": {
-      "title": "重新設密碼",
-      "password": "密碼",
-      "password_confirmation": "確認密碼",
-      "submit": "重置"
+      "title": "Reset password",
+      "password": "Password",
+      "password_confirmation": "Password confirmation",
+      "submit": "Reset"
     },
     "order": {
       "order": "Order",
@@ -280,8 +280,8 @@
       "address_title": "Address {{ position }}",
       "delete_confirm": "Remove this address? Once confirmed, this action cannot be undone.",
       "fill_form": "Please fill in the information below:",
-      "first_name": "名",
-      "last_name": "姓",
+      "first_name": "First name",
+      "last_name": "Last name",
       "company": "Company",
       "phone": "Phone number",
       "address1": "Address 1",
@@ -295,12 +295,12 @@
   },
   "cart": {
     "general": {
-      "title": "購物車",
+      "title": "Cart",
       "empty": "Your cart is empty",
       "continue_shopping": "Continue shopping",
       "weight": "Weight",
       "subtotal": "Subtotal",
-      "total": "總金額",
+      "total": "Total",
       "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\" class=\"link\">shipping<\/a> calculated at checkout",
       "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
       "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\" class=\"link\">Shipping<\/a> calculated at checkout.",
@@ -314,9 +314,9 @@
       "we_accept": "We accept"
     },
     "order": {
-      "product": "商品",
-      "total": "價格",
-      "quantity": "數量",
+      "product": "Product",
+      "total": "Total",
+      "quantity": "Quantity",
       "change_quantity": "Change quantity",
       "increase_quantity": "Increase quantity",
       "decrease_quantity": "Decrease quantity",
@@ -349,11 +349,11 @@
       "title": "Search",
       "terms": "Results for \"{{ terms }}\"",
       "search_placeholder": "Search for...",
-      "products": "產品",
-      "suggestions": "建議",
-      "collections": "收藏",
-      "posts": "部落格文章",
-      "pages": "頁數",
+      "products": "Products",
+      "suggestions": "Suggestions",
+      "collections": "Collections",
+      "posts": "Blog posts",
+      "pages": "Pages",
       "clear": "Clear",
       "view_all": "View all",
       "view_all_results": "View all results",
@@ -395,7 +395,7 @@
       "follow_us": "Follow us",
       "powered_by": "This shop is powered by",
       "store_owner": "Store owner?",
-      "login": "登入"
+      "login": "Login"
     },
     "storefront_access": {
       "enter_password": "Enter using password",
@@ -413,28 +413,6 @@
         "zero": "This product has no reviews yet.",
         "one": "It has received {{ count }} review.",
         "other": "It has received {{ count }} reviews."
-      }
-    }
-  },
-  "shopify": {
-    "checkout": {
-      "general": {
-        "cart": "商品"
-      },
-      "contact": {
-        "last_name_label": "姓",
-        "optional_last_name_label": "姓氏（可選）"
-      }
-    },
-    "page_titles": {
-      "products": "產品"
-    }
-  },
-  "customer_accounts": {
-    "account_information": {
-      "profile_card": {
-        "last_name": "姓",
-        "first_name": "名"
       }
     }
   }

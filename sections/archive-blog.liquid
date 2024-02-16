@@ -1,6 +1,3 @@
-
-
-
 {%- render 'section-spacing-collapsing' -%}
 
 <style>
@@ -20,7 +17,7 @@
   }
 </style>
 
-<div class="blog event_blog" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %} >
+<div class="blog blogcus" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
   {%- if blog.articles_count == 0 -%}
     <div class="empty-state">
       <div class="empty-state__icon-wrapper">
@@ -35,17 +32,13 @@
       </div>
     </div>
   {%- else -%}
-    <header {% render 'surface', class: 'blog-banner', text_color: section.settings.banner_text_color, background: section.settings.banner_background, background_fallback: 'bg-secondary' %}>
-      <div class="m-container">
-        <div class="blog-banner-content-em m-banner-em">
-          <div class="v-stack  gap-5 sm:gap-8">
+    <header class="mandasa_dev_con" {% render 'surface', class: 'blog-banner', text_color: section.settings.banner_text_color, background: section.settings.banner_background, background_fallback: 'bg-secondary' %}>
+      <div class="container">
+        <div class="blog-banner-content-head v-stack gap-10 text-center justify-items-center">
+          <div class="v-stack gap-5 sm:gap-8">
             <h1 class="h0">{{- blog.title -}}</h1>
 
-            <!-- {%- if section.settings.content != blank -%}
-              <div class="prose">
-                {{- section.settings.content -}}
-              </div>
-            {%- endif -%} -->
+            
           </div>
 
           {%- if section.settings.show_newsletter_form -%}
@@ -72,49 +65,48 @@
             {%- endform -%}
           {%- endif -%}
         </div>
-  </div>
-        {% comment %}  <div class="m-contain">
+
         {%- if section.settings.show_tags and blog.all_tags.size > 0 -%}
           <div class="scroll-area bleed sm:unbleed justify-items-center">
-            <!-- <div class="blog-filter-list m-blog-filter-list">
+            <div class="blog-filter-list">
               <ul class="h-stack bold text-base" role="tablist">
                 <li role="tab" aria-selected="{% if current_tags == blank %}true{% else %}false{% endif %}">
                   <a href="{{ blog.url }}" class="{% if current_tags == blank %}selected{% endif %}">{{ 'blog.general.all_posts' | t }}</a>
                 </li>
 
                 {%- for tag in blog.all_tags -%}
-                 
-                
-                    {% if tag contains "tab_" %}
-               
-                    
                   <li role="tab" aria-selected="{% if current_tags contains tag %}true{% else %}false{% endif %}">
- {% assign spli_tag = tag | split: 'tab_'  %}
+
                     {%- if current_tags contains tag -%}
-                      {{- spli_tag[1] | link_to_remove_tag: tag -}}
+                      {{- tag | link_to_remove_tag: tag -}}
                     {%- else -%}
-                      {{- spli_tag[1] | link_to_tag: tag -}}
+                      {{- tag | link_to_tag: tag -}}
                     {%- endif -%}
-                  </li> 
-                      {% endif %}
+                  </li>
                 {%- endfor -%}
               </ul>
-            </div> -->
+            </div>
           </div>
         {%- endif -%}
-      </div> {% endcomment %} 
+      </div>
     </header>
 
-    <div class="blog-posts__container mm--blog-posts__container" show-mobile-event="{{ section.settings.articles_per_page1 }}">
+    <div class="blog-posts__container1 container1 mandasa_dev_con mandasa_archiv_main" article-show-mobile="{{ section.settings.articles_per_page1 }}">
 
-
-
-      
-      {%- paginate blog.articles by section.settings.articles_per_page -%}
-        {% assign articles = blog.articles %}
+      <div class="mandasa_dev_tab">
+        <div class="mandasa-tab-btn"><a href="{{ section.settings.url1 }}">{{ section.settings.tab1 }}</a></div>
+        <div class="mandasa-tab-btn mandasa_qa"><a href="{{ section.settings.url2 }}">{{ section.settings.tab2 }}</a></div>
+        <div class="mandasa-tab-btn mandasa-active-tab"><a href="{{ section.settings.url3 }}">{{ section.settings.tab3 }}</a></div>
+      </div>
+      {%- if section.settings.content != blank -%}
+              <div class="prose mandasa_text mandasa_textarchive">
+                {{- section.settings.content -}}
+              </div>
+      {%- endif -%}
        
-        <div class="blog-posts m-blog-posts-event m_desktop" id="Huratips-Loop">
-          {%- for article in articles -%}
+      {%- paginate blog.articles by section.settings.articles_per_page -%}
+        <div class="blog-posts mandasa_blog-posts mandasa_archive_blog mandasa_desktop">
+          {%- for article in blog.articles -%}
             {%- assign article_index = forloop.index -%}
 
             {%- if section.blocks.size > 0 -%}
@@ -170,33 +162,29 @@
               {%- assign background_color = article.metafields.banner.background_color.value | default: section.settings.feature_article_background -%}
               {%- assign text_color = article.metafields.banner.text_color.value | default: section.settings.feature_article_text_color -%}
               {%- capture sizes -%}(max-width: 999px) 100vw, calc(min(100vw, {{ settings.page_width }}px) * 0.65){%- endcapture -%}
-              {%- render 'm-blog-post-card-event', article: article, featured: section.settings.feature_first_article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, background: background_color, text_color: text_color, sizes: sizes -%}
+              {%- render 'archive_blog_card', article: article, featured: section.settings.feature_first_article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, background: background_color, text_color: text_color, sizes: sizes -%}
             {%- else -%}
               {%- capture sizes -%}(max-width: 699px) 100vw, (max-width: 1149px) calc(100vw / 2 - 40px), (max-width: 1399px) calc(min(100vw, {{ settings.page_width }}px) / 3 - 40px) , calc(min(100vw, {{ settings.page_width }}px) / 3 - 80px) {%- endcapture -%}
-              {%- render 'm-blog-post-card-event', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, sizes: sizes -%}
+              {%- render 'archive_blog_card', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, sizes: sizes -%}
             {%- endif -%}
+
           {%- endfor -%}
+          <!-- <div id="loadMore"><a href="#">More<span>{% render 'down-arrow' %}</span></a></div> -->
         </div>
-      <div class="page-desk-m">
+      <div class="mandasa_desktop">
         {%- render 'pagination-m', paginate: paginate -%}
-    </div>  
-      
-   
-
-
+      </div>
       {%- endpaginate -%}
-    <!-- mandasa-dev for mobile -->
 
-
-       
-        <div class="blog-posts m-blog-posts-event m_mobile" id="Huratips-Loop" >
-          
+      <div class="blog-posts mandasa_blog-posts mandasa_archive_blog mandasa_mobile">
           {%- for article in blog.articles -%}
-    
+            {%- assign article_index = forloop.index -%}
 
-        
+            {%- if section.blocks.size > 0 -%}
               {%- for block in section.blocks -%}
+                {%- assign block_position = block.settings.position | at_most: section.settings.articles_per_page -%}
 
+                {%- if block_position == article_index -%}
                   <div {% render 'surface', class: 'blog-posts-newsletter v-stack gap-6 sm:gap-8 text-center rounded', text_color: block.settings.text_color, background: block.settings.background, background_fallback: 'bg-secondary' %}>
                     <div class="blog-posts-newsletter__content v-stack gap-4 justify-items-center sm:gap-6">
                       {%- render 'icon' with 'picto-envelope', width: 24, height: 24 -%}
@@ -237,37 +225,38 @@
                       <p class="text-sm text-subdued">{{- block.settings.subtext -}}</p>
                     {%- endif -%}
                   </div>
+                {%- endif -%}
               {%- endfor -%}
-          
+            {%- endif -%}
 
             {%- if section.settings.feature_first_article and forloop.first -%}
               {%- assign background_color = article.metafields.banner.background_color.value | default: section.settings.feature_article_background -%}
               {%- assign text_color = article.metafields.banner.text_color.value | default: section.settings.feature_article_text_color -%}
               {%- capture sizes -%}(max-width: 999px) 100vw, calc(min(100vw, {{ settings.page_width }}px) * 0.65){%- endcapture -%}
-              {%- render 'm-blog-post-card-event1', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, background: background_color, text_color: text_color, sizes: sizes -%}
+              {%- render 'archive_blog_card1', article: article, featured: section.settings.feature_first_article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, background: background_color, text_color: text_color, sizes: sizes -%}
             {%- else -%}
               {%- capture sizes -%}(max-width: 699px) 100vw, (max-width: 1149px) calc(100vw / 2 - 40px), (max-width: 1399px) calc(min(100vw, {{ settings.page_width }}px) / 3 - 40px) , calc(min(100vw, {{ settings.page_width }}px) / 3 - 80px) {%- endcapture -%}
-              {%- render 'm-blog-post-card-event1', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, sizes: sizes -%}
+              {%- render 'archive_blog_card1', article: article, show_excerpt: section.settings.show_excerpt, show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, show_category: section.settings.show_category, sizes: sizes -%}
             {%- endif -%}
 
-
           {%- endfor -%}
-         
-     
-</div>
-{% assign blog_size =  blog.articles.size %}
-{% assign set_size = section.settings.articles_per_page1 | plus: 0 %}
-{% if blog_size <= set_size %}
-{% else %}
-<div id="m-loadMore-event"><a href="#">More<span>{% render 'down-arrow' %}</span></a></div>
-  {% endif %}
+          
+        </div>
+      <div class="mandasa_mobile">
+        {% assign blog_size =  blog.articles.size %}
+          {% assign set_size = section.settings.articles_per_page1 | plus: 0 %}
+          {% if blog_size <= set_size %}
+          {% else %}
+      <div id="loadMore11"><a href="#">More<span>{% render 'down-arrow' %}</span></a></div>
+          {% endif %}
+      </div>
     </div>
   {%- endif -%}
 </div>
 
 {% schema %}
 {
-  "name": "Blog Event",
+  "name": "Archive blog",
   "class": "shopify-section--main-blog",
   "tag": "section",
   "blocks": [
@@ -334,16 +323,6 @@
       "type": "header",
       "content": "Banner"
     },
-     {
-      "type": "image_picker",
-      "id": "imgpicker",
-      "label": "Blog banner Image"
-    },
- {
-      "type": "image_picker",
-      "id": "imgpicker_mob",
-      "label": "Blog Mobile banner Image"
-    },
     {
       "type": "checkbox",
       "id": "allow_transparent_header",
@@ -356,6 +335,39 @@
       "id": "content",
       "label": "Content",
       "default": "<p>Get access to our latest news by signing up for our newsletter.</p>"
+    },
+    {
+      "type": "text",
+      "id": "tab1",
+      "label": "Tab 1",
+      "default": "公告"
+    },
+   {
+      "type": "url",
+      "id": "url1",
+      "label": "Tab 1 link"
+    },
+   {
+      "type": "text",
+      "id": "tab2",
+      "label": "Tab 2",
+      "default": "Q&A"
+    },
+    {
+      "type": "url",
+      "id": "url2",
+      "label": "Tab 2 link"
+    },
+   {
+      "type": "text",
+      "id": "tab3",
+      "label": "Tab 3",
+      "default": "資料室"
+    },
+    {
+      "type": "url",
+      "id": "url3",
+      "label": "Tab 3 link"
     },
     {
       "type": "checkbox",
@@ -398,12 +410,12 @@
       "type": "range",
       "id": "articles_per_page",
       "label": "Articles per page",
-      "min": 2,
+      "min": 5,
       "max": 24,
       "step": 1,
       "default": 6
     },
-     {
+    {
       "type": "text",
       "id": "articles_per_page1",
       "label": "Articles per page on mobile"
@@ -458,6 +470,11 @@
       "label": "Show category",
       "info": "The first post's tag will be shown as category.",
       "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Archive blog"
     }
   ]
 }

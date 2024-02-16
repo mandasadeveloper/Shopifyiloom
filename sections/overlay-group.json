@@ -41,14 +41,13 @@
       "settings": {
         "full_width": false,
         "show_article_category": true,
-        "search_menu": "search",
-        "products_popular": [
-          "copy-of-座天然皮革沙發",
-          "childrens-special-mattress-single",
-          "vancouver-sofa",
-          "hsqe010"
-        ],
+        "search_menu": "",
         "search_menu_show_title": true
+      }
+    },
+    "35e783bc-7471-4450-8b48-778f3248a9ab": {
+      "type": "main-search1",
+      "settings": {
       }
     }
   },
@@ -56,6 +55,7 @@
     "newsletter-popup",
     "privacy-banner",
     "cart-drawer",
-    "search-drawer"
+    "search-drawer",
+    "35e783bc-7471-4450-8b48-778f3248a9ab"
   ]
 }

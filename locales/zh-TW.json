@@ -354,10 +354,10 @@
       "collections": "系列",
       "posts": "部落格文章",
       "pages": "頁面",
-      "clear": "Clear",
+      "clear": "清除",
       "view_all": "查看全部",
       "view_all_results": "查看所有結果",
-      "no_results": "No results could be found."
+      "no_results": "未找到結果。"
     },
     "results_count": {
       "zero": "搜尋到「{{ terms }}」的 0 個結果",
