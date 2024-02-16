@@ -12,8 +12,6 @@
             "mobile_icon_width": 24,
             "icon_width": 24,
             "icon_background_type": "none",
-            "icon_background": "",
-            "icon_color": "",
             "title": "Free shipping",
             "content": "<p>Tell your customers about your shipping offer.<\/p>"
           }
@@ -25,8 +23,6 @@
             "mobile_icon_width": 24,
             "icon_width": 24,
             "icon_background_type": "none",
-            "icon_background": "",
-            "icon_color": "",
             "title": "Customer service",
             "content": "<p>Tell your customers how they can reach you.<\/p>"
           }
@@ -38,8 +34,6 @@
             "mobile_icon_width": 24,
             "icon_width": 24,
             "icon_background_type": "none",
-            "icon_background": "",
-            "icon_color": "",
             "title": "Refer a friend",
             "content": "<p>Tell your customers about your promotional offers.<\/p>"
           }
@@ -51,8 +45,6 @@
             "mobile_icon_width": 24,
             "icon_width": 24,
             "icon_background_type": "none",
-            "icon_background": "",
-            "icon_color": "",
             "title": "Secure payment",
             "content": "<p>Tel your customers about your payment methods.<\/p>"
           }
@@ -64,70 +56,43 @@
         "discount",
         "payment"
       ],
-      "disabled": true,
       "settings": {
         "full_width": true,
-        "stack_on_mobile": false,
-        "title": "",
         "heading_tag": "h6",
         "text_alignment": "center",
-        "icon_spacing": "small",
-        "background": "",
-        "background_gradient": "",
-        "text_color": ""
+        "icon_spacing": "small"
       }
     },
     "footer": {
-      "type": "footer-custom",
+      "type": "footer",
       "blocks": {
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "image_width": 150,
+            "heading_size": "h3",
+            "title": "Sign up for new stories and personal offers"
+          }
+        },
         "links": {
           "type": "links",
           "settings": {
-            "menu": "footer-menu",
-            "show_menu_title": false,
-            "menu_title": ""
-          }
-        },
-        "599ace7b-fe0a-434b-afef-39d3610b9310": {
-          "type": "contact-list",
-          "settings": {
-            "contact_service": "免付費客服專線",
-            "contact_service_number": "0809 080 976",
-            "contact-phone": "手機請撥打",
-            "contact_number": "02 7709 7791",
-            "timing_title": "客服專線時間",
-            "timing_detail": "<p>工作日 9:30 – 12:30；13:30 – 17:30<\/p>",
-            "email-title": "客服信箱",
-            "email": "service@iloom.com.tw",
-            "facebook": "shopify:\/\/shop_images\/52ecfdb15c34ddaa7860d1148c254d0d.png",
-            "facebook-link": "#",
-            "insta-icon": "shopify:\/\/shop_images\/instagram_1.png",
-            "insta-link": "#"
+            "menu": "footer",
+            "show_menu_title": true
           }
         },
         "text": {
           "type": "text",
-          "disabled": true,
           "settings": {
-            "title": "",
-            "content": "<p>免付費客服專線：0809 080 976<\/p><p>機請撥打：02 7709 7791<\/p><p>客服專線時間：工作日 9:30 – 12:30；13:30 – 17:30<\/p><p>客服信箱：service@iloom.com.tw<\/p>",
-            "enable_follow_on_shop": true
-          }
-        },
-        "08df7828-8fbf-4ee0-b1e3-50660d445ce5": {
-          "type": "text-with-img",
-          "settings": {
-            "logo-img": "shopify:\/\/shop_images\/iloom_fa5021cb-2532-4d84-a17a-fce47cc49251.png",
-            "title": "",
-            "content": "<p>台灣怡倫家居股份有限公司 \/ 統一編號 52540020<br\/><a href=\"\/pages\/privacy-policy\" title=\"Privacy Policy\">隱私權政策<\/a>│2023 © iloom<\/p>"
+            "title": "About",
+            "content": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor.<\/p>"
           }
         }
       },
       "block_order": [
+        "newsletter",
         "links",
-        "599ace7b-fe0a-434b-afef-39d3610b9310",
-        "text",
-        "08df7828-8fbf-4ee0-b1e3-50660d445ce5"
+        "text"
       ],
       "settings": {
         "show_social_media": true,
