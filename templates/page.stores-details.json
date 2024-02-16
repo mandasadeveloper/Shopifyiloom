@@ -2,11 +2,19 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "434f3e19-a1cc-4c93-be42-3ccf90b681cd": {
+      "type": "react-store-details",
       "settings": {
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "434f3e19-a1cc-4c93-be42-3ccf90b681cd"
   ]
 }

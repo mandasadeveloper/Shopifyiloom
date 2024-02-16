@@ -1,0 +1,12 @@
+{% assign add_on_porducts = product.metafields.custom.add_on_porducts.value %}
+{% if add_on_porducts != blank %}
+  <script defer src="{{ 'addon-products.js' | asset_url }}"></script>
+  <div class="il-addonProducts">
+    <h3 class="il-addonProducts__heading text-p text-p--primaryFont text-p--14">{{ heading }}</h3>
+    <div class="il-addonProducts__product">
+      {% for product in add_on_porducts limit: 4 %}
+        {%- render 'product-addon-card', product: product, background: '214,214,214', text_color: '60,60,60' -%}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

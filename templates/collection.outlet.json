@@ -1,0 +1,152 @@
+{
+    "sections": {
+      "banner": {
+        "type": "collection-banner-outlet",
+        "settings": {
+          "full_width": true,
+          "allow_transparent_header": false,
+          "enable_parallax": true,
+          "show_collection_title": true,
+          "show_collection_description": true,
+          "show_collection_image": true,
+          "collection_title_size": "h1",
+          "image_size": "auto",
+          "image": "shopify:\/\/shop_images\/outlet_e882a05a-0efe-470f-a6c4-49d938b4f352.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/mo-outlet_d1a7811e-5b50-4939-9278-06265113763e.jpg",
+          "mobile_text_position": "place-self-center text-center",
+          "desktop_text_position": "sm:place-self-center sm:text-center",
+          "featured_product": "",
+          "featured_product_heading": "",
+          "text_color": "#ffffff",
+          "overlay_color": "#000000",
+          "overlay_opacity": 30
+        }
+      },
+      "0b872d51-d3a8-42ee-931c-c9a4152b44b1": {
+        "type": "collections-shop",
+        "blocks": {
+          "4eaf80ad-0cf3-4506-b698-2ccf0beb7c65": {
+            "type": "textbutton",
+            "settings": {
+              "collection": "沙發-沙發桌-1",
+              "collection_title": "",
+              "link": ""
+            }
+          },
+          "bd5c7add-12f0-4012-bbf8-cb57b49fd725": {
+            "type": "textbutton",
+            "settings": {
+              "collection": "床",
+              "collection_title": "",
+              "link": ""
+            }
+          },
+          "d11af4ff-ec91-4538-aed1-3b5b3dad73da": {
+            "type": "textbutton",
+            "settings": {
+              "collection": "書架",
+              "collection_title": "",
+              "link": ""
+            }
+          },
+          "8d7f1784-e697-4524-aafd-6305f3b3d527": {
+            "type": "textbutton",
+            "settings": {
+              "collection": "床墊",
+              "collection_title": "",
+              "link": ""
+            }
+          },
+          "1a6551a1-f1b8-4775-b0fa-d3bcf189b98f": {
+            "type": "textbutton",
+            "settings": {
+              "collection": "儲物櫃-抽屜",
+              "collection_title": "",
+              "link": ""
+            }
+          },
+          "c15ffb0d-8e05-429b-a573-d30ded417008": {
+            "type": "textbutton",
+            "settings": {
+              "collection": "兒童沙發-椅子",
+              "collection_title": "",
+              "link": ""
+            }
+          },
+          "2b7ac72b-2c4d-4393-8a8d-9ef34bfbc9a5": {
+            "type": "textbutton",
+            "settings": {
+              "collection": "writing-desk",
+              "collection_title": "",
+              "link": ""
+            }
+          },
+          "3d8a2dea-54cc-4559-be04-6b9c3b4c4fdf": {
+            "type": "textbutton",
+            "settings": {
+              "collection": "椅子",
+              "collection_title": "",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "4eaf80ad-0cf3-4506-b698-2ccf0beb7c65",
+          "bd5c7add-12f0-4012-bbf8-cb57b49fd725",
+          "d11af4ff-ec91-4538-aed1-3b5b3dad73da",
+          "8d7f1784-e697-4524-aafd-6305f3b3d527",
+          "1a6551a1-f1b8-4775-b0fa-d3bcf189b98f",
+          "c15ffb0d-8e05-429b-a573-d30ded417008",
+          "2b7ac72b-2c4d-4393-8a8d-9ef34bfbc9a5",
+          "3d8a2dea-54cc-4559-be04-6b9c3b4c4fdf"
+        ],
+        "disabled": true,
+        "settings": {
+          "padding_top": 0,
+          "padding_bottom": 0,
+          "mobile_padding_top": 0,
+          "mobile_padding_bottom": 0
+        }
+      },
+      "main": {
+        "type": "main-collection",
+        "disabled": true,
+        "settings": {
+          "products_per_page": 5000,
+          "products_per_row_mobile": "2",
+          "products_per_row_desktop": 4,
+          "filter_layout": "horizontal",
+          "show_sort_by": true,
+          "show_filters": true,
+          "show_filter_group_name": false,
+          "show_color_swatch": true,
+          "show_empty_filter_values": false,
+          "show_filter_values_count": false,
+          "open_first_filter_group": false
+        }
+      },
+      "3f434b9a-dc0c-495e-bdd3-b39aeb0d389c": {
+        "type": "main-collection-outlet",
+        "settings": {
+          "products_per_page": 16,
+          "mobile_products_per_page": 5000,
+          "products_per_row_mobile": "2",
+          "products_per_row_desktop": 4,
+          "filter_layout": "horizontal",
+          "show_sort_by": true,
+          "show_filters": true,
+          "show_filter_group_name": false,
+          "show_color_swatch": true,
+          "show_empty_filter_values": false,
+          "show_filter_values_count": false,
+          "open_first_filter_group": false
+        }
+      }
+    },
+    "order": [
+      "banner",
+      "0b872d51-d3a8-42ee-931c-c9a4152b44b1",
+      "main",
+      "3f434b9a-dc0c-495e-bdd3-b39aeb0d389c"
+    ]
+  }

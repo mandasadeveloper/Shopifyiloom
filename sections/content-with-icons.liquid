@@ -1,0 +1,199 @@
+<div class="il-contentWithIcons">
+  <div class="il-contentWithIcons__container">
+    <div class="il-contentWithIcons__tagWrapper">
+      <p class="il-contentWithIcons__tag">{{ section.settings.tag }}</p>
+    </div>
+    <div class="il-contentWithIcons__title">{{ section.settings['main-title'] }}</div>
+    <div class="il-contentWithIcons__subheadiing">{{ section.settings.subheading }}</div>
+    <div class="il-contentWithIcons__iconsContainer">
+      {% for block in section.blocks %}
+        <div class="il-contentWithIcons__iconWrapper">
+          <img class="il-contentWithIcons__icon" src="{{ block.settings.icon-id | img_url: "master" }}" alt="icon">
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .il-contentWithIcons {
+    padding: 0 48px;
+    padding-top: {{ section.settings.padding-top }}px;
+    padding-bottom: {{ section.settings.padding-bottom }}px;
+  }
+
+  .il-contentWithIcons__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .il-contentWithIcons__tagWrapper {
+    display: flex;
+    padding: 9px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    background: var(--color-primary);
+  }
+
+  .il-contentWithIcons__tag {
+    color: var(--color-white);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-400);
+    text-transform: var(--text-capitalize);
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 1px;
+  }
+
+  .il-contentWithIcons__title {
+    margin: 30px 0 24px;
+  }
+
+  .il-contentWithIcons__title p {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-30);
+    font-weight: var(--font-weight-500);
+    text-align: center;
+    line-height: normal;
+    letter-spacing: 3px;
+  }
+
+  .il-contentWithIcons__subheadiing p {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-400);
+    text-align: center;
+    line-height: normal;
+  }
+
+  .il-contentWithIcons__iconsContainer {
+    display: flex;
+    gap: 36px;
+    background: var(--color-grey-09);
+    padding: 22px 40px;
+    margin-top: 40px;
+    align-items: center;
+  }
+
+  .il-contentWithIcons__icon {
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+  }
+
+  .il-contentWithIcons__iconWrapper:nth-child(1) .il-contentWithIcons__icon {
+    max-width: 84px;
+  }
+
+  .il-contentWithIcons__iconWrapper:nth-child(2) .il-contentWithIcons__icon {
+    max-width: 96px;
+  }
+
+  @media (max-width: 1200px) {
+    .il-contentWithIcons {
+      padding: 32px 20px 12px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .il-contentWithIcons {
+      padding: 32px 20px 12px;
+      margin-bottom: 44px;
+    }
+
+    .il-contentWithIcons__title p {
+      font-size: var(--font-size-18);
+      letter-spacing: 1.8px;
+    }
+
+    .il-contentWithIcons__title {
+      margin: 12px 0 14px;
+    }
+
+    .il-contentWithIcons__subheadiing p {
+      font-size: var(--font-size-12);
+    }
+
+    .il-contentWithIcons__iconsContainer {
+      margin-top: 30px;
+      padding: 14px 26px;
+    }
+
+    .il-contentWithIcons__tagWrapper {
+      padding: 8px 12px;
+    }
+
+    .il-contentWithIcons__tag {
+      font-size: var(--font-size-10);
+    }
+
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Content with Icons",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Tag"
+    },
+    {
+      "type": "richtext",
+      "id": "main-title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Sub-heading"
+    },
+    {
+      "type": "range",
+      "id": "padding-top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding-bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon-id",
+          "label": "Icon"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Content with Icons"
+    }
+  ]
+}
+{% endschema %}

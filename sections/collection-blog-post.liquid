@@ -1,0 +1,274 @@
+{% liquid
+    assign articleCount = 0
+    assign collectionName = collection.title
+  %}
+  
+  <div class="il-collectionBlogPost il-collectionBlogPost--{{ section.id }}">
+    <div class="il-collectionBlogPost__container">
+      <div class="il-collectionBlogPost__body">
+        <div class="il-collectionBlogPost__headingWrap">
+          <h2 class="il-collectionBlogPost__heading text-p text-p--30">
+            {{ section.settings.heading }}
+          </h2>
+        </div>
+        <div class="il-collectionBlogPost__blogCard">
+          {% for article in section.settings.blog.articles %}
+            {% if article.tags contains collectionName %}
+              {% assign hashTagValue = article.metafields.custom.hashtag.value %}
+              <div class="il-collectionBlogPost__innerWrapCard">
+                <a href="{{ article.url }}" class="il-collectionBlogPost__link"></a>
+                <div class="il-collectionBlogPost__blogImageWrap">
+                  <div class="il-collectionBlogPost__imageWrap">
+                    {{-
+                      article.image
+                      | image_url: width: article.image.width
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800',
+                        class: 'il-collectionBlogPost__blogImage'
+                    -}}
+                  </div>
+                  <div class="il-collectionBlogPost__tag">
+                    {{ article.tags | first }}
+                  </div>
+                </div>
+                <div class="il-collectionBlogPost__blogContent">
+                  <h3 class="il-collectionBlogPost__blogHeading text-p text-p--20">
+                    {{ article.title }}
+                  </h3>
+                  <div class="il-collectionBlogPost__hashTagMainWrap">
+                    {% for hashTag in hashTagValue %}
+                      <p class="il-collectionBlogPost__hashTag text-p text-p--14">
+                        {{ hashTag }}
+                      </p>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              {% assign articleCount = articleCount | plus: 1 %}
+            {% endif %}
+            {% if articleCount == 2 %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    .il-collectionBlogPost--{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      background: {{ section.settings.background_color }};
+    }
+  
+    .il-collectionBlogPost__container {
+      width: 100%;
+      max-width: 1320px;
+      padding: 0 20px;
+      margin: 0 auto;
+    }
+  
+    .il-collectionBlogPost__blogCard {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+  
+    .il-collectionBlogPost__blogImageWrap,
+    .il-collectionBlogPost__blogCard,
+    .il-collectionBlogPost__blogInnerCard,
+    .il-collectionBlogPost__innerWrapCard {
+      position: relative;
+    }
+  
+    .il-collectionBlogPost__link {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+  
+    .il-collectionBlogPost__tag {
+      font-family: var(--font-tertiary);
+      border: 1px solid var(--base-color-gray-07, #3C3C3C);
+      border-radius: 2px;
+      background: var(--color-white);
+      letter-spacing: 0.64px;
+      font-size: 10px;
+      color: var(--color-primary);
+      line-height: 14px;
+      padding: 2.5px 8px 2px;
+      position: absolute;
+      bottom: 12px;
+      right: 13px;
+      font-weight: var(--font-weight-900);
+      text-transform: uppercase;
+    }
+  
+    .il-collectionBlogPost__hashTagMainWrap {
+      display: flex;
+    }
+  
+    .il-collectionBlogPost__heading {
+      text-align: var(--text-center);
+      margin-bottom: 40px;
+    }
+  
+    .il-collectionBlogPost__blogContent {
+      margin-top: 17px;
+    }
+  
+    .il-collectionBlogPost__blogHeading {
+      margin-bottom: 14px;
+      text-transform: capitalize;
+      line-height: normal;
+      color: var(--color-primary);
+      font-weight: var(--font-weight-500);
+    }
+  
+    .il-collectionBlogPost__hashTag {
+      line-height: normal;
+      color: var(--color-grey-06);
+      font-weight: var(--font-weight-400);
+    }
+  
+    .il-collectionBlogPost__heading {
+      letter-spacing: 3px;
+      text-transform: capitalize;
+      font-size: var(--font-size-30);
+      font-family: var(--font-primary);
+      font-weight: var(--font-weight-500);
+      color: var(--color-primary);
+    }
+  
+    .il-collectionBlogPost__imageWrap {
+      position: relative;
+      padding-bottom: 50%;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+  
+    .il-collectionBlogPost__blogImage {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+  
+    @media (max-width: 768px) {
+      .il-collectionBlogPost--{{ section.id }} {
+        padding-top: {{ section.settings.mobile_padding_top }}px;
+        padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+      }
+  
+      .il-collectionBlogPost__blogCard {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 38px;
+      }
+  
+      .il-collectionBlogPost__tag {
+        display: block;
+        font-size: 8px;
+      }
+  
+      .il-collectionBlogPost__tag {
+        display: block;
+      }
+  
+      .il-collectionBlogPost__heading {
+        font-size: var(--font-size-18);
+        letter-spacing: 1.8px;
+        margin-bottom: 20px;
+      }
+  
+      .il-collectionBlogPost__blogHeading {
+        font-size: var(--font-size-14);
+        margin-bottom: 8px;
+        line-height: 14px;
+      }
+  
+      .il-collectionBlogPost__blogContent {
+        margin-top: 16px;
+      }
+  
+      .il-collectionBlogPost__hashTag {
+        font-size: var(--font-size-12);
+      }
+    }
+  </style>
+  
+  {% schema %}
+  {
+    "name": "Collection Blog Post",
+    "settings": [
+      {
+        "type": "blog",
+        "id": "blog",
+        "label": "Blog"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Mobile Padding Top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "mobile_padding_bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Mobile Padding Bottom",
+        "default": 0
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#F7F7F7"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection Blog Post"
+      }
+    ]
+  }
+  {% endschema %}
+  

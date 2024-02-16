@@ -1,0 +1,197 @@
+<div class="il-instaFeed">
+    <div class="il-instaFeed__container">
+      <div class="il-instaFeed__header">
+        <p class="il-instaFeed__title">{{ section.settings.header }}</p>
+        <a href="{{ section.settings.url }}" class="il-instaFeed__handleWrapper">
+          <p class="il-instaFeed__handle">{{ section.settings['insta-handle'] }}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  <style>
+    .il-instaFeed {
+      padding: 0 100px;
+      padding-top: {{ section.settings['padding-top'] }}px;
+      padding-bottom: {{ section.settings['padding-bottom'] }}px;
+      background: var(--color-ivory);
+    }
+  
+    .il-instaFeed__container {
+      max-width: 1720px;
+      margin: 0 auto;
+    }
+  
+    .il-instaFeed__header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .il-instaFeed__title {
+      color: var(--color-primary);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-30);
+      font-weight: var(--font-weight-500);
+      text-transform: var(--text-capitalize);
+      text-align: center;
+      line-height: normal;
+      letter-spacing: 3px;
+    }
+  
+    .il-instaFeed__handleWrapper {
+      border-radius: 30px;
+      background: var(--color-white);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 32px 60px;
+    }
+  
+    .il-instaFeed__handle {
+      color: var(--color-primary);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-18);
+      font-weight: var(--font-weight-500);
+      text-align: center;
+      line-height: normal;
+    }
+  
+    .il-instaFeed__posts {
+      display: flex;
+      gap: 29px;
+    }
+  
+    .il-instaFeed__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    .shopify-section--apps {
+      background: var(--color-ivory) !important;
+    }
+  
+    .shopify-section--apps .section {
+      padding-bottom: 0;
+    }
+  
+    .shopify-section--apps .ssw-instagram-title {
+      display: none;
+    }
+  
+    .gw-btn--reset.gw-button.gw-load-more__button {
+      padding: 40px 0 20px;
+    }
+  
+    @media (max-width: 768px) {
+      .il-instaFeed {
+        padding: 60px 0 0px 20px;
+      }
+  
+      .il-instaFeed__title {
+        font-size: var(--font-size-18);
+        letter-spacing: 1.8px;
+        max-width: 50%;
+      }
+  
+      .il-instaFeed__handle {
+        font-size: var(--font-size-12);
+      }
+  
+      .il-instaFeed__handleWrapper {
+        margin: 12px 30px;
+      }
+  
+      .il-instaFeed__posts {
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow: scroll;
+        margin-top: 30px;
+      }
+  
+      .il-instaFeed__link {
+        flex: none;
+        height: 100%;
+        width: 100%;
+        max-width: 280px;
+        max-height: 280px;
+      }
+  
+      .il-instaFeed__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+  
+      .shopify-section--apps .section {
+        padding: 0;
+      }
+  
+      .shopify-section--apps .ssw-instagram-items {
+        display: flex;
+        overflow-x: scroll;
+      }
+  
+      .shopify-section--apps .ssw-instagram-item {
+        flex: none;
+        width: 100% !important;
+        max-width: 280px;
+      }
+  
+      .shopify-section--apps .ssw-instagram-feed-wrap {
+        margin-right: 0;
+      }
+    }
+  </style>
+  {% schema %}
+  {
+    "name": "Insta Feed",
+    "settings": [
+      {
+        "type": "text",
+        "id": "header",
+        "label": "Header",
+        "default": "Find out more about iloom"
+      },
+      {
+        "type": "text",
+        "id": "insta-handle",
+        "label": "Insta Handle",
+        "default": "@iloom_taiwan"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "URL"
+      },
+      {
+        "type": "range",
+        "id": "padding-top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 130
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 100
+      }
+    ],
+    "presets": [
+      {
+        "name": "Insta Feed"
+      }
+    ]
+  }
+  {% endschema %}
+  

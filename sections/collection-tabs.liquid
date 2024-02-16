@@ -1,0 +1,403 @@
+<div class="il-collectionTabs">
+    <div class="il-collectionTabs__header">
+      <div class="il-collectionTabs__titleWrapper">
+        <p class="il-collectionTabs__title">{{ section.settings.title }}</p>
+      </div>
+      <div class="il-collectionTabs__buttonsContainer">
+        {% for block in section.blocks %}
+          <div
+            class="il-collectionTabs__button"
+            data-tab="il-collectionTabs__buttonIndex--{{ forloop.index0 }}"
+            data-index="{{ forloop.index0 }}"
+          >
+            <div class="il-collectionTabs__buttonTitle">{{ block.settings['collection-title'] }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="il-collectionTabs__body">
+      {% for block in section.blocks %}
+        <div
+          class="il-collectionTabs__container il-collectionTabs__containerIndex--{{ forloop.index0 }}"
+          data-tab-content="il-collectionTabs__containerIndex--{{ forloop.index0 }}"
+        >
+          <div class="il-collectionTabs__collectionTitle">{{ block.settings['collection-title'] }}</div>
+          <div class="il-collectionTabs__innerContainer">
+            <div class="il-collectionTabs__featuredImage">
+              <div class="il-collectionTabs__imgWrapper">
+                <img src="{{ block.settings.image | img_url: 'master' }}" alt="collection-image">
+              </div>
+            </div>
+            <div class="il-collectionTabs__productWrapper">
+              <div
+                class="il-collectionTabs__productSwiper il-collectionTabs__productSwiper--{{ forloop.index0 }} swiper"
+                data-swiper
+              >
+                <div class="swiper-wrapper">
+                  {% for product in block.settings['collection-id'].products %}
+                    {% assign productEvent = product.metafields.custom.product_launch_event.value %}
+                    {% if productEvent.launching_event_applied_or_not != false %}
+                      <div class="swiper-slide">
+                        {% render 'product-card-home', product: product %}
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+  <style>
+    .il-collectionTabs {
+      padding-top: {{ section.settings.padding-top }}px;
+      padding-bottom: {{ section.settings.padding-bottom }}px;
+      background: var(--color-grey-09);
+      display: flex;
+      flex-direction: column;
+      padding-left: 100px;
+      overflow: hidden;
+    }
+  
+    .il-collectionTabs__header {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+  
+    .il-collectionTabs__title {
+      color: var(--color-primary);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-30);
+      font-weight: var(--font-weight-500);
+      text-transform: var(--text-capitalize);
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: 3px;
+    }
+  
+    .il-collectionTabs__buttonsContainer {
+      display: flex;
+      gap: 14px;
+    }
+  
+    .il-collectionTabs__button {
+      display: flex;
+      height: 60px;
+      padding: 12px 30px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      background: var(--color-grey-02);
+      cursor: pointer;
+    }
+  
+    .il-collectionTabs__button.il-collectionTabs__button--active {
+      display: flex;
+      height: 60px;
+      padding: 12px 30px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      background: var(--color-primary);
+    }
+  
+    .il-collectionTabs__buttonTitle {
+      display: flex;
+      gap: 5px;
+    }
+  
+    .il-collectionTabs__buttonTitle p {
+      color: var(--color-grey-07);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-16);
+      font-weight: var(--font-weight-500);
+      text-transform: var(--text-uppercase);
+      line-height: normal;
+      letter-spacing: 1.6px;
+    }
+  
+    .il-collectionTabs__button.il-collectionTabs__button--active .il-collectionTabs__buttonTitle p {
+      color: var(--color-white);
+    }
+  
+    .il-collectionTabs__body {
+      display: flex;
+    }
+  
+    .il-collectionTabs__container {
+      display: none;
+      flex-direction: column;
+      padding-top: 60px;
+      gap: 48px;
+      width: 100%;
+    }
+  
+    .il-collectionTabs__container.il-collectionTabs__container--active {
+      display: flex;
+    }
+  
+    .il-collectionTabs__innerContainer {
+      display: flex;
+      width: 100%;
+      margin: 0 -25px;
+    }
+  
+    .il-collectionTabs__collectionTitle p {
+      color: var(--color-primary);
+      font-family: var(--font-primary);
+      font-size: 50px;
+      font-weight: var(--font-weight-500);
+      text-transform: var(--text-uppercase);
+      line-height: normal;
+      letter-spacing: 5px;
+    }
+  
+    .il-collectionTabs__featuredImage,
+    .il-collectionTabs__productWrapper {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 0 25px;
+    }
+  
+    .il-collecionTabs__imgWrapper {
+      height: 100%;
+    }
+  
+    .il-collectionTabs__imgWrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  
+    .il-collectionTabs__productSwiper {
+      display: none;
+    }
+  
+    .il-collectionTabs__productSwiper.il-collectionTabs__productSwiper--active {
+      display: block;
+    }
+  
+    .il-collectionTabs .product-card__badge-list,
+    .il-collectionTabs .product-card__badge-list.product-card__badge-listMobile {
+      display: none;
+    }
+  
+  
+    .il-collectionTabs__productSwiper .swiper-slide {
+      width: 100%;
+      max-width: 400px;
+    }
+  
+    @media(max-width: 1200px) {
+      .il-collectionTabs {
+        padding: 80px 0 30px 50px;
+      }
+  
+      .il-collectionTabs__innerContainer {
+        gap: 20px;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .il-collectionTabs {
+        padding: 60px 0 40px 20px;
+      }
+  
+      .il-collectionTabs__title {
+        font-size: var(--font-size-20);
+        letter-spacing: 1.8px;
+      }
+  
+      .il-collectionTabs__featuredImage,
+      .il-collectionTabs__productWrapper {
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 0 7.5px;
+      }
+  
+      .il-collectionTabs__buttonsContainer {
+        overflow: scroll;
+        gap: 10px;
+      }
+  
+      .il-collectionTabs__header {
+        gap: 20px;
+      }
+  
+      .il-collectionTabs__buttonTitle p {
+        font-size: var(--font-size-12);
+        letter-spacing: 1.2px;
+      }
+  
+      .il-collectionTabs .il-collectionTabs__button {
+        height: unset;
+        padding: 12px 18px;
+        flex: 1;
+        min-width: fit-content;
+        min-width: -moz-fit-content;
+      }
+  
+      .il-collectionTabs__container {
+        padding-top: 40px;
+        gap: 14px;
+      }
+  
+      .il-collectionTabs__collectionTitle p {
+        font-size: var(--font-size-24);
+      }
+  
+      .il-collectionTabs__innerContainer {
+        flex-wrap: wrap;
+        margin: 0 -7.5px;
+      }
+  
+      .il-collectionTabs__buttonsContainer::-webkit-scrollbar {
+        display: none;
+      }
+  
+      .il-collectionTabs__buttonsContainer {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+      }
+  
+      .il-collectionTabs .product-card--home.bg-custom {
+        width: 100%;
+        max-width: 100%;
+      }
+  
+      .il-collectionTabs .il-collectionTabs__productSwiper .swiper-wrapper {
+          gap: 0;
+      }
+  
+      .il-collectionTabs .product-card--home .product-card__figure {
+        height: 262px;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .il-collectionTabs .product-card--home.bg-custom {
+        width: 100%;
+        max-width: 180px;
+      }
+  
+      .il-collectionTabs .il-collectionTabs__productSwiper .swiper-wrapper {
+        gap: 0px;
+      }
+  
+      .il-collectionTabs .product-card--home .product-card__figure {
+        height: 180px;
+      }
+    }
+  </style>
+  
+  <script>
+    $(document).ready(function () {
+      var tabs = $('[data-tab]');
+      var tabsContent = $('[data-tab-content]');
+      var dataSwiper = $('[data-swiper]');
+  
+      tabs.eq(0).addClass('il-collectionTabs__button--active');
+      tabsContent.eq(0).addClass('il-collectionTabs__container--active');
+      dataSwiper.eq(0).addClass('il-collectionTabs__productSwiper--active');
+  
+      tabs.on('click', function (index) {
+        // Remove active class from all tabs and contents
+        tabs.removeClass('il-collectionTabs__button--active');
+        tabsContent.removeClass('il-collectionTabs__container--active');
+        dataSwiper.removeClass('il-collectionTabs__productSwiper--active');
+  
+        // Add active class to the clicked tab and its content
+        $(this).addClass('il-collectionTabs__button--active');
+        var tabValue = $(this).data('tab');
+        var dataIndexValue = $(this).data('index');
+        $('.il-collectionTabs__containerIndex--' + dataIndexValue).addClass('il-collectionTabs__container--active');
+        $('.il-collectionTabs__productSwiper--' + dataIndexValue).addClass('il-collectionTabs__productSwiper--active');
+      });
+    });
+  </script>
+  
+  <script>
+    var productSwipers = document.querySelectorAll('.il-collectionTabs__productSwiper');
+    productSwipers.forEach(function (swiper) {
+      new Swiper(swiper, {
+        slidesPerView: 1.9,
+        spaceBetween: 10,
+        loop: false,
+        watchOverflow: true,
+        breakpoints: {
+          786: {
+            slidesPerView: 2.2,
+            spaceBetween: 30,
+          },
+        },
+      });
+    });
+  </script>
+  
+  {% schema %}
+  {
+    "name": "Collection Tabs",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "explore the category"
+      },
+      {
+        "type": "range",
+        "id": "padding-top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 130
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 80
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "collection-title",
+            "label": "Collection title"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Collection Image"
+          },
+          {
+            "type": "collection",
+            "id": "collection-id",
+            "label": "Collection"
+          }
+        ]
+      }
+    ],
+  
+    "presets": [
+      {
+        "name": "Collection Tabs"
+      }
+    ]
+  }
+  {% endschema %}
+  

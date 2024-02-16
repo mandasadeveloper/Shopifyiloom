@@ -1,0 +1,321 @@
+<div class="il-imageWithContent il-imageWithContent--{{ section.id }}">
+    {% if section.settings.title != blank %}
+      <div class="il-imageWithContent__header">
+        <p class="il-imageWithContent__title">{{ section.settings.title }}</p>
+      </div>
+    {% endif %}
+    <div class="il-imageWithContent__container">
+      <div class="il-imageWithContent__content">
+        <div class="il-imageWithContent__innerContent">
+          <div class="il-imageWithContent__tagWrapper">
+            <p class="il-imageWithContent__tag">{{ section.settings.tag }}</p>
+          </div>
+          <div class="il-imageWithContent__heading">{{ section.settings['main-title'] }}</div>
+          <div class="il-imageWithContent__description">{{ section.settings.description }}</div>
+        </div>
+      </div>
+      <div class="il-imageWithContent__imgContainer">
+        <div class="il-imageWithContent__imgWrapper">
+          <picture>
+            <source media="(max-width:768px)" srcset="{{ section.settings.mobile-image | img_url: "master" }}">
+            <img class="il-imageWithContent__img" src="{{ section.settings.image | img_url: "master" }}" alt="image">
+          </picture>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    .il-imageWithContent--{{ section.id }} {
+      padding-top: {{ section.settings.padding-top }}px;
+      padding-bottom: {{ section.settings.padding-bottom }}px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+    }
+  
+    .il-imageWithContent__header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .il-imageWithContent__title {
+      font-family: var(--font-primary);
+      font-size: var(--font-size-18);
+      font-weight: var(--font-weight-500);
+      text-transform: var(--text-uppercase);
+      text-align: center;
+      line-height: normal;
+      letter-spacing: 1.8px;
+    }
+  
+    {% if section.settings.full-width  %}
+      .il-imageWithContent--{{ section.id }} .il-imageWithContent__container {
+        display: flex;
+        flex-direction: column;
+      }
+  
+      .il-imageWithContent--{{ section.id }} .il-imageWithContent__content,
+      .il-imageWithContent--{{ section.id }} .il-imageWithContent__imgContainer {
+        flex-basis: 100%;
+      }
+  
+      .il-imageWithContent--{{ section.id }} .il-imageWithContent__innerContent {
+        align-items: center;
+      }
+  
+      .il-imageWithContent--{{ section.id }} .il-imageWithContent__heading {
+        text-align: center;
+      }
+    {% else %}
+      .il-imageWithContent--{{ section.id }} .il-imageWithContent__container {
+        display: flex;
+        justify-content: space-between;
+      }
+  
+      .il-imageWithContent--{{ section.id }} .il-imageWithContent__content,
+      .il-imageWithContent--{{ section.id }} .il-imageWithContent__imgContainer {
+        flex-basis: 50%;
+      }
+  
+      .il-imageWithContent--{{ section.id }} .il-imageWithContent__innerContent {
+        align-items: flex-start;
+      }
+    {% endif %}
+  
+    .il-imageWithContent--{{ section.id }} .il-imageWithContent__content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: {{ section.settings.bg-color }};
+    }
+  
+    .il-imageWithContent__innerContent {
+      max-width: 65%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    .il-imageWithContent__tagWrapper {
+      display: flex;
+      padding: 9px 16px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border-radius: 30px;
+      background: var(--color-primary);
+    }
+  
+    .il-imageWithContent__tag {
+      color: var(--color-white);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-14);
+      font-weight: var(--font-weight-400);
+      font-style: normal;
+      line-height: normal;
+      text-transform: var(--text-capitalize);
+      letter-spacing: 1px;
+    }
+  
+    .il-imageWithContent__heading {
+      padding: 30px 0 24px;
+    }
+  
+    .il-imageWithContent__heading p {
+      color: var(--color-primary);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-30);
+      font-weight: var(--font-weight-500);
+      text-transform: var(--text-capitalize);
+      line-height: normal;
+      letter-spacing: 3px;
+      word-break: normal;
+    }
+  
+    .il-imageWithContent__description p {
+      color: var(--color-primary);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-16);
+      font-weight: var(--font-weight-400);
+      text-transform: var(--text-capitalize);
+      line-height: normal;
+      word-break: normal;
+    }
+  
+    .il-imageWithContent__imgWrapper {
+      width: 100%;
+      height: 100%;
+    }
+  
+    .il-imageWithContent__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+  
+    @media (max-width: 768px) {
+      .il-imageWithContent--{{ section.id }} {
+        padding-top: 60px;
+        gap: 0;
+      }
+  
+      .il-imageWithContent__header {
+        margin-bottom: 20px;
+      }
+  
+      .il-imageWithContent__title {
+        font-size: var(--font-size-14);
+      }
+  
+      {% if section.settings.full-width  %}
+        .il-imageWithContent--{{ section.id }} .il-imageWithContent__container {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+  
+        .il-imageWithContent--{{ section.id }} .il-imageWithContent__content,
+        .il-imageWithContent--{{ section.id }} .il-imageWithContent__imgContainer {
+          flex-basis: 100%;
+        }
+  
+        .il-imageWithContent--{{ section.id }} .il-imageWithContent__innerContent {
+          align-items: center;
+        }
+  
+        .il-imageWithContent--{{ section.id }} .il-imageWithContent__heading {
+          text-align: center;
+          padding: 12px 0 30px;
+        }
+      {% else %}
+        .il-imageWithContent--{{ section.id }} .il-imageWithContent__container {
+          flex-direction: column-reverse;
+        }
+  
+        .il-imageWithContent--{{ section.id }} .il-imageWithContent__content,
+        .il-imageWithContent--{{ section.id }} .il-imageWithContent__imgContainer {
+          flex-basis: 100%;
+        }
+  
+        .il-imageWithContent--{{ section.id }} .il-imageWithContent__content {
+          padding: 32px 0 60px;
+        }
+  
+        .il-imageWithContent--{{ section.id }} .il-imageWithContent__innerContent {
+          align-items: center;
+        }
+      {% endif %}
+  
+      .il-imageWithContent__tag {
+        font-size: var(--font-size-10);
+      }
+  
+      .il-imageWithContent__heading {
+        padding: 12px 0 18px;
+      }
+  
+      .il-imageWithContent__heading p {
+        font-size: var(--font-size-18);
+        line-height: 26px;
+        letter-spacing: 1.8px;
+        text-align: center;
+      }
+  
+      .il-imageWithContent__description p {
+        font-size: var(--font-size-12);
+        text-align: center;
+        max-width: 80%;
+        margin: 0 auto;
+      }
+  
+      .il-imageWithContent__tagWrapper {
+        padding: 8px 12px;
+      }
+  
+      .il-imageWithContent__innerContent {
+        max-width: 90%;
+      }
+    }
+  </style>
+  
+  {% schema %}
+  {
+    "name": "Image with Content",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Brand Story"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile-image",
+        "label": "Mobile Image"
+      },
+      {
+        "type": "text",
+        "id": "tag",
+        "label": "Tag"
+      },
+      {
+        "type": "richtext",
+        "id": "main-title",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "description",
+        "label": "description"
+      },
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Background Color"
+      },
+      {
+        "type": "checkbox",
+        "id": "full-width",
+        "label": "Full Width",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "padding-top",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "padding-bottom",
+        "min": 0,
+        "max": 200,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 0
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image with Content"
+      }
+    ]
+  }
+  {% endschema %}
+  

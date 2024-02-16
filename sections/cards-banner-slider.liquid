@@ -1,0 +1,680 @@
+{%- liquid
+    assign loading = 'eager'
+    assign fetchpriority = 'auto'
+    if section.index == 1
+      assign fetchpriority = 'high'
+    elsif section.index > 2
+      assign loading = 'lazy'
+    endif
+  -%}
+  
+  <div class="il-bannerCardSlider">
+    <div class="il-bannerCardSlider__bannerSwiper swiper">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% if block.type == 'banner' %}
+            <div class="il-bannerCardSlider__banner swiper-slide">
+              <div class="il-bannerCardSlider__imgWrapper il-bannerCardSlider__imgWrapper--{{ block.id }}">
+                {{
+                  block.settings['banner-img']
+                  | image_url: width: 1080
+                  | image_tag:
+                    loading: loading,
+                    fetchpriority: fetchpriority,
+                    class: 'il-bannerCardSlider__img il-bannerCardSlider__img--desktop'
+                }}
+                {% if block.settings['banner-img-mob'] != blank %}
+                  {{
+                    block.settings['banner-img-mob']
+                    | image_url: width: 1080
+                    | image_tag:
+                      loading: loading,
+                      fetchpriority: fetchpriority,
+                      class: 'il-bannerCardSlider__img il-bannerCardSlider__img--mobile'
+                  }}
+                {% endif %}
+              </div>
+              <div class="il-bannerCardSlider__content">
+                <p class="il-bannerCardSlider__contentTitle">{{ block.settings.title }}</p>
+                <p class="il-bannerCardSlider__contentSubtitle">{{ block.settings['sub-title'] }}</p>
+                <a
+                  class="il-bannerCardSlider__contentLink"
+                  href="{% if block.settings.url != blank %}{{ block.settings.url }}{% else %}#{% endif %}"
+                >
+                  {{ block.settings.button }}
+                </a>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="il-bannerCardSlider__cardsContainer">
+      <div class="il-bannerCardSlider__cardSwiper swiper">
+        <div class="il-bannerCardSlider__cardWrapper swiper-wrapper">
+          {% for block in section.blocks %}
+            {% if block.type == 'card' %}
+              <a href="{{ block.settings['url-id'] }}" class="il-bannerCardSlider__cardItem swiper-slide">
+                <div class="il-bannerCardSlider__card">
+                  <div class="il-bannerCardSlider__cardImgWrapper">
+                    {{
+                      block.settings['card-image']
+                      | image_url: width: 1080
+                      | image_tag: loading: loading, fetchpriority: fetchpriority, class: 'il-bannerCardSlider__cardImg'
+                    }}
+                  </div>
+                  <div class="il-bannerCardSlider__cardContent">
+                    <div class="il-bannerCardSlider__badgeContainer">
+                      <p class="il-bannerCardSlider__badgeText">{{ block.settings['badge-text'] }}</p>
+                    </div>
+                    <p class="il-bannerCardSlider__cardSubtitle">{{ block.settings['sub-title-id'] }}</p>
+                    <p class="il-bannerCardSlider__cardTitle">{{ block.settings['title-id'] }}</p>
+                    <p class="il-bannerCardSlider__cardbutton">
+                      {{ block.settings['button-text'] }}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="swiper-button-next custom-next"></div>
+        <div class="swiper-button-prev custom-prev"></div>
+        <div class="il-bannerCardSlider__scrollContainer">
+          <div class="swiper-scrollbar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    .il-bannerCardSlider {
+      display: flex;
+      max-height: 100vh;
+      min-height: 100vh;
+    }
+  
+    .il-bannerCardSlider__bannerSwiper.swiper {
+      max-width: 68%;
+    }
+  
+    .il-bannerCardSlider__cardsContainer {
+      width: 38%;
+      display: flex;
+      padding: 95px 0 74px;
+      background-color: var(--color-light-beige);
+    }
+  
+    .il-bannerCardSlider__banner {
+      position: relative;
+    }
+  
+    .il-bannerCardSlider__imgWrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+  
+    .il-bannerCardSlider__imgWrapper::after {
+      content: '';
+      display: block;
+      width: 100%;
+      background: linear-gradient(0deg, rgba(78, 70, 61, 0.8) 0%, rgba(214, 214, 214, 0) 89.69%);
+      background-blend-mode: multiply;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0.4;
+    }
+  
+    .il-bannerCardSlider__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    .il-bannerCardSlider__content {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      word-break: break-all;
+    }
+  
+    .il-bannerCardSlider__content .il-bannerCardSlider__contentTitle {
+      color: var(--color-white);
+      font-family: var(--font-primary);
+      font-size: 50px;
+      font-weight: var(--font-weight-500);
+      letter-spacing: 5px;
+      line-height: normal;
+    }
+  
+    .il-bannerCardSlider__content .il-bannerCardSlider__contentSubtitle {
+      color: var(--color-white);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-18);
+      font-weight: var(--font-weight-500);
+      line-height: normal;
+      margin: 6px 0 30px;
+    }
+  
+    .il-bannerCardSlider__content .il-bannerCardSlider__contentLink {
+      padding: 12px 18px;
+      color: var(--color-white);
+      border: 1px solid var(--color-white);
+      outline: none;
+      font-family: var(--font-secondary);
+      font-size: var(--font-size-14);
+      font-weight: var(--font-weight-500);
+      line-height: normal;
+    }
+  
+    .il-bannerCardSlider__cardSwiper {
+      padding-bottom: 50px;
+    }
+  
+    .il-bannerCardSlider__cardItem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .il-bannerCardSlider__cardImg {
+      border-radius: 20px 20px 0 0;
+      width: 100%;
+    }
+  
+    .il-bannerCardSlider__cardContent {
+      background: var(--color-white);
+      border-radius: 0 0 20px 20px;
+      padding: 20px 20px 36px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .il-bannerCardSlider__badgeContainer {
+      margin-left: auto;
+      padding: 9px 17px;
+      border-radius: 8px;
+      border: 1px solid var(--color-red);
+    }
+  
+    .il-bannerCardSlider__cardContent .il-bannerCardSlider__badgeText {
+      font-size: var(--font-size-14);
+      line-height: normal;
+      color: var(--color-red);
+    }
+  
+    .il-bannerCardSlider__cardSubtitle {
+      color: var(--color-grey-06);
+      font-family: var(--font-secondary);
+      font-size: var(--font-size-16);
+      font-weight: var(--font-weight-500);
+      line-height: normal;
+      letter-spacing: 1.6px;
+      margin-top: 13px;
+    }
+  
+    .il-bannerCardSlider__cardTitle {
+      color: var(--color-primary);
+      font-family: var(--font-secondary);
+      font-size: 26px;
+      font-weight: var(--font-weight-500);
+      line-height: normal;
+      letter-spacing: 2.6px;
+      margin-top: 10px;
+      max-width: 75%;
+    }
+  
+    .il-bannerCardSlider__cardbutton {
+      color: var(--color-primary);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-18);
+      font-weight: var(--font-weight-400);
+      line-height: normal;
+      margin-top: 63px;
+    }
+  
+    .swiper-pagination.swiper-pagination-fraction.swiper-pagination-horizontal .swiper-pagination-current,
+    .swiper-pagination.swiper-pagination-fraction.swiper-pagination-horizontal .swiper-pagination-total {
+      content: ' - ';
+    }
+  
+    .il-bannerCardSlider .swiper-scrollbar.swiper-scrollbar-horizontal {
+      bottom: 0;
+      opacity: 1 !important;
+      width: 80%;
+      max-width: 580px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  
+    .il-bannerCardSlider .swiper-slide-shadow-coverflow {
+      border-radius: 20px;
+      background: unset;
+    }
+  
+    .il-bannerCardSlider .il-bannerCardSlider__bannerSwiper .swiper-button-next:after {
+      background-image: url({{'arrow-right_1.png'|file_img_url}});
+      background-size: contain;
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+    }
+  
+    .il-bannerCardSlider .il-bannerCardSlider__bannerSwiper .swiper-button-prev:after {
+      background-image: url({{'arrow-right_1.png'|file_img_url}});
+      transform: rotateY(180deg);
+      background-size: contain;
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+    }
+  
+    .il-bannerCardSlider .swiper-button-next.custom-next:after {
+      background-image: url({{'arrow-right.png'|file_img_url}});
+      background-size: contain;
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+    }
+  
+    .il-bannerCardSlider .swiper-button-prev.custom-prev:after {
+      background-image: url({{'arrow-right.png'|file_img_url}});
+      transform: rotateY(180deg);
+      background-size: contain;
+      width: 25px;
+      height: 25px;
+      background-repeat: no-repeat;
+    }
+  
+    .il-bannerCardSlider .swiper-button-next.custom-next,
+    .il-bannerCardSlider .swiper-button-prev.custom-prev {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+    }
+  
+    .swiper-button-next.custom-next.swiper-button-disabled,
+    .swiper-button-prev.custom-prev.swiper-button-disabled,
+    .il-bannerCardSlider__bannerSwiper .swiper-button-next.swiper-button-disabled,
+    .il-bannerCardSlider__bannerSwiper .swiper-button-prev.swiper-button-disabled {
+      display: none;
+    }
+  
+    .swiper-button-next.custom-next {
+      right: 8%;
+    }
+  
+    .swiper-button-prev.custom-prev {
+      left: 8%;
+    }
+  
+    .il-bannerCardSlider__bannerSwiper .swiper-pagination {
+      display: flex;
+      justify-content: flex-end;
+      letter-spacing: 1px;
+      text-align: right;
+      color: var(--color-white);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-20);
+      font-style: normal;
+      font-weight: var(--font-weight-500);
+      line-height: normal;
+      padding-right: 35px;
+      bottom: 20px;
+    }
+  
+    .il-bannerCardSlider__bannerSwiper .swiper-button-next {
+      top: auto;
+      bottom: 20px;
+      height: auto;
+      z-index: 99;
+    }
+  
+    .il-bannerCardSlider__bannerSwiper .swiper-button-prev {
+      top: auto;
+      left: auto;
+      right: 110px;
+      bottom: 20px;
+      height: auto;
+      z-index: 99;
+    }
+  
+    .il-bannerCardSlider__img--mobile {
+      display: none;
+    }
+  
+    @media screen and (max-width: 1600px) and (min-width: 768px) {
+      .il-bannerCardSlider__cardContent {
+        padding: 13px 20px 16px;
+      }
+  
+      .il-bannerCardSlider__cardbutton {
+        margin-top: 15px;
+      }
+  
+      .il-bannerCardSlider__cardTitle {
+        font-size: var(--font-size-20);
+      }
+  
+      .il-bannerCardSlider__cardImg {
+        height: 320px;
+        object-fit: fill;
+      }
+  
+      .il-bannerCardSlider__cardSubtitle {
+        margin-top: 3px;
+      }
+    }
+  
+    @media screen and (max-width: 1400px) {
+      .il-bannerCardSlider__cardsContainer {
+        padding: 2.5% 0;
+      }
+  
+      .il-bannerCardSlider__cardItem .il-bannerCardSlider__card {
+        max-width: 80%;
+      }
+  
+      .il-bannerCardSlider__cardContent {
+        padding: 20px 20px 30px 30px;
+      }
+  
+      .il-bannerCardSlider__badgeContainer {
+        padding: 7px 14px;
+      }
+  
+      .il-bannerCardSlider__cardContent .il-bannerCardSlider__badgeText {
+        font-size: var(--font-size-12);
+      }
+  
+      .il-bannerCardSlider__cardSubtitle {
+        font-size: var(--font-size-12);
+        margin-top: 1em;
+      }
+  
+      .il-bannerCardSlider__cardTitle {
+        font-size: var(--font-size-18);
+      }
+  
+      .il-bannerCardSlider__cardbutton {
+        font-size: var(--font-size-16);
+        margin-top: 20px;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .il-bannerCardSlider {
+        max-height: initial;
+        min-height: initial;
+        flex-direction: column;
+      }
+  
+      .il-bannerCardSlider__banner {
+        max-height: 100vh;
+      }
+  
+      .il-bannerCardSlider__img--desktop {
+        display: none;
+      }
+  
+      .il-bannerCardSlider__img--mobile {
+        display: block;
+      }
+  
+      .il-bannerCardSlider__cardItem .il-bannerCardSlider__card {
+        max-width: 100%;
+      }
+  
+      .il-bannerCardSlider__bannerSwiper.swiper {
+        width: 100%;
+        max-width: unset;
+      }
+  
+      .il-bannerCardSlider__cardsContainer {
+        width: 100%;
+        max-width: unset;
+        padding: 27px 0 40px;
+      }
+  
+      .il-bannerCardSlider__imgWrapper {
+        display: block;
+        overflow: hidden;
+        padding-bottom: 140%;
+      }
+  
+      .il-bannerCardSlider__img {
+        position: absolute;
+      }
+  
+      .il-bannerCardSlider .swiper-button-next.custom-next,
+      .il-bannerCardSlider .swiper-button-prev.custom-prev,
+      .swiper-button-prev,
+      .swiper-button-next {
+        display: none;
+      }
+  
+      .il-bannerCardSlider__content .il-bannerCardSlider__contentTitle {
+        font-size: var(--font-size-28);
+        letter-spacing: 2.8px;
+      }
+  
+      .il-bannerCardSlider__content .il-bannerCardSlider__contentSubtitle {
+        font-size: var(--font-size-14);
+        font-weight: var(--font-weight-400);
+        margin: 4px 0 20px;
+      }
+  
+      .il-bannerCardSlider__content .il-bannerCardSlider__contentLink {
+        padding: 10px 18px;
+        font-size: var(--font-size-12);
+      }
+  
+      .il-bannerCardSlider__bannerSwiper .swiper-pagination {
+        font-size: 13px;
+        padding-right: 20px;
+        line-height: 1;
+      }
+  
+      .il-bannerCardSlider__cardContent {
+        padding: 12px 12px 25px 15px;
+        border-radius: 0 0 10px 10px;
+      }
+  
+      .il-bannerCardSlider__badgeContainer {
+        padding: 8px;
+      }
+  
+      .il-bannerCardSlider__cardContent .il-bannerCardSlider__badgeText {
+        font-size: var(--font-size-10);
+        border-radius: 8px;
+      }
+  
+      .il-bannerCardSlider__cardSubtitle {
+        color: var(--color-grey-06);
+        font-size: var(--font-size-12);
+        letter-spacing: 1.2px;
+        margin-top: 4px;
+      }
+  
+      .il-bannerCardSlider__cardTitle {
+        font-size: var(--font-size-20);
+        letter-spacing: 2px;
+        margin-top: 10px;
+        max-width: 90%;
+      }
+  
+      .il-bannerCardSlider__cardbutton {
+        font-size: var(--font-size-14);
+        margin-top: 16px;
+      }
+  
+      .il-bannerCardSlider__cardSwiper {
+        padding-bottom: 30px;
+      }
+  
+      .il-bannerCardSlider__cardImg {
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+      }
+    }
+  </style>
+  
+  <script>
+    var swiperBanner = new Swiper('.il-bannerCardSlider__bannerSwiper', {
+      slidesPerView: 1,
+      autoplay: true,
+      speed: 1500,
+      delay: 3000,
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'custom',
+        renderCustom: function (swiper, current, total) {
+          return '0' + current + ' - ' + ('0' + total);
+        },
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  
+    var swiperCard = new Swiper('.il-bannerCardSlider__cardSwiper', {
+      slidesPerView: 1.3,
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      speed: 1000,
+      loop: false,
+      coverflowEffect: {
+        rotate: 0,
+        stretch: -68,
+        depth: 250,
+        modifier: 2,
+      },
+      breakpoints: {
+        280: {
+          slidesPerView: 1.155,
+          coverflowEffect: {
+            rotate: 0,
+            stretch: -20,
+            depth: 100,
+            modifier: 2,
+          },
+        },
+        1200: {
+          slidesPerView: 1.3,
+        },
+      },
+      navigation: {
+        nextEl: '.swiper-button-next.custom-next',
+        prevEl: '.swiper-button-prev.custom-prev',
+      },
+      scrollbar: {
+        el: '.swiper-scrollbar',
+      },
+    });
+  </script>
+  
+  {% schema %}
+  {
+    "name": "Cards Banner Slider",
+    "blocks": [
+      {
+        "type": "banner",
+        "name": "Banner",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "banner-img",
+            "label": "Banner Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "banner-img-mob",
+            "label": "Banner Image Mobile"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "title"
+          },
+          {
+            "type": "text",
+            "id": "sub-title",
+            "label": "Sub-title"
+          },
+          {
+            "type": "text",
+            "id": "button",
+            "label": "Button Text",
+            "default": "Explore More"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "URL"
+          }
+        ]
+      },
+      {
+        "type": "card",
+        "name": "Card",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "card-image",
+            "label": "Card Image"
+          },
+          {
+            "type": "text",
+            "id": "title-id",
+            "label": "title"
+          },
+          {
+            "type": "text",
+            "id": "sub-title-id",
+            "label": "Sub-title"
+          },
+          {
+            "type": "text",
+            "id": "button-text",
+            "label": "Button Text",
+            "default": "Explore More"
+          },
+          {
+            "type": "url",
+            "id": "url-id",
+            "label": "URL"
+          },
+          {
+            "type": "text",
+            "id": "badge-text",
+            "label": "Bagde Text",
+            "default": "Promotion"
+          },
+          {
+            "type": "color",
+            "id": "badge-color",
+            "label": "Badge Color",
+            "default": "#C80A1E"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Card banner Slider"
+      }
+    ]
+  }
+  {% endschema %}
+  

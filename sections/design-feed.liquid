@@ -1,0 +1,18 @@
+{% assign designFeedTags = "" %}
+{% for tag in product.tags %}
+  {% if tag contains 'series:' %}
+
+    {% unless designFeedTags == "" %}
+      {% assign designFeedTags = designFeedTags | append: "," %}
+    {%  endunless %}
+    {% assign designFeedTags = designFeedTags | append: tag %}
+  {% endif %}
+{% endfor %}
+
+<div class="il-imageWithText__container"> <div class="gw-df-product-placeholder" data-tags="{{ designFeedTags }}"></div></div>
+{% schema %}
+  {
+    "name": "Product design feed",
+    "settings": []
+  }
+{% endschema %}

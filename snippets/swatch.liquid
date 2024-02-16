@@ -1,49 +1,64 @@
 {%- comment -%}
-----------------------------------------------------------------------------------------------------------------------
-OPTION SWATCH
-----------------------------------------------------------------------------------------------------------------------
+  ----------------------------------------------------------------------------------------------------------------------
+  OPTION SWATCH
+  ----------------------------------------------------------------------------------------------------------------------
 
-This component renders a single option swatch. The supported options depend on the type of swatch. It is a generic
-component that is used both on collection and product pages. This snippet can also handle filter metaobject, by
-passing the proper parameters.
+  This component renders a single option swatch. The supported options depend on the type of swatch. It is a generic
+  component that is used both on collection and product pages. This snippet can also handle filter metaobject, by
+  passing the proper parameters.
 
-********************************************
-Supported variables
-********************************************
+  ********************************************
+  Supported variables
+  ********************************************
 
 
-* type: control the presentational type of the swatch. Can be "color", "block" or "thumbnail". [REQUIRED]
-* value: the value submitted to the server [REQUIRED]
-* name: the name attribute when field is submitted to the server [REQUIRED]
-* selected: if set to true, this swatch is preselected
-* allow_multiple: if set to true, it allows several values to be selected (by using a checkbox instead of radio)
-* label: an optional label to show as tooltip (if no provided, it uses the value)
-* form: the form ID that this swatch is linked to
-* disabled: if set to true, this swatch is disabled
-* href: if defined, the swatch will be outputted as a link instead of an input (most of the other attributes are ignored)
+  * type: control the presentational type of the swatch. Can be "color", "block" or "thumbnail". [REQUIRED]
+  * value: the value submitted to the server [REQUIRED]
+  * name: the name attribute when field is submitted to the server [REQUIRED]
+  * selected: if set to true, this swatch is preselected
+  * allow_multiple: if set to true, it allows several values to be selected (by using a checkbox instead of radio)
+  * label: an optional label to show as tooltip (if no provided, it uses the value)
+  * form: the form ID that this swatch is linked to
+  * disabled: if set to true, this swatch is disabled
+  * href: if defined, the swatch will be outputted as a link instead of an input (most of the other attributes are ignored)
 
-Thumbnail swatch specific parameters:
+  Thumbnail swatch specific parameters:
 
-* image: the image to use
-* size: can be 'sm' to make it smaller
-* bordered: if set to true, a border is added when the image is not selected
+  * image: the image to use
+  * size: can be 'sm' to make it smaller
+  * bordered: if set to true, a border is added when the image is not selected
 
-Block swatch specific parameters
+  Block swatch specific parameters
 
-* show_colors: if set to true, show the color as a small tile.
-* colors: an optional list of color drop (if not set, the theme will use the config based approach as a fallback). When more
-          than one color is given, a conic gradient is generated. It supports up to 4 colors.
-* image: an optional image used as the background (if not set, the theme will use the config based approach as a fallback)
+  * show_colors: if set to true, show the color as a small tile.
+  * colors: an optional list of color drop (if not set, the theme will use the config based approach as a fallback). When more
+            than one color is given, a conic gradient is generated. It supports up to 4 colors.
+  * image: an optional image used as the background (if not set, the theme will use the config based approach as a fallback)
 
-Color swatch specific parameters:
+  Color swatch specific parameters:
 
-* show_tooltip: if set to true, display a tooltip on hover
-* colors: an optional list of color drop (if not set, the theme will use the config based approach as a fallback). When more
-          than one color is given, a conic gradient is generated. It supports up to 4 colors.
-* image: an optional image used as the background (if not set, the theme will use the config based approach as a fallback)
+  * show_tooltip: if set to true, display a tooltip on hover
+  * colors: an optional list of color drop (if not set, the theme will use the config based approach as a fallback). When more
+            than one color is given, a conic gradient is generated. It supports up to 4 colors.
+  * image: an optional image used as the background (if not set, the theme will use the config based approach as a fallback)
 {%- endcomment -%}
 
 {%- capture id -%}swatch-{{ section.id }}-{{ form }}-{{ context }}-{{ name | handle }}-{{ value | handle }}{%- endcapture -%}
+
+{% liquid
+  assign count = 0
+
+  paginate shop.metaobjects.variant_color.values by 1000
+    for variant_colors in shop.metaobjects.variant_color.values
+      assign color_name = variant_colors.color_name | downcase
+      assign value_lowrcase = value | downcase
+      assign count = count | plus: 1
+      if color_name == value_lowrcase
+        assign swatch_bgImg = variant_colors.color_image | img_url: 'master'
+      endif
+    endfor
+  endpaginate
+%}
 
 {%- liquid
   if type == 'colors' or type == 'block' and show_colors
@@ -63,7 +78,7 @@ Color swatch specific parameters:
           echo color | append: ' ' | append: angle | append: 'deg '
           assign angle = angle | plus: angle_increment
           echo angle | append: 'deg'
-          
+
           unless forloop.last
             echo ', '
           endunless
@@ -77,7 +92,6 @@ Color swatch specific parameters:
     else
       # When color or image is not explicitly passed, we parse the config
       assign swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />'
-
       assign value_downcase = value | downcase | strip
       assign swatch_style = '--swatch-background: linear-gradient(to right, ' | append: value_downcase | append: ', ' | append: value_downcase | append: ')'
 
@@ -105,21 +119,53 @@ Color swatch specific parameters:
 -%}
 
 {%- unless href -%}
-  <input class="sr-only" type="{% if allow_multiple %}checkbox{% else %}radio{% endif %}" name="{{ name }}" {% if form %}form="{{ form | escape }}"{% endif %} id="{{ id | escape }}" value="{{ value | escape }}" {% if disabled %}disabled{% endif %} {% if selected %}checked="checked"{% endif %}>
+  <input
+    class="sr-only"
+    swatch-input=""
+    data-variant-option-name="{% if option == 'style' %}customOptions{% else %}{{ option }}{% endif %}"
+    type="{% if allow_multiple %}checkbox{% else %}radio{% endif %}"
+    name="{{ name }}"
+    {% if form %}
+      form="{{ form | escape }}"
+    {% endif %}
+    id="{{ id | escape }}"
+    value="{{ value | escape }}"
+    {% if disabled %}
+      disabled
+    {% endif %}
+    {% if selected %}
+      checked="checked"
+    {% endif %}
+  >
 {%- endunless -%}
 
 {%- case type -%}
   {%- when 'thumbnail' -%}
     {%- if image != blank -%}
       {%- if href -%}
-        <a href="{{ href }}" class="thumbnail-swatch {% if size == 'sm' %}thumbnail-swatch--sm{% endif %} {% if selected %}is-selected{% endif %} {% if bordered %}border{% endif %}">
+        <a
+          href="{{ href }}"
+          class="thumbnail-swatch {% if size == 'sm' %}thumbnail-swatch--sm{% endif %} {% if selected %}is-selected{% endif %} {% if bordered %}border{% endif %}"
+        >
           <span class="sr-only">{{ label | default: value }}</span>
-          {{- image | image_url: width: image.width | image_tag: loading: 'lazy', sizes: '60px', widths: '60,120', class: 'object-contain' -}}
+          {{-
+            image
+            | image_url: width: image.width
+            | image_tag: loading: 'lazy', sizes: '60px', widths: '60,120', class: 'object-contain'
+          -}}
         </a>
       {%- else -%}
-        <label class="thumbnail-swatch {% if size == 'sm' %}thumbnail-swatch--sm{% endif %} {% if bordered %}border{% endif %}" for="{{ id | escape }}" data-option-value>
+        <label
+          class="thumbnail-swatch {% if size == 'sm' %}thumbnail-swatch--sm{% endif %} {% if bordered %}border{% endif %}"
+          for="{{ id | escape }}"
+          data-option-value
+        >
           <span class="sr-only">{{ label | default: value }}</span>
-          {{- image | image_url: width: image.width | image_tag: loading: 'lazy', sizes: '60px', widths: '60,120', class: 'object-contain' -}}
+          {{-
+            image
+            | image_url: width: image.width
+            | image_tag: loading: 'lazy', sizes: '60px', widths: '60,120', class: 'object-contain'
+          -}}
         </label>
       {%- endif -%}
     {%- else -%}
@@ -133,19 +179,40 @@ Color swatch specific parameters:
     {%- if href -%}
       <a href="{{ href }}" class="block-swatch {% if selected %}is-selected{% endif %}">
         {%- if show_colors -%}
-          <span class="block-swatch__color {% if white_label == value_downcase %}ring-inset{% endif %}" style="{{ swatch_style }}"></span>
+          <span
+            class="block-swatch__color {% if white_label == value_downcase %}ring-inset{% endif %}"
+            style="{{ swatch_style }}"
+          ></span>
         {%- endif -%}
 
         <span>{{ label | default: value }}</span>
       </a>
 
     {%- else -%}
-      <label class="block-swatch" for="{{ id | escape }}" data-option-value>
+      <label
+        class="block-swatch"
+        for="{{ id | escape }}"
+        data-option-value
+        {% if swatch_bgImg != blank %}
+          style="--swatch-background-img: url({{ swatch_bgImg }})"
+        {% endif %}
+      >
+        <div class="swatch-main-image">
+          {% if swatch_bgImg != blank %}
+            <span class="swatch-get_image"></span>
+          {% endif %}
+        </div>
         {%- if show_colors -%}
-          <span class="block-swatch__color {% if white_label == value_downcase %}ring-inset{% endif %}" style="{{ swatch_style }}"></span>
+          <span
+            class="block-swatch__color {% if white_label == value_downcase %}ring-inset{% endif %}"
+            style="{{ swatch_style }}"
+          ></span>
         {%- endif -%}
 
-        <span>{{ label | default: value }}</span>
+        <div class="il-swatch__mainWrapper">
+          <span class="il-swatchName">{{ label | default: value }}</span>
+          <span class="il-priceDiff" data-price-difference=""></span>
+        </div>
       </label>
     {%- endif -%}
 
@@ -154,18 +221,67 @@ Color swatch specific parameters:
     {%- assign value_downcase = value | downcase -%}
 
     {%- if href -%}
-      <a href="{{ href }}" class="color-swatch {% if settings.color_swatch_style == 'rectangle' %}color-swatch--rectangle{% endif %} {% if size == 'sm' %}color-swatch--sm{% endif %} {% if selected %}is-selected{% endif %} {% if white_label == value_downcase %}ring-inset{% endif %} {% if settings.color_swatch_style == 'round' %}rounded-full{% endif %}" {% if show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} style="{{ swatch_style }}">
+      <a
+        href="{{ href }}"
+        class="color-swatch {% if settings.color_swatch_style == 'rectangle' %}color-swatch--rectangle{% endif %} {% if size == 'sm' %}color-swatch--sm{% endif %} {% if selected %}is-selected{% endif %} {% if white_label == value_downcase %}ring-inset{% endif %} {% if settings.color_swatch_style == 'round' %}rounded-full{% endif %}"
+        {% if show_tooltip %}
+          data-tooltip="{{ label | default: value | escape }}"
+        {% endif %}
+        style="{{ swatch_style }}"
+      >
         <span class="sr-only">{{ label | default: value }}</span>
       </a>
     {%- else -%}
-      <label class="color-swatch {% if settings.color_swatch_style == 'rectangle' %}color-swatch--rectangle{% endif %} {% if size == 'sm' %}color-swatch--sm{% endif %} {% if white_label == value_downcase %}ring-inset{% endif %} {% if settings.color_swatch_style == 'round' %}rounded-full{% endif %}" for="{{ id | escape }}" data-option-value {% if show_tooltip %}data-tooltip="{{ label | default: value | escape }}"{% endif %} style="{{ swatch_style }}">
+      <label
+        class="color-swatch {% if settings.color_swatch_style == 'rectangle' %}color-swatch--rectangle{% endif %} {% if size == 'sm' %}color-swatch--sm{% endif %} {% if white_label == value_downcase %}ring-inset{% endif %} {% if settings.color_swatch_style == 'round' %}rounded-full{% endif %}"
+        for="{{ id | escape }}"
+        data-option-value
+        {% if show_tooltip %}
+          data-tooltip="{{ label | default: value | escape }}"
+        {% endif %}
+        style="{{ swatch_style }}; --swatch-background-img: url({{ swatch_bgImg }})"
+      >
+        {% comment %} {{ shop.metaobjects.variant_color.color_image | img_url: 'master' }} {% endcomment %}
+        <span class="sr-only">
+          {{ label | default: value }}
+        </span>
+        <span class="il-priceDiff" data-price-difference="" hidden></span>
+      </label>
+    {%- endif -%}
+
+  {%- when 'colors-2' -%}
+    {%- assign white_label = 'general.label.white' | t | downcase -%}
+    {%- assign value_downcase = value | downcase -%}
+
+    {%- if href -%}
+      <a
+        href="{{ href }}"
+        class="color-swatch {% if settings.color_swatch_style == 'rectangle' %}color-swatch--rectangle{% endif %} {% if size == 'sm' %}color-swatch--sm{% endif %} {% if selected %}is-selected{% endif %} {% if white_label == value_downcase %}ring-inset{% endif %} {% if settings.color_swatch_style == 'round' %}rounded-full{% endif %}"
+        {% if show_tooltip %}
+          data-tooltip="{{ label | default: value | escape }}"
+        {% endif %}
+        style="{{ swatch_style }}"
+      >
         <span class="sr-only">{{ label | default: value }}</span>
+      </a>
+    {%- else -%}
+      <label
+        class="color-swatch {% if settings.color_swatch_style == 'rectangle' %}color-swatch--rectangle{% endif %} {% if size == 'sm' %}color-swatch--sm{% endif %} {% if white_label == value_downcase %}ring-inset{% endif %} {% if settings.color_swatch_style == 'round' %}rounded-full{% endif %}"
+        for="{{ id | escape }}"
+        data-option-value
+        {% if show_tooltip %}
+          data-tooltip="{{ label | default: value | escape }}"
+        {% endif %}
+        style="{{ swatch_style }}"
+      >
+        <span class="sr-only">{{ label | default: value }}</span>
+        <img
+          class="swatch__image"
+          height="auto"
+          width="auto"
+          loading="lazy"
+          src="{{ color_image | img_url: "master" }}"
+        >
       </label>
     {%- endif -%}
 {%- endcase -%}
-{% style %}
-  :checked+.color-swatch:before{
-    border: 1px solid {{ swatch_style }} !important;
-  }
-  
-{% endstyle %}

@@ -1,0 +1,1431 @@
+{%- comment -%}
+  IMPLEMENTATION NOTE: Impact header with all the menu is an extremely complex piece of code. Due to requirements from design
+  team, we had to cover over hundred of potential combinations. As a consequence, this part (and all the menu snippets) are
+  extremely sensitive code that should (if possible) not be touched unless you have spend enough time to study and understand
+  the underlying logic of the menu.
+{%- endcomment -%}
+
+{%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+    {%- assign will_show_country_selector = true -%}
+  {%- endif -%}
+  
+  {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
+    {%- assign will_show_locale_selector = true -%}
+  {%- endif -%}
+  
+  <style>
+    :root {
+      --sticky-header-enabled: {%- if section.settings.enable_sticky -%}1{% else %}0{% endif %};
+    }
+  
+    #shopify-section-{{ section.id }} {
+      --header-grid-template: "main-nav logo secondary-nav" / minmax(0, 1fr) auto minmax(0, 1fr);
+      --header-padding-block: {% if section.settings.reduce_padding %}var(--spacing-3){% else %}var(--spacing-4-5){% endif %};
+      --header-background-opacity: {{ section.settings.background_opacity | divided_by: 100.0 }};
+      --header-background-blur-radius: {{ section.settings.background_blur_radius }}px;
+      --header-transparent-text-color: {{ section.settings.transparent_header_text_color.rgb }};
+  
+      {%- if section.settings.logo != blank -%}
+        --header-logo-width: {{ section.settings.logo_mobile_max_width }}px;
+        --header-logo-height: {{ section.settings.logo_mobile_max_width | divided_by: section.settings.logo.aspect_ratio | round }}px;
+      {%- endif -%}
+  
+      position: {% if section.settings.enable_sticky %}sticky{% else %}relative{% endif %};
+      top: 0;
+      z-index: 10;
+    }
+  
+    {%- if section.settings.enable_sticky -%}
+      .shopify-section--announcement-bar ~ #shopify-section-{{ section.id }} {
+        top: calc(var(--sticky-announcement-bar-enabled, 0) * var(--announcement-bar-height, 0px));
+      }
+    {%- endif -%}
+  
+    {%- if section.settings.opening_from == 'left' -%}
+      @media screen and (max-width: 699px) {
+        .navigation-drawer {
+          --drawer-content-max-height: calc(100vh - (var(--spacing-2) * 2));
+        }
+      }
+    {%- endif -%}
+  
+    @media screen and (min-width: 700px) {
+      #shopify-section-{{ section.id }} {
+        {%- if section.settings.logo != blank -%}
+          --header-logo-width: {{ section.settings.logo_max_width }}px;
+          --header-logo-height: {{ section.settings.logo_max_width | divided_by: section.settings.logo.aspect_ratio | round }}px;
+        {%- endif -%}
+  
+        --header-padding-block: {% if section.settings.reduce_padding %}var(--spacing-6){% else %}var(--spacing-8-5){% endif %};
+      }
+    }
+  
+    {%- if section.settings.layout contains 'logo_left' -%}
+      @media screen and (min-width: 1150px) {
+        {%- if section.settings.secondary_menu != blank or will_show_country_selector or will_show_locale_selector -%}
+          {%- assign max_percent = '55%' -%}
+        {%- else -%}
+          {%- assign max_percent = '70%' -%}
+        {%- endif -%}
+  
+        #shopify-section-{{ section.id }} {
+          --header-grid-template: "logo main-nav secondary-nav" / {% if section.settings.layout == 'logo_left_navigation_inline' %}auto minmax(0, 1fr) minmax(0, max-content){% else %}minmax(0, 1fr) fit-content({{ max_percent }}) minmax(0, 1fr){% endif %};
+        }
+      }
+    {%- endif -%}
+  
+    .template-index .header__wrapper {
+      background: var(--color-transparent);
+      transition: background 0.5s ease-in-out;
+    }
+  
+    .template-index .header__wrapper[data-scroll-status="scrolled"] {
+      background: rgba(255, 255, 255, 0.96);
+    }
+  
+    .header__wrapper {
+      background: rgba(255, 255, 255, 0.96);
+      transition: background 0.5s ease-in-out;
+    }
+  
+    .header.il-header .header__wrapper {
+      padding: 19px 40px;
+      gap: 80px;
+    }
+  
+    .header.il-header .header__link-list {
+      gap: 60px;
+    }
+  
+    .header__link-list .icon-chevron-bottom {
+      display: none;
+    }
+  
+    .header.il-header .header__icon-list {
+      gap: 14px;
+    }
+  
+    .header.il-header .text-with-icon,
+    .header.il-header .link-faded-reverse {
+      font-weight: var(--font-weight-500);
+      color: var(--color-primary);
+    }
+  
+    .header.il-header .il-linkItem__link span {
+      color: var(--color-primary);
+    }
+  
+    .header.il-header .mega-menu__nav {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .header.il-header .il-linkItem__link {
+      color: var(--color-primary);
+      font-family: var(--font-secondary);
+      font-size: var(--font-size-14);
+      font-weight: var(--font-weight-400);
+      line-height: normal;
+    }
+  
+    .header.il-header .mega-menu {
+      padding: 22px 40px 40px 206px;
+    }
+  
+    .header.il-header .mega-menu__nav {
+      max-width: fit-content;
+      min-width: 65px;
+    }
+  
+    .header.il-header .mega-menu-inner {
+      display: flex;
+      width: 49%;
+      gap: 25px;
+      max-width: 825px;
+      min-width: 825px;
+    }
+  
+    .header.il-header .mega-menu__nav:nth-child(2) {
+      margin-left: auto;
+    }
+  
+    .header.il-header .mega-menu__nav .il-linkItem {
+      width: auto;
+    }
+  
+    .header.il-header .navigation-promo .text-custom {
+      grid-area: unset;
+    }
+  
+    .header.il-header .navigation-promo .text-custom p,
+    .il-navigationDrawer .navigation-promo .text-custom p {
+      grid-area: unset;
+      font-weight: var(--font-weight-700);
+      text-transform: var(--text-uppercase);
+      padding-top: 10px;
+      line-height: normal;
+      color: var(--color-primary);
+    }
+  
+    .header.il-header .navigation-promo .text-custom.text-custom__subheading p,
+    .il-navigationDrawer .navigation-promo .text-custom.text-custom__subheading p {
+      grid-area: unset;
+      font-weight: var(--font-weight-400);
+      padding-top: 5px;
+      line-height: normal;
+      color: var(--color-primary);
+    }
+  
+    .header.il-header .navigation-promo img,
+    .header.il-header .navigation-promo .content-over-media {
+      display: block;
+      border-radius: 0;
+    }
+  
+    .header.il-header .navigation-promo {
+      display: flex
+    }
+  
+    .navigation-drawer.il-navigationDrawer {
+      top: 60px !important;
+    }
+  
+    .navigation-drawer.il-navigationDrawer::part(content) {
+      border-radius: 0;
+      clip-path: unset !important;
+      min-height: calc(100vh - 60px);
+    }
+  
+    .navigation-drawer.il-navigationDrawer[mobile-opening=left]::part(body) {
+      overflow: unset;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+    }
+  
+    :is(.drawer,.popover)::part(outside-close-button) {
+      display: none;
+    }
+  
+    {% comment %} .navigation-drawer.il-navigationDrawer [is=close-button] {
+      display: none;
+    } {% endcomment %}
+  
+    .navigation-drawer.il-navigationDrawer::part(overlay) {
+      background: var(--color-transparent);
+    }
+  
+    .navigation-drawer[mobile-opening=left]>[is=close-button] {
+      position: absolute;
+      top: -50px;
+      border: none;
+      left: 11px;
+      margin: 0;
+      background: transparent;
+      border-radius: 0;
+    }
+  
+    .il-panelList .il-panelList__menu {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+  
+    .il-panelList .il-panelList__menu .h3 {
+      color: var(--color-primary);
+      font-family: var(--font-primary);
+      font-size: var(--font-size-16);
+      font-weight: var(--font-weight-400);
+      line-height: normal;
+    }
+  
+    .il-panelList .panel__wrapper {
+      padding: 20px;
+    }
+  
+    .il-navigationDrawer .navigation-promo .text-custom.text-custom__subheading p.image_heading_2,
+    .il-navigationDrawer .navigation-promo .text-custom p.image_heading_2  {
+      font-family: var(--font-primary);
+    }
+  
+    .header.il-header .navigation-promo .content-over-media,
+    .il-panelList .content-over-media {
+      position: relative;
+    }
+  
+    .header.il-header .custom_badge,
+    .il-panelList .custom_badge {
+      position: absolute;
+      right: 13px;
+      bottom: 60px;
+      padding: 2px 8px;
+      border: 1px solid var(--color-black);
+      background: var(--color-white);
+      border-radius: 2px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .header.il-header .custom_badge p,
+    .il-panelList .custom_badge p {
+      font-size: 10px;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 2.3px;
+    }
+  
+    .header.il-header .header__wrapper:hover ,
+    .header.il-header .mega-menu {
+      background: rgba(255, 255, 255, 0.96);
+    }
+  
+    .header.il-header .link-faded-reverse.outlet,
+    .il-navigationDrawer .outlet {
+      font-family: var(--font-secondary);
+    }
+  
+    .il-navigationDrawer.drawer::part(content) {
+      align-items: normal;
+    }
+  
+    .search-drawer.drawer::part(content) {
+      align-items: normal;
+      border-radius: 10px;
+    }
+  
+    .il-navigationDrawer.drawer::part(content) {
+      max-height: -webkit-fill-available;
+      justify-content: flex-start;
+    }
+  
+    .header.il-header .header__wrapper {
+      position: fixed;
+      width: 100%;
+    }
+  
+    .header__wrapper[data-scroll-status="scrolled"] {
+      background-color: rgba(255, 255, 255, 0.845);
+    }
+  
+    @media (max-width: 1440px) {
+      .header.il-header .mega-menu {
+        flex-direction: column;
+      }
+  
+      .header.il-header .header__wrapper {
+        gap: 0px;
+      }
+  
+      .header.il-header .header__logo {
+        margin-right: 80px;
+      }
+    }
+  
+    @media (max-width: 1201px) {
+      .header.il-header .header__logo {
+        margin-right: 70px;
+      }
+  
+      .header.il-header .header__link-list {
+        gap: 50px;
+      }
+  
+      .header.il-header .mega-menu {
+        padding: 40px 40px 40px 196px;
+      }
+  
+      .header.il-header .mega-menu-inner {
+        gap: 15px;
+        max-width: 758px;
+        min-width: 758px;
+      }
+    }
+  
+  
+    @media (max-width: 1150px) {
+      .template-index .header__wrapper {
+        transition: background 0.3s ease-in-out;
+      }
+  
+      .header.il-header .header__link-list {
+        gap: 35px;
+      }
+  
+      .header.il-header .header__wrapper {
+        gap: 60px;
+      }
+  
+      .header.il-header .mega-menu {
+        padding: 40px 40px 40px 186px;
+      }
+  
+      .header.il-header .mega-menu-inner {
+        gap: 0;
+        max-width: 668px;
+        min-width: 668px;
+      }
+  
+      .il-header__search {
+        order: -1
+      }
+  
+      .il-header__wishList,
+      .il-header__account {
+        display: none;
+      }
+  
+      .header.il-header .header__wrapper {
+        padding: 18px 20px;
+      }
+  
+      .header.il-header .header__logo {
+        margin: 0;
+      }
+  
+      .navigation-drawer.il-navigationDrawer {
+        padding: 0;
+      }
+  
+      .il-panelList .navigation-promo {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        gap: 20px;
+      }
+  
+      .il-panelList .content-over-media {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-content: flex-start;
+        justify-content: flex-start;
+        gap: 0;
+        border-radius: 0;
+      }
+  
+      .il-panelList .content-over-media .place-self-end-start {
+        place-self: start;
+      }
+  
+      .il-navigationDrawer .navigation-promo .text-custom p {
+        padding-top: 10px;
+        line-height: normal;
+      }
+  
+      .il-navigationDrawer .navigation-promo .text-custom.text-custom__subheading p {
+        padding-top: 6px;
+      }
+  
+      .il-navigationDrawer .panel-footer__localization-wrapper {
+        display: none;
+      }
+  
+      .il-navigationDrawer .il-panelList__subMenuHeader {
+        padding: 13.5px 0;
+        margin: 0 -20px;
+        background: #dcdcdc;
+        margin-bottom: 7px;
+      }
+  
+      .il-navigationDrawer .il-panelList__subMenuHeader .text-with-icon {
+        padding: 0 20px;
+        width: 100%;
+        justify-content: center;
+        color: var(--color-primary);
+        font-family: var(--font-primary);
+        font-size: var(--font-size-16);
+        font-weight: var(--font-weight-500);
+        line-height: normal;
+      }
+  
+      .il-navigationDrawer .il-panelList__subMenuHeader .text-with-icon svg {
+        position: absolute;
+        left: 13px;
+      }
+  
+      .il-navigationDrawer .il-panelList__menu.il-panelList__menu--top {
+        margin-top: 36px;
+        padding: 0 20px;
+      }
+  
+      .il-navigationDrawer .navigation-promo__wrapper {
+        margin: 0 20px;
+        padding-top: 24px;
+        border-top: 1px dotted var(--color-grey-05);
+        margin-top: 10px;
+      }
+  
+      .il-navigationDrawer .panel__wrapper {
+        padding: 0;
+      }
+  
+      .il-header__account.il-header__account--mobile,
+      .il-header__wishList.il-header__wishList--mobile {
+        display: block;
+      }
+  
+      .il-panelList__accRow {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+  
+      .il-panelList__account {
+        display: flex;
+        row-gap: 24px;
+        flex-direction: column;
+        padding: 24px 20px 60px;
+        background: rgb(214 214 214 / 96%);
+        margin-bottom: 22px;
+        opacity: 0.96;
+        backdrop-filter: blur(2px);
+      }
+  
+      .template-product .il-panelList__account {
+        padding: 24px 20px 40px;
+      }
+  
+      .il-panelList .il-panelList__menu {
+        padding: 0 20px;
+      }
+  
+      .il-panelList .panel__wrapper {
+        justify-content: space-between;
+      }
+  
+      .il-panelList__accRow p {
+        color: var(--color-primary);
+        font-family: var(--font-secondary);
+        font-size: var(--font-size-14);
+        font-weight: var(--font-weight-500);
+        line-height: normal;
+      }
+      .header-wrapper {
+        background: var(--color-transparent);
+        position: fixed;
+      }
+  
+      .native-share--enabled.lock .header.il-header .header-wrapper {
+        background: var(--color-transparent);
+      }
+  
+      .header.il-header .header__wrapper.header__active {
+        background: rgba(255, 255, 255, 0.96);
+      }
+    }
+  
+    @media (max-width: 769px) {
+      .navigation-drawer.il-navigationDrawer {
+        top: 62px !important;
+      }
+  
+      .navigation-drawer.il-navigationDrawer::part(content) {
+        min-height: calc(100vh - 62px);
+        background-color: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(2px);
+      }
+  
+      .panel+.panel .il-panelList__account {
+        padding: 24px 20px 75px;
+      }
+  
+      .template-product .panel+.panel .il-panelList__account {
+        padding: 24px 20px 60px;
+      }
+  
+      .header.il-header .custom_badge p,
+      .il-panelList .custom_badge p {
+        letter-spacing: 0.64px;
+      }
+  
+      .native-share--enabled.lock .header.il-header .header-wrapper {
+        background: rgba(255, 255, 255, 0.90);
+      }
+  
+      .panel-list__wrapper {
+        width: 100vw;
+      }
+  
+      .header__main-nav button[aria-expanded="true"] {
+        display: none;
+      }
+  
+      .navigation-drawer[mobile-opening=left] .panel__wrapper .text-with-icon, 
+      .navigation-drawer[mobile-opening=left] .panel__wrapper .text-with-icon span,
+      .navigation-drawer[mobile-opening=left] .panel__wrapper .reversed-link {
+        color: var(--color-primary);
+      }
+    }
+  </style>
+  
+  <height-observer variable="header">
+    <store-header
+      class="header il-header"
+      {% if section.settings.hide_on_scroll %}
+        hide-on-scroll="100"
+      {% endif %}
+      {% if section.settings.enable_sticky %}
+        sticky
+      {% endif %}
+    >
+      <div class="header__wrapper" data-scroll-status="not-scrolled">
+        {%- comment -%}
+          --------------------------------------------------------------------------------------------------------------------
+          MAIN NAV AREA
+          --------------------------------------------------------------------------------------------------------------------
+        {%- endcomment -%}
+  
+        <div class="header__main-nav">
+          <div class="header__icon-list">
+            <button
+              type="button"
+              class="tap-area {% if section.settings.layout != 'drawer' %}lg:hidden{% endif %}"
+              aria-controls="header-sidebar-menu"
+            >
+              <span class="sr-only">{{ 'header.general.open_menu' | t }}</span>
+              {%- render 'icon' with 'hamburger-icon-new' -%}
+            </button>
+  
+            {%- if section.settings.layout != 'drawer' and section.settings.menu.links.size > 0 -%}
+              <nav
+                class="header__link-list {% if section.settings.layout == 'logo_left_navigation_center' %}justify-center{% endif %} wrap"
+                role="navigation"
+              >
+                <ul class="contents" role="list">
+                  {%- for link in section.settings.menu.links -%}
+                    {% liquid
+                      assign link_title_downcase = link.title | strip | downcase
+                      assign mega_menu_block = ''
+  
+                      for block in section.blocks
+                        assign menu_item_downcase = block.settings.menu_item | strip | downcase
+  
+                        if menu_item_downcase == link_title_downcase
+                          assign mega_menu_block = block
+                          assign mega_menu_list = block.settings['menu-mega-list']
+                          break
+                        endif
+                      endfor
+                    %}
+  
+                    <li>
+                      {%- if link.levels == 0 and mega_menu_block == '' -%}
+                        {% assign linkTitle = link.title | downcase %}
+                        <a
+                          href="{{ link.url }}"
+                          class="bold link-faded-reverse {{ linkTitle }}"
+                          {% if link.current %}
+                            aria-current="page"
+                          {% endif %}
+                        >
+                          {{- link.title -}}
+                        </a>
+                      {%- else -%}
+                        {%- if mega_menu_block != '' -%}
+                          {%- comment -%}
+                            Implementation note: the designers had the desire to show a lot of different kind of menus in Impact: one standard
+                            mega menu but also a kind of "sidebar" mode when the mega-menu appears in a drawer. Unfortunately, this comes with
+                            a lot of extra complexity as we have to go through two different code path: a "details" element for the standard
+                            menu, and a full drawer for the other one.
+                          {%- endcomment -%}
+                          {%- unless mega_menu_block.settings.layout == 'drawer' -%}
+                            <details
+                              is="mega-menu-disclosure"
+                              trigger="{{ section.settings.menu_open_trigger | escape }}"
+                              {{ mega_menu_block.shopify_attributes }}
+                            >
+                              <summary
+                                class="text-with-icon gap-2.5 bold link-faded-reverse"
+                                {% if link.url != '#' %}
+                                  data-url="{{ link.url | escape }}"
+                                {% endif %}
+                              >
+                                {{- link.title -}}
+                                {%- render 'icon' with 'chevron-bottom' -%}
+                              </summary>
+  
+                              {%- render 'mega-menu-horizontal-custom',
+                                link: link,
+                                mega_menu_block: mega_menu_block,
+                                mega_menu_list: mega_menu_list
+                              -%}
+                            </details>
+                          {%- else -%}
+                            <button
+                              aria-controls="navigation-drawer-{{ forloop.index }}"
+                              aria-expanded="false"
+                              class="text-with-icon gap-2.5 bold link-faded-reverse"
+                            >
+                              {{- link.title -}}
+                              {%- render 'icon' with 'chevron-bottom' -%}
+                            </button>
+  
+                            <navigation-drawer
+                              class="navigation-drawer drawer lg-max:hidden"
+                              id="navigation-drawer-{{ forloop.index }}"
+                              open-from="left"
+                              mega-menu
+                            >
+                              {%- render 'navigation-panel',
+                                navigation_layout: section.settings.layout,
+                                main_menu: link,
+                                is_mega_menu: true,
+                                mega_menu_block: mega_menu_block
+                              -%}
+                            </navigation-drawer>
+                          {%- endunless -%}
+                        {%- else -%}
+                          <details
+                            class="relative"
+                            is="dropdown-disclosure"
+                            trigger="{{ section.settings.menu_open_trigger | escape }}"
+                          >
+                            <summary
+                              class="text-with-icon gap-2.5 bold link-faded-reverse"
+                              {% if link.url != '#' %}
+                                data-url="{{ link.url | escape }}"
+                              {% endif %}
+                            >
+                              {{- link.title -}}
+                              {%- render 'icon' with 'chevron-bottom' -%}
+                            </summary>
+  
+                            <div class="dropdown-menu {% if link.levels <= 1 %}dropdown-menu--restrictable{% endif %}">
+                              <ul class="contents" role="list">
+                                {%- for sub_link in link.links -%}
+                                  <li>
+                                    {%- if sub_link.levels == 0 -%}
+                                      <a
+                                        href="{{ sub_link.url }}"
+                                        class="dropdown-menu__item group"
+                                        {% if sub_link.current %}
+                                          aria-current="page"
+                                        {% endif %}
+                                      >
+                                        <span
+                                          ><span class="reversed-link">{{ sub_link.title }}</span></span
+                                        >
+                                      </a>
+                                    {%- else -%}
+                                      <details
+                                        class="relative"
+                                        is="dropdown-disclosure"
+                                        trigger="{{ section.settings.menu_open_trigger | escape }}"
+                                      >
+                                        <summary
+                                          class="dropdown-menu__item group"
+                                          {% if sub_link.url != '#' %}
+                                            data-url="{{ sub_link.url | escape }}"
+                                          {% endif %}
+                                        >
+                                          <span
+                                            ><span class="reversed-link">{{- sub_link.title -}}</span></span
+                                          >
+                                          {%- render 'icon' with 'chevron-right' -%}
+                                        </summary>
+  
+                                        <div class="dropdown-menu">
+                                          <ul class="contents" role="list">
+                                            {%- for sub_sub_link in sub_link.links -%}
+                                              <li>
+                                                <a
+                                                  href="{{ sub_sub_link.url }}"
+                                                  class="dropdown-menu__item group"
+                                                  {% if sub_sub_link.current %}
+                                                    aria-current="page"
+                                                  {% endif %}
+                                                >
+                                                  <span
+                                                    ><span class="reversed-link">{{ sub_sub_link.title }}</span></span
+                                                  >
+                                                </a>
+                                              </li>
+                                            {%- endfor -%}
+                                          </ul>
+                                        </div>
+                                      </details>
+                                    {%- endif -%}
+                                  </li>
+                                {%- endfor -%}
+                              </ul>
+                            </div>
+                          </details>
+                        {%- endif -%}
+                      {%- endif -%}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </nav>
+            {%- endif -%}
+          </div>
+        </div>
+  
+        {%- comment -%}
+          --------------------------------------------------------------------------------------------------------------------
+          LOGO AREA
+          --------------------------------------------------------------------------------------------------------------------
+        {%- endcomment -%}
+  
+        {%- capture logo_content -%}
+          {%- if section.settings.logo -%}
+            {%- capture sizes -%}{{ section.settings.logo_max_width }}px{%- endcapture -%}
+            {%- capture widths -%}{{ section.settings.logo_max_width | times: 2 | at_most: section.settings.logo.width }}, {{ section.settings.logo_max_width | times: 3 | at_most: section.settings.logo.width }}{%- endcapture -%}
+            <span class="sr-only">{{ shop.name }}</span>
+            {{- section.settings.logo | image_url: width: section.settings.logo.width | image_tag: sizes: sizes, widths: widths, class: 'header__logo-image' -}}
+  
+            {%- if section.settings.transparent_logo -%}
+              {{- section.settings.transparent_logo | image_url: width: section.settings.transparent_logo.width | image_tag: sizes: sizes, widths: widths, class: 'header__logo-image header__logo-image--transparent' -}}
+            {%- endif -%}
+          {%- else -%}
+            <span class="header__logo-text h4">{{ shop.name }}</span>
+          {%- endif -%}
+        {%- endcapture -%}
+  
+        {%- if request.page_type == 'index' -%}
+          <h1 class="header__logo">
+            <a href="{{ routes.root_url }}">{{ logo_content }}</a>
+          </h1>
+        {% else %}
+          <a href="{{ routes.root_url }}" class="header__logo">{{ logo_content }}</a>
+        {% endif %}
+  
+        {%- comment -%}
+          --------------------------------------------------------------------------------------------------------------------
+          SECONDARY NAV AREA
+          --------------------------------------------------------------------------------------------------------------------
+        {%- endcomment -%}
+  
+        <div class="header__secondary-nav">
+          {%- if section.settings.header != 'drawer' and section.settings.secondary_menu.links.size > 0 -%}
+            <nav class="header__link-list" role="navigation">
+              <ul class="contents">
+                {%- for link in section.settings.secondary_menu.links -%}
+                  <li>
+                    <a href="{{ link.url }}" class="bold link-faded-reverse">{{ link.title }}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </nav>
+          {%- endif -%}
+  
+          <div class="header__icon-list">
+            {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+              <div class="hidden md:block shrink-0">
+                {%- render 'localization-selector',
+                  type: 'country',
+                  show_country_name: section.settings.show_country_name,
+                  show_country_flag: section.settings.show_country_flag,
+                  popover_vertical_position: 'end'
+                -%}
+              </div>
+            {%- endif -%}
+  
+            {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
+              <div class="hidden md:block shrink-0">
+                {%- render 'localization-selector', type: 'locale', popover_vertical_position: 'end' -%}
+              </div>
+            {%- endif -%}
+  
+            {%- if shop.customer_accounts_enabled -%}
+              <a class="il-header__account" href="{{ routes.account_url }}" class="hidden tap-area sm:block">
+                <span class="sr-only">{{ 'header.general.open_account' | t }}</span>
+                {%- render 'icon' with 'account-new' -%}
+              </a>
+            {%- endif -%}
+  
+            <a
+              href="{{ routes.cart_url }}"
+              data-no-instant
+              class="relative tap-area"
+              {% if settings.cart_type != 'page' and request.page_type != 'cart' %}
+                aria-controls="cart-drawer"
+              {% endif %}
+              class="il-header__cart"
+            >
+              <span class="sr-only">{{ 'header.general.open_cart' | t }}</span>
+              {%- render 'icon' with 'cart-new' -%}
+  
+              <div class="header__cart-count">
+                <cart-count class="count-bubble {% if cart.item_count == 0 %}opacity-0{% endif %}" aria-hidden="true">
+                  {{- cart.item_count -}}
+                </cart-count>
+              </div>
+            </a>
+  
+            {% capture the_snippet_fave_icon_menu %}{% render 'ssw-widget-faveicon-menu' with product.id %}{% endcapture %}
+            {% unless the_snippet_fave_icon_menu contains 'Liquid error' %}
+              {{ the_snippet_fave_icon_menu }}
+            {% endunless %}
+  
+            {% comment %}
+              <a class="il-header__wishList" href="#" class="hidden tap-area sm:block">
+                {%- render 'icon' with 'wishlist-new' -%}
+              </a>
+            {% endcomment %}
+  
+            <a
+              class="il-header__search"
+              href="{{ routes.search_url }}"
+              class="hidden tap-area sm:block"
+              aria-controls="search-drawer"
+            >
+              <span class="sr-only">{{ 'header.general.open_search' | t }}</span>
+              {%- render 'icon' with 'search-new' -%}
+            </a>
+          </div>
+        </div>
+      </div>
+    </store-header>
+  </height-observer>
+  
+  {%- comment -%}
+    --------------------------------------------------------------------------------------------------------------------
+    NAVIGATION MENU DRAWER
+    --------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}
+  
+  {%- assign main_menu = section.settings.sidebar_menu | default: section.settings.menu -%}
+  {%- assign secondary_menu = section.settings.secondary_menu -%}
+  
+  {%- if main_menu.links.size > 0 or secondary_menu.links.size > 0 -%}
+    <navigation-drawer
+      mobile-opening="{{ section.settings.opening_from }}"
+      open-from="left"
+      id="header-sidebar-menu"
+      class="navigation-drawer il-navigationDrawer drawer {% if section.settings.layout != 'drawer' %}lg:hidden{% endif %}"
+      {% if request.design_mode %}
+        handle-section-events
+      {% endif %}
+    >
+      <button
+        is="close-button"
+        aria-label="{{ 'general.accessibility.close' | t | escape }}"
+        {%- if section.settings.opening_from == 'bottom' -%}
+          class="sm-max:hidden"
+        {%- endif -%}
+      >
+        {%- render 'icon' with 'close-new-icon', width: 19, height: 19 -%}
+      </button>
+  
+      {%- render 'navigation-panel',
+        is_mega_menu: false,
+        main_menu: main_menu,
+        secondary_menu: secondary_menu,
+        mobile_opening: section.settings.opening_from,
+        layout: section.settings.layout,
+        show_social_media: section.settings.show_social_media,
+        show_country_selector: section.settings.show_country_selector,
+        show_country_name: section.settings.show_country_name,
+        show_country_flag: section.settings.show_country_flag,
+        show_locale_selector: section.settings.show_locale_selector
+      -%}
+    </navigation-drawer>
+  {%- endif -%}
+  
+  <script>
+    let headerHeight = document.querySelector('#shopify-section-{{ section.id }} .header__wrapper').clientHeight;
+    console.log(headerHeight);
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.documentElement.style.setProperty('--header-height', Math.round(headerHeight) + 'px');
+      }, 2000);
+    });
+  </script>
+  
+  <script>
+    $(document).ready(function () {
+      // Check if the body has the template-index class
+      if ($('body').hasClass('template-index')) {
+        // Apply the scroll and click event handling only on the homepage
+  
+        $(document).on('scroll', function () {
+          var headerWrapper = $('[data-scroll-status]');
+          if ($(this).scrollTop() > 0 && headerWrapper.attr('data-scroll-status') !== 'scrolled') {
+            headerWrapper.attr('data-scroll-status', 'scrolled');
+          } else if ($(this).scrollTop() === 0 && headerWrapper.attr('data-scroll-status') !== 'not-scrolled') {
+            headerWrapper.attr('data-scroll-status', 'not-scrolled');
+          }
+        });
+  
+        $(document).on('click', '[aria-controls="header-sidebar-menu"]', function () {
+          var ariaExpandedValue = $(this).attr('aria-expanded');
+          if (ariaExpandedValue) {
+            $('.header__wrapper').addClass('header__active');
+          } else {
+            $('.header__wrapper').removeClass('header__active');
+          }
+        });
+  
+        $(document).on('click', '.il-navigationDrawer [aria-label="Close"]', function () {
+          $('.header__wrapper').removeClass('header__active');
+        });
+      }
+    });
+  </script>
+  
+  {% schema %}
+  {
+    "name": "Header",
+    "class": "shopify-section--header",
+    "tag": "header",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_sticky",
+        "label": "Enable sticky header",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_on_scroll",
+        "label": "Hide on scroll",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Image",
+        "info": "280 x 80px .png recommended"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "min": 40,
+        "max": 300,
+        "step": 5,
+        "unit": "px",
+        "label": "Image width",
+        "default": 140
+      },
+      {
+        "type": "range",
+        "id": "logo_mobile_max_width",
+        "min": 25,
+        "max": 170,
+        "step": 5,
+        "unit": "px",
+        "label": "Mobile image width",
+        "default": 100
+      },
+      {
+        "type": "header",
+        "content": "Navigation"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "sidebar_menu",
+        "label": "Drawer menu"
+      },
+      {
+        "type": "link_list",
+        "id": "secondary_menu",
+        "label": "Secondary menu",
+        "info": "This menu won't show dropdown items. For best results, limit the number of links to 1 or 2."
+      },
+      {
+        "type": "select",
+        "id": "menu_open_trigger",
+        "label": "Open dropdown items on...",
+        "info": "Click mode is forced on touch devices.",
+        "options": [
+          {
+            "value": "hover",
+            "label": "Hover"
+          },
+          {
+            "value": "click",
+            "label": "Click"
+          }
+        ],
+        "default": "click"
+      },
+      {
+        "type": "header",
+        "content": "Mobile navigation"
+      },
+      {
+        "type": "select",
+        "id": "opening_from",
+        "label": "Opening from",
+        "options": [
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          }
+        ],
+        "default": "bottom"
+      },
+      {
+        "type": "header",
+        "content": "Desktop"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "info": "When centering navigation, you should limit your links to 5.",
+        "options": [
+          {
+            "value": "logo_left_navigation_inline",
+            "label": "Logo left, navigation inline"
+          },
+          {
+            "value": "logo_left_navigation_center",
+            "label": "Logo left, navigation center"
+          },
+          {
+            "value": "logo_center_navigation_inline",
+            "label": "Logo center, navigation inline"
+          },
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          }
+        ],
+        "default": "logo_left_navigation_inline"
+      },
+      {
+        "type": "header",
+        "content": "Social media",
+        "info": "This will only show in the drawer navigation."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_social_media",
+        "label": "Show social media",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Language selector",
+        "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_locale_selector",
+        "label": "Show language selector",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Country/region selector",
+        "info": "To add a country/region, go to your [markets settings.](/admin/settings/markets). For best user experience, we recommend to keep this setting off and to use the free [Shopify Geolocation app](https://apps.shopify.com/geolocation)."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_country_selector",
+        "label": "Show country/region selector",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_country_flag",
+        "label": "Show country flag",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_country_name",
+        "label": "Show country name",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Transparent header",
+        "info": "Add a section on first position which allows transparent header such as slideshow or image with text overlay."
+      },
+      {
+        "type": "color",
+        "id": "transparent_header_text_color",
+        "label": "Text color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "image_picker",
+        "id": "transparent_logo",
+        "label": "Logo image",
+        "info": "Use the same dimensions as main logo."
+      },
+      {
+        "type": "header",
+        "content": "Appearance"
+      },
+      {
+        "type": "checkbox",
+        "id": "reduce_padding",
+        "label": "Reduce padding",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "background_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Background opacity",
+        "default": 1
+      },
+      {
+        "type": "range",
+        "id": "background_blur_radius",
+        "min": 0,
+        "max": 20,
+        "step": 2,
+        "unit": "px",
+        "label": "Background blur radius",
+        "default": 4
+      }
+    ],
+    "blocks": [
+      {
+        "type": "mega_menu",
+        "name": "Mega menu",
+        "settings": [
+          {
+            "type": "text",
+            "id": "menu_item",
+            "label": "Menu item",
+            "info": "Enter menu item to apply a mega menu dropdown. [Learn more](https://support.maestrooo.com/article/180-navigation-enabling-and-configuring-mega-navigation)."
+          },
+          {
+            "type": "link_list",
+            "id": "menu-mega-list",
+            "label": "Menu",
+            "default": "main-menu"
+          },
+          {
+            "type": "select",
+            "id": "layout",
+            "label": "Layout",
+            "options": [
+              {
+                "value": "horizontal",
+                "label": "Horizontal"
+              },
+              {
+                "value": "horizontal_center",
+                "label": "Horizontal (centered)"
+              },
+              {
+                "value": "drawer",
+                "label": "Drawer"
+              }
+            ],
+            "default": "horizontal"
+          },
+          {
+            "type": "select",
+            "id": "submenu_style",
+            "label": "Submenu",
+            "options": [
+              {
+                "value": "bold_text",
+                "label": "Bold - text only"
+              },
+              {
+                "value": "bold_heading",
+                "label": "Bold - headings only"
+              }
+            ],
+            "default": "bold_heading"
+          },
+          {
+            "type": "header",
+            "content": "Image 1"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image",
+            "info": "1200 x 1200px .jpg recommended"
+          },
+          {
+            "type": "text",
+            "id": "image_heading_1",
+            "label": "Heading"
+          },
+          {
+            "type": "text",
+            "id": "badge_1",
+            "label": "Badge Text"
+          },
+          {
+            "type": "text",
+            "id": "image_subheading_1",
+            "label": "Sub-heading"
+          },
+          {
+            "type": "url",
+            "id": "image_link_1",
+            "label": "Link"
+          },
+          {
+            "type": "color",
+            "id": "image_text_color_1",
+            "label": "Heading",
+            "default": "#ffffff"
+          },
+          {
+            "type": "header",
+            "content": "Image 2"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_2",
+            "label": "Image",
+            "info": "1200 x 1200px .jpg recommended"
+          },
+          {
+            "type": "text",
+            "id": "badge_2",
+            "label": "Badge Text"
+          },
+          {
+            "type": "text",
+            "id": "image_heading_2",
+            "label": "Heading"
+          },
+          {
+            "type": "text",
+            "id": "image_subheading_2",
+            "label": "Sub-heading"
+          },
+          {
+            "type": "url",
+            "id": "image_link_2",
+            "label": "Link"
+          },
+          {
+            "type": "color",
+            "id": "image_text_color_2",
+            "label": "Heading",
+            "default": "#ffffff"
+          },
+          {
+            "type": "header",
+            "content": "Image 3"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_3",
+            "label": "Image",
+            "info": "1200 x 1200px .jpg recommended"
+          },
+          {
+            "type": "text",
+            "id": "badge_3",
+            "label": "Badge Text"
+          },
+          {
+            "type": "text",
+            "id": "image_heading_3",
+            "label": "Heading"
+          },
+          {
+            "type": "text",
+            "id": "image_subheading_3",
+            "label": "Sub-heading"
+          },
+          {
+            "type": "url",
+            "id": "image_link_3",
+            "label": "Link"
+          },
+          {
+            "type": "color",
+            "id": "image_text_color_3",
+            "label": "Heading",
+            "default": "#ffffff"
+          },
+          {
+            "type": "header",
+            "content": "Featured product"
+          },
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "color",
+            "id": "product_card_background",
+            "label": "Card background"
+          },
+          {
+            "type": "color",
+            "id": "product_card_text_color",
+            "label": "Card text"
+          },
+          {
+            "type": "header",
+            "content": "Appearance"
+          },
+          {
+            "type": "select",
+            "id": "promo_content_layout",
+            "label": "Promotional content layout",
+            "info": "To improve readability, layout can be changed automatically depending on the screen size, menu column count and promotional content. [Learn more](https://support.maestrooo.com/article/296-navigation-understanding-impact-mega-menu-strategy)",
+            "options": [
+              {
+                "value": "grid",
+                "label": "Grid"
+              },
+              {
+                "value": "collage",
+                "label": "Collage"
+              },
+              {
+                "value": "carousel",
+                "label": "Carousel"
+              }
+            ],
+            "default": "grid"
+          },
+          {
+            "type": "checkbox",
+            "id": "stretch_promo",
+            "label": "Stretch to fill",
+            "default": false
+          },
+          {
+            "type": "select",
+            "id": "drawer_link_image",
+            "label": "Drawer link image",
+            "options": [
+              {
+                "value": "hide",
+                "label": "Hide"
+              },
+              {
+                "value": "show",
+                "label": "Show product image"
+              }
+            ],
+            "default": "hide"
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+  
