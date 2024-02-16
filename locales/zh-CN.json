@@ -16,7 +16,7 @@
       "read_more": "阅读更多"
     },
     "label": {
-      "color": "Color,Colour",
+      "color": "颜色",
       "white": "白色",
       "size": "尺码"
     },
@@ -79,7 +79,7 @@
       "sold_out_badge": "已售罄",
       "on_sale_badge": "特价",
       "discount_badge_html": "节省 {{ savings }}",
-      "sku": "品號",
+      "sku": "SKU：",
       "variant": "多属性",
       "view_in_space": "在您的空间中查看",
       "taxes_included": "含税。",
@@ -95,9 +95,6 @@
       "close": "关闭图库",
       "zoom": "缩放",
       "error": "无法加载图像"
-    },
-    "total_price": {
-      "label": "订货金额"
     },
     "price": {
       "regular_price": "原价",
@@ -147,7 +144,6 @@
     "faceting": {
       "filters": "筛选条件",
       "filter_and_sort": "筛选和排序",
-      "filter_and_series": "系列搜尋",
       "filter_button": "筛选",
       "clear_filters": "全部清除",
       "apply_filters": "应用",
@@ -417,15 +413,6 @@
         "zero": "此产品尚无评价。",
         "one": "已收到 {{ count }} 条评价。",
         "other": "已收到 {{ count }} 条评价。"
-      }
-    }
-  },
-  "customer_accounts": {
-    "orders": {
-      "order_list": {
-        "filter": {
-          "clear_all": "全部清除"
-        }
       }
     }
   }
