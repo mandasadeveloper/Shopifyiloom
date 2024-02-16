@@ -1,0 +1,414 @@
+<div class="il-scatteredImages il-scatteredImages--{{ section.id }} {% if section.settings.custom-class != blank %}{{ section.settings.custom-class }}{% endif %}">
+  <div class="il-scatteredImages__wrapper">
+    <div class="il-scatteredImages__content">
+      {% if section.settings.tag != blank %}
+        <div class="il-scatteredImages__tagContainer">
+          <p class="il-scatteredImages__tag">{{ section.settings.tag }}</p>
+        </div>
+      {% endif %}
+      <p class="il-scatteredImages__title">{{ section.settings['main-title'] }}</p>
+      <p class="il-scatteredImages__subheading">{{ section.settings.subheading }}</p>
+      <p>__</p>
+      <div class="il-scatteredImages__description">{{ section.settings.description }}</div>
+    </div>
+    <div class="il-scatteredImages__images">
+      <div class="il-scatteredImages__innerWrapper">
+        {% for block in section.blocks %}
+          <div class="il-scatteredImages__imageWrapper">
+            <div class="il-scatteredImages__imageInnerWrapper">
+              {% if block.settings['mobile-image'] != blank %}
+                <picture>
+                  <source media="(max-width:768px)" srcset="{{ block.settings.mobile-image | img_url: "master" }}">
+                  <img class="il-scatteredImages__img" src="{{ block.settings.image | img_url: "master" }}" alt="img">
+                </picture>
+              {% else %}
+                <img class="il-scatteredImages__img" src="{{ block.settings.image | img_url: "master" }}" alt="img">
+              {% endif %}
+              <p class="il-scatteredImages__imageText">{{ block.settings.text }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="il-scatteredImages__descriptionMobile">
+        <div class="il-scatteredImages__description">{{ section.settings.description }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .il-scatteredImages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 48px;
+  }
+
+  .il-scatteredImages--{{ section.id }} {
+    background: {{ section.settings.bg-color }};
+  }
+
+  .il-scatteredImages__wrapper {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0;
+  }
+
+  .il-scatteredImages__content {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .il-scatteredImages__tagContainer {
+    display: flex;
+    padding: 9px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 30px;
+    background: var(--color-primary);
+  }
+
+  .il-scatteredImages__tag {
+    color: var(--color-white);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-400);
+    font-style: normal;
+    line-height: normal;
+    text-transform: var(--text-capitalize);
+    letter-spacing: 1px;
+  }
+
+  .il-scatteredImages__title {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-30);
+    font-weight: var(--font-weight-500);
+    text-transform: var(--text-capitalize);
+    line-height: 1;
+    letter-spacing: 3px;
+    padding: 30px 0 24px;
+  }
+
+  .il-scatteredImages__subheading {
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-400);
+    text-transform: var(--text-capitalize);
+    line-height: normal;
+    word-break: break-all;
+  }
+
+  .il-scatteredImages__description {
+    margin-top: 20px;
+  }
+
+  .il-scatteredImages__description ul {
+    padding-left: 20px;
+  }
+
+  .il-scatteredImages__description li {
+    list-style-type: square;
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-400);
+    text-transform: var(--text-capitalize);
+  }
+
+  .il-scatteredImages__images {
+    flex-basis: 56.85%;
+  }
+
+  .il-scatteredImages__innerWrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    height: 737px;
+  }
+
+  .il-scatteredImages__imageWrapper {
+    width: calc(50% - 10px);
+  }
+
+  .il-scatteredImages__imageInnerWrapper {
+    position: relative;
+  }
+
+  .il-scatteredImages__imageWrapper:first-child {
+    width: 36.2%;
+    align-self: end;
+  }
+
+  .il-scatteredImages__imageWrapper:last-child {
+    width: 61.1%;
+  }
+
+  .il-scatteredImages__imageWrapper .il-scatteredImages__img {
+    width: 100%;
+    height: auto;
+  }
+
+  .il-scatteredImages__imageWrapper .il-scatteredImages__imageText {
+    position: absolute;
+    bottom: 0;
+    left: 100%;
+    transform: translateX(-34%)rotate(-90deg);
+    margin: 0;
+    color: var(--color-black);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-400);
+    text-transform: var(--text-capitalize);
+    line-height: normal;
+    white-space: nowrap;
+  }
+
+  .il-scatteredImages__imageWrapper:first-child .il-scatteredImages__imageText {
+    bottom: 30px;
+  }
+
+  .il-scatteredImages__imageWrapper:last-child .il-scatteredImages__imageText {
+    bottom: 45px;
+  }
+
+  .il-scatteredImages.il-scatteredImage--bottom .il-scatteredImages__innerWrapper {
+    height: unset;
+  }
+
+  .il-scatteredImages.il-scatteredImage--bottom .il-scatteredImages__imageWrapper:last-child {
+    width: 100%;
+  }
+
+  .il-scatteredImages__descriptionMobile {
+    display: none;
+  }
+
+  @media (max-width: 1300px) {
+    .il-scatteredImages__innerWrapper {
+      height: 600px;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .il-scatteredImages__innerWrapper {
+      height: 500px;
+    }
+  }
+
+  @media (max-width: 950px) {
+    .il-scatteredImages__innerWrapper {
+      height: 400px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .il-scatteredImages {
+      padding: 0px;
+    }
+    .il-scatteredImages__wrapper {
+      flex-direction: column;
+      padding: 32px 20px 40px;
+    }
+
+    .il-scatteredImages__content {
+      align-items: center;
+      flex-basis: 100%;
+    }
+
+    .il-scatteredImages__tagContainer {
+      padding: 8px 12px;
+    }
+
+    .il-scatteredImages__tag {
+      font-size: var(--font-size-10);
+    }
+
+    .il-scatteredImages__title {
+      font-size: var(--font-size-18);
+      font-weight: var(--font-weight-400);
+      line-height: 1;
+      letter-spacing: 1.8px;
+      padding: 12px 0 14px;
+    }
+
+    .il-scatteredImages__subheading {
+      font-size: var(--font-size-12);
+    }
+
+    .il-scatteredImages__description {
+      margin-top: 20px;
+    }
+
+    .il-scatteredImages__description ul {
+      padding-left: 20px;
+    }
+
+    .il-scatteredImages__description li {
+      list-style-type: square;
+      font-size: var(--font-size-12);
+    }
+
+    .il-scatteredImages__images {
+      flex-basis: 100%;
+    }
+
+    .il-scatteredImages__subheading {
+      text-align: center;
+    }
+
+    .il-scatteredImages__innerWrapper {
+      height: unset;
+    }
+
+    .il-scatteredImages.il-scatteredImage--bottom .il-scatteredImages__innerWrapper {
+      margin-right: unset;
+    }
+
+    .il-scatteredImages__innerWrapper {
+      flex-wrap: nowrap;
+      height: unset;
+      margin-right: -20px;
+      overflow: scroll;
+      gap: 0;
+    }
+
+    .il-scatteredImages.il-scatteredImage--bottom .il-scatteredImages__images {
+      margin-top: 24px;
+    }
+
+    .il-scatteredImages__imageWrapper:first-child {
+      width: 100%;
+      align-self: end;
+    }
+
+    .il-scatteredImages__imageWrapper:last-child {
+      width: 100%;
+    }
+
+    .il-scatteredImages__imageWrapper .il-scatteredImages__imageText {
+      position: static;
+      transform: unset;
+      margin-top: 12px;
+      font-size: var(--font-size-10);
+    }
+
+    .il-scatteredImages__imageWrapper {
+      text-align: center;
+      flex: none;
+    }
+
+    .il-scatteredImages.il-scatteredImage--bottom .il-scatteredImages__content {
+      align-items: flex-start;
+    }
+
+    .il-scatteredImages.il-scatteredImage--bottom .il-scatteredImages__subheading {
+      text-align: left;
+    }
+
+    .il-scatteredImages.il-scatteredImage--top .il-scatteredImages__description {
+      display: none;
+    }
+
+    .il-scatteredImages.il-scatteredImage--bottom .il-scatteredImages__descriptionMobile {
+      display: none;
+    }
+
+    .il-scatteredImages.il-scatteredImage--top .il-scatteredImages__descriptionMobile,
+    .il-scatteredImages.il-scatteredImage--top .il-scatteredImages__descriptionMobile .il-scatteredImages__description {
+      display: block;
+    }
+
+    .il-scatteredImages.il-scatteredImage--top .il-scatteredImages__imageWrapper {
+      max-width: 287px;
+      margin-right: 20px;
+    }
+
+    .il-scatteredImages__innerWrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .il-scatteredImages.il-scatteredImage--bottom .il-scatteredImages__title {
+      font-size: var(--font-size-14);
+    }
+
+    .il-scatteredImages__subheading + p {
+      margin-bottom: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Scattered Image with Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Tag"
+    },
+    {
+      "type": "text",
+      "id": "main-title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sub-heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Background Color",
+      "default": "#BEB7B1"
+    },
+    {
+      "type": "text",
+      "id": "custom-class",
+      "label": "Custom Class"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "image With Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile-image",
+          "label": "Mobile Image",
+          "info": "optional"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scattered Image with Text"
+    }
+  ]
+}
+{% endschema %}

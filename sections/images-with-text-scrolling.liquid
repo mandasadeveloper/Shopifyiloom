@@ -19,95 +19,267 @@
   }
 </style>
 
-<div {% render 'section-properties', narrow: true %}>
-  {%- comment -%}
-  ----------------------------------------------------------------------------------------------------------------------
-  MOBILE VARIATION
-  ----------------------------------------------------------------------------------------------------------------------
-  {%- endcomment -%}
-  <images-with-text-scrolling class="images-scrolling-mobile scroll-area bleed sm:unbleed">
-    {%- for block in section.blocks -%}
-      <div class="images-scrolling-mobile__item snap-start" {{ block.shopify_attributes }}>
-        {%- if block.settings.image != blank -%}
-          {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 740px) 100vw, 650px', widths: '200,300,400,600,800,1000,1200,1400,1600', class: 'rounded-sm' -}}
-        {%- else -%}
-          {%- capture image_placeholder -%}product-{%- cycle '1', '2', '3', '4' -%}{%- endcapture -%}
-          {{- image_placeholder | placeholder_svg_tag: 'placeholder' -}}
-        {%- endif -%}
+{% assign productEvent = product.metafields.custom.product_launch_event.value %}
+{% liquid
+  assign now = 'now' | date: '%Y-%m-%dT%H:%M'
+%}
 
-        <div class="images-scrolling__content">
-          {%- if section.settings.show_counter -%}
-            <span class="images-scrolling__counter bold">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
-          {%- endif -%}
+<div class="il-imageTextScroll{% if productEvent.end_date < now %} il-imageTextScroll--hidden{% endif %}">
+  <div {% render 'section-properties', narrow: true %}>
+    {%- comment -%}
+    ----------------------------------------------------------------------------------------------------------------------
+    MOBILE VARIATION
+    ----------------------------------------------------------------------------------------------------------------------
+    {%- endcomment -%}
+    <images-with-text-scrolling class="images-scrolling-mobile scroll-area bleed sm:unbleed{% if section.settings.custom_class != blank %} {{ section.settings.custom_class }}{% endif %}">
+      {%- for block in section.blocks -%}
+        <div class="images-scrolling-mobile__item snap-start" {{ block.shopify_attributes }}>
+          {% if block.settings.video != blank %}
+            <div class="images-scrolling-mobile__videoWrap">
+              <video 
+                class="images-scrolling-mobile__video"
+                loop
+                controls
+                playsinline
+                {% if section.settings.poster_image != blank %}
+                  poster="{{ block.settings.poster_image | img_url: 'master' }}" 
+                {% endif %}
+              >
+                <source src="{{ block.settings.video.sources[1].url }}" type="video/mp4">
+              </video>
+            </div>
+          {% else %}
+            <div Class="images-scrolling-mobile__image ">
+            {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 740px) 100vw, 650px', widths: '200,300,400,600,800,1000,1200,1400,1600', class: 'rounded-sm' -}}
+            </div>
+          {% endif %}
 
-          <div class="prose" style="--images-scrolling-item-icon-width: {{ block.settings.icon_width }}px">
-            {%- if block.settings.custom_icon != blank -%}
-              {%- capture sizes -%}{{ block.settings.icon_width }}px{%- endcapture -%}
-              {%- capture widths -%}{{ block.settings.icon_width }}, {{ block.settings.icon_width | times: 2 | at_most: block.settings.custom_icon.width }}{%- endcapture -%}
-              {{- block.settings.custom_icon | image_url: width: block.settings.custom_icon.width | image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: 'images-scrolling__icon' -}}
-            {%- elsif block.settings.icon != 'none' -%}
-              {%- render 'icon' with block.settings.icon, width: block.settings.icon_width, height: block.settings.icon_width, class: 'images-scrolling__icon' -%}
-            {%- endif -%}
+          <div class="images-scrolling__content">
+            {% if block.settings.sub_title != blank %}
+              <div class="image-srolling__content--subTitleWrap">
+                {%- if section.settings.show_counter -%}
+                  <span class="images-scrolling__counter text-p text-p--16">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+                {%- endif -%}
+                <h4 classs="image-srolling__content--subTitle text-p text-p--16">
+                  {{ block.settings.sub_title }}
+                </h4>
+              </div>
+            {% endif %}
 
-            {%- if block.settings.title != blank -%}
-              <p class="h1" {% if settings.heading_apparition != 'none' %}reveal-on-scroll="true"{% endif %}>
-                {%- render 'styled-text', content: block.settings.title, text_color: section.settings.heading_color, gradient: section.settings.heading_gradient, apparition_effect: true -%}
-              </p>
-            {%- endif -%}
+            <div class="prose" style="--images-scrolling-item-icon-width: {{ block.settings.icon_width }}px">
+              {%- if block.settings.custom_icon != blank -%}
+                {%- capture sizes -%}{{ block.settings.icon_width }}px{%- endcapture -%}
+                {%- capture widths -%}{{ block.settings.icon_width }}, {{ block.settings.icon_width | times: 2 | at_most: block.settings.custom_icon.width }}{%- endcapture -%}
+                {{- block.settings.custom_icon | image_url: width: block.settings.custom_icon.width | image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: 'images-scrolling__icon' -}}
+              {%- elsif block.settings.icon != 'none' -%}
+                {%- render 'icon' with block.settings.icon, width: block.settings.icon_width, height: block.settings.icon_width, class: 'images-scrolling__icon' -%}
+              {%- endif -%}
 
-            {{- block.settings.content -}}
+              {%- if block.settings.title != blank -%}
+                <p class="h1" {% if settings.heading_apparition != 'none' %}reveal-on-scroll="true"{% endif %}>
+                  {%- render 'styled-text', content: block.settings.title, text_color: section.settings.heading_color, gradient: section.settings.heading_gradient, apparition_effect: true -%}
+                </p>
+              {%- endif -%}
+
+              <div class="images-scrolling__contentWrap">
+                {{- block.settings.content -}}
+              </div>
+            </div>
           </div>
         </div>
+      {%- endfor -%}
+    </images-with-text-scrolling>
+
+    {%- comment -%}
+    ----------------------------------------------------------------------------------------------------------------------
+    DESKTOP VARIATION
+    ----------------------------------------------------------------------------------------------------------------------
+    {%- endcomment -%}
+    <images-with-text-scrolling scrolling-experience="{{ section.settings.desktop_image_effect }}" class="images-scrolling-desktop{% if section.settings.custom_class != blank %} {{ section.settings.custom_class }}{% endif %}">
+      <div class="images-scrolling-desktop__content-list">
+        {%- for block in section.blocks -%}
+          <div class="images-scrolling__content {% unless forloop.first %}opacity-0{% endunless %}">
+            {% if block.settings.sub_title != blank %}
+              <div class="image-srolling__content--subTitleWrap">
+                {%- if section.settings.show_counter -%}
+                  <span class="images-scrolling__counter text-p text-p--16">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+                {%- endif -%}
+                <h4 classs="image-srolling__content--subTitle text-p text-p--16">
+                  {{ block.settings.sub_title }}
+                </h4>
+              </div>
+            {% endif %}
+
+            <div class="prose" style="--images-scrolling-item-icon-width: {{ block.settings.icon_width }}px">
+              {%- if block.settings.custom_icon != blank -%}
+                {%- capture sizes -%}{{ block.settings.icon_width }}px{%- endcapture -%}
+                {%- capture widths -%}{{ block.settings.icon_width }}, {{ block.settings.icon_width | times: 2 | at_most: block.settings.custom_icon.width }}{%- endcapture -%}
+                {{- block.settings.custom_icon | image_url: width: block.settings.custom_icon.width | image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: 'images-scrolling__icon' -}}
+              {%- elsif block.settings.icon != 'none' -%}
+                {%- render 'icon' with block.settings.icon, width: block.settings.icon_width, height: block.settings.icon_width, class: 'images-scrolling__icon' -%}
+              {%- endif -%}
+
+              {%- if block.settings.title != blank -%}
+                <p class="h1" {% if settings.heading_apparition != 'none' %}reveal-on-scroll="true"{% endif %}>
+                  {%- render 'styled-text', content: block.settings.title, text_color: section.settings.heading_color, gradient: section.settings.heading_gradient, apparition_effect: true -%}
+                </p>
+              {%- endif -%}
+
+              <div class="images-scrolling__contentWrap">
+                {{- block.settings.content -}}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
       </div>
-    {%- endfor -%}
-  </images-with-text-scrolling>
 
-  {%- comment -%}
-  ----------------------------------------------------------------------------------------------------------------------
-  DESKTOP VARIATION
-  ----------------------------------------------------------------------------------------------------------------------
-  {%- endcomment -%}
-  <images-with-text-scrolling scrolling-experience="{{ section.settings.desktop_image_effect }}" class="images-scrolling-desktop">
-    <div class="images-scrolling-desktop__content-list">
-      {%- for block in section.blocks -%}
-        <div class="images-scrolling__content {% unless forloop.first %}opacity-0{% endunless %}">
-          {%- if section.settings.show_counter -%}
-            <span class="images-scrolling__counter bold">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
-          {%- endif -%}
-
-          <div class="prose" style="--images-scrolling-item-icon-width: {{ block.settings.icon_width }}px">
-            {%- if block.settings.custom_icon != blank -%}
-              {%- capture sizes -%}{{ block.settings.icon_width }}px{%- endcapture -%}
-              {%- capture widths -%}{{ block.settings.icon_width }}, {{ block.settings.icon_width | times: 2 | at_most: block.settings.custom_icon.width }}{%- endcapture -%}
-              {{- block.settings.custom_icon | image_url: width: block.settings.custom_icon.width | image_tag: loading: 'lazy', sizes: sizes, widths: widths, class: 'images-scrolling__icon' -}}
-            {%- elsif block.settings.icon != 'none' -%}
-              {%- render 'icon' with block.settings.icon, width: block.settings.icon_width, height: block.settings.icon_width, class: 'images-scrolling__icon' -%}
-            {%- endif -%}
-
-            {%- if block.settings.title != blank -%}
-              <p class="h1" {% if settings.heading_apparition != 'none' %}reveal-on-scroll="true"{% endif %}>
-                {%- render 'styled-text', content: block.settings.title, text_color: section.settings.heading_color, gradient: section.settings.heading_gradient, apparition_effect: true -%}
-              </p>
-            {%- endif -%}
-
-            {{- block.settings.content -}}
-          </div>
-        </div>
-      {%- endfor -%}
-    </div>
-
-    <div class="images-scrolling-desktop__media-wrapper">
-      {%- for block in section.blocks -%}
-        {%- if block.settings.image != blank -%}
-          {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 740px) 100vw, 650px', widths: '200,300,400,600,800,1000,1200,1400,1600', class: 'rounded-sm' -}}
-        {%- else -%}
-          {%- capture image_placeholder -%}product-{%- cycle '1', '2', '3', '4' -%}{%- endcapture -%}
-          {{- image_placeholder | placeholder_svg_tag: 'placeholder' -}}
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-  </images-with-text-scrolling>
+      <div class="images-scrolling-desktop__media-wrapper">
+        {%- for block in section.blocks -%}
+          {% if block.settings.video != blank %}
+            <div class="images-scrolling-desktop__videoWrap">
+              <video 
+                class="images-scrolling-desktop__video"
+                loop
+                controls
+                playsinline
+                {% if section.settings.poster_image != blank %}
+                  poster="{{ block.settings.poster_image | img_url: 'master' }}" 
+                {% endif %}
+              >
+                <source src="{{ block.settings.video.sources[1].url }}" type="video/mp4">
+              </video>
+            </div>
+          {% else %}
+            <div class="il-imageBanner__imageWrap">
+              {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 740px) 100vw, 650px', widths: '200,300,400,600,800,1000,1200,1400,1600', class: 'rounded-sm' -}}
+            </div>
+          {% endif %}
+        {%- endfor -%}
+      </div>
+    </images-with-text-scrolling>
+  </div>
 </div>
+
+<style>
+  .il-imageTextScroll {
+    padding: 60px 0;
+  }
+
+  .image-srolling__content--subTitleWrap .images-scrolling__counter:before {
+    content: none;
+  }
+
+  .image-srolling__content--subTitleWrap .images-scrolling__counter {
+    position: relative;
+  }
+
+  .image-srolling__content--subTitleWrap .images-scrolling__counter:after {
+    content: '.';
+    position: absolute;
+    right: -5px;
+  }
+
+  .image-srolling__content--subTitleWrap {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-family: var(--font-secondary);
+  }
+
+  .template-product .images-scrolling__content .h1 {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-28);
+    font-weight: var(--font-weight-500);
+    line-height: normal;
+  }
+
+  .template-product .images-scrolling__content .images-scrolling__contentWrap {
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-16);
+    font-style: normal;
+    font-weight: var(--font-weight-400);
+    line-height: 26px;
+    color: var( --color-primary);
+    margin-top: 24px;
+  }
+
+  .template-product .images-scrolling__content {
+    display: block;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .template-product .shopify-section--images-and-text-scrolling .section {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .il-imageTextScroll--hidden {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .il-imageTextScroll {
+      padding: 40px 0;
+    }
+
+    .image-srolling__content--subTitleWrap .images-scrolling__counter,
+    .image-srolling__content--subTitleWrap .image-srolling__content--subTitle {
+      font-size: var(--font-size-12);
+      line-height: normal;
+    }
+
+    .template-product .images-scrolling__content .h1 {
+      font-size: var(--font-size-18);
+      line-height: normal;
+    }
+
+    .template-product .images-scrolling__content .images-scrolling__contentWrap {
+      font-size: var(--font-size-14);
+      line-height: 24px;
+      margin-top: 12px;
+    }
+
+    .template-product .images-scrolling-mobile__item {
+      gap: 20px;
+    }
+
+    .template-product .image-srolling__content--subTitleWrap {
+      margin-bottom: 8px;
+      font-size: var(--font-size-12);
+    }
+
+    .template-product .images-scrolling-product .images-scrolling-mobile__image {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    .template-product .images-scrolling-product .rounded-sm {
+      height: 270px;
+      border-radius: 0px;
+    } 
+
+    .template-product .images-scrolling-mobile__videoWrap {
+      position: relative;
+      padding-bottom: 98%;
+      overflow: hidden;
+      width: 100%;
+    }
+  
+    .template-product .images-scrolling-mobile__videoWrap .images-scrolling-mobile__video {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+
+    .template-product .images-scrolling__content .images-scrolling__contentWrap {
+      word-break: auto-phrase;
+    }
+  }
+</style>
 
 {% schema %}
 {
@@ -199,6 +371,11 @@
       "type": "color_background",
       "id": "heading_gradient",
       "label": "Heading gradient"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom Class"
     }
   ],
   "blocks": [
@@ -211,6 +388,17 @@
           "id": "image",
           "label": "Image",
           "info": "1200 x 1600px .jpg recommended"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video",
+          "info": "If you add video then image will be exclude"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_image",
+          "label": "Video Poster Image"
         },
         {
           "type": "select",
@@ -494,6 +682,11 @@
           "unit": "px",
           "label": "Icon width",
           "default": 48
+        },
+        {
+          "type": "text",
+          "id": "sub_title",
+          "label": "Sub Title"
         },
         {
           "type": "text",
