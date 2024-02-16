@@ -3021,6 +3021,7 @@ margin-top: 20px
   font-weight: 500;
   line-height: 14.63px;
   letter-spacing: 1.2px;
+    overflow-wrap:anywhere;
   }
   .reversed-link-m{
   color: #3C3C3C;
