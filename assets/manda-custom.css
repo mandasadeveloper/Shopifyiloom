@@ -1413,16 +1413,6 @@
   .dot-mob-m{
   display:none;
   }
-  .manda-cart .price-m-cart{
-  display: flex;
-  justify-content: space-around;
-  height: 163px;
-  
-  }
-  
-  .blog-post-card-related .m-tags{
-  /* margin-top: 25px; */
-  }
   #m-loadMore-news{
   display:none;
   }
