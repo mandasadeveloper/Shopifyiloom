@@ -69,8 +69,8 @@
     "general": {
       "description": "說明",
       "view_product": "查看產品",
-      "quick_add": "+ 快速新增",
-      "add_to_cart_short": "+ 新增",
+      "quick_add": "Cart",
+      "add_to_cart_short": " 新增",
       "add_to_cart_button": "加入購物車",
       "pre_order_button": "預購",
       "sold_out_button": "已售完",

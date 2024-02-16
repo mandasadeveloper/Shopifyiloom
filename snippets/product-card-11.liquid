@@ -37,7 +37,7 @@ Supported variables
 {%- assign card_text_color = text_color | default: settings.product_card_text_color -%}
 
 {%- if section_background != 'rgba(0,0,0,0)' and card_background != 'rgba(0,0,0,0)' and section_background != card_background -%}
-  {%- assign card_class = 'product-card ' -%}
+  {%- assign card_class = 'product-card' -%}
 {%- else -%}
   {%- assign card_class = 'product-card product-card--blends ' -%}
 {%- endif -%}
@@ -46,7 +46,7 @@ Supported variables
   {%- assign card_class = card_class | append: 'product-card--show-secondary-media' -%}
 {%- endif -%}
 
-<product-card handle="{{ product.handle | escape }}" {% if reveal %}reveal-js{% endif %} {% render 'surface', class: card_class, background: card_background, text_color: card_text_color %}>
+<product-card class="product-card11" handle="{{ product.handle | escape }}" {% if reveal %}reveal-js{% endif %} {% render 'surface', class: card_class , background: card_background, text_color: card_text_color %}>
   {%- comment -%}
   --------------------------------------------------------------------------------------------------------------------
   PRODUCT BADGES
@@ -62,7 +62,20 @@ Supported variables
   PRODUCT MEDIA
   --------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
-
+   <!-- mk-mds -->
+    {% if product.metafields.custom.product_wish_button %}
+      <button
+        class="product_card__outOfStock text-p text-p--12"
+        data-product-id="{{ product.id }}"
+        data-product-name="{{ product.title }}"
+        data-gtag-manager
+      >
+        我想買
+      </button>
+    {% else %}
+      <a href="javascript:void(0)" class="il-productCard__wishList">{% render 'icon' with 'wishlist-new' %}</a>
+    {% endif %}
+     <!-- end-mk-mds -->
   {%- if product.media.size > 0 -%}
     <div class="product-card__figure">
       <a href="{{ product.url }}" data-instant>
@@ -93,7 +106,7 @@ Supported variables
 
               <div class="pointer-fine:hidden">
                 <button type="submit" is="custom-button" class="product-card__mobile-quick-buy-button" aria-label="{{ quick_add_label | escape }}">
-                  {%- render 'icon' with 'quick-buy-cart' -%}
+                 {{ quick_add_label }}
                 </button>
               </div>
 
@@ -106,7 +119,8 @@ Supported variables
 
             <div class="pointer-fine:hidden">
               <button type="button" aria-controls="{{ quick_buy_id }}" aria-expanded="false" aria-label="{{ quick_add_label | escape }}" is="custom-button" class="product-card__mobile-quick-buy-button">
-                {%- render 'icon' with 'quick-buy-cart' -%}
+               {% comment %} {%- render 'icon' with 'quick-buy-cart' -%} {% endcomment %}
+              {{ quick_add_label }}
               </button>
             </div>
 
@@ -129,10 +143,11 @@ Supported variables
   --------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
-  <div class="product-card__info {% if text_alignment == 'center' %}product-card__info--center{% endif %}">
+  <div class="prd_info-mm tt product-card__info m-vandor {% if text_alignment == 'center' %}product-card__info--center{% endif %}">
+  {% comment %}
     {%- if show_vendor and product.vendor != blank -%}
       {%- if show_rating and text_alignment != 'center' -%}
-        <div class="rating-with-text w-full">
+        <div class="rating-with-text gg w-full">
           {%- render 'vendor' with product.vendor, class: 'text-xs' -%}
 
           {%- capture rating_class -%}{% if mobile_reduced %}hidden sm:flex{% endif %}{%- endcapture -%}
@@ -142,6 +157,26 @@ Supported variables
         {%- render 'vendor' with product.vendor, class: 'text-xs' -%}
       {%- endif -%}
     {%- endif -%}
+    {% endcomment %}
+    <div class="cus_m">
+        {% capture series_tags %}
+        {%- for tag in product.tags -%}
+          {%- if tag contains "series:" -%}
+            {%- assign tag_split = tag | split: 'series:' -%}
+            /{{- tag_split[1] | strip -}}
+          {%- endif -%}
+        {%- endfor -%}
+        {% endcapture %}
+        <p>{{- series_tags | strip | remove_first: '/' -}}</p>
+        {% comment %}
+        {% for tag in product.tags %}
+            {% if tag contains "series:" %}
+              {% assign tag_split = tag | split: 'series:' %}
+               <span>{{ tag_split[1] }}</span>
+            {% endif %}
+        {% endfor %}
+        {% endcomment %}
+         </div>
 
     <div class="v-stack gap-0.5 w-full {% if text_alignment == 'center' %}justify-items-center{% endif %}">
       {%- if show_rating and show_vendor == false or product.vendor == blank -%}
@@ -154,10 +189,11 @@ Supported variables
           {%- endif -%}
         </div>
       {%- else -%}
-        <span class="product-card__title"><a href="{{ product.url }}" class="bold" data-instant>{{ product.title }}</a></span>
+        <span class="product-card__title"><a href="{{ product.url }}" class="bold1" data-instant>{{ product.title }}</a></span>
       {%- endif -%}
 
-      {%- render 'price-list', product: product, text_alignment: text_alignment -%}
+      {%- render 'price-list-1', product: product, text_alignment: text_alignment -%}
+  
     </div>
 
     {%- if show_rating and mobile_reduced or text_alignment == 'center' -%}
@@ -223,10 +259,11 @@ Supported variables
     {%- endif -%}
   </div>
 </product-card>
-
-<style>
- :checked+.color-swatch:before, .color-swatch.is-selected:before {
-    opacity: 1!important;
-    transform: scale(1)!important;
+{% style %}
+  .product-card11{
+    display:none;
+  }
+  .prd_info-mm.tt.product-card__info.m-vandor {
+    padding-top: 15px;
 }
-</style>
+{% endstyle %}

@@ -76,7 +76,7 @@
       </div>
 
       {%- paginate search.results by section.settings.products_per_page -%}
-        <div class="collection {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %}">
+        <div class="collection {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %} product-list-desktop m-serch-mgt">
           {%- if show_filters or section.settings.show_sort_by -%}
             {%- comment -%}
               IMPLEMENTATION NOTE: we have to output the drawer no matter what, as it is used on mobile (all the time) or desktop (when in drawer mode)
@@ -147,6 +147,86 @@
           {%- render 'pagination', paginate: paginate, facet: true, class: 'collection__pagination' -%}
         </div>
       {%- endpaginate -%}
+
+
+
+<div class="collection {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %} product-list-mobile">
+          {%- if show_filters or section.settings.show_sort_by -%}
+            {%- comment -%}
+              IMPLEMENTATION NOTE: we have to output the drawer no matter what, as it is used on mobile (all the time) or desktop (when in drawer mode)
+            {%- endcomment -%}
+
+            <facet-drawer header-bordered id="facets-drawer" class="facets-drawer drawer" open-from="left">
+              <p class="h5" slot="title">{{ 'collection.faceting.filters' | t }}</p>
+              {%- render 'facets-vertical', results: search, show_filters: true, show_sort_by: section.settings.show_sort_by, update_on_change: false -%}
+            </facet-drawer>
+
+            {%- if section.settings.filter_layout == 'horizontal' -%}
+              {%- render 'collection-top-bar', results: search, show_filters: show_filters, show_active_filters: show_filters, show_sort_by: section.settings.show_sort_by -%}
+            {%- else -%}
+              {%- render 'collection-top-bar', results: search, show_filters: false, show_active_filters: show_filters, show_sort_by: section.settings.show_sort_by -%}
+            {%- endif -%}
+
+            {%- comment -%}We also need to render the button, that is floating on mobile{%- endcomment -%}
+            <facet-floating-filter class="facets__floating-filter md:hidden">
+              {%- assign filter_label = 'collection.faceting.filter_and_sort' | t -%}
+              {%- render 'button', size: 'xl', content: filter_label, icon: 'filter', style: 'fill', background: settings.text_color, text_color: settings.background, aria_controls: 'facets-drawer' -%}
+            </facet-floating-filter>
+          {%- endif -%}
+
+          {%- if show_filters and section.settings.filter_layout == 'sidebar' -%}
+            <div class="collection__facets">
+              <safe-sticky class="collection__facets-scroller">
+                {%- render 'facets-vertical', results: search, show_filters: true, show_sort_by: false, update_on_change: true -%}
+              </safe-sticky>
+            </div>
+          {%- endif -%}
+
+          <div class="collection__results" show-mobile-search="{{ section.settings.articles_per_page1 }}">
+            {%- if search.results_count == 0 -%}
+              <div class="empty-state">
+                <div class="empty-state__icon-wrapper">
+                  {%- render 'icon' with 'picto-stop', width: 32, height: 32, stroke_width: 1 -%}
+                  <span class="count-bubble count-bubble--lg">0</span>
+                </div>
+
+                <div class="prose">
+                  <p class="h5">{{ 'collection.faceting.no_results' | t }}</p>
+
+                  {%- assign button_content = 'collection.faceting.clear_filters' | t -%}
+                  {%- render 'button', href: collection.url, is: 'facet-link', size: 'xl', content: button_content -%}
+                </div>
+              </div>
+            {%- else -%}
+              <div class="v-stack gap-6">
+                <div class="v-stack gap-4 md:hidden">
+                  {%- comment -%}We have to duplicate some information on mobile and tablet here{%- endcomment -%}
+                  {%- render 'active-facets', results: search -%}
+                </div>
+
+                <reveal-items selector=".product-list > *">
+                  <product-list class="product-list " role="region" aria-live="polite">
+                    {%- assign product_results = search.results | where: 'object_type', 'product' -%}
+
+                    {%- for product in product_results -%}
+                      {%- render 'product-card-11', product: product, stacked: true, show_badges: true -%}
+                    {%- endfor -%}
+                  </product-list>
+                </reveal-items>
+            
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+
+{% assign pagg = section.settings.articles_per_page1 | plus: 1 %}
+{% if search.results_count > pagg  %} 
+  <div id="m-loadMore-search"><a href="#">More<span>{% render 'down-arrow' %}</span></a></div>
+{% endif %}
+
+
+
+      
     </div>
   {%- else -%}
     <div class="empty-state bbbg">
