@@ -3399,6 +3399,10 @@ margin-top: 13px
   color:white;
   }
   @media screen and (max-width: 767px){
+  .m-search-drawer .m-text-subduedd {
+    font-size: 16px !important;
+    line-height: 24px !important;
+}
     .m-search-drawer .m-blog-cus .m-blog-art {
     font-size: 14px;
 }
