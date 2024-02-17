@@ -3961,7 +3961,7 @@ line-height: 256.3%;
 .idle-cus .predictive-search-result {
     margin-bottom: 25px;
 }
-.blog-banner .m-blog-filter-list li[aria-selected=true]{
+.blog-banner .m-blog-filter-list li[aria-selected=true] a{
   background-color: #3c3c3c;
     color: white;
 }
