@@ -3990,6 +3990,6 @@ svg.page-m-next {
   color: white;
 }
 .m-overlay_content{
-  color: white;
+  color: white!important;
 }
 /* after merge */
