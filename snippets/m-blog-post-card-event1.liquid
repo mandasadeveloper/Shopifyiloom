@@ -341,7 +341,7 @@ Supported parameters
         {{- article.image | image_url: width: article.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '300,400,500,600,800,1000,1200,1400,1600,1800,2000', class: 'w-full h-full object-cover zoom-image zoom-image1' -}}
      {% if event_m_utc == current_date_utc %}
       <div class="content-details">
-        <h3 class="content-title">{{ article.metafields.custom.event_third_tag_text.value }}</h3>
+        <h3 class="content-title m-overlay_content">{{ article.metafields.custom.event_third_tag_text.value }}</h3>
       </div>
       {% endif %}
       </a>
