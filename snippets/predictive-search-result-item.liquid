@@ -19,9 +19,9 @@ Supported variables
   
     {%- assign product = item -%}
 
-    <a href="{{ product.url }}" data-instant class="predictive-search-result group pro-r-m">
+    <a href="{{ product.url }}" data-instant class="predictive-search-result group pro-r-m rr">
       {%- if product.featured_media -%}
-        {{- product.featured_media | image_url: width: product.featured_media.width | image_tag: sizes: '96px', widths: '96,192' -}}
+        <img src="{{ product.featured_media | img_url: 'master' }}" width="auto" height="auto">
       {%- endif -%}
 
       <div class="v-stack gap-1 sm:gap-1.5">
@@ -30,15 +30,24 @@ Supported variables
         {%- endif -%}
 
         <div class="v-stack m-pro-cus justify-items-start gap-0.5">
-   <span class="mm-vendor hh">
-        {% for tag in product.tags %}
-        {% if tag contains "series:" %}
-          {% assign tag_split = tag | split: 'series:' %}
-           <p>{{ tag_split[1] }}</p>
-        {% endif %}
-      {% endfor %}
-       <!-- {{ product.vendor }} -->
-               </span>
+          <!-- mk-mds  -->
+         <span class="mm-vendor hh">
+          {% capture series_tags %}
+            {% for tag in product.tags %}
+              {% if tag contains "series:" %}
+                {% assign tag_split = tag | split: 'series:' %}
+                {% if forloop.first %}
+                  {{ tag_split[1] }}
+                {% else %}
+                  /{{ tag_split[1] }}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% endcapture %}
+          {{ series_tags | strip }}
+           <!-- {{ product.vendor }} -->
+         </span>
+         <!-- end-mk-mds  -->
           <span class="bold">
             <span class="reversed-link">{{ product.title }}</span>
           </span>
@@ -154,6 +163,7 @@ Supported variables
     <a href="{{ collection.url }}" data-instant class="predictive-search-result group">
       {%- if collection.featured_image -%}
         {{- collection.featured_image | image_url: width: collection.featured_image.width | image_tag: sizes: '96px', widths: '96,192' -}}
+        <!-- <img src="{{ collection.featured_image | img_url: 'master' }}" width="auto" height="auto"> -->
       {%- endif -%}
 
       <div class="v-stack justify-items-start gap-0.5">
