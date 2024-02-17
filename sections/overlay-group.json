@@ -5,11 +5,20 @@
     "newsletter-popup": {
       "type": "newsletter-popup",
       "settings": {
+        "apparition_delay": 5,
+        "show_only_on_index": true,
+        "show_only_for_visitors": true,
+        "show_only_once": true,
+        "title": "Signup for our newsletter",
+        "button_text": "Subscribe",
+        "subtext": "Describe what your customers will receive when subscribing to your newsletter."
       }
     },
     "privacy-banner": {
       "type": "privacy-banner",
       "settings": {
+        "privacy_bar_title": "Cookie policy",
+        "privacy_bar_content": "<p>We use cookies and similar technologies to provide the best experience on our website. Refer to our Privacy Policy for more information.<\/p>"
       }
     },
     "cart-drawer": {
@@ -32,7 +41,13 @@
       "settings": {
         "full_width": false,
         "show_article_category": true,
-        "search_menu": "",
+        "search_menu": "search",
+        "products_popular": [
+          "daily-light_ims11ab00a",
+          "daily-light_ims15ab00a",
+          "eddi-kids_hsfc123",
+          "glen_hspc084"
+        ],
         "search_menu_show_title": true
       }
     }
