@@ -377,6 +377,7 @@
     max-width: 118px;
     display: flex;
     align-items: center;
+        font-family: Avenir_Regular;
   }
 #m-loadMore svg{
   margin-left: 5px;
