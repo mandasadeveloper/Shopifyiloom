@@ -378,6 +378,9 @@
     display: flex;
     align-items: center;
   }
+#m-loadMore svg{
+  margin-left: 5px;
+}
   #m-loadMore-event svg {
   margin-left: 5px;
   }
