@@ -3968,4 +3968,7 @@ line-height: 256.3%;
 svg.m-right-cus {
     margin-left: 25px;
 }
+svg.page-m-next {
+    margin-right: 25px;
+}
 /* after merge */
