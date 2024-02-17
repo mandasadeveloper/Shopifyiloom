@@ -42,6 +42,7 @@ Supported parameters
         {%- endif -%}
 
         {{- article.image | image_url: width: article.image.width | image_tag: loading: 'lazy', sizes: sizes, widths: '300,400,500,600,800,1000,1200,1400,1600,1800,2000', class: 'w-full h-full object-cover zoom-image zoom-image1' -}}
+ <img class="w-full h-full object-cover zoom-image zoom-image1" src="{{ article.image | img_url: 'master' }}" width="auto" height="auto" loading="lazy">
       </a>
     {%- endif -%}
   {%- else -%}
