@@ -409,6 +409,9 @@
   #m-loadMore-event svg {
   margin-left: 5px;
   }
+#m-loadMore svg {
+    margin-left: 5px;
+}
 
  #m-loadMore-search svg {
   margin-left: 5px;
