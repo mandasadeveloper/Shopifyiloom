@@ -789,6 +789,7 @@
   .mandasa_pagination-item{
   list-style-type: none; 
   margin: 0px 10px;
+    padding: 0px 9px;
   }
   .blog-post-card-m .zoom-image--enabled .group:hover .blog-post-card-m .zoom-image{
   transform: none !important;
