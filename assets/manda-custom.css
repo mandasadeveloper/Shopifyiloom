@@ -3965,4 +3965,7 @@ line-height: 256.3%;
   background-color: #3c3c3c;
     color: white;
 }
+svg.m-right-cus {
+    margin-left: 25px;
+}
 /* after merge */
