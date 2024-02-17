@@ -91,7 +91,7 @@
   overflow:hidden;
 }
 .predictive-search1 .predictive-search-result{
-      align-items: flex-start;
+      align-items: center;
 }
   .m-blog-posts .blog-post-card__figure{
   overflow: unset;
