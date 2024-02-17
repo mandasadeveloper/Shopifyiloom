@@ -114,7 +114,7 @@
             {{- 'general.social.share' | t -}}
           </button>
 
-          <span class="bold sm-max:hidden">{{- share_label -}}</span>
+          <span class="bold1 sm-max:hidden">{{- share_label -}}</span>
 
           <ul class="h-stack sm-max:hidden gap-3" role="list">
             <li><a href="{% render 'share-link', host: 'facebook', title: article.title, url: article.url %}" class="share-buttons__item" aria-label="{{ 'general.social.share_on' | t: social_media: 'Facebook' }}">{%- render 'icon' with 'facebook', width: 24, height: 24 -%}</a></li>
@@ -148,7 +148,7 @@
             {{- 'general.social.share' | t -}}
           </button>
 
-          <span class="bold sm-max:hidden">分享</span>
+          <span class="bold1 sm-max:hidden">分享</span>
 
           <ul class="h-stack h-stack-m sm-max:hidden gap-3" role="list">
            <!-- 
