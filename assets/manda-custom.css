@@ -4001,4 +4001,7 @@ svg.page-m-next {
 .m-overlay_content{
   color: white!important;
 }
+.m_btn-google span{
+  color: white;
+}
 /* after merge */
