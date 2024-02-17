@@ -3956,3 +3956,9 @@ line-height: 256.3%;
   src: url("https://cdn.shopify.com/s/files/1/0575/1576/9926/files/Montserrat-Bold.ttf?v=1707813345");
 }
 
+
+/* after merge */
+.idle-cus .predictive-search-result {
+    margin-bottom: 25px;
+}
+/* after merge */
