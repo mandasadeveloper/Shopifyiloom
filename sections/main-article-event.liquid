@@ -92,7 +92,7 @@
   {%- endif -%}
 </style>
 
-<div class="article article-event" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
+<div class="ff article article-event header_height" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
   {%- render 'article-banner-event', show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, layout: section.settings.layout, article_image: article_image -%}
 
   <div class="container event-container">
@@ -157,7 +157,7 @@
             <li><a href="{% render 'share-link', host: 'email', title: article.title, url: article.url %}" class="share-buttons__item" aria-label="{{ 'general.social.share_email' | t }}">{%- render 'icon' with 'email' -%}</a></li>
                    -->
             <!-- <li><a href="{% render 'share-link', host: 'copy-link', title: article.title, url: article.url %}" class="share-buttons__item" aria-label="{{ 'general.social.share_email' | t }}">{%- render 'icon' with 'copy-link' -%}</a></li> -->
-             <li><button class="clipboard">{%- render 'icon' with 'copy-link' -%}</button> </li> 
+             <li><button class="clipboard share-buttons__item">{%- render 'icon' with 'copy-link' -%}</button> </li> 
             <li><a href="{% render 'share-link', host: 'facebook-m', title: article.title, url: article.url %}" class="share-buttons__item" aria-label="{{ 'general.social.share_on' | t: social_media: 'facebook-m' }}">
         {%- render 'icon' with 'facebook-m', width: 24, height: 24 -%}
             </a></li>
