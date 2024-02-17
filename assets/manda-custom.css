@@ -799,6 +799,7 @@
   list-style-type: none; 
   margin: 0px 10px;
     padding: 0px 9px;
+    font-family: Avenir_Regular;
   }
   .blog-post-card-m .zoom-image--enabled .group:hover .blog-post-card-m .zoom-image{
   transform: none !important;
