@@ -368,7 +368,7 @@
   #m-loadMore a{
       border: 1px solid #3C3C3C;
     color: #3C3C3C;
-    font-family: 'Montserrat';
+    font-family: 'Avenir_Regular';
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -377,7 +377,6 @@
     max-width: 118px;
     display: flex;
     align-items: center;
-        font-family: Avenir_Regular;
   }
 #m-loadMore svg{
   margin-left: 5px;
