@@ -92,7 +92,7 @@
   {%- endif -%}
 </style>
 
-<div class="ff article article-event" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
+<div class="ff article article-event header_height" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
   {%- render 'article-banner-event', show_date: section.settings.show_date, show_author: section.settings.show_author, show_comments_count: section.settings.show_comments_count, layout: section.settings.layout, article_image: article_image -%}
 
   <div class="container event-container">
