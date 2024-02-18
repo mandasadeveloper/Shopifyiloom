@@ -777,3 +777,7 @@ span.qa_titlee {
 .mandasa-active-tab a{
   color: white!important;
 }
+
+.mandasa_block_list.blog-filter-list [aria-selected=true] a{
+  color: white!important;
+}
