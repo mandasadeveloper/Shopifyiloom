@@ -772,3 +772,8 @@ span.qa_titlee {
     max-width: 100%!important;
   }
 }
+
+
+.mandasa-active-tab a{
+  color: white;
+}
