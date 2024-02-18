@@ -1,0 +1,11 @@
+<form action="{{ routes.search_url }}"  class="search_fom">
+ <input type="text" name="q" value="{{ search.terms | escape }}" id="searchInput" placeholder="請輸入想要搜尋的商品">
+  <input name="view" type="hidden" value="search-customize">
+  <input type="hidden" name="type" value="article" />
+ <button id="searchBtn" type="submit">{% render 'search-s' %}</button>
+</form>
+
+
+
+
+ 
