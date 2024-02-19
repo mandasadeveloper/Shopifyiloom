@@ -33,7 +33,7 @@
             data-swiper
           >
             <div class="swiper-wrapper">
-              {% for product in collection['沙發-沙發桌-1'].products limit: 4 %}
+              {% for product in block.settings['collection-id'].products limit: 4 %}
                 {% assign productEvent = product.metafields.custom.product_launch_event.value %}
                 {% if productEvent.launching_event_applied_or_not != false %}
                   <div class="swiper-slide">
