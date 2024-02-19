@@ -587,6 +587,9 @@ p.mandasa_top_text {
     padding: 0px 10px;
     color: #666666!important;
 }
+.mandasa_num_qa a{
+      color: #666666!important;
+}
 .mandasa_titl_qa {
     text-align: left;
     color: #3c3c3c;
