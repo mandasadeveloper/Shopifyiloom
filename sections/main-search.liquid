@@ -79,7 +79,7 @@
   }
 </style>
 
-<div class="container m-search-contain m-serch-mgt">
+<div class="container m-search-contain">
   {%- if search.performed and search.results_count > 0 or active_filters.size > 0 -%}
     <div class="page-spacer">
       <div class="v-stack gap-6 sm:gap-8">
@@ -88,7 +88,7 @@
       </div>
 
       {%- paginate search.results by section.settings.products_per_page -%}
-        <div class="collection {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %} product-list-desktop">
+        <div class="collection {% if show_filters %}collection--filters-{{ section.settings.filter_layout | escape }}{% endif %} product-list-desktop ssss">
           {%- if show_filters or section.settings.show_sort_by -%}
             {%- comment -%}
               IMPLEMENTATION NOTE: we have to output the drawer no matter what, as it is used on mobile (all the time) or desktop (when in drawer mode)
