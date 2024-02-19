@@ -4099,4 +4099,10 @@ element.style {
     text-align: left;
     color: #3c3c3c;
 }
+@media (max-width: 768px){
+.m-search-contain .product-card--home.bg-custom {
+    /* width: 180px; */
+    /* max-width: 180px; */
+}
+}
 /* after merge */
