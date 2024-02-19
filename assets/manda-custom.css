@@ -4051,5 +4051,9 @@ element.style {
     text-align: -webkit-right;
 }
 }
-
+@media screen and (max-width: 767px){
+  .line-price-mob{
+    display: none;
+  }
+}
 /* after merge */
