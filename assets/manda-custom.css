@@ -4026,7 +4026,7 @@ element.style {
     display: flex;
     gap: 327px;
 }
-thead th {
-    border-block-end-width: 1px;
+.mandasa_summary .order-summary__header{
+  border: 1px solid #f0f0f0;
 }
 /* after merge */
