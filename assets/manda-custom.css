@@ -4063,4 +4063,8 @@ element.style {
 .line-item__info{
     width: 100%;
   }
+.comp_price .price{
+  color: #9A9A9A!important;
+    text-decoration: line-through;
+}
 /* after merge */
