@@ -147,7 +147,7 @@
                     {%- assign product_results = search.results | where: 'object_type', 'product' -%}
 
                     {%- for product in product_results -%}
-                      {%- render 'product-card', product: product, stacked: true, show_badges: true -%}
+                      {%- render 'product-card-home', product: product, stacked: true, show_badges: true -%}
                     {%- endfor -%}
                   </product-list>
                 </reveal-items>
