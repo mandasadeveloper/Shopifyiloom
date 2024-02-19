@@ -1666,7 +1666,7 @@ height: 24px;
   }
   .manda-cart .line-item{
   justify-content: space-between;
-  
+  gap: 10px;
   }
   .manda-cart .cart-header{
   padding-bottom: 15px !important;
