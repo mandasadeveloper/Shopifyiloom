@@ -16,38 +16,36 @@
     </div>
   </div>
   <div class="il-collectionTabs__body">
-    {% for block in section.blocks %}
-      <div
-        class="il-collectionTabs__container il-collectionTabs__containerIndex--{{ forloop.index0 }}"
-        data-tab-content="il-collectionTabs__containerIndex--{{ forloop.index0 }}"
-      >
-        <div class="il-collectionTabs__collectionTitle">{{ block.settings['collection-title'] }}</div>
-        <div class="il-collectionTabs__innerContainer">
-          <div class="il-collectionTabs__featuredImage">
-            <div class="il-collectionTabs__imgWrapper">
-              <img src="{{ block.settings.image | img_url: 'master' }}" alt="collection-image">
-            </div>
+    <div
+      class="il-collectionTabs__container il-collectionTabs__containerIndex--{{ forloop.index0 }}"
+      data-tab-content="il-collectionTabs__containerIndex--{{ forloop.index0 }}"
+    >
+      <div class="il-collectionTabs__collectionTitle">{{ block.settings['collection-title'] }}</div>
+      <div class="il-collectionTabs__innerContainer">
+        <div class="il-collectionTabs__featuredImage">
+          <div class="il-collectionTabs__imgWrapper">
+            <img src="{{ block.settings.image | img_url: 'master' }}" alt="collection-image">
           </div>
-          <div class="il-collectionTabs__productWrapper">
-            <div
-              class="il-collectionTabs__productSwiper il-collectionTabs__productSwiper--{{ forloop.index0 }} swiper"
-              data-swiper
-            >
-              <div class="swiper-wrapper">
-                {% for product in collection['沙發-沙發桌-1'].products limit: 4 %}
-                  {% assign productEvent = product.metafields.custom.product_launch_event.value %}
-                  {% if productEvent.launching_event_applied_or_not != false %}
-                    <div class="swiper-slide">
-                      {% render 'product-card-home', product: product %}
-                    </div>
-                  {% endif %}
-                {% endfor %}
-              </div>
+        </div>
+        <div class="il-collectionTabs__productWrapper">
+          <div
+            class="il-collectionTabs__productSwiper il-collectionTabs__productSwiper--{{ forloop.index0 }} swiper"
+            data-swiper
+          >
+            <div class="swiper-wrapper">
+              {% for product in collection['沙發-沙發桌-1'].products limit: 4 %}
+                {% assign productEvent = product.metafields.custom.product_launch_event.value %}
+                {% if productEvent.launching_event_applied_or_not != false %}
+                  <div class="swiper-slide">
+                    {% render 'product-card-home', product: product %}
+                  </div>
+                {% endif %}
+              {% endfor %}
             </div>
           </div>
         </div>
       </div>
-    {% endfor %}
+    </div>
   </div>
 </div>
 
