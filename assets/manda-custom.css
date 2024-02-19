@@ -4039,4 +4039,14 @@ element.style {
     justify-content: flex-end;
     display: flex;
 }
+
+@media screen and (min-width: 767px)
+.price-m-cart11 {
+    width: 65%;
+}
+.price-m-cart .text-xs {
+    width: 35%;
+    margin-right: 10px;
+}
+}
 /* after merge */
