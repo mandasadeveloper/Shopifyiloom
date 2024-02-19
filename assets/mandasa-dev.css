@@ -590,6 +590,9 @@ p.mandasa_top_text {
 .mandasa_num_qa a{
       color: #666666!important;
 }
+.mandasa_titl_qa a{
+  color: #3c3c3c;
+}
 .mandasa_titl_qa {
     text-align: left;
     color: #3c3c3c;
