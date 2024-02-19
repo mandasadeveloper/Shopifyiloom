@@ -68,7 +68,7 @@
                   {%- endif -%}
 
                   <tr class="cart__row" data-prd-id="{{ line_item.id }}" prd-prc="{{ line_item.final_line_price }}">
-                    <td>{%- render 'line-item', line_item: line_item -%}</td>
+                    <td>{%- render 'cart-line-item', line_item: line_item -%}</td>
 
                     <td class="hidden align-center text-center text-subdued sm:table-cell">
                       <line-item-quantity class="v-stack justify-center gap-2">
