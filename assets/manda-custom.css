@@ -4041,7 +4041,7 @@ element.style {
   width: 100%;
 }
 
-@media screen and (min-width: 767px)
+@media screen and (min-width: 767px){
 .price-m-cart11 {
     width: 65%;
 }
@@ -4052,6 +4052,9 @@ element.style {
 }
 .desk-hide{
   display: none;
+}
+  .product-list-desktop.m-serch-mgt {
+    margin-top: 187px;
 }
 }
 @media screen and (max-width: 767px){
