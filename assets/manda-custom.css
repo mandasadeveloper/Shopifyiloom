@@ -4027,6 +4027,6 @@ element.style {
     gap: 327px;
 }
 .mandasa_summary .order-summary__header{
-  border: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
 }
 /* after merge */
