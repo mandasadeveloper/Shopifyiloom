@@ -122,6 +122,9 @@ p.mandasa_top_text {
    letter-spacing: 0em;
   color: #3c3c3c;
 }
+.mandasa_tablee a{
+  color: #3c3c3c;
+}
 .mandasa_content{
    display: none;
 }
