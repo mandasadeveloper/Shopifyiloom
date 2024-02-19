@@ -4101,8 +4101,8 @@ element.style {
 }
 @media (max-width: 768px){
 .m-search-contain .product-card--home.bg-custom {
-    width: 180px;
-    max-width: 180px;
+    width: unset;
+    max-width: unset;
 }
 }
 /* after merge */
