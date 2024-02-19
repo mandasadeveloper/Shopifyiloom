@@ -4035,4 +4035,8 @@ element.style {
 .order-summary__header th div{
       color: #3C3C3C;
 }
+.price-m-cart .mk-cart{
+    justify-content: flex-end;
+    display: flex;
+}
 /* after merge */
