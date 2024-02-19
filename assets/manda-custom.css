@@ -1626,14 +1626,14 @@
           font-size: 14px !important;
       line-height:17.07px !important;
     }
-    .m-search-contain .product-list .product-card .product-card__figure img {
+    /* .m-search-contain .product-list .product-card .product-card__figure img {
     min-height: 155px !important;
     max-height: 155px !important;
-    }
-    .m-search-contain .product-list .product-card .product-card__figure {
+    } */
+    /* .m-search-contain .product-list .product-card .product-card__figure {
     min-height: 155px !important;
     max-height: 155px !important;
-}
+} */
     .m-search-contain .product-list .product-card .product-card__info .link-faded {
     font-size: 12px !important;
     line-height: 14.63px !important;
