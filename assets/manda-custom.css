@@ -4050,4 +4050,7 @@ element.style {
     text-align: -webkit-right;
 }
 }
+.price-m-cart{
+  width: 100%;
+}
 /* after merge */
