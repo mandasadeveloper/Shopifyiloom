@@ -3668,11 +3668,13 @@ font-weight: 400;
 line-height: 19.5px;
 }
  .m-search-contain .product-list .product-card  .product-card__info .product-card__title a{
-   color: #666;
-font-family: 'Noto_Sans_TC';
-font-size: 20px;
-font-weight: 500;
-line-height: 28.96px;
+   font-family: 'Noto_Sans_TC';
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #3c3c3c;
  }
  .m-search-contain .product-list .product-card  .product-card__info  .price-list .price{
   color: #3C3C3C;
