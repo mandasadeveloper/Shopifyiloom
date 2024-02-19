@@ -3699,10 +3699,10 @@ line-height: 19.5px;
 height: 22px;
 }
  .m-search-contain .product-list .product-card  .product-card__info  .v-stack{
-      gap: 16px;
+      gap: 5px;
 }
  .m-search-contain .product-list .product-card .product-card__info {
-   gap: 5px;
+   gap: 16px;
    padding: 32px 0px 0px 0px;
    
 }
