@@ -566,7 +566,7 @@ p.mandasa_top_text {
 
 .mandasa_text {
   text-align: center;
-  color: #666666;
+  color: #666666!important;
   margin: 17px 0px;
 }
 
