@@ -4032,7 +4032,7 @@ element.style {
 .manda-cart{
   margin-top: 126px;
 }
-.order-summary__header th {
+.order-summary__header th div{
       color: #3C3C3C;
 }
 /* after merge */
