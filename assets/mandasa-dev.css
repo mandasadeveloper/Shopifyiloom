@@ -650,6 +650,8 @@ p.mandasa_top_text {
 .iloom_imgg{
   text-align: center;
   padding-top: 46px;
+  display: flex;
+    justify-content: center;
 }
 .iloom_imgg span{
   vertical-align: middle;
