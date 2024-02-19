@@ -4038,6 +4038,7 @@ element.style {
 .price-m-cart .mk-cart{
     justify-content: flex-end;
     display: flex;
+  width: 100%;
 }
 
 @media screen and (min-width: 767px)
@@ -4050,7 +4051,5 @@ element.style {
     text-align: -webkit-right;
 }
 }
-.price-m-cart{
-  width: 100%!important;
-}
+
 /* after merge */
