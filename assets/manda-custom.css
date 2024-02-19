@@ -4120,4 +4120,8 @@ element.style {
     align-items: center;
     font-family: Avenir_Regular;
 }
+#m-loadMore-search{
+    display: flex;
+    justify-content: center;
+}
 /* after merge */
