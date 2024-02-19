@@ -33,8 +33,8 @@
         "tooltip_txt_hover": "필요한지묻기",
         "delete_product": "刪除所選商品",
         "elevator": "是否有電梯",
-        "check-box-select": "是否有電梯 : 有",
-        "check-box-select1": "是否有電梯 : 無",
+        "check-box-select": "有",
+        "check-box-select1": "無",
         "shiping-checkout": "運費、稅金和折扣代碼在確認付款時計算。",
         "show_payment_icons": true
       }
