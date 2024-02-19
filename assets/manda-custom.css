@@ -4006,7 +4006,27 @@ svg.page-m-next {
 .m_btn-google span{
   color: white;
 }
- thead th{
-  border-block-end-width: 1px;
+
+element.style {
+}
+.manda-cart .order-summary__header th {
+    color: #3C3C3C;
+    text-align: center;
+    font-family: 'Noto_Sans_TC';
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 23.17px;
+    letter-spacing: -0.16px;
+    padding: 16px 0;
+}
+:is(th,td):first-child {
+    padding-inline-start: 0;
+}
+.select-product-m {
+    display: flex;
+    gap: 327px;
+}
+thead th {
+    border-block-end-width: 1px;
 }
 /* after merge */
