@@ -4061,7 +4061,9 @@ element.style {
   .line-price-mob{
     display: none;
   }
-
+.collection.product-list-mobile {
+    margin-top: 45px;
+}
 }
 .line-item__info{
     width: 100%;
