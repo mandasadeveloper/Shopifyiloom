@@ -3647,7 +3647,7 @@ text-transform: uppercase;
       color: #3C3C3C;
 font-family: 'Montserrat';
 font-size: 52px;
-font-weight: 500;
+/* font-weight: 500; */
 line-height: 63.39px;
     }
   .m-search-contain .product-list .product-card .product-card__figure{
