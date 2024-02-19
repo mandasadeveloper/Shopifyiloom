@@ -4051,6 +4051,6 @@ element.style {
 }
 }
 .price-m-cart{
-  width: 100%;
+  width: 100%!important;
 }
 /* after merge */
