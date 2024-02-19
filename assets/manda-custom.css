@@ -4047,6 +4047,7 @@ element.style {
 .price-m-cart .text-xs {
     width: 35%;
     margin-right: 10px;
+    text-align: -webkit-right;
 }
 }
 /* after merge */
