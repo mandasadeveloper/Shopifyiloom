@@ -1,13 +1,21 @@
-{% for product in collections['沙發-沙發桌-1'].products %}
-  {%- render 'product-card-home',
-    product: product,
-    stacked: section.settings.stack_products,
-    background: section.settings.product_card_background,
-    text_color: section.settings.product_card_text_color,
-    show_badges: true
-  -%}
-{% endfor %}
-
+<div class="il-collectionTabs__productWrapper">
+  <div
+    class="il-collectionTabs__productSwiper il-collectionTabs__productSwiper--{{ forloop.index0 }} swiper"
+    data-swiper
+  >
+    <div class="swiper-wrapper">
+      {% for product in collections['沙發-沙發桌-1'].products %}
+        {%- render 'product-card-home',
+          product: product,
+          stacked: section.settings.stack_products,
+          background: section.settings.product_card_background,
+          text_color: section.settings.product_card_text_color,
+          show_badges: true
+        -%}
+      {% endfor %}
+    </div>
+  </div>
+</div>
 {%- render 'section-spacing-collapsing' -%}
 
 <style>
