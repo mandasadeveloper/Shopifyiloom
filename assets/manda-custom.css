@@ -4058,5 +4058,9 @@ element.style {
   .line-price-mob{
     display: none;
   }
+  .mandasa_summary .line-item__info{
+    width: 100%;
+  }
 }
+
 /* after merge */
