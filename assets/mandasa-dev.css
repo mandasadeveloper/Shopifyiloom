@@ -569,7 +569,11 @@ p.mandasa_top_text {
   color: #666666!important;
   margin: 17px 0px;
 }
-
+.mandasa_text p{
+  text-align: center;
+  color: #666666!important;
+  margin: 17px 0px;
+}
 .mandasa_contact button{
     background-color: #3c3c3c;
     color: #fff;
