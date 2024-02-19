@@ -4105,4 +4105,19 @@ element.style {
     max-width: unset;
 }
 }
+
+#m-loadMore-search a{
+      border: 1px solid #3C3C3C;
+    color: #3C3C3C;
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px;
+    padding: 12px 32px;
+    max-width: 118px;
+    display: flex;
+    align-items: center;
+    font-family: Avenir_Regular;
+}
 /* after merge */
