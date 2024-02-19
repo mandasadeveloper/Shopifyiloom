@@ -3222,7 +3222,7 @@ margin-top: 13px
   background: none;
   cursor: pointer;
   line-height: 0;
-  margin: 0 0.6em 0 0;
+  /* margin: 0 0.6em 0 0; */
   outline: 0;
   padding: 0 !important;
   vertical-align: text-top;
