@@ -4075,4 +4075,15 @@ element.style {
 .container.m-search-contain {
     margin-top: 126px;
 }
+
+.m-product-info .il-product__seriesItem{
+      font-family: Montserrat;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    /* margin-bottom: 8px; */
+    color: #3c3c3c;
+}
 /* after merge */
