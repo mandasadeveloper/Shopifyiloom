@@ -4050,6 +4050,9 @@ element.style {
     margin-right: 10px;
     text-align: -webkit-right;
 }
+.desk-hide{
+  display: none;
+}
 }
 @media screen and (max-width: 767px){
   .line-price-mob{
