@@ -4,7 +4,7 @@
     data-swiper
   >
     <div class="swiper-wrapper">
-      {% for product in collections['沙發-沙發桌-1'].products %}
+      {% for product in collections['沙發-沙發桌-1'].products limit: 4 %}
         {%- render 'product-card-home',
           product: product,
           stacked: section.settings.stack_products,
