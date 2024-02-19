@@ -72,6 +72,7 @@
         尺寸:
         <p class="text-sm text-subdued vg">{{ line_item.variant.option2 }}</p>
       </div>
+    div class="line-price-mob">{{ line_item.final_line_price | money }}</div>
     {%- endunless -%}
 
     {%- if line_item.selling_plan_allocation -%}
