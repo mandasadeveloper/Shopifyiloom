@@ -4145,6 +4145,6 @@ element.style {
     align-items: center;
 }
 shubh_cart .line-item{
-  align-items: unset;
+  align-items: unset!important;
 }
 /* after merge */
