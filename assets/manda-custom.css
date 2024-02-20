@@ -4178,4 +4178,9 @@ element.style {
   display: none;
 }
 }
+
+.comp_price .nt-dollar {
+    color: #9A9A9A!important;
+    font-size: 18px!important;
+}
 /* after merge */
