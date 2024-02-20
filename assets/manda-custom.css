@@ -1425,9 +1425,9 @@
   display:none;
   }
   .manda-cart .price-m-cart{
-  display: flex;
+  /* display: flex; */
   justify-content: space-around;
-  height: 163px;
+  /* height: 163px; */
   
   }
   
