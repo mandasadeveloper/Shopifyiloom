@@ -60,7 +60,7 @@ Supported parameters
 
         <p class="{% if heading_size != blank %}{{ heading_size }}{% elsif featured %}h2{% else %}h3{% endif %}">
           {%- if article -%}
-            <a href="{{ article.url }}">{{ article.title | strip_html | truncate: 13 }}</a>
+            <a href="{{ article.url }}">{{ article.title }}</a>
           {%- else -%}
             {{- 'general.on_boarding.blog_post_title' | t -}}
           {%- endif -%}
