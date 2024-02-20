@@ -4063,11 +4063,12 @@ element.style {
   .product-list-desktop.m-serch-mgt {
     margin-top: 187px;
 }
-}
-@media screen and (max-width: 767px){
-  .line-price-mob{
+   .line-price-mob{
     display: none;
   }
+}
+@media screen and (max-width: 767px){
+ 
 .collection.product-list-mobile {
     margin-top: 45px;
 }
