@@ -4183,4 +4183,7 @@ element.style {
     color: #9A9A9A!important;
     font-size: 18px!important;
 }
+.m-form-login .button div{
+  color: white;
+}
 /* after merge */
