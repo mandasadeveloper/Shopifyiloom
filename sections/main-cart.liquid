@@ -242,6 +242,11 @@
             -->
             <safe-sticky class="cart-order__recap m-cart-right v-stack gap-6">
               <form action="{{ routes.cart_url }}" method="POST" class="cart-form rounded">
+    <p class="cart-attribute__field">
+  <label>There is elevator</label><br>
+  <input type="radio" name="attributes[There is elevator]" value="have"{% if cart.attributes["There is elevator"] == "have" %} checked{% endif %}> <span>have</span><br>
+  <input type="radio" name="attributes[There is elevator]" value="no"{% if cart.attributes["There is elevator"] == "no" %} checked{% endif %}> <span>no</span><br>
+</p>
                 <input id="check_val" type="hidden" name="attributes[是否有電梯]" value="No">
                 {%- for block in section.blocks -%}
                   {%- case block.type -%}
