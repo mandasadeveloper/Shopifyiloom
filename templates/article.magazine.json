@@ -38,22 +38,29 @@
     },
     "e5e7f912-dbe1-4176-b282-d49616a505f8": {
       "type": "featured-collection-magazine",
-      "blocks": {
-        "collection_MRQAhR": {
-          "type": "collection",
-          "settings": {
-            "collection-title": "",
-            "collection-id": "outlet"
-          }
-        }
-      },
-      "block_order": [
-        "collection_MRQAhR"
-      ],
       "settings": {
+        "collection": "",
+        "products": [
+
+        ],
+        "full_width": true,
+        "stack_products": true,
+        "show_progress_bar": false,
+        "products_count": 6,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "subheading": "",
         "title": "雜誌上推薦的產品",
-        "padding-top": 130,
-        "padding-bottom": 80
+        "content": "",
+        "link_url": "",
+        "link_text": "View all",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
       }
     },
     "3cc47129-4510-4a71-b307-86e531a7e97d": {
