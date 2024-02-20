@@ -4189,4 +4189,9 @@ element.style {
 /* .section-stack-magzine .text-with-icon{
   display: none;
 } */
+.section-stack-magzine h2{
+  font-family: 'Noto_Sans_TC';
+    font-weight: 500!important;
+  color: #3c3c3c;
+}
 /* after merge */
