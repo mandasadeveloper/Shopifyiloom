@@ -4139,4 +4139,8 @@ element.style {
     display: flex !important;
     justify-content: center;
 }
+.m-cart-bottom .m-ele-cus label {
+    display: flex;
+    align-items: center;
+}
 /* after merge */
