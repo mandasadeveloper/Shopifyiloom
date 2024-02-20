@@ -3045,8 +3045,8 @@ margin-top: 13px
   .manda-cart .text-subdued .price .nt-dollar{
   color: #3C3C3C!important;
   font-family: 'Montserrat';
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 18px;
+  /* font-weight: 500; */
   line-height: 17.07px;
   }
   
