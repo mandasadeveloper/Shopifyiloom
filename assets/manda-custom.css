@@ -4123,4 +4123,7 @@ element.style {
     display: flex;
     justify-content: center;
 }
+.checkbox-container{
+  align-self: normal;
+}
 /* after merge */
