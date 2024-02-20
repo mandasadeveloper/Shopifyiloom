@@ -5,6 +5,7 @@
       "blocks": {
         "navigation": {
           "type": "navigation",
+          "disabled": true,
           "settings": {
           }
         },
