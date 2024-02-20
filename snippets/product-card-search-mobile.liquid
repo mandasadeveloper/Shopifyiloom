@@ -45,7 +45,7 @@
 -%}
   {%- assign card_class = 'product-card ' -%}
 {%- else -%}
-  {%- assign card_class = 'product-card product-card--blends ' -%}
+  {%- assign card_class = 'product-card product-card--blends product-card-cussss' -%}
 {%- endif -%}
 
 {%- if show_secondary_image and product.media.size > 1 -%}
@@ -418,4 +418,9 @@
   [class*=template] .product-card--home .product_card__outOfStock:hover {
     background-image: url('{{ 'Group_1.png' | file_img_url }}');
   }
+
+  .product-card-cussss{
+    display:none;
+  }
 </style>
+
