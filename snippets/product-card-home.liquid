@@ -198,7 +198,7 @@
     --------------------------------------------------------------------------------------------------------------------
   {%- endcomment -%}
 
-  <div class="product-card__info {% if text_alignment == 'center' %}product-card__info--center{% endif %}">
+  <div class="product-card__info {% if text_alignment == 'center' %}product-card__info--center{% endif %} m-product-info">
     {%- if show_vendor and product.vendor != blank -%}
       {%- if show_rating and text_alignment != 'center' -%}
         <div class="rating-with-text w-full">
