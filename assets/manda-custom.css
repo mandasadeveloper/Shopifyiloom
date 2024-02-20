@@ -3730,7 +3730,9 @@ padding: 4px 10px;
     color: #D9D9D9;
 }
 .checkbox-custom:checked + .checkbox-custom-label:before, .radio-custom:checked + .radio-custom-label:before{
-      border: 2px solid black;
+      color: #fff !important;
+    background: #3C3C3C;
+    border: 1px solid #3c3c3c !important;
 }
 .idle-cus h2{
   color: #3C3C3C;
