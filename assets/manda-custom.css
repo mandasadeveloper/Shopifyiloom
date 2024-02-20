@@ -4126,4 +4126,7 @@ element.style {
 .checkbox-container{
   align-self: normal;
 }
+.shubh_cart .line-item__info{
+  gap: 2px;
+}
 /* after merge */
