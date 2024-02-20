@@ -1395,11 +1395,10 @@
           border-bottom: 1px solid #F0F0F0;
 
     }
-   .manda-cart .order-summary__body td{
-     /* padding-top:32px; */
+   /* .manda-cart .order-summary__body td{
      padding-top: 34px;
      padding-bottom: 34px;
-   }
+   } */
     .m-url-cuss13 svg{
       display:none;
     }
