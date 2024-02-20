@@ -4172,4 +4172,10 @@ element.style {
 .article-content{
   padding-block-end: 2.5rem;
 }
+
+@media (min-width: 768px){
+#m-loadMore-search{
+  display: none;
+}
+}
 /* after merge */
