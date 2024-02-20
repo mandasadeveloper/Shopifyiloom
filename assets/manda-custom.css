@@ -3043,7 +3043,7 @@ margin-top: 13px
   letter-spacing: -0.18px;
   }
   .manda-cart .text-subdued .price .nt-dollar{
-  color: #3C3C3C;
+  color: #3C3C3C!important;
   font-family: 'Montserrat';
   font-size: 14px;
   font-weight: 500;
