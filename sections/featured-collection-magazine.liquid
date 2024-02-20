@@ -1,399 +1,224 @@
-<div class="il-collectionTabs">
-  <div class="il-collectionTabs__header">
-    <div class="il-collectionTabs__titleWrapper">
-      <p class="il-collectionTabs__title">{{ section.settings.title }}</p>
-    </div>
-    <div class="il-collectionTabs__buttonsContainer">
-      {% for block in section.blocks %}
-        <div
-          class="il-collectionTabs__button"
-          data-tab="il-collectionTabs__buttonIndex--{{ forloop.index0 }}"
-          data-index="{{ forloop.index0 }}"
-        >
-          <div class="il-collectionTabs__buttonTitle">{{ block.settings['collection-title'] }}</div>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-  <div class="il-collectionTabs__body">
-    <div
-      class="il-collectionTabs__container il-collectionTabs__containerIndex--{{ forloop.index0 }}"
-      data-tab-content="il-collectionTabs__containerIndex--{{ forloop.index0 }}"
-    >
-      <div class="il-collectionTabs__collectionTitle">{{ block.settings['collection-title'] }}</div>
-      <div class="il-collectionTabs__innerContainer">
-        <div class="il-collectionTabs__featuredImage">
-          <div class="il-collectionTabs__imgWrapper">
-            <img src="{{ block.settings.image | img_url: 'master' }}" alt="collection-image">
-          </div>
-        </div>
-        <div class="il-collectionTabs__productWrapper">
-          <div
-            class="il-collectionTabs__productSwiper il-collectionTabs__productSwiper--{{ forloop.index0 }} swiper"
-            data-swiper
-          >
-            <div class="swiper-wrapper">
-              {% for product in block.settings['collection-id'].products limit: 4 %}
-                {% assign productEvent = product.metafields.custom.product_launch_event.value %}
-                {% if productEvent.launching_event_applied_or_not != false %}
-                  <div class="swiper-slide">
-                    {% render 'product-card-home', product: product %}
-                  </div>
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+{%- render 'section-spacing-collapsing' -%}
 
 <style>
-  .il-collectionTabs {
-    padding-top: {{ section.settings.padding-top }}px;
-    padding-bottom: {{ section.settings.padding-bottom }}px;
-    background: var(--color-grey-09);
-    display: flex;
-    flex-direction: column;
-    padding-left: 100px;
-    overflow: hidden;
+  {%- assign section_background = section.settings.background | default: settings.background -%}
+  {%- assign card_background = section.settings.product_card_background | default: settings.product_card_background -%}
+  {%- assign card_blends = false -%}
+
+  {%- unless section_background != 'rgba(0,0,0,0)' and card_background != 'rgba(0,0,0,0)' and section_background != card_background -%}
+    {%- assign card_blends = true -%}
+  {%- endunless -%}
+
+  #shopify-section-{{ section.id }} .product-list {
+    --product-list-gap: {% if section.settings.stack_products and section.settings.products_per_row_mobile == '2' %}{% if card_blends %}var(--product-list-row-gap){% endif %} var(--spacing-2){% else %}var(--product-list-row-gap) var(--product-list-column-gap){% endif %};
+    --product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }};
+    --product-list-carousel-item-width: 74vw;
+    --product-list-grid: {% if section.settings.stack_products %}auto / repeat(var(--product-list-items-per-row), minmax(0, 1fr)){% else %}auto / auto-flow var(--product-list-carousel-item-width){% endif %};
   }
 
-  .il-collectionTabs__header {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .il-collectionTabs__title {
-    color: var(--color-primary);
-    font-family: var(--font-primary);
-    font-size: var(--font-size-30);
-    font-weight: var(--font-weight-500);
-    text-transform: var(--text-capitalize);
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 3px;
-  }
-
-  .il-collectionTabs__buttonsContainer {
-    display: flex;
-    gap: 14px;
-  }
-
-  .il-collectionTabs__button {
-    display: flex;
-    height: 60px;
-    padding: 12px 30px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background: var(--color-grey-02);
-    cursor: pointer;
-  }
-
-  .il-collectionTabs__button.il-collectionTabs__button--active {
-    display: flex;
-    height: 60px;
-    padding: 12px 30px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background: var(--color-primary);
-  }
-
-  .il-collectionTabs__buttonTitle {
-    display: flex;
-    gap: 5px;
-  }
-
-  .il-collectionTabs__buttonTitle p {
-    color: var(--color-grey-07);
-    font-family: var(--font-primary);
-    font-size: var(--font-size-16);
-    font-weight: var(--font-weight-500);
-    text-transform: var(--text-uppercase);
-    line-height: normal;
-    letter-spacing: 1.6px;
-  }
-
-  .il-collectionTabs__button.il-collectionTabs__button--active .il-collectionTabs__buttonTitle p {
-    color: var(--color-white);
-  }
-
-  .il-collectionTabs__body {
-    display: flex;
-  }
-
-  .il-collectionTabs__container {
-    display: none;
-    flex-direction: column;
-    padding-top: 60px;
-    gap: 48px;
-    width: 100%;
-  }
-
-  .il-collectionTabs__container.il-collectionTabs__container--active {
-    display: flex;
-  }
-
-  .il-collectionTabs__innerContainer {
-    display: flex;
-    width: 100%;
-    margin: 0 -25px;
-  }
-
-  .il-collectionTabs__collectionTitle p {
-    color: var(--color-primary);
-    font-family: var(--font-primary);
-    font-size: 50px;
-    font-weight: var(--font-weight-500);
-    text-transform: var(--text-uppercase);
-    line-height: normal;
-    letter-spacing: 5px;
-  }
-
-  .il-collectionTabs__featuredImage,
-  .il-collectionTabs__productWrapper {
-    flex: 0 0 50%;
-    max-width: 50%;
-    padding: 0 25px;
-  }
-
-  .il-collecionTabs__imgWrapper {
-    height: 100%;
-  }
-
-  .il-collectionTabs__imgWrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .il-collectionTabs__productSwiper {
-    display: none;
-  }
-
-  .il-collectionTabs__productSwiper.il-collectionTabs__productSwiper--active {
-    display: block;
-  }
-
-  .il-collectionTabs .product-card__badge-list,
-  .il-collectionTabs .product-card__badge-list.product-card__badge-listMobile {
-    display: none;
-  }
-
-
-  .il-collectionTabs__productSwiper .swiper-slide {
-    width: 100%;
-    max-width: 400px;
-  }
-
-  @media(max-width: 1200px) {
-    .il-collectionTabs {
-      padding: 80px 0 30px 50px;
-    }
-
-    .il-collectionTabs__innerContainer {
-      gap: 20px;
+  @media screen and (min-width: 700px) {
+    #shopify-section-{{ section.id }} .product-list {
+      --product-list-gap: var(--product-list-row-gap) var(--product-list-column-gap);
+      --product-list-items-per-row: 2;
+      --product-list-carousel-item-width: 36vw;
     }
   }
 
-  @media (max-width: 768px) {
-    .il-collectionTabs {
-      padding: 60px 0 40px 20px;
-    }
-
-    .il-collectionTabs__title {
-      font-size: var(--font-size-20);
-      letter-spacing: 1.8px;
-    }
-
-    .il-collectionTabs__featuredImage,
-    .il-collectionTabs__productWrapper {
-      flex: 0 0 100%;
-      max-width: 100%;
-      padding: 0 7.5px;
-    }
-
-    .il-collectionTabs__buttonsContainer {
-      overflow: scroll;
-      gap: 10px;
-    }
-
-    .il-collectionTabs__header {
-      gap: 20px;
-    }
-
-    .il-collectionTabs__buttonTitle p {
-      font-size: var(--font-size-12);
-      letter-spacing: 1.2px;
-    }
-
-    .il-collectionTabs .il-collectionTabs__button {
-      height: unset;
-      padding: 12px 18px;
-      flex: 1;
-      min-width: fit-content;
-      min-width: -moz-fit-content;
-    }
-
-    .il-collectionTabs__container {
-      padding-top: 40px;
-      gap: 14px;
-    }
-
-    .il-collectionTabs__collectionTitle p {
-      font-size: var(--font-size-24);
-    }
-
-    .il-collectionTabs__innerContainer {
-      flex-wrap: wrap;
-      margin: 0 -7.5px;
-    }
-
-    .il-collectionTabs__buttonsContainer::-webkit-scrollbar {
-      display: none;
-    }
-
-    .il-collectionTabs__buttonsContainer {
-      -ms-overflow-style: none;  /* IE and Edge */
-      scrollbar-width: none;  /* Firefox */
-    }
-
-    .il-collectionTabs .product-card--home.bg-custom {
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .il-collectionTabs .il-collectionTabs__productSwiper .swiper-wrapper {
-        gap: 0;
-    }
-
-    .il-collectionTabs .product-card--home .product-card__figure {
-      height: 262px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .il-collectionTabs .product-card--home.bg-custom {
-      width: 100%;
-      max-width: 180px;
-    }
-
-    .il-collectionTabs .il-collectionTabs__productSwiper .swiper-wrapper {
-      gap: 0px;
-    }
-
-    .il-collectionTabs .product-card--home .product-card__figure {
-      height: 180px;
+  @media screen and (min-width: 1000px) {
+    #shopify-section-{{ section.id }} .product-list {
+      --product-list-items-per-row: {{ section.settings.products_per_row_desktop }};
+      --product-list-carousel-item-width: calc(var(--container-inner-width) / {{ section.settings.products_per_row_desktop }} - (var(--product-list-column-gap) / {{ section.settings.products_per_row_desktop }} * {{ section.settings.products_per_row_desktop | minus: 1 }}));
     }
   }
 </style>
+{% if article.metafields.custom.product_article_page.value != blank %}
+<div class='bg-cuss'>
+  <div class="section-stack section-stack-magzine">
+    {%- assign link_url = section.settings.link_url | default: section.settings.collection.url -%}
+    {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, heading_color: section.settings.heading_color, heading_gradient: section.settings.heading_gradient, content: section.settings.content, link_text: section.settings.link_text, link_url: link_url -%}
 
-<script>
-  $(document).ready(function () {
-    var tabs = $('[data-tab]');
-    var tabsContent = $('[data-tab-content]');
-    var dataSwiper = $('[data-swiper]');
+    <div class="{% if section.settings.show_progress_bar %}scrollable-with-controls{% else %}floating-controls-container{% endif %}">
+      {%- assign scroll_area_id = 'scroll-area-' | append: section.id -%}
 
-    tabs.eq(0).addClass('il-collectionTabs__button--active');
-    tabsContent.eq(0).addClass('il-collectionTabs__container--active');
-    dataSwiper.eq(0).addClass('il-collectionTabs__productSwiper--active');
+      <scroll-carousel selector="product-card" id="{{ scroll_area_id }}" class=" {% if section.settings.products_count > section.settings.products_per_row_desktop %}is-scrollable{% endif %}">
+        <reveal-items selector=".product-list > *">
+          <div class="product-list product-list-m">
+         
+             {%- for product in article.metafields.custom.product_article_page.value -%}
+              {%- render 'product-card', product: product, stacked: section.settings.stack_products, background: section.settings.product_card_background, text_color: section.settings.product_card_text_color, show_badges: true -%}
+            {%- else -%}
+              {%- for i in (1..section.settings.products_count) -%}
+                {%- capture placeholder_image -%}product-{% cycle '1', '2', '3', '4', '5', '6' %}{%- endcapture -%}
+                {%- render 'product-card-placeholder', stacked: section.settings.stack_products, placeholder_image: placeholder_image, background: section.settings.product_card_background, text_color: section.settings.product_card_text_color, text_alignment: settings.product_info_alignment -%}
+              {%- endfor -%}
+            {%- endfor -%}
+          </div>
+        </reveal-items>
+      </scroll-carousel>
 
-    tabs.on('click', function (index) {
-      // Remove active class from all tabs and contents
-      tabs.removeClass('il-collectionTabs__button--active');
-      tabsContent.removeClass('il-collectionTabs__container--active');
-      dataSwiper.removeClass('il-collectionTabs__productSwiper--active');
+      {%- if section.settings.stack_products == false -%}
+        {%- if section.settings.show_progress_bar -%}
+          {%- assign default_progress = section.settings.products_per_row_desktop | times: 1.0 | divided_by: section.settings.products_count -%}
+          {%- render 'scrollbar', observes: scroll_area_id, default_progress: default_progress, show_buttons: true -%}
+        {%- else -%}
+          <button is="prev-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}" disabled>
+            <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+            <span class="animated-arrow animated-arrow--reverse"></span>
+          </button>
 
-      // Add active class to the clicked tab and its content
-      $(this).addClass('il-collectionTabs__button--active');
-      var tabValue = $(this).data('tab');
-      var dataIndexValue = $(this).data('index');
-      $('.il-collectionTabs__containerIndex--' + dataIndexValue).addClass('il-collectionTabs__container--active');
-      $('.il-collectionTabs__productSwiper--' + dataIndexValue).addClass('il-collectionTabs__productSwiper--active');
-    });
-  });
-</script>
-
-<script>
-  var productSwipers = document.querySelectorAll('.il-collectionTabs__productSwiper');
-  productSwipers.forEach(function (swiper) {
-    new Swiper(swiper, {
-      slidesPerView: 1.9,
-      spaceBetween: 10,
-      loop: false,
-      watchOverflow: true,
-      breakpoints: {
-        786: {
-          slidesPerView: 2.2,
-          spaceBetween: 30,
-        },
-      },
-    });
-  });
-</script>
-
+          <button is="next-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}">
+            <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+            <span class="animated-arrow"></span>
+          </button>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+{% endif %}
 {% schema %}
 {
-  "name": "Collection Tabs",
+  "name": "Featured Coll Magazine",
+  "class": "shopify-section--featured-collection",
+  "tag": "section",
+  "disabled_on": {
+    "templates": ["password"],
+    "groups": ["header", "custom.overlay"]
+  },
   "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Products",
+      "info": "Replaces collection when selected."
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_products",
+      "label": "Stack products",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_progress_bar",
+      "label": "Show carousel progress bar",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "products_count",
+      "min": 2,
+      "max": 50,
+      "label": "Products to show",
+      "default": 6
+    },
+    {
+      "type": "select",
+      "id": "products_per_row_mobile",
+      "label": "Products per row (mobile)",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "products_per_row_desktop",
+      "min": 2,
+      "max": 5,
+      "label": "Products per row (desktop)",
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
     {
       "type": "text",
       "id": "title",
-      "label": "Title",
-      "default": "explore the category"
+      "label": "Heading",
+      "default": "Featured collection"
     },
     {
-      "type": "range",
-      "id": "padding-top",
-      "min": 0,
-      "max": 200,
-      "step": 2,
-      "unit": "px",
-      "label": "Padding Top",
-      "default": 130
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
     },
     {
-      "type": "range",
-      "id": "padding-bottom",
-      "min": 0,
-      "max": 200,
-      "step": 2,
-      "unit": "px",
-      "label": "Padding Bottom",
-      "default": 80
-    }
-  ],
-  "blocks": [
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL",
+      "info": "Default to collection URL."
+    },
     {
-      "type": "collection",
-      "name": "Collection",
-      "settings": [
-        {
-          "type": "richtext",
-          "id": "collection-title",
-          "label": "Collection title"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Collection Image"
-        },
-        {
-          "type": "collection",
-          "id": "collection-id",
-          "label": "Collection"
-        }
-      ]
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "View all"
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "Heading gradient"
+    },
+    {
+      "type": "color",
+      "id": "product_card_background",
+      "label": "Product card background"
+    },
+    {
+      "type": "color",
+      "id": "product_card_text_color",
+      "label": "Product card text"
     }
   ],
-
   "presets": [
     {
-      "name": "Collection Tabs"
+      "name": "Featured Coll Magazine"
     }
   ]
 }
