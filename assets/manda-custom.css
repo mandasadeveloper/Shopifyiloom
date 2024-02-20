@@ -4169,4 +4169,7 @@ element.style {
 .shubh_cart .line-item{
   align-items: unset!important;
 }
+.article-content{
+  padding-block-end: 2.5rem;
+}
 /* after merge */
