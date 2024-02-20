@@ -4105,7 +4105,7 @@ element.style {
     margin-top: 126px;
 }
 
-.m-product-info .il-product__seriesItem{
+.section-stack-magzine .m-product-info .il-product__seriesItem{
       font-family: Montserrat;
     font-size: 14px;
     font-weight: 400;
@@ -4114,7 +4114,7 @@ element.style {
     text-align: left;
     color: #3c3c3c;
 }
-.m-product-info .product-card__title a {
+.section-stack-magzine .m-product-info .product-card__title a {
     font-family: 'Noto_Sans_TC';
     font-size: 16px;
     font-weight: 500;
