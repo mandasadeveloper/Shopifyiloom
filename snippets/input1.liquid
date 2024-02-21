@@ -48,7 +48,7 @@ Supported variables
     {%- if multiline != blank -%}
       <textarea id="{{ id }}" class="textarea is-floating" is="resizable-textarea" name="{{ name }}" placeholder="{{ placeholder }}" rows="{{ multiline }}" {{ optional_attributes }}>{{- value -}}</textarea>
     {%- else -%}
-      <input id="{{ id }}" class="input is-floating" type="{{ type | default: 'text' }}" {% if type == 'email' or type == 'tel' %}dir="ltr"{% endif %}  name="{{ name }}" placeholder="{{ placeholder }}" {{ optional_attributes }}>
+      <input id="username" class="input is-floating" type="{{ type | default: 'text' }}" {% if type == 'email' or type == 'tel' %}dir="ltr"{% endif %}  name="{{ name }}" placeholder="{{ placeholder }}" {{ optional_attributes }}>
     {%- endif -%}
 
     {%- if show_max_characters_count and maxlength > 0 -%}
@@ -59,7 +59,7 @@ Supported variables
       <label for="{{ id }}" class="floating-label">{{ label }}</label>
     {%- endif -%}
  {%- if label1 != blank -%}
-     <label for="{{ id }}" class="floating-label floating-label-pass">{{ label1 }}</label>
+     <label for="password" class="floating-label floating-label-pass">{{ label1 }}</label>
 <svg toggle="#{{ id }}"  class="floating-label-pass1 eye-icon fa-eye-slash" xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
       <path d="M19.5 1L2 19" stroke="#BEBEBE" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M1 9.99995C4 5.99995 11.5 0.5 20 9.99983C16.8333 14.1665 9 20 1 9.99995Z" stroke="#BEBEBE" stroke-linejoin="round"/>
