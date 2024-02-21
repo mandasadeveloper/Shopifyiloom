@@ -806,5 +806,5 @@ span.qa_titlee {
   display: flex;
 }
 .mandasa_qa_art_tag  {
-  color: #3c3c3c;
+  color: #3c3c3c!important;
 }
