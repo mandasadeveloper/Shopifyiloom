@@ -658,7 +658,13 @@ $('#m-select-pro1').change(function() {
 
 
 
-$( document ).on('click', '#check_order', function() {
-  
-  $('button').trigger('click');  
+document.addEventListener('DOMContentLoaded', function() {
+    var checkOrderButton = document.getElementById('check_order');
+    
+    checkOrderButton.addEventListener('click', function() {
+        var buttons = document.querySelectorAll('button');
+        buttons.forEach(function(button) {
+            button.click();
+        });
+    });
 });
