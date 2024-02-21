@@ -4275,7 +4275,7 @@ element.style {
       margin-right: 15px;
 }
 
-#customer_login .button-black:hover{
+#loginForm .button-black:hover{
   background: #3C3C3C;
   color: #fff;
 }
