@@ -4353,4 +4353,7 @@ element.style {
 .section-stack-event .m-product-info .product-card__title a {
     font-size: 14px;
 }
+  .product-list-mm .product-card__info .v-stack {
+    gap: 2px;
+}
 }
