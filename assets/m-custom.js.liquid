@@ -656,9 +656,11 @@ $('#m-select-pro1').change(function() {
     }
 });
 
+$( "#check_order" ).on( "click", function() {
+  $( "#ch-plugin-script" ).trigger( "click" );
+} );
 
-
-$( document ).on('click', '#check_order', function() {
-console.log("Hello");
-  $('#ch-plugin-script').click();  
-});
+// $( document ).on('click', '#check_order', function() {
+// console.log("Hello");
+//   $('#ch-plugin-script').click();  
+// });
