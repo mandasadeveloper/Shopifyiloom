@@ -44,7 +44,18 @@ LIQUID
         <input type="text" id="username" required class="input is-floating" type="email" dir="ltr" name="customer[email]" placeholder="" autocomplete="email" required=""><br><br>
         <label for="password">Password:</label>
         <input type="password" id="password" required class="input is-floating" type="password" name="customer[password]" placeholder="" autocomplete="current-password" required=""><br><br>
-        <input type="checkbox" id="rememberMe" name="rememberMe">
+        <svg toggle="#password"  class="floating-label-pass1 eye-icon fa-eye-slash" xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+      <path d="M19.5 1L2 19" stroke="#BEBEBE" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M1 9.99995C4 5.99995 11.5 0.5 20 9.99983C16.8333 14.1665 9 20 1 9.99995Z" stroke="#BEBEBE" stroke-linejoin="round"/>
+      <circle cx="10.5" cy="10" r="2.5" stroke="#BEBEBE"/>
+    </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" toggle="#input-template--15046326779974__main--customerpassword" class="floating-label-pass1 eye-icon eye-closed" width="21" height="20" viewBox="0 0 21 20" fill="none">
+  <path stroke="#BEBEBE"/>
+  <path d="M1 9.99995C4 5.99995 11.5 0.5 20 9.99983C16.8333 14.1665 9 20 1 9.99995Z" stroke="#BEBEBE" stroke-linejoin="round"/>
+  <circle cx="10.5" cy="10" r="2.5" stroke="#BEBEBE"/>
+</svg>
+                        
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
         <label for="rememberMe">Remember Me</label><br><br>
                         
                         {%- if form.errors -%}
