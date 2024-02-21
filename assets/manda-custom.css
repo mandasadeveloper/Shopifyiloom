@@ -4271,3 +4271,8 @@ element.style {
 .checkbox-container1{
   display: inline-block;
 }
+
+#customer_login .button-black:hover{
+  background: #3C3C3C;
+  color: #fff;
+}
