@@ -2639,10 +2639,10 @@ margin-top: 13px
   }
   
   @media screen and (max-width: 1024px){
-  .product-list-mm .bg-custom img {
+  /* .product-list-mm .bg-custom img {
   max-height: 155px;
   min-height: 155px;
-  } 
+  }  */
   .article-event1 .article-content {
   padding-bottom: 0px;
   }
