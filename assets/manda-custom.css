@@ -2362,7 +2362,8 @@ height: 24px;
   }
   .product-list-m .slick-dots li{
   margin: 0 0px;
-  width: 79px;
+  /* width: 79px; */
+    width: 25%;
   border-bottom: 2px solid #BEBEBE;
   height: 3.5px;
   }
