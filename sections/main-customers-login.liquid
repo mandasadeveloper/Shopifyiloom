@@ -39,6 +39,13 @@ LIQUID
                       <input type="hidden" name="checkout_url" value="{{ block.settings.return_to | default: routes.account_url }}">
 
                       <div class="fieldset">
+
+<label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        
                         {%- if form.errors -%}
                           {%- render 'banner', status: 'error', content: form.errors.messages['form'] -%}
                         {%- endif -%}
