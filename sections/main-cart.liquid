@@ -200,12 +200,12 @@
                   <div class="m-elevator1">
                     <div class="m-ele-cus">
                       <div class="select-check-div">
-                        <input type="radio" class="select-check radio-custom" id="yes" name="yesno" value="Have">
+                        <input type="radio" class="select-check radio-custom" id="yes" name="yesno" value="有">
                         <label for="yes" class="radio-custom-label">{{ section.settings['check-box-select'] }}</label>
                       </div>
 
                       <div class="m-ele-cus">
-                        <input type="radio" class="select-check radio-custom" id="no" name="yesno" value="No" checked>
+                        <input type="radio" class="select-check radio-custom" id="no" name="yesno" value="無" checked>
                         <label for="no" class="radio-custom-label">{{ section.settings['check-box-select1'] }}</label>
                       </div>
                     </div>
@@ -242,7 +242,7 @@
             -->
             <safe-sticky class="cart-order__recap m-cart-right v-stack gap-6">
               <form action="{{ routes.cart_url }}" method="POST" class="cart-form rounded">
-                <input id="check_val" type="hidden" name="attributes[是否有電梯]" value="No">
+                <input id="check_val" type="hidden" name="attributes[是否有電梯]" value="無">
                 {%- for block in section.blocks -%}
                   {%- case block.type -%}
                     {%- when '@app' -%}
