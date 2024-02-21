@@ -646,3 +646,12 @@ $( ".select-check" ).on( "change", function() {
   var sel_val = $(this).val();
    $('#check_val').val(sel_val);
 });
+
+
+$('#m-select-pro1').change(function() {
+    if ($(this).is(':checked')) {
+        console.log("checked.");
+    } else {
+        console.log(" not checked.");
+    }
+});
