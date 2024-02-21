@@ -291,33 +291,6 @@
           block: block
         -%}
       {% endif %}
-      {%- if settings.show_discount -%}
-          {%- assign is_variant_on_sale = false -%}
-
-          {%- if variant.available and variant.compare_at_price > variant.price -%}
-            {%- assign is_variant_on_sale = true -%}
-          {%- endif -%}
-
-          {%- if form_id != blank or is_variant_on_sale -%}
-            {%- if settings.discount_mode == 'percentage' -%}
-              {%- assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round | append: '%' -%}
-            {%- else -%}
-              {%- capture savings -%}{{ variant.compare_at_price | minus: variant.price | money }}{%- endcapture -%}
-            {%- endif -%}
-
-            {%- comment -%}
-            When showing for product card (form_id == blank) and that the product price varies, we show a sale badge without explicit saving
-            as it can cause confusion
-            {%- endcomment -%}
-            <on-sale-badge {% unless is_variant_on_sale %}hidden{% endunless %} {% if settings.show_discount %}discount-mode="{{ settings.discount_mode | escape }}"{% endif %} {% if form_id != blank %}form="{{ form_id }}"{% endif %} class="badge badge--on-sale">
-              {%- if form_id == blank and product.price_varies -%}
-                {{- 'product.general.on_sale_badge' | t -}}
-              {%- else -%}
-                {{- 'product.general.discount_badge_html' | t: savings: savings -}}
-              {%- endif -%}
-            </on-sale-badge>
-          {%- endif -%}
-        {%- endif -%}
     </div>
 
     {%- if show_rating and mobile_reduced or text_alignment == 'center' -%}
