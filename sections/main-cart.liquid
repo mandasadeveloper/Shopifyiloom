@@ -242,7 +242,8 @@
             -->
             <safe-sticky class="cart-order__recap m-cart-right v-stack gap-6">
               <form action="{{ routes.cart_url }}" method="POST" class="cart-form rounded">
-                <input id="check_val" type="hidden" name="attributes[是否有電梯]" value="No">
+                <!-- <input id="check_val" type="hidden" name="attributes[是否有電梯]" value="No"> -->
+                <input id="test" type="text" name="attributes[Test]" value="{{ cart.attributes["Test"] }}">
                 {%- for block in section.blocks -%}
                   {%- case block.type -%}
                     {%- when '@app' -%}
