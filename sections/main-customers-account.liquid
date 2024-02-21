@@ -107,6 +107,18 @@
   {%- endif -%}
 </div>
 
+<script>
+  frcp.customerPage.ordersWithNotes = { 
+  {% paginate customer.orders by 5 %}
+    {%- for order in customer.orders -%}
+      {{ order.id | json }}: {
+        note: {{ order.note | json}},
+        attribute: {{ order.attribute }},
+      },
+    {%- endfor -%}
+  {% endpaginate %}
+  }
+</script>
 
 {% schema %}
 {
