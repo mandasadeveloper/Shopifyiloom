@@ -4350,4 +4350,7 @@ element.style {
   .section-stack-event .m-product-info .il-product__seriesItem {
     font-size: 12px;
 }
+.section-stack-event .m-product-info .product-card__title a {
+    font-size: 14px;
+}
 }
