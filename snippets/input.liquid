@@ -48,7 +48,7 @@ Supported variables
     {%- if multiline != blank -%}
       <textarea id="{{ id }}" class="textarea is-floating" is="resizable-textarea" name="{{ name }}" placeholder="{{ placeholder }}" rows="{{ multiline }}" {{ optional_attributes }}>{{- value -}}</textarea>
     {%- else -%}
-      <input id="{{ id }}" class="input is-floating" type="{{ type | default: 'text' }}" {% if type == 'email' or type == 'tel' %}dir="ltr"{% endif %} hhh name="{{ name }}" placeholder="{{ placeholder }}" {{ optional_attributes }}>
+      <input id="{{ id }}" class="input is-floating input_iddd" type="{{ type | default: 'text' }}" {% if type == 'email' or type == 'tel' %}dir="ltr"{% endif %} hhh name="{{ name }}" placeholder="{{ placeholder }}" {{ optional_attributes }}>
     {%- endif -%}
 
     {%- if show_max_characters_count and maxlength > 0 -%}
