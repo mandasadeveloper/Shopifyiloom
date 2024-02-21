@@ -555,6 +555,7 @@ $(document).on("change", ".shubh_cart .checkbox-item", function() {
 
 // checkout
 $('.checkout_custom').on('click', function(e) {
+  var get_cart_attr = $('#check_val').val();
   
 
   e.preventDefault();
@@ -596,7 +597,7 @@ $('.checkout_custom').on('click', function(e) {
           dataType: 'json',
           data: {
             attributes: {
-              key: 'have' // Add your attribute key-value pair here
+              是否有電梯: 'have' // Add your attribute key-value pair here
             }
           },
           success: function(response){
