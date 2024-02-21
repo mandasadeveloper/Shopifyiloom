@@ -44,7 +44,7 @@ Supported variables
 {%- if type == 'hidden' -%}
   <input type="hidden" name="{{ name }}" value="{{ value }}">
 {%- else -%}
-  <div class="form-control" {{ block.shopify_attributes }}>
+  <div class="form-control ffff" {{ block.shopify_attributes }}>
     {%- if multiline != blank -%}
       <textarea id="{{ id }}" class="textarea is-floating" is="resizable-textarea" name="{{ name }}" placeholder="{{ placeholder }}" rows="{{ multiline }}" {{ optional_attributes }}>{{- value -}}</textarea>
     {%- else -%}
