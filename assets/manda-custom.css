@@ -4130,6 +4130,10 @@ element.style {
     width: unset;
     max-width: unset;
 }
+.section-stack-event .product-card--home.bg-custom {
+    width: unset;
+    max-width: unset;
+}
 }
 
 #m-loadMore-search a{
