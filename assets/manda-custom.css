@@ -4344,3 +4344,10 @@ element.style {
   padding: 4px 10px 4px 10px;
   font-weight: 500;
 }
+
+
+@media screen and (max-width: 767px){
+  .section-stack-event .m-product-info .il-product__seriesItem {
+    font-size: 12px;
+}
+}
