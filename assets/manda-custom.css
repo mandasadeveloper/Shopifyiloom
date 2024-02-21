@@ -4272,6 +4272,7 @@ element.style {
 }
 .checkbox-container1{
   display: inline-block;
+      margin-right: 15px;
 }
 
 #customer_login .button-black:hover{
