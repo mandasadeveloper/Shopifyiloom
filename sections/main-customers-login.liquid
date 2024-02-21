@@ -35,7 +35,7 @@ LIQUID
 
                 {%- when 'fields' -%}
                   <div {{ block.shopify_attributes }}>
-                    {%- form 'customer_login', class: 'form' -%}
+                    {%- form 'customer_login', class: 'form', id: 'loginForm' -%}
                       <input type="hidden" name="checkout_url" value="{{ block.settings.return_to | default: routes.account_url }}">
 
                       <div class="fieldset">
