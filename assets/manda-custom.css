@@ -4248,3 +4248,16 @@ element.style {
     width: 19.92px;
     -webkit-appearance: none;
 }
+.m-copun input[type=checkbox]:before {
+    content: '';
+    position: absolute;
+    right: 50%;
+    top: 46%;
+    width: 5px;
+    height: 11px;
+    border: solid #d9d9d9;
+    border-width: 0 2px 2px 0;
+    margin: -1px -1px 0 -1px;
+    transform: rotate(45deg) translate(-50%, -50%);
+    z-index: 2;
+}
