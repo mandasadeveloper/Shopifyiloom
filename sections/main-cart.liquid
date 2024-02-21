@@ -257,6 +257,11 @@
                             <span class="text-subdued">{{ cart.total_weight | weight_with_unit }}</span>
                           </div>
                         {%- endif -%}
+                        <p class="cart-attribute__field">
+  <label>Test</label><br>
+  <input type="radio" name="attributes[Test]" value="Have"{% if cart.attributes["Test"] == "Have" %} checked{% endif %}> <span>Have</span><br>
+  <input type="radio" name="attributes[Test]" value="No"{% if cart.attributes["Test"] == "No" %} checked{% endif %}> <span>No</span><br>
+</p>
 
                         <div class="h-stack gap-4 justify-between m-subtotal">
                           <span class="text-subdued">{{ 'cart.general.subtotal' | t }}</span>
