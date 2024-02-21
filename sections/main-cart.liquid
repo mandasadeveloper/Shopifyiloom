@@ -257,7 +257,7 @@
                             <span class="text-subdued">{{ cart.total_weight | weight_with_unit }}</span>
                           </div>
                         {%- endif -%}
-                      <CartForm>
+                      <CartForm action="{{ routes.cart_url }}" method="POST">
                         <p class="cart-attribute__field">
   <label>Test</label><br>
   <input type="radio" name="attributes[Test]" value="Have"{% if cart.attributes["Test"] == "Have" %} checked{% endif %}> <span>Have</span><br>
