@@ -44,7 +44,7 @@ LIQUID
                         {%- endif -%}
 
                         {%- assign email_label = 'customer.login.email' | t -%}
-                        {%- render 'input', type: 'email', name: 'customer[email]', label: email_label, autocomplete: 'email', required: true -%}
+                        {%- render 'input', type: 'email', name: 'customer[email]', label: email_label, autocomplete: 'email', required: true , id: 'username' -%}
 
                         {%- assign password_label = 'customer.login.password' | t -%}
                         {%- render 'input', type: 'password', name: 'customer[password]', label1: password_label, autocomplete: 'current-password', required: true -%}
