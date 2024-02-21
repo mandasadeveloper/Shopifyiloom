@@ -165,7 +165,7 @@
       </sale-price>
 
       <compare-at-price class="{{ compare_at_price_classes }}">
-        <!-- <span class="sr-only">{{ 'product.price.regular_price' | t }}</span> -->
+        <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
 
         {%- if settings.currency_code_enabled -%}
           {{- product.compare_at_price | money_with_currency | remove: 'NT' -}}
