@@ -113,7 +113,7 @@
     {%- for order in customer.orders -%}
       {{ order.id | json }}: {
         note: {{ order.note | json }},
-        attribute: {{ order.attribute | json }},
+        attribute: {{ order.attributes | json }},
       },
     {%- endfor -%}
   {% endpaginate %}
