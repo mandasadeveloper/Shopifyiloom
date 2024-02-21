@@ -590,26 +590,26 @@ $('.checkout_custom').on('click', function(e) {
          success: function(response){
           // console.log(response);
 
-     const updates = {
-  // Your update data here
-  cart_attribute: 'have' // Add your custom attribute here
-};
+//      const updates = {
+//   // Your update data here
+//   cart_attribute: 'have' // Add your custom attribute here
+// };
 
-// Make the fetch request
-fetch(window.Shopify.routes.root + 'cart/update.js', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ updates })
-})
-.then(response => {
-  console.log(response);
-  return response.json();
-})
-.catch((error) => {
-  console.error('Error:', error);
-});
+// // Make the fetch request
+// fetch(window.Shopify.routes.root + 'cart/update.js', {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify({ updates })
+// })
+// .then(response => {
+//   console.log(response);
+//   return response.json();
+// })
+// .catch((error) => {
+//   console.error('Error:', error);
+// });
           
 
            
