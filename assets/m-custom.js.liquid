@@ -589,7 +589,9 @@ $('.checkout_custom').on('click', function(e) {
          },
          success: function(response){
           console.log(response);
+           setTimeout(function () {
            window.location.href = "/checkout";
+                  }, 2500);
          },
          error: function(){}
        });
