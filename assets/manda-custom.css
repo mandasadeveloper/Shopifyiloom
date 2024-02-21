@@ -4268,3 +4268,6 @@ element.style {
     opacity: 1;
     border-color: #000;
 }
+.checkbox-container1{
+  display: inline-block;
+}
