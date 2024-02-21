@@ -16,7 +16,7 @@
       "settings": {
         "tooltip_txt": "我忘了我的密碼？",
         "social-share": "使用您的社群帳號登入",
-        "tooltip_txt_hover": "",
+        "tooltip_txt_hover": "비밀번호찾기",
         "sign_up_button_top_txt": "當您註冊成為新會員時，您將收到<span class=\"color-red-m\">「首次購買感謝優惠券」。<\/span>",
         "sign_up_button_bottom_txt": "查看非會員訂單",
         "sign_url": "https:\/\/iloomtaiwan.myshopify.com\/apps\/trackingmore",
