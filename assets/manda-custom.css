@@ -4356,4 +4356,10 @@ element.style {
   .product-list-mm .product-card__info .v-stack {
     gap: 2px;
 }
+  .section-stack-magzine .m-product-info .il-product__seriesItem {
+    font-size: 12px;
+}
+  .section-stack-magzine .m-product-info .product-card__title a {
+    font-size: 14px;
+}
 }
