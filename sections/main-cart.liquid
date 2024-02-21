@@ -241,7 +241,7 @@
               </svg>
             -->
             <safe-sticky class="cart-order__recap m-cart-right v-stack gap-6">
-              <form action="{{ routes.cart_url }}" method="POST" class="cart-form rounded">
+              <form action="{{ routes.cart_url }}" method="post" class="cart-form rounded" >
                 <!-- <input id="check_val" type="hidden" name="attributes[是否有電梯]" value="No"> -->
                 
                 {%- for block in section.blocks -%}
@@ -257,13 +257,13 @@
                             <span class="text-subdued">{{ cart.total_weight | weight_with_unit }}</span>
                           </div>
                         {%- endif -%}
-                      <CartForm action="{{ routes.cart_url }}" method="POST">
+          
                         <p class="cart-attribute__field">
   <label>Test</label><br>
   <input type="radio" name="attributes[Test]" value="Have"{% if cart.attributes["Test"] == "Have" %} checked{% endif %}> <span>Have</span><br>
   <input type="radio" name="attributes[Test]" value="No"{% if cart.attributes["Test"] == "No" %} checked{% endif %}> <span>No</span><br>
 </p>
-</CartForm>
+
                         <div class="h-stack gap-4 justify-between m-subtotal">
                           <span class="text-subdued">{{ 'cart.general.subtotal' | t }}</span>
                           <span class="text-subdued f">{{ cart.items_subtotal_price | money }}</span>
