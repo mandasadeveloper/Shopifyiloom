@@ -808,3 +808,7 @@ span.qa_titlee {
 .mandasa_qa_art_tag  {
   color: #3c3c3c!important;
 }
+
+.mandasa_article_bg .prose{
+  color: #666666;
+}
