@@ -752,6 +752,7 @@ align-items: center;
 span.qa_titlee {
     font-family: 'Montserrat';
     font-size: 14px;
+    color: #9a9a9a;
 }
 
 @media screen and (min-width: 1000px){
