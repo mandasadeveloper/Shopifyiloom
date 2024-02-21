@@ -4225,3 +4225,11 @@ element.style {
   
 }
 /* after merge */
+
+
+.checkbox-container1 {
+    align-items: baseline;
+    display: flex;
+      align-self: normal;
+
+}
