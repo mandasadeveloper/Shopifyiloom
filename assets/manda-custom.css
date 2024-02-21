@@ -2820,6 +2820,8 @@ margin-top: 13px
   margin-top: 15px;
   }
   .m-form-login .link1{
+        width: 100%;
+    display: block;
   border: 1px solid #3C3C3C;
   padding: 15px 177px;
   text-decoration: none;
