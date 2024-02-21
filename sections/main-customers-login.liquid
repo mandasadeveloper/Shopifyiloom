@@ -54,10 +54,10 @@ LIQUID
                         {%- endif -%}
 
                         {%- assign email_label = 'customer.login.email' | t -%}
-                        {%- render 'input1', type: 'email', name: 'customer[email]', id:'username', label: email_label, autocomplete: 'email', required: true  -%}
+                        {%- render 'input-email', type: 'email', name: 'customer[email]', id:'username', label: email_label, autocomplete: 'email', required: true  -%}
 
                         {%- assign password_label = 'customer.login.password' | t -%}
-                        {%- render 'input1', type: 'password', name: 'customer[password]', label1: password_label, autocomplete: 'current-password', required: true ,id: 'password' -%}
+                        {%- render 'input-password', type: 'password', name: 'customer[password]', label1: password_label, autocomplete: 'current-password', required: true ,id: 'password' -%}
                             <div class="m-div1">
                             <div class="m-remember-id">
                               <input type="checkbox" id="rememberMe" name="rememberMe">
