@@ -29,7 +29,7 @@
         "show_date": true,
         "show_comments_count": true,
         "show_share_buttons": false,
-        "back": "목록으로 가기",
+        "back": "回目录",
         "contact": "1:1咨询",
         "banner_background": "#f0f0f0",
         "banner_text_color": "rgba(0,0,0,0)",
