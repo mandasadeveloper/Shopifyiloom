@@ -598,7 +598,7 @@ $('.checkout_custom').on('click', function(e) {
           dataType: 'json',
           data: {
             attributes: {
-              是否有電梯: 'have' // Add your attribute key-value pair here
+              是否有電梯: get_cart_attr // Add your attribute key-value pair here
             }
           },
           success: function(response){
