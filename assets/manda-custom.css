@@ -4290,3 +4290,40 @@ element.style {
 #create_customer .button-black:hover div{
     color: #fff!important;
 }
+
+
+
+.m-remember-id input[type=checkbox] {
+    position: relative;
+    border: 1px solid #d9d9d9;
+    background: none;
+    cursor: pointer;
+    line-height: 0;
+    /* margin: 0 0.6em 0 0; */
+    outline: 0;
+    padding: 0 !important;
+    vertical-align: text-top;
+   height: 21.92px !important;
+    width: 21.92px;
+    border-radius: 50%;
+    -webkit-appearance: none;
+}
+.m-remember-id input[type=checkbox]:before {
+    content: '';
+    position: absolute;
+    right: 50%;
+    top: 46%;
+    width: 5px;
+    height: 11px;
+    border: solid #d9d9d9;
+    border-width: 0 2px 2px 0;
+    margin: -1px -1px 0 -1px;
+    transform: rotate(45deg) translate(-50%, -50%);
+    z-index: 2;
+}
+
+.m-remember-id input[type=checkbox]:checked {
+    background-color: #000;
+    opacity: 1;
+    border-color: #000;
+}
