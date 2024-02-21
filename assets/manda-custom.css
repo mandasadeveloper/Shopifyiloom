@@ -4284,6 +4284,9 @@ element.style {
   background: #3C3C3C;
   color: #fff!important;
 }
+.custom-frm-sign-up .button div{
+  color: white;
+}
 #create_customer .button-black:hover div{
     color: #fff!important;
 }
