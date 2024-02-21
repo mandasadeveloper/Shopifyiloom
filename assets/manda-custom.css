@@ -4284,3 +4284,6 @@ element.style {
   background: #3C3C3C;
   color: #fff!important;
 }
+#create_customer .button-black:hover div{
+    color: #fff!important;
+}
