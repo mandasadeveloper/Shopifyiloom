@@ -4185,6 +4185,10 @@ element.style {
 #m-loadMore-search{
   display: none;
 }
+   .preoff{
+    font-size: 12px;
+    line-height: 14px;
+  }
 }
 
 .comp_price .nt-dollar {
