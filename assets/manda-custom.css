@@ -4136,6 +4136,10 @@ element.style {
     width: unset;
     max-width: unset;
 }
+  .preoff{
+    font-size: 10px;
+    line-height: 12px;
+  }
 }
 
 #m-loadMore-search a{
