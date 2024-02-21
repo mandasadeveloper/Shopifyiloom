@@ -588,7 +588,7 @@ $('.checkout_custom').on('click', function(e) {
            items: items
          },
          success: function(response){
-          console.log(response);
+          // console.log(response);
 
      const updates = {
   // Your update data here
@@ -604,6 +604,7 @@ fetch(window.Shopify.routes.root + 'cart/update.js', {
   body: JSON.stringify({ updates })
 })
 .then(response => {
+  console.log(response);
   return response.json();
 })
 .catch((error) => {
