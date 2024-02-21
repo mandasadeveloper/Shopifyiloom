@@ -4244,8 +4244,9 @@ element.style {
     outline: 0;
     padding: 0 !important;
     vertical-align: text-top;
-    height: 20px;
+   height: 19.92px !important;
     width: 19.92px;
+    border-radius: 50%;
     -webkit-appearance: none;
 }
 .m-copun input[type=checkbox]:before {
