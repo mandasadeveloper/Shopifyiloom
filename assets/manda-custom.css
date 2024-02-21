@@ -4305,7 +4305,7 @@ element.style {
     vertical-align: text-top;
    height: 21.92px !important;
     width: 21.92px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     -webkit-appearance: none;
 }
 .m-remember-id input[type=checkbox]:before {
