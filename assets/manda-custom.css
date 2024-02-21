@@ -4282,5 +4282,5 @@ element.style {
 
 #create_customer .button-black:hover{
   background: #3C3C3C;
-  color: #fff;
+  color: #fff!important;
 }
