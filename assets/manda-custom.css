@@ -4362,4 +4362,8 @@ element.style {
   .section-stack-magzine .m-product-info .product-card__title a {
     font-size: 14px;
 }
+  .section-stack-magzine .product-card--home.bg-custom {
+    width: 180px; 
+    max-width: 180px;
+}
 }
