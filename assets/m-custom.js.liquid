@@ -603,7 +603,7 @@ $('.checkout_custom').on('click', function(e) {
           },
           success: function(response){
             console.log("Cart attribute added successfully");
-            // window.location.href = "/checkout";
+            window.location.href = "/checkout";
           },
           error: function(xhr, status, error) {
             console.error("Error adding cart attribute:", error);
