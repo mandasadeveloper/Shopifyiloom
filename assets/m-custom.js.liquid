@@ -590,33 +590,33 @@ $('.checkout_custom').on('click', function(e) {
          success: function(response){
           // console.log(response);
 
-const updates = {
-  // Your update data here
-  cart_attribute: 'have' // Add your custom attribute here
-};
+// const updates = {
+//   // Your update data here
+//   cart_attribute: 'have' // Add your custom attribute here
+// };
 
-// Make the fetch request
-fetch(window.Shopify.routes.root + 'cart/update.js', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ updates })
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return response.json();
-})
-.then(data => {
-  console.log('Response data:', data);
-})
-.catch((error) => {
-  console.error('Error:', error);
-});
-console.error('Error:', error);
-});
+// // Make the fetch request
+// fetch(window.Shopify.routes.root + 'cart/update.js', {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify({ updates })
+// })
+// .then(response => {
+//   if (!response.ok) {
+//     throw new Error('Network response was not ok');
+//   }
+//   return response.json();
+// })
+// .then(data => {
+//   console.log('Response data:', data);
+// })
+// .catch((error) => {
+//   console.error('Error:', error);
+// });
+// console.error('Error:', error);
+// });
           
 
            
