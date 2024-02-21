@@ -4261,3 +4261,9 @@ element.style {
     transform: rotate(45deg) translate(-50%, -50%);
     z-index: 2;
 }
+
+.m-copun input[type=checkbox]:checked {
+    background-color: #000;
+    opacity: 1;
+    border-color: #000;
+}
