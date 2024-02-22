@@ -4394,7 +4394,9 @@ display: block;
   display: flex;
     flex-direction: row-reverse;
 }
-
+.search-drawer.drawer::part(content) {
+    border-radius: 0;
+}
 .predictive-search-result{
   align-items:flex-start!important;
 }
