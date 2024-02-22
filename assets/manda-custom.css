@@ -4386,3 +4386,7 @@ display: block;
 .m-tooltip .tooltiptext{
   display: none;
 }
+#loginForm .banner--error{
+  display: flex;
+    flex-direction: row-reverse;
+}
