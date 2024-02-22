@@ -1061,7 +1061,8 @@
   letter-spacing: 5px;
   text-transform: capitalize;
   text-align: center;
-  margin-top: 45px;
+  /* margin-top: 45px; */
+    margin-top: 80px;
   }
   .blog-post-card-event .m-badge{
   color:#FFF;
