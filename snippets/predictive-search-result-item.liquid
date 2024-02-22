@@ -113,12 +113,6 @@ Supported variables
       </div>
     </a>
 
-  {%- when 'query' -%}
-    {%- assign query = item -%}
-
-    <a href="{{ query.url }}" data-instant class="bold">
-      <span class="reversed-link hover:show">{{ query.styled_text }}</span>
-    </a>
 
   {%- when 'article' -%}
   <!-- mk-mds  -->
@@ -157,28 +151,4 @@ Supported variables
     {% endif %}
   <!-- end-mk-mds  -->
 
-  {%- when 'collection' -%}
-    {%- assign collection = item -%}
-
-    <a href="{{ collection.url }}" data-instant class="predictive-search-result group">
-      {%- if collection.featured_image -%}
-        {{- collection.featured_image | image_url: width: collection.featured_image.width | image_tag: sizes: '96px', widths: '96,192' -}}
-        <!-- <img src="{{ collection.featured_image | img_url: 'master' }}" width="auto" height="auto"> -->
-      {%- endif -%}
-
-      <div class="v-stack justify-items-start gap-0.5">
-        <span class="bold">
-          <span class="reversed-link">{{ collection.title }}</span>
-        </span>
-
-        <span class="text-sm text-subdued">{{ 'collection.products_count' | t: count: collection.products_count }}</span>
-      </div>
-    </a>
-
-  {%- when 'page' -%}
-    {%- assign page = item -%}
-
-    <a href="{{ page.url }}" data-instant class="bold">
-      <span class="reversed-link hover:show">{{ page.title }}</span>
-    </a>
 {%- endcase -%}
