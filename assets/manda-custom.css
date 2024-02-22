@@ -4404,7 +4404,9 @@ display: block;
   .cart-drawer__line {
     margin: 14px 0 14px!important;
   }
-
+.line-price-mob.compare{
+   text-decoration: line-through;
+}
 .linespace {
     margin: 10px 0;
 }
