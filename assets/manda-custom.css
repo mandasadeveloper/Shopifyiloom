@@ -4383,3 +4383,6 @@ display: block;
     align-items: baseline;
     column-gap: 4px;
 }
+.m-tooltip .tooltiptext{
+  display: none;
+}
