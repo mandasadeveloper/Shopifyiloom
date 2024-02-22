@@ -61,7 +61,7 @@
       <div class="cart-drawer__line">
         {% for option in line_item.options_with_values %}
           <p class="text-sm text-subdued">
-            {{ option.name | replace: 'Color', '顏色' | replace: 'Size', '尺寸' | replace: 'Style', '選項' }}:
+            {{ option.name | replace: 'Color', '顏色' | replace: 'Size', '尺寸' | replace: 'Style', '選項' }} :
             {{ option.value }}
           </p>
         {% endfor %}
