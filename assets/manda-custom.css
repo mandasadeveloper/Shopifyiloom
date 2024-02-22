@@ -4370,3 +4370,8 @@ element.style {
     max-width: unset;
 }
 }
+
+
+.shubh_cart .line-item__info{
+display: block;
+}
