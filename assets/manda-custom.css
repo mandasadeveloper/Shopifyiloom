@@ -4375,3 +4375,9 @@ element.style {
 .shubh_cart .line-item__info{
 display: block;
 }
+
+.m-color {
+    display: flex;
+    align-items: baseline;
+    column-gap: 4px;
+}
