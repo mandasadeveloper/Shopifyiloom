@@ -81,11 +81,11 @@
             {%- continue -%}
           {%- endif -%}
 
-          <li class="text-sm text-subdued">
+          <li ddts class="text-sm text-subdued">
             {%- if property.last contains '/uploads/' -%}
               <a href="{{ property.last }}" class="link">{{ property.last | split: '/' | last }}</a>
             {%- else -%}
-              {{ property.first }} s : {{ property.last }}
+              {{ property.first }} : {{ property.last }}
             {%- endif -%}
           </li>
         {%- endfor -%}
