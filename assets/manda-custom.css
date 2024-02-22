@@ -4103,7 +4103,7 @@ element.style {
 }
 
   .cart-drawer .line-item__info {
-    width: 80px;
+    width: 80px!important;
 }
   
 }
