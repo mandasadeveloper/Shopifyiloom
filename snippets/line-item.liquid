@@ -85,7 +85,7 @@
             {%- if property.last contains '/uploads/' -%}
               <a href="{{ property.last }}" class="link">{{ property.last | split: '/' | last }}</a>
             {%- else -%}
-              {{ property.first }}: {{ property.last }}
+              {{ property.first }} : {{ property.last }}
             {%- endif -%}
           </li>
         {%- endfor -%}
