@@ -4399,6 +4399,7 @@ display: block;
 }
 .text-subdued {
     color: #9A9A9A!important;
+  font-size: 12px!important;
 }
   .cart-drawer__line {
     margin: 14px 0 14px!important;
