@@ -4101,6 +4101,11 @@ element.style {
 .collection.product-list-mobile {
     margin-top: 45px;
 }
+
+  .cart-drawer .line-item__info {
+    width: 80px;
+}
+  
 }
 .line-item__info{
     width: 100%;
