@@ -4397,7 +4397,9 @@ display: block;
 .cart-drawer .line-item__info{
   gap:1 !important;
 }
-
+.text-subdued {
+    color: #9A9A9A!important;
+}
   .cart-drawer__line {
     margin: 14px 0 14px!important;
   }
