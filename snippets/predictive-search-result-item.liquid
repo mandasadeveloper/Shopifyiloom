@@ -156,8 +156,8 @@ Supported variables
     </a>
     {% endif %}
   <!-- end-mk-mds  -->
-{% comment %}
-  {%- when 'collection' -%}
+
+  <!-- {%- when 'collection' -%}
     {%- assign collection = item -%}
 
     <a href="{{ collection.url }}" data-instant class="predictive-search-result group">
@@ -180,6 +180,5 @@ Supported variables
 
     <a href="{{ page.url }}" data-instant class="bold">
       <span class="reversed-link hover:show">{{ page.title }}</span>
-    </a>
-  {% endcomment %}
+    </a> -->
 {%- endcase -%}
