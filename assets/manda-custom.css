@@ -4396,5 +4396,5 @@ display: block;
 }
 
 .predictive-search-result{
-  align-items:flex-start;
+  align-items:flex-start!important;
 }
