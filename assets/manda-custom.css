@@ -4403,6 +4403,10 @@ p.text-sm.text-subdued {
   .cart-drawer__line {
     margin: 14px 0 14px!important;
   }
+
+.linespace {
+    margin: 10px 0;
+}
 .search-drawer.drawer::part(content) {
     border-radius: 0!important;
 }
