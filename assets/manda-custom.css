@@ -4406,6 +4406,7 @@ display: block;
   }
 .line-price-mob.compare{
    text-decoration: line-through;
+   color:#9A9A9A!important;
 }
 .linespace {
     margin: 10px 0;
