@@ -74,8 +74,8 @@ Supported variables
       </div>
       <!-- end-mk-mds  -->
     {%- endunless -%}
-    <div class="line-price-mob">{{ line_item.final_line_price | money }}</div>
-   <div class="line-price-mob">{{ line_item.compare_at_price  }}</div>
+    <div class="line-price-mob">{{ line_item.final_price | money }}</div>
+   <div class="line-price-mob">{{ line_item.  }}</div>
     {%- if line_item.selling_plan_allocation -%}
       <p class="text-sm text-subdued">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
     {%- endif -%}
