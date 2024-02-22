@@ -4395,7 +4395,7 @@ display: block;
     flex-direction: row-reverse;
 }
 .cart-drawer .line-item__info{
-  gap:1!important;
+  gap:1 !important;
 }
 .search-drawer.drawer::part(content) {
     border-radius: 0!important;
