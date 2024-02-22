@@ -4397,9 +4397,7 @@ display: block;
 .cart-drawer .line-item__info{
   gap:1 !important;
 }
-p.text-sm.text-subdued {
-    padding-bottom: 2px;
-}
+
   .cart-drawer__line {
     margin: 14px 0 14px!important;
   }
