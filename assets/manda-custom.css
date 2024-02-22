@@ -4400,6 +4400,9 @@ display: block;
 p.text-sm.text-subdued {
     padding-bottom: 2px;
 }
+  .cart-drawer__line {
+    margin: 14px 0 14px!important;
+  }
 .search-drawer.drawer::part(content) {
     border-radius: 0!important;
 }
