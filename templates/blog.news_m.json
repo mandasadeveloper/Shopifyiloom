@@ -18,6 +18,23 @@
     },
     "main": {
       "type": "main-blog-news",
+      "blocks": {
+        "newsletter_QLrpmr": {
+          "type": "newsletter",
+          "settings": {
+            "title": "Newsletter",
+            "content": "<p>Write something about what your customers will receive by subscribing to your newsletter.<\/p>",
+            "button_text": "Subscribe",
+            "subtext": "",
+            "position": 5,
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "newsletter_QLrpmr"
+      ],
       "settings": {
         "allow_transparent_header": false,
         "content": "",
@@ -27,8 +44,8 @@
         "banner_text_color": "",
         "button_background": "#ab4343",
         "button_text_color": "",
-        "articles_per_page": 9,
-        "articles_per_page1": "9",
+        "articles_per_page": 12,
+        "articles_per_page1": "12",
         "feature_first_article": false,
         "feature_article_background": "#f9f8f7",
         "feature_article_text_color": "#000000",
