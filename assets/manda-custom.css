@@ -2494,7 +2494,7 @@ height: 24px;
   }
   @media screen and (max-width: 1400px) and (min-width: 965px) {
     .desktop_banner_m{
-      max-height:500px;
+      max-height:500px!important;
     }
   .m-article-banner .article-banner__content {
   /* transform: translate(-196px); */
