@@ -4421,5 +4421,5 @@ search-drawer#search-drawer {
   transform: translate(100%);
 }
 .show-close-cursor {
-    transform: translate(0);
+    transform: translate(0)!important;
 }
