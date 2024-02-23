@@ -4397,7 +4397,7 @@ display: block;
 .cart-drawer .line-item__info{
   gap:1 !important;
 }
-.text-subdued {
+.linespace .text-subdued {
     color: #9A9A9A!important;
   font-size: 12px!important;
 }
