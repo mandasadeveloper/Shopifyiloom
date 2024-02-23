@@ -30,7 +30,7 @@
     "text_font": "noto_serif_n4",
     "show_page_transition": true,
     "zoom_image_on_hover": true,
-    "reduce_drawer_animation": true,
+    "reduce_drawer_animation": false,
     "heading_apparition": "split_fade",
     "color_swatch_style": "round",
     "show_sold_out_badge": false,
