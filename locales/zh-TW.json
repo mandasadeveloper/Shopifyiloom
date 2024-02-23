@@ -300,7 +300,7 @@
   "cart": {
     "general": {
       "title": "購物車",
-      "empty": "您的購物車為空",
+      "empty": "購物車目前尚無商品",
       "continue_shopping": "繼續購物",
       "weight": "重量",
       "subtotal": "小計",
