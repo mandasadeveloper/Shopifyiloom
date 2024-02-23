@@ -4424,6 +4424,7 @@ display: block;
 .predictive-search-result{
   align-items:flex-start!important;
 }
-.m-tooltip span svg{
-  
+.m-tooltip{
+  cursor: auto;
+
 }
