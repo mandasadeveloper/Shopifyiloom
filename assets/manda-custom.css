@@ -3153,12 +3153,12 @@ margin-top: 13px
   }
   .tooltip1 .tooltiptext1 {
   visibility: hidden;
-  width: 120px;
+  width: 200px;
   background-color: black;
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 10px;
   
   /* Position the tooltip */
   position: absolute;
