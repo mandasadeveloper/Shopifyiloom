@@ -4416,10 +4416,10 @@ display: block;
 .predictive-search-result{
   align-items:flex-start!important;
 }
-search-drawer#search-drawer {
+/* search-drawer#search-drawer {
   transition: transform 0.5s ease 0s;
   transform: translate(100%);
 }
 .show-close-cursor {
     transform: translate(0)!important;
-}
+} */
