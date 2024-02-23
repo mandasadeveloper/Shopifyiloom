@@ -4400,7 +4400,7 @@ display: block;
 }
 #loginForm .banner--error{
   display: flex;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
 }
 .cart-drawer .line-item__info{
   gap:1 !important;
