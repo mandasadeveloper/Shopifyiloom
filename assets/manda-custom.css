@@ -4413,7 +4413,9 @@ display: block;
 .linespace {
     margin: 10px 0;
 }
-
 .predictive-search-result{
   align-items:flex-start!important;
+}
+.show-close-cursor {
+    transform: translate(0);
 }
