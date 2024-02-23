@@ -2634,9 +2634,9 @@ margin-top: 13px
   }
   }
   @media screen and (min-width: 1024px){
-      img.desktop_banner_m {
+      /* img.desktop_banner_m {
     max-height: 500px;
-}
+} */
   /* .product-list-mm .bg-custom img{
   max-height: 332px;
   min-height: 332px;
