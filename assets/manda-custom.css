@@ -2493,9 +2493,7 @@ height: 24px;
   
   }
   @media screen and (max-width: 1400px) and (min-width: 965px) {
-    .desktop_banner_m{
-      max-height:500px!important;
-    }
+
   .m-article-banner .article-banner__content {
   /* transform: translate(-196px); */
   }
@@ -2636,6 +2634,9 @@ margin-top: 13px
   }
   }
   @media screen and (min-width: 1024px){
+      img.desktop_banner_m {
+    max-height: 500px;
+}
   /* .product-list-mm .bg-custom img{
   max-height: 332px;
   min-height: 332px;
