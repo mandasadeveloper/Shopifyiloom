@@ -2810,7 +2810,7 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
 }
 
 .product-card__image--secondary {
-  display: none;
+  display: none!important;
 }
 
 .product-card__title {
@@ -2910,7 +2910,7 @@ model-media model-viewer, model-media .shopify-model-viewer-ui {
 
   .product-card__image--secondary {
     opacity: 0;
-    display: block;
+        display: block!important;
   }
 
   .product-card__quick-buy {
