@@ -3030,7 +3030,7 @@ margin-top: 13px
   .m-vendor p{
   color: #666;
   font-family: 'Montserrat';
-  font-size: 10px;
+  font-size: 12px;
   /* font-weight: 500; */
   line-height: 14.63px;
   letter-spacing: 1.2px;
@@ -3039,7 +3039,7 @@ margin-top: 13px
   .reversed-link-m{
   color: #3C3C3C;
   font-family: 'Noto_Sans_TC';
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 20.27px;
   }
@@ -4356,6 +4356,14 @@ element.style {
 
 
 @media screen and (max-width: 767px){
+
+    .m-vendor p{
+  font-size: 10px;
+  }
+  .reversed-link-m{
+  font-size: 12px;
+  }
+  
   .section-stack-event .m-product-info .il-product__seriesItem {
     font-size: 12px;
 }
