@@ -2,7 +2,6 @@
   "sections": {
     "main": {
       "type": "main-not-found",
-      "disabled": true,
       "settings": {
       }
     },
@@ -10,7 +9,7 @@
       "type": "custom-section",
       "settings": {
         "allow_transparent_header": false,
-        "content": "<p><strong>常見問題<\/strong><\/p>",
+        "content": "",
         "tab1": "公告",
         "url1": "shopify:\/\/blogs\/notice-2",
         "tab2": "Q&A",
