@@ -4442,6 +4442,8 @@ display: block;
     margin-top: 0;
 }
 
-
+nav.collection__pagination.pagination.pagination-m-cus {
+    margin-top: 75px;
+}
 
 
