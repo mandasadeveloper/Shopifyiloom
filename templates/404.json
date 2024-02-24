@@ -2,11 +2,48 @@
   "sections": {
     "main": {
       "type": "main-not-found",
+      "disabled": true,
       "settings": {
+      }
+    },
+    "custom_section_n7KE68": {
+      "type": "custom-section",
+      "settings": {
+        "allow_transparent_header": false,
+        "content": "",
+        "tab1": "公告",
+        "url1": "",
+        "tab2": "Q&A",
+        "url2": "",
+        "tab3": "資料室",
+        "url3": "",
+        "num": "資料室",
+        "title": "제목",
+        "date": "등록일",
+        "text_one": "如果找不到您需要的答案，请使用1:1咨询。",
+        "found_txt": "기타 문의사항은 1:1 문의 또는 고객센터(1577-5670)를 이용해주세요.",
+        "contact_btn": "1:1咨询",
+        "show_newsletter_form": false,
+        "show_tags": true,
+        "banner_background": "",
+        "banner_text_color": "",
+        "button_background": "",
+        "button_text_color": "",
+        "articles_per_page": 6,
+        "articles_per_page1": "",
+        "feature_first_article": true,
+        "feature_article_background": "",
+        "feature_article_text_color": "",
+        "show_excerpt": true,
+        "show_date": true,
+        "show_author": false,
+        "show_comments_count": false,
+        "show_category": true
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "custom_section_n7KE68"
   ]
 }
