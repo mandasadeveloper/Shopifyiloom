@@ -110,7 +110,8 @@
         <div class="date_titl">
           <p class="mandasa_article_t">{{ article.title }}</p>
           {% if qa %}
-          <p class="m_datee"><span>{{ article.published_at | date: "%Y.%m.%d" }}</span></p>
+            {% else %}
+          <p class="m_datee"><span>{{ article.published_at | date: "%Y.%m.%d" }}</span></p> 
            {% endif %} 
         </div>
       </div>
