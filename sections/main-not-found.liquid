@@ -7,7 +7,7 @@
   </div>
 </div>
  {% else %}
-  <div class="not-found">
+  <div class="not-found1">
   <div class="prose text-center" ddts {{ page }}>
     <h2 class="h4">{{ '404.general.title' | t }}</h2>
     {%- capture button_content -%}{{ '404.general.continue_shopping' | t }}{%- endcapture -%}
@@ -15,6 +15,12 @@
   </div>
 </div>
 {% endif %}
+
+<style>
+  .not-found1{
+    height:1200px;
+  }
+</style>
 {% schema %}
 {
   "name": "404",
