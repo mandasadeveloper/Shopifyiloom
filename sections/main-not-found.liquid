@@ -1,4 +1,4 @@
-
+{% if page %}
 <div class="not-found">
   <div class="prose text-center" ddts {{ page }}>
     <h2 class="h4">{{ '404.general.title' | t }}</h2>
@@ -6,7 +6,7 @@
     {%- render 'button', content: button_content, href: routes.all_products_collection_url, size: 'xl' -%}
   </div>
 </div>
-
+{% endif %}
 {% schema %}
 {
   "name": "404",
