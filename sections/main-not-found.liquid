@@ -1,15 +1,17 @@
-{% if page %}
-<div class="not-found">
+{% if request.page_type == 404 %}
+
+    <div class="not-found1" {{ request.page_type }}>
   <div class="prose text-center" ddts {{ page }}>
-    <h2 class="h4">{{ '404.general.title' | t }}</h2>
+    <h2 class="h4">沒有找到結果</h2>
     {%- capture button_content -%}{{ '404.general.continue_shopping' | t }}{%- endcapture -%}
     {%- render 'button', content: button_content, href: routes.all_products_collection_url, size: 'xl' -%}
   </div>
 </div>
+
  {% else %}
-  <div class="not-found1" {{ request.page_type }}>
+<div class="not-found">
   <div class="prose text-center" ddts {{ page }}>
-    <h2 class="h4">沒有找到結果</h2>
+    <h2 class="h4">{{ '404.general.title' | t }}</h2>
     {%- capture button_content -%}{{ '404.general.continue_shopping' | t }}{%- endcapture -%}
     {%- render 'button', content: button_content, href: routes.all_products_collection_url, size: 'xl' -%}
   </div>
