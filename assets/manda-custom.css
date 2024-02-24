@@ -2580,6 +2580,9 @@ height: 24px;
   line-height: 13.66px;
   padding: 6.18px 8px;
   }
+    .article-banner__content{
+      padding-top:0!important;
+    }
     .m-elevator {
 margin-top: 13px
 }
