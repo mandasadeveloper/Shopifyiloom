@@ -12,15 +12,17 @@
 </div>
 {% endif %}
 
+
+{% if request.page_type == "404" %}
 <style>
-  .not-found1{
-    height:800px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.blog.blogcus {
+    margin-top: 104px!important;
+}
+
 </style>
+
+ {% endif %}
+
 {% schema %}
 {
   "name": "404",
