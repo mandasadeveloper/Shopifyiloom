@@ -10,7 +10,7 @@
       "type": "custom-section",
       "settings": {
         "allow_transparent_header": false,
-        "content": "",
+        "content": "<p><strong>常見問題<\/strong><\/p>",
         "tab1": "公告",
         "url1": "shopify:\/\/blogs\/notice-2",
         "tab2": "Q&A",
