@@ -109,7 +109,9 @@
         <p class="blog_tit {% if qa %} qa_bredcum {% endif %}"><span class="{% if qa %} qa_titlee {% endif %}">{{ blog.title }}</span>{% if qa %}<span class="mandasa_qa_art_tag {% if qa %} qa_titlee {% endif %}"> {% render 'less-then' %}  {{ spli_tag[1] }}</span>{% endif %}</p>
         <div class="date_titl">
           <p class="mandasa_article_t">{{ article.title }}</p>
+          {% if qa %}
           <p class="m_datee"><span>{{ article.published_at | date: "%Y.%m.%d" }}</span></p>
+           {% endif %} 
         </div>
       </div>
       <div class="prose">
