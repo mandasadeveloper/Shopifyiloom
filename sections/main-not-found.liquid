@@ -1,12 +1,12 @@
 {% if request.page_type == "404" %}
 
-    <div class="not-found1" {{ request.page_type }}>
-  <div class="prose text-center" ddts {{ page }}>
-    <h2 class="h4">沒有找到結果</h2>
-    {%- capture button_content -%}{{ '404.general.continue_shopping' | t }}{%- endcapture -%}
-    {%- render 'button', content: button_content, href: routes.all_products_collection_url, size: 'xl' -%}
-  </div>
-</div>
+  <header class="mandasa_dev_con">
+      <div class="container">
+        <div class="blog-banner-content-head v-stack gap-10 text-center justify-items-center">
+          <div class="v-stack gap-5 sm:gap-8">
+            <h1 class="h0 mandasa_archive_tt">常見問題</h1></div></div>       
+      </div>
+    </header>
 
  {% else %}
 <div class="not-found">
