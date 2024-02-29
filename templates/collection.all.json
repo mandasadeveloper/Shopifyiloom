@@ -50,7 +50,7 @@
         "6af6869a-ded6-4e11-8e16-252669c38c7b": {
           "type": "textbutton",
           "settings": {
-            "collection": "書架",
+            "collection": "書架-書櫃",
             "collection_title": "",
             "link": ""
           }
@@ -110,7 +110,7 @@
         "6921b616-1de9-421d-8721-58c4f4ff690e": {
           "type": "imagebutton",
           "settings": {
-            "collection": "書架"
+            "collection": "書架-書櫃"
           }
         },
         "24dda340-8bf3-4d82-9b83-0bfdc1c739c0": {
