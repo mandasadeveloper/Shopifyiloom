@@ -90,7 +90,7 @@
         "099188c0-0345-41b8-b87c-7449f4b3c90b": {
           "type": "textbutton",
           "settings": {
-            "collection": "椅子",
+            "collection": "椅子-電腦椅",
             "collection_title": "",
             "link": ""
           }
@@ -140,7 +140,7 @@
         "0174685b-626c-4f33-b56e-8563a2958284": {
           "type": "imagebutton",
           "settings": {
-            "collection": "椅子"
+            "collection": "椅子-電腦椅"
           }
         }
       },
