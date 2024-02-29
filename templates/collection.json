@@ -34,7 +34,7 @@
         "4eaf80ad-0cf3-4506-b698-2ccf0beb7c65": {
           "type": "textbutton",
           "settings": {
-            "collection": "沙發-沙發桌-1",
+            "collection": "沙發-沙發桌",
             "collection_title": "",
             "link": ""
           }
@@ -98,7 +98,7 @@
         "imagebutton_6wxKeN": {
           "type": "imagebutton",
           "settings": {
-            "collection": "沙發-沙發桌-1"
+            "collection": "沙發-沙發桌"
           }
         },
         "imagebutton_fa7Kjk": {
