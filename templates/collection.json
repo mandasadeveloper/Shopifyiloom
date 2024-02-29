@@ -42,7 +42,7 @@
         "bd5c7add-12f0-4012-bbf8-cb57b49fd725": {
           "type": "textbutton",
           "settings": {
-            "collection": "床",
+            "collection": "床架-床組",
             "collection_title": "",
             "link": ""
           }
@@ -104,7 +104,7 @@
         "imagebutton_fa7Kjk": {
           "type": "imagebutton",
           "settings": {
-            "collection": "床"
+            "collection": "床架-床組"
           }
         },
         "imagebutton_yWww3y": {
