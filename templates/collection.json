@@ -91,7 +91,7 @@
         "2b7ac72b-2c4d-4393-8a8d-9ef34bfbc9a5": {
           "type": "textbutton",
           "settings": {
-            "collection": "書桌",
+            "collection": "desk",
             "collection_title": "書桌",
             "link": ""
           }
@@ -143,7 +143,7 @@
         "imagebutton_y8Fbax": {
           "type": "imagebutton",
           "settings": {
-            "collection": "書桌"
+            "collection": "desk"
           }
         },
         "imagebutton_QLQhjj": {
