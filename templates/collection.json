@@ -75,7 +75,7 @@
         "1a6551a1-f1b8-4775-b0fa-d3bcf189b98f": {
           "type": "textbutton",
           "settings": {
-            "collection": "儲物櫃-抽屜",
+            "collection": "storage-cabinet",
             "collection_title": "",
             "link": ""
           }
@@ -131,7 +131,7 @@
         "imagebutton_9YFptN": {
           "type": "imagebutton",
           "settings": {
-            "collection": "儲物櫃-抽屜"
+            "collection": "storage-cabinet"
           }
         },
         "imagebutton_Qz78fP": {
