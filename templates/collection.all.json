@@ -67,7 +67,7 @@
         "7f4a5582-3131-4bb8-867a-b90b133d1291": {
           "type": "textbutton",
           "settings": {
-            "collection": "床墊",
+            "collection": "mattress",
             "collection_title": "",
             "link": ""
           }
@@ -125,7 +125,7 @@
         "24dda340-8bf3-4d82-9b83-0bfdc1c739c0": {
           "type": "imagebutton",
           "settings": {
-            "collection": "床墊"
+            "collection": "mattress"
           }
         },
         "d2d508cd-9110-48a0-80f0-ea0e8d9980cf": {
