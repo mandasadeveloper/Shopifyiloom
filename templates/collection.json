@@ -59,7 +59,7 @@
         "d11af4ff-ec91-4538-aed1-3b5b3dad73da": {
           "type": "textbutton",
           "settings": {
-            "collection": "書架-書櫃",
+            "collection": "bookshelf",
             "collection_title": "書架",
             "link": ""
           }
@@ -119,7 +119,7 @@
         "imagebutton_yWww3y": {
           "type": "imagebutton",
           "settings": {
-            "collection": "書架-書櫃"
+            "collection": "bookshelf"
           }
         },
         "imagebutton_8iLzGH": {
