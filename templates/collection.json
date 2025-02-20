@@ -99,7 +99,7 @@
         "3d8a2dea-54cc-4559-be04-6b9c3b4c4fdf": {
           "type": "textbutton",
           "settings": {
-            "collection": "椅子-電腦椅",
+            "collection": "desk-chair",
             "collection_title": "",
             "link": ""
           }
@@ -149,7 +149,7 @@
         "imagebutton_QLQhjj": {
           "type": "imagebutton",
           "settings": {
-            "collection": "椅子-電腦椅"
+            "collection": "desk-chair"
           }
         }
       },
