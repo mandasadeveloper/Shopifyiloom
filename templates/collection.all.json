@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
@@ -28,13 +37,13 @@
           "settings": {
             "collection": "all",
             "collection_title": "所有商品",
-            "link": "shopify:\/\/collections\/all"
+            "link": "shopify://collections/all"
           }
         },
         "3fee2c47-bceb-41b5-8ba5-0cc00a4c2cad": {
           "type": "textbutton",
           "settings": {
-            "collection": "沙發-沙發桌",
+            "collection": "sofa",
             "collection_title": "",
             "link": ""
           }
@@ -98,7 +107,7 @@
         "6daa768c-cd9f-422e-91e3-7f48bc05337c": {
           "type": "imagebutton",
           "settings": {
-            "collection": "沙發-沙發桌"
+            "collection": "sofa"
           }
         },
         "8e2f449d-3d4d-4b05-a2c0-72f0ea3901e4": {
@@ -177,7 +186,7 @@
           "type": "producttabs",
           "settings": {
             "tab_name": "LIVING ROOM",
-            "image": "shopify:\/\/shop_images\/LIVING_ROOM.jpg",
+            "image": "shopify://shop_images/LIVING_ROOM.jpg",
             "collection": "product-list_living-room",
             "tab_content_heading": "懂生活也懂你的心",
             "tab_content": "打造屬於你的時尚空間，讓夢想的客廳成為生活的一部分​",
@@ -197,7 +206,7 @@
           "type": "producttabs",
           "settings": {
             "tab_name": "BED ROOM",
-            "image": "shopify:\/\/shop_images\/BED_ROOM.jpg",
+            "image": "shopify://shop_images/BED_ROOM.jpg",
             "collection": "product-list_bed-room",
             "tab_content_heading": "安穩舒適共織全家人的夢",
             "tab_content": "明亮自然的設計營造溫馨的臥室，靈活地適應家庭生活週期​",
@@ -217,7 +226,7 @@
           "type": "producttabs",
           "settings": {
             "tab_name": "KIDS ROOM",
-            "image": "shopify:\/\/shop_images\/KIDS_ROOM.jpg",
+            "image": "shopify://shop_images/KIDS_ROOM.jpg",
             "collection": "product-list_kids-room",
             "tab_content_heading": "用彩多打造多姿的童年時光​",
             "tab_content": "從遊戲到入睡，為孩子提供相親相愛的相處空間​",
@@ -237,7 +246,7 @@
           "type": "producttabs",
           "settings": {
             "tab_name": "STUDY ROOM",
-            "image": "shopify:\/\/shop_images\/ff.jpg",
+            "image": "shopify://shop_images/ff.jpg",
             "collection": "main_kids-room",
             "tab_content_heading": "為萬變而生的學習方案",
             "tab_content": "適應孩子成長的節奏，讓靈活、自由成為學習的日常​",

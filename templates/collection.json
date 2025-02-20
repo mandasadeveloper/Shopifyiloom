@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
@@ -34,7 +43,7 @@
         "4eaf80ad-0cf3-4506-b698-2ccf0beb7c65": {
           "type": "textbutton",
           "settings": {
-            "collection": "沙發-沙發桌",
+            "collection": "sofa",
             "collection_title": "",
             "link": ""
           }
@@ -98,7 +107,7 @@
         "imagebutton_6wxKeN": {
           "type": "imagebutton",
           "settings": {
-            "collection": "沙發-沙發桌"
+            "collection": "sofa"
           }
         },
         "imagebutton_fa7Kjk": {

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
@@ -11,8 +20,8 @@
         "show_collection_image": true,
         "collection_title_size": "h1",
         "image_size": "auto",
-        "image": "shopify:\/\/shop_images\/outlet_e882a05a-0efe-470f-a6c4-49d938b4f352.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/mo-outlet_d1a7811e-5b50-4939-9278-06265113763e.jpg",
+        "image": "shopify://shop_images/outlet_e882a05a-0efe-470f-a6c4-49d938b4f352.jpg",
+        "mobile_image": "shopify://shop_images/mo-outlet_d1a7811e-5b50-4939-9278-06265113763e.jpg",
         "mobile_text_position": "place-self-center text-center",
         "desktop_text_position": "sm:place-self-center sm:text-center",
         "featured_product": "",
@@ -28,7 +37,7 @@
         "4eaf80ad-0cf3-4506-b698-2ccf0beb7c65": {
           "type": "textbutton",
           "settings": {
-            "collection": "沙發-沙發桌",
+            "collection": "sofa",
             "collection_title": "",
             "link": ""
           }
